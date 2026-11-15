@@ -163,5 +163,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 9, l: 6 },
     added: '2026-11-14'
+  },
+  {
+    character: 'Lee',
+    file: 'guides/Anti-Lee.html',
+    artifact: 'https://claude.ai/artifact/Cw6VuvpoH4Q76PeGea6muf',
+    tags: ['SSR Close', 'Duck the Magic 4', 'High Power Crushes'],
+    step: 'SSR',
+    record: { w: 12, l: 5 },
+    added: '2026-11-15'
   }
 ];
