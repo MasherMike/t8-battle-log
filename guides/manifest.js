@@ -172,5 +172,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 12, l: 5 },
     added: '2026-11-15'
+  },
+  {
+    character: 'Nina',
+    file: 'guides/Anti-Nina.html',
+    artifact: 'https://claude.ai/artifact/BYPhLghEM8Vgo2LrArLNgZ',
+    tags: ['SSR Close', 'Duck the Gunshots', 'Respect SS Cancels'],
+    step: 'SSR',
+    record: { w: 4, l: 5 },
+    added: '2026-11-16'
   }
 ];
