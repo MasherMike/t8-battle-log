@@ -181,5 +181,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 4, l: 5 },
     added: '2026-11-16'
+  },
+  {
+    character: 'King',
+    file: 'guides/Anti-King.html',
+    artifact: 'https://claude.ai/artifact/FHCyRNz6gerqBfwmTF8G38',
+    tags: ['SSR Default', 'Learn the Throw Breaks', 'Respect Jaguar Sprint'],
+    step: 'SSR',
+    record: { w: 18, l: 16 },
+    added: '2026-11-17'
   }
 ];
