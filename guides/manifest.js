@@ -190,5 +190,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 18, l: 16 },
     added: '2026-11-17'
+  },
+  {
+    character: 'Panda',
+    file: 'guides/Anti-Panda.html',
+    artifact: 'https://claude.ai/artifact/VQGP9jidkSoVSrDSYocq59',
+    tags: ['SSR Default', 'Heat Smash +9', 'Fast Mids vs HBS'],
+    step: 'SSR',
+    record: { w: 2, l: 2 },
+    added: '2026-11-18'
   }
 ];
