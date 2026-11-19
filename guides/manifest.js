@@ -217,5 +217,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 8, l: 13 },
     added: '2026-11-19'
+  },
+  {
+    character: 'Fahkumram',
+    file: 'guides/Anti-Fahkumram.html',
+    artifact: 'https://claude.ai/artifact/CxhdaYxmARhD56Et5SzQgt',
+    tags: ['SSR', 'Duck His Highs', 'Heat Smash +7'],
+    step: 'SSR',
+    record: { w: 19, l: 5 },
+    added: '2026-11-19'
   }
 ];
