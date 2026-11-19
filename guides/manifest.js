@@ -208,5 +208,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 21, l: 16 },
     added: '2026-11-19'
+  },
+  {
+    character: 'Shaheen',
+    file: 'guides/Anti-Shaheen.html',
+    artifact: 'https://claude.ai/artifact/KMFTEjjKdLUwN2DSWDaXg7',
+    tags: ['SSR Default, Block df1', 'Duck Al-Ghul & b3+4', 'Heat Smash -14 Low'],
+    step: 'SSR',
+    record: { w: 8, l: 13 },
+    added: '2026-11-19'
   }
 ];
