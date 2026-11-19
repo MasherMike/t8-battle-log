@@ -199,5 +199,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 2, l: 2 },
     added: '2026-11-18'
+  },
+  {
+    character: 'Steve',
+    file: 'guides/Anti-Steve.html',
+    artifact: 'https://claude.ai/artifact/WqkL2oqX2joUsWZQYHF3NQ',
+    tags: ['SSR Close', 'Duck the Highs', 'Respect LNH +5'],
+    step: 'SSR',
+    record: { w: 21, l: 16 },
+    added: '2026-11-19'
   }
 ];
