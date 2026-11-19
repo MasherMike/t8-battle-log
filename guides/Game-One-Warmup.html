@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Game-One Warm-up | 5 min | −12 2,2,2 | −14 f4,1 | Low → ws1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  /* Layout: one column, same dark guide look as the anti-character docs; days stack as panels */
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-muted: #8a8aa8;
+    --green: #00ff41;
+    --yellow: #ffd700;
+    --red: #ff3a3a;
+    --accent: #4a9eff;
+    --font-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+    --font-mono: 'Share Tech Mono', ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-block: 2rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 1rem;
+    text-wrap: balance; scroll-margin-top: 12px;
+  }
+  .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2.25rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    scroll-margin-top: 12px; text-wrap: balance;
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+  .day-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: none; font-weight: 500; }
+
+  .to-top {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2);
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+
+  .mono { font-family: var(--font-mono); font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 8px 12px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; margin: 0.25rem 0 0.5rem; }
+
+  .top3 { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 0.5rem 0 0.75rem; }
+  .top3 > div { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 10px 12px; min-width: 0; }
+  .top3 .rank { font-family: var(--font-mono); font-size: 11px; color: var(--green); letter-spacing: 0.08em; }
+  .top3 .what { font-weight: 700; font-size: 15px; margin: 2px 0 4px; }
+  .top3 .why { font-size: 12px; color: var(--text-muted); }
+  .move-icons { display: inline-flex; align-items: center; gap: 3px; flex-wrap: wrap; vertical-align: middle; }
+  .stance { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: white; margin-right: 2px; }
+  svg.arrow, svg.btn { display: inline-block; vertical-align: middle; }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 0.75rem; }
+  th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border); white-space: nowrap;
+  }
+  td { padding: 6px 10px 6px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  td.min, td.id { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  td.target { font-family: var(--font-mono); font-size: 12px; color: var(--green); white-space: nowrap; }
+  td.src { font-size: 11px; color: var(--text-muted); }
+  .week td.off { color: var(--text-muted); }
+  .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; padding: 0 6px; border: 0.5px solid var(--border); white-space: nowrap; }
+  .tag-ar { color: var(--yellow); }
+  .tag-re { color: #ff8ad8; }
+  .tag-vi { color: var(--accent); }
+
+  .clock { font-family: var(--font-mono); font-size: 12px; color: var(--green); white-space: nowrap; }
+  .num { font-family: var(--font-mono); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bad { color: var(--red); }
+  .good { color: #00cc44; }
+  .tag-da { color: var(--green); }
+  .verify-slot { font-size: 12px; color: var(--text-muted); border-top: 0.5px dashed var(--border); padding-top: 6px; margin-top: 2px; }
+  .verify-slot strong { color: var(--yellow); }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7; scroll-margin-top: 12px;
+  }
+  .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .sources a { color: var(--accent); text-decoration: none; }
+  .sources a:hover, .sources a:focus-visible { text-decoration: underline; outline: none; }
+
+  @media print {
+    body { background: white; color: black; padding: 1rem; }
+    .toc, .to-top { display: none; }
+  }
+</style>
+
+<script>
+  // Victor on P1 side: forward points right (same icon set as the guides)
+  const flipped = true;
+  function arrow(dir, held=false) {
+    const baseAngles = {f:90,b:270,u:180,d:0,df:45,db:315,uf:135,ub:225};
+    let rot = baseAngles[dir] || 0;
+    const diagonalFlips = {df:'db', db:'df', uf:'ub', ub:'uf'};
+    if (flipped && ['f','b'].includes(dir)) rot = (rot + 180) % 360;
+    if (flipped && dir in diagonalFlips) rot = baseAngles[diagonalFlips[dir]];
+    const fill = held ? 'white' : 'none';
+    const stroke = held ? '#111' : 'white';
+    return `<svg class="arrow" width="26" height="26" viewBox="0 0 60 60" aria-hidden="true"><g transform="rotate(${rot}, 30, 30)"><path d="M17,8 L17,34 L8,34 L30,54 L52,34 L43,34 L43,8 Z" fill="${fill}" stroke="${stroke}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></g></svg>`;
+  }
+  function btn(buttons) {
+    const active = Array.isArray(buttons) ? buttons : [buttons];
+    const pos = {1:'left',2:'top',3:'bottom',4:'right'};
+    const coords = {left:[12,30], top:[30,12], right:[48,30], bottom:[30,48]};
+    let circles = '';
+    ['1','2','3','4'].forEach(b => {
+      const [cx,cy] = coords[pos[b]];
+      circles += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active.includes(b)?'white':'#4a4a4a'}" stroke="#222" stroke-width="2"/>`;
+    });
+    return `<svg class="btn" width="26" height="26" viewBox="0 0 60 60" aria-hidden="true">${circles}</svg>`;
+  }
+  function buttons(str) {
+    if (str.includes('+')) return btn(str.split('+').filter(c => '1234'.includes(c)));
+    let html = '';
+    for (const ch of str) { if ('1234'.includes(ch)) html += btn(ch); }
+    return html;
+  }
+  function move(n) {
+    if (n.toLowerCase().startsWith('ws')) return '<span class="stance">WS</span>' + buttons(n.slice(2));
+    let dir = null;
+    for (const d of ['df','db','uf','ub','f','b','u','d']) {
+      if (n.toLowerCase().startsWith(d)) { dir = d; n = n.slice(d.length); break; }
+    }
+    return (dir ? arrow(dir, true) : '') + buttons(n);
+  }
+  function icons(...notations) {
+    return `<span class="move-icons" role="img" aria-label="${notations.join(', ')}">${notations.map(move).join('')}</span>`;
+  }
+</script>
+
+<h1 id="top">Game-One Warm-up &nbsp;|&nbsp; 5 min &nbsp;|&nbsp; −12 2,2,2 &nbsp;|&nbsp; −14 f4,1 &nbsp;|&nbsp; Low → ws1 &nbsp;|&nbsp; Read the Card</h1>
+<p class="sub">Built 19 November 2026 for Victor in ranked. Four minutes of hands, one minute of reading, before your first ranked match of the night. Set the dummy's recordings up before you start the clock: that part isn't counted.</p>
+
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#why" class="toc-key">What the data says</a>
+  <a href="#routine" class="toc-key">The 5 minutes</a>
+  <a href="#firstsight">First-sight card</a>
+  <a href="#reina">Reina rules</a>
+  <a href="#between">Between games</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── WHY ── -->
+<h2 id="why"><span>What the Data Says</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Game one isn't a general leak. It's a first-sight leak.</strong> You win game one about as often as later games, and your very first game of a session is one of your best. What drags game one down is facing a character you haven't seen much, plus Reina.</div>
+<div class="table-wrap"><table>
+  <thead><tr><th>Victor, ranked, 60 days</th><th>Game one</th><th>Later games</th></tr></thead>
+  <tbody>
+    <tr><td>All 145 sets</td><td class="num">76–69 (52%)</td><td class="num">84–80 (51%)</td></tr>
+    <tr><td>First game of a session</td><td class="num good">11–8 (58%)</td><td class="num">—</td></tr>
+    <tr><td>Characters you'd faced 15+ times before</td><td class="num good">58–40 (59%)</td><td class="num">57–49 (54%)</td></tr>
+    <tr><td>Characters you'd faced under 15 times</td><td class="num bad">18–29 (38%)</td><td class="num">27–31 (47%)</td></tr>
+    <tr><td>Reina (familiar, still the exception)</td><td class="num bad">3–7 (30%)</td><td class="num good">8–5 (62%)</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Why it still matters: game one is 145 of your 309 Victor games in that window (47%), 26 sets ended after it, and after a game-one loss you won a game back in only 27 of 69 sets. All-time the familiarity gap is smaller but points the same way: 61% vs 53% in game one.</div>
+<div class="callout callout-warn"><strong>Theory (Ledger):</strong> the hands warm-up below keeps your Victor buckets sharp for any opponent, but the bigger win is the one-minute read. Game one goes wrong when you're learning the matchup live, so the fix is loading it before the round starts.</div>
+
+<!-- ── ROUTINE ── -->
+<h2 id="routine"><span>The 5 Minutes</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout">Training mode, Victor vs <strong>Reina</strong> as the dummy for all three hands blocks. She's the one character who still beats you in game one after you know her, so the reps double as her matchup.</div>
+<div class="table-wrap"><table>
+  <thead><tr><th>Clock</th><th>Dummy records</th><th>Your answer</th><th>Reps</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="clock">0:00–2:00</td>
+      <td>Random playback: <span class="mono">df+2</span> (−12) and <span class="mono">df+1,2</span> (−14)</td>
+      <td>−12 → <script>document.write(icons('2','2','2'))</script> 32 dmg<br>−14 → <script>document.write(icons('f4','1'))</script> 36 dmg</td>
+      <td class="min">20</td><td class="target">16/20</td>
+      <td class="src"><span class="tag tag-vi">Punish</span> Practice first</td>
+    </tr>
+    <tr>
+      <td class="clock">2:00–3:30</td>
+      <td>Random playback: <span class="mono">d+4</span> (−15) and <span class="mono">db+2</span> (−16, two lows)</td>
+      <td>Hold down-back through both hits, then <script>document.write(icons('ws1'))</script> (launch)</td>
+      <td class="min">15</td><td class="target">13/15</td>
+      <td class="src"><span class="tag tag-re">Reina</span> Practice #2</td>
+    </tr>
+    <tr>
+      <td class="clock">3:30–4:00</td>
+      <td><span class="mono">df+1~SEN</span> into <span class="mono">SEN.3</span> (high, homing, +1)</td>
+      <td>Duck it</td>
+      <td class="min">8</td><td class="target">7/8</td>
+      <td class="src"><span class="tag tag-re">Reina</span> Practice #1</td>
+    </tr>
+    <tr>
+      <td class="clock">4:00–5:00</td>
+      <td colspan="4">Read the <a href="#firstsight" style="color:var(--accent)">first-sight card</a> and the <a href="#reina" style="color:var(--accent)">Reina rules</a> once. Then queue.</td>
+      <td class="src"><span class="tag tag-da">Data</span></td>
+    </tr>
+  </tbody>
+</table></div>
+<div class="note">Miss a pass mark? Don't redo it tonight. It's a warm-up, not a lab day: note it and give it a set on the matching Weekly Lab Plan day. The ws1 is −16 on block, so only throw it on a low you actually blocked.</div>
+
+<!-- ── FIRST SIGHT ── -->
+<h2 id="firstsight"><span>First-Sight Card</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>The rule:</strong> on the loading screen, if the character is on this list, open their guide and read its title line before game one. About 30 seconds, every time, not just the first match of the night.</div>
+<div class="table-wrap"><table>
+  <thead><tr><th>Character</th><th>Sets ever</th><th>Game one, 60 days</th><th>Read this</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Shaheen</strong></td><td class="num">11</td><td class="num bad">0–3</td><td>No guide yet (queue #2). Game one all-time as Victor: 1–8.</td></tr>
+    <tr><td><strong>Jack-8</strong></td><td class="num">13</td><td class="num bad">1–2</td><td>No guide yet (queue #3).</td></tr>
+    <tr><td><strong>Raven</strong></td><td class="num">9</td><td class="num bad">1–2</td><td>No guide yet. Game one all-time: 2–6.</td></tr>
+    <tr><td><strong>Zafina</strong></td><td class="num">7</td><td class="num bad">0–2</td><td><a href="https://claude.ai/artifact/GmJL19EM42iz5mrvguwuqK" style="color:var(--accent)">Anti-Zafina</a>: SSR default · power crush Scarecrow · duck Heat Smash</td></tr>
+    <tr><td><strong>Leo</strong></td><td class="num">12</td><td class="num">2–2</td><td><a href="https://claude.ai/artifact/DzHq3pwp1HijmP2PzmgoS8" style="color:var(--accent)">Anti-Leo</a>: SSR default · stand-block KNK · BOK can't block</td></tr>
+    <tr><td><strong>Anna</strong></td><td class="num">7</td><td class="num">2–2</td><td><a href="https://claude.ai/artifact/TT3pjbiMNLtRCr1aRryz6M" style="color:var(--accent)">Anti-Anna</a>: SSR default · mid-check CJM · stay crouched</td></tr>
+    <tr><td><strong>Alisa</strong></td><td class="num">9</td><td class="num">1–1</td><td><a href="https://claude.ai/artifact/TpmoedVzTc1z6YH3zNGfPn" style="color:var(--accent)">Anti-Alisa</a>: SSR default · SWL vs chainsaws · duck DBT.1</td></tr>
+    <tr><td><strong>Kuma</strong></td><td class="num">7</td><td class="num bad">0–1</td><td><a href="https://claude.ai/artifact/X3dJTmZ2oMJdg6KWNuQkz6" style="color:var(--accent)">Anti-Kuma</a>: SSR default · mid-check HBS · low parry db+2+3</td></tr>
+    <tr><td><strong>Panda</strong></td><td class="num">8</td><td class="num bad">0–1</td><td><a href="https://claude.ai/artifact/VQGP9jidkSoVSrDSYocq59" style="color:var(--accent)">Anti-Panda</a>: SSR default · Heat Smash +9 · fast mids vs HBS</td></tr>
+    <tr><td>Lars, Claudio, Clive, Feng, Leroy, Roger Jr.</td><td class="num">under 15</td><td class="num">1–2 sets each</td><td>No guide yet. Use the no-guide default below.</td></tr>
+  </tbody>
+</table></div>
+<div class="callout"><strong>No-guide default:</strong> game one is the scouting game. Block more than usual, take only the punishes from the <a href="#routine" style="color:var(--accent)">5 minutes</a> (2,2,2 at −12, f+4,1 at −14, ws1 on a blocked −15 low), and note the one string that hit you most. Read it again before game two.</div>
+<div class="note">"Sets ever" counts every ranked set you've played against them on any character, all year. The list moves as you play: once a character passes 15 sets, drop them. The guide summaries are each guide's own title tags.</div>
+
+<!-- ── REINA ── -->
+<h2 id="reina"><span>Reina Rules · Game One</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn"><strong>Trigger:</strong> the first time Reina shows up in a session. Your first-Reina-of-the-session game ones are 1–6. When she's your second or third Reina of the night, game one goes 2–1.</div>
+<div class="callout">1. <strong>Empty SEN:</strong> after <span class="mono">df+1</span> into SEN she can't block until frame 15. Jab it, or duck if you read <span class="mono">SEN.3</span> (high, homing, +1 on block).<br>
+2. <strong>Block low, launch:</strong> <span class="mono">d+4</span> is −15 and <span class="mono">db+2</span> is −16. Both are <script>document.write(icons('ws1'))</script>.<br>
+3. <strong>In her Heat, stop pressing mids.</strong> Throw or low her while she holds WRA, and punish only once she's clearly stopped.</div>
+<div class="note">Rules 1–2 match Wavu today. Rule 3 is from your <a href="https://claude.ai/artifact/6rsmupTaUPqyeVoK5BUpF9" style="color:var(--accent)">Anti-Reina</a> guide, which has the frame details.</div>
+
+<!-- ── BETWEEN ── -->
+<h2 id="between"><span>Between Games</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout"><strong>After you win game one, change one thing.</strong> Some opponents fix their plan faster than you change yours. Victor, ranked, 60 days, games after game one: Dragunov <span class="num bad">2–7</span>, King <span class="num bad">2–5</span>, Leo <span class="num bad">1–5</span>. Your 8 Nov coach note caught it in one night: you won game one against King, Dragunov and Leo and lost all three sets ("They adapted; you kept the same plan"). The 1 Nov note says the same about Reina.</div>
+<div class="note">Theory (Ledger): this isn't a game-one problem, so it gets one line, not drills. Your <a href="https://claude.ai/artifact/1gmUFPVEz5QFA1usycxZyQ" style="color:var(--accent)">Anti-Dragunov</a> guide is the place to look first: all-time you're 9–9 in game one against him and 6–17 after it.</div>
+
+<!-- ── SOURCES ── -->
+<div class="sources" id="sources">
+  <div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  <span class="tag tag-da">Data</span> Your repo's battle log (<span class="mono">data/battles.jsonl</span>, HEAD 19 Nov), ranked games only, duplicates removed. Window: 60 days ending with your last ranked game on 15 Nov. Sets = same characters, under 10 minutes apart, opponent rating within 40 of the game before. Sessions = a 60-minute gap. "Faced before" counts earlier sets against that character on any of your characters.<br>
+  <span class="tag tag-vi">Punish</span> <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt">Victor Punish Sheet</a>: Practice first (2,2,2, f+4,1, ws1).<br>
+  <span class="tag tag-re">Reina</span> <a href="https://claude.ai/artifact/6rsmupTaUPqyeVoK5BUpF9">Anti-Reina</a> and the Reina loss review (19 Nov): first-of-session record, game-one rules. Weekly Lab Plan: drill reps and pass marks.<br>
+  Frame data rechecked 19 Nov 2026 on <a href="https://wavu.wiki/t/Victor_punishers">Wavu Wiki — Victor punishers</a> (−12 2,2,2 32 dmg · −14 f+4,1 36 dmg · crouching −15 ws1 +53a) and <a href="https://wavu.wiki/t/Reina_movetable">Wavu Wiki — Reina movetable</a> (df+2 −12 · df+1,2 −14 · d+4 −15 · db+2 two lows −16 · df+1 can't block up to i15 on empty SEN · SEN.3 high, homing, +1). All matched your existing guides.<br>
+  Guide links and title lines from your repo's <span class="mono">guides/manifest.js</span>.<br>
+  <strong>Lab (Mike):</strong> nothing on this page is lab-tested yet. The pass marks are a rule of thumb, not research.
+</div>
+
+</body>
+</html>

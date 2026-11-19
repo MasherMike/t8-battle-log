@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Victor Theory Lab Checklist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<style>
+  /* Layout: one column in the same dark guide look as the anti-character docs; each test is a panel with its setup, pass/fail line, Wavu row and a result toggle */
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-muted: #8a8aa8;
+    --green: #00ff41;
+    --green-soft: #00cc44;
+    --yellow: #ffd700;
+    --red: #ff3a3a;
+    --pink: #ff8ad8;
+    --accent: #4a9eff;
+    --font-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+    --font-mono: 'Share Tech Mono', ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-block: 2rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 1rem;
+    text-wrap: balance; scroll-margin-top: 12px;
+  }
+  .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; max-width: 70ch; }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2.25rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    scroll-margin-top: 12px; text-wrap: balance;
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+  .day-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: none; font-weight: 500; }
+
+  .to-top {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2);
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+
+  .mono { font-family: var(--font-mono); font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 8px 12px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; margin: 0.25rem 0 0.5rem; }
+  .callout ul { margin: 4px 0 0 18px; }
+  .callout li { margin-bottom: 3px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 0.75rem; }
+  th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border); white-space: nowrap;
+  }
+  td { padding: 6px 10px 6px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  td.min { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; padding: 0 6px; border: 0.5px solid var(--border); white-space: nowrap; }
+  .tag-ar { color: var(--yellow); }
+  .tag-re { color: var(--pink); }
+  .tag-ka { color: var(--red); }
+  .tag-vi { color: var(--accent); }
+  .tag-first { color: var(--green); border-color: var(--green-soft); }
+
+  /* progress */
+  .progress { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 1.25rem; font-size: 12px; color: var(--text-muted); }
+  .bar { flex: 1; min-width: 160px; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; width: 0; background: var(--green-soft); transition: width 0.2s ease; }
+  .progress .count { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); }
+
+  /* test panels */
+  .test {
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px;
+    padding: 10px 12px; margin: 0 0 10px; scroll-margin-top: 12px;
+  }
+  .test[data-state="confirmed"] { border-color: var(--green-soft); }
+  .test[data-state="disproved"] { border-color: var(--red); }
+  .test[data-state="unclear"] { border-color: var(--yellow); }
+  .test-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+  .tid { font-family: var(--font-mono); font-size: 13px; color: var(--accent); min-width: 2.2rem; }
+  .q { font-weight: 700; font-size: 15px; flex: 1 1 18rem; min-width: 0; line-height: 1.35; }
+  .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .reps { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+  dl.spec { display: grid; grid-template-columns: 6.5rem 1fr; gap: 3px 12px; font-size: 13px; }
+  dl.spec dt { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding-top: 3px; }
+  dl.spec dd { min-width: 0; }
+  dl.spec dt.ok { color: var(--green-soft); }
+  dl.spec dt.bad { color: var(--red); }
+  dl.spec dt.wv { color: var(--accent); }
+  dl.spec dd.wavu { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+  dl.spec dd.wavu b { color: var(--text); font-weight: 400; }
+  @media (max-width: 520px) {
+    dl.spec { grid-template-columns: 1fr; gap: 0 0; }
+    dl.spec dt { padding-top: 6px; }
+  }
+
+  .result { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 0.5px dashed var(--border); }
+  .result button, .btn {
+    font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; background: var(--bg3); color: var(--text-muted);
+    border: 0.5px solid var(--border); border-radius: 4px; padding: 4px 12px; cursor: pointer;
+  }
+  .result button:hover, .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .result button:focus-visible, .btn:focus-visible, .rnote:focus-visible, #results-text:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .result button[aria-pressed="true"][data-r="confirmed"] { background: var(--green-soft); color: #000; border-color: var(--green-soft); }
+  .result button[aria-pressed="true"][data-r="disproved"] { background: var(--red); color: #000; border-color: var(--red); }
+  .result button[aria-pressed="true"][data-r="unclear"] { background: var(--yellow); color: #000; border-color: var(--yellow); }
+  .rnote {
+    flex: 1 1 14rem; min-width: 0; font-family: var(--font-display); font-size: 13px; color: var(--text);
+    background: var(--bg); border: 0.5px solid var(--border); border-radius: 4px; padding: 4px 8px;
+  }
+  .rnote::placeholder { color: var(--text-muted); }
+
+  .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .btn-primary:hover { color: #000; filter: brightness(1.1); }
+  #results-text {
+    width: 100%; min-height: 9rem; font-family: var(--font-mono); font-size: 12px; color: var(--text);
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 8px 10px; resize: vertical;
+  }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+  .status { font-size: 12px; color: var(--text-muted); }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7; scroll-margin-top: 12px;
+  }
+  .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .sources-head h2 { margin: 0; border: 0; padding: 0; }
+  .sources a { color: var(--accent); text-decoration: none; }
+  .sources a:hover, .sources a:focus-visible { text-decoration: underline; outline: none; }
+  .sources p { margin-bottom: 6px; }
+</style>
+
+</head>
+<body>
+<h1 id="top">Victor Theory Lab &nbsp;|&nbsp; 23 Tests &nbsp;|&nbsp; 3 Dummies &nbsp;|&nbsp; ~80 min</h1>
+<p class="sub">Every item your guides mark as theory, untested or unconfirmed, turned into a practice-mode test you can run in one session. Built 19 November 2026 from your Anti-Armor King, Anti-Reina and Anti-Kazuya guides and your Victor Punish Sheet. Grouped by dummy so you only switch characters twice. Tick each result as you go; the page remembers your ticks on this device, and the Results box at the bottom turns them into a list to send me.</p>
+
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#run" class="toc-key">How to run it</a>
+  <a href="#wavu" class="toc-key">Wavu already answers</a>
+  <a href="#ak">Station 1 · Armor King</a>
+  <a href="#reina">Station 2 · Reina</a>
+  <a href="#kazuya">Station 3 · Kazuya</a>
+  <a href="#results">Results</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<div class="progress" aria-live="polite">
+  <span><span class="count" id="done-count">0</span> of <span class="count">23</span> logged</span>
+  <div class="bar" aria-hidden="true"><span id="done-bar"></span></div>
+</div>
+
+<!-- ── HOW TO RUN IT ── -->
+<h2 id="run"><span>How to Run It</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Short on time? Do the five marked <span class="tag tag-first">Do first</span>.</strong> R1, R2 and R3 decide your game-one habits against Reina (she has taken game one in 7 of your 9 sets), K1 sets your default step against Kazuya, and A1 is the frame race your Armor King plan rests on. They take about 25 minutes together.</div>
+<div class="table-wrap"><table>
+  <thead><tr><th>Station</th><th>Dummy</th><th>Tests</th><th>Time</th></tr></thead>
+  <tbody>
+    <tr><td><a class="mono" href="#ak" style="color:var(--accent);text-decoration:none">1</a></td><td><span class="tag tag-ar">AK</span> Armor King</td><td class="mono">A1 A2 A3 V3 V4 V5 V6</td><td class="min">~25 min</td></tr>
+    <tr><td><a class="mono" href="#reina" style="color:var(--accent);text-decoration:none">2</a></td><td><span class="tag tag-re">Reina</span> Reina</td><td class="mono">R1 R2 R3 R4 R5 R6 V1</td><td class="min">~25 min</td></tr>
+    <tr><td><a class="mono" href="#kazuya" style="color:var(--accent);text-decoration:none">3</a></td><td><span class="tag tag-ka">Kaz</span> Kazuya</td><td class="mono">K1 K2 K3 K4 K5 K6 K7 K8 V2</td><td class="min">~30 min</td></tr>
+  </tbody>
+</table></div>
+<h3>Settings to turn on once</h3>
+<div class="callout">
+<ul>
+  <li><strong>Frame data display on.</strong> Half these tests are settled by reading the frame advantage after the hit or block, so keep it on screen the whole session.</li>
+  <li><strong>Recording + playback.</strong> Record the dummy's move in a slot, then play it back. Where a test says <em>random playback</em>, fill two or more slots and turn on random slot playback.</li>
+  <li><strong>"Guaranteed?" tests:</strong> set the dummy to guard everything after its recorded move. Anything that still lands was guaranteed; anything it blocks wasn't.</li>
+  <li><strong>Heat:</strong> keep Heat refilling for both sides on K7 and the Heat half of V1; leave it normal elsewhere.</li>
+  <li>Menu names move between patches, so look for the setting that does the job if the label differs.</li>
+</ul>
+</div>
+<h3>What counts as a result</h3>
+<div class="callout">Run each condition 10 times unless the test says otherwise. <strong>Confirmed</strong> = the predicted outcome on 8 or more of 10 clean reps. <strong>Disproved</strong> = the opposite outcome on 8 or more. <strong>Unclear</strong> = anything in between, or you couldn't get a clean rep (note why in the box). A rep where you were late doesn't count, so redo it rather than scoring it. Rep counts are a rule of thumb, not research.</div>
+
+<!-- ── WAVU ALREADY ANSWERS ── -->
+<h2 id="wavu"><span>Wavu Already Answers · Read Before You Test</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn">Checking these items against Wavu's full movelists settled or changed six of them before you pick up the pad. The tests still run, but you're now confirming a listed value instead of guessing. None of your guides has been edited; say the word and I'll fix them.
+<ul>
+  <li><strong>Reina's command-throw breaks (R6):</strong> Wavu lists <span class="mono">uf+1+2</span> as <strong>break 1+2</strong> and <span class="mono">d,db,b,f+2</span> (listed as <span class="mono">qcb,f+2</span>) as <strong>break 2</strong>. Your guide says "break not confirmed".</li>
+  <li><strong>Reina's SEN.4 (R2, R3):</strong> Wavu has it at <strong>i26~27</strong>, a mid, +4. The anti-strat page your guide quotes says i8. At i26 it can't beat a jab, and it is not her fastest SEN move; that's <span class="mono">SEN.3</span> at i12~13.</li>
+  <li><strong>Reina's SEN.2 (R3):</strong> Wavu lists it as a <strong>mid</strong>, i13, −6, Tornado. Your guide lists it as a low at −4. A duck loses to it either way, but block it standing.</li>
+  <li><strong>Victor's IAI.f (V4):</strong> Wavu says it <strong>"parries low attacks"</strong>, with parry frames 3?~11? and crouching frames 4~17. Your punish sheet had it as unconfirmed.</li>
+  <li><strong>Reina's hellsweep (R4):</strong> Wavu gives <span class="mono">WGS.DF+4</span> crouching frames 15~55. That backs the TekkenDocs "high crush" over the anti-strat page.</li>
+  <li><strong>Kazuya's db+1,2 (K6):</strong> Wavu says the ,2 jails from the first block even with a 1F delay, and the input can only be delayed 1F. There's no gap to punish the first hit; you only get the −10 when he stops after <span class="mono">db+1</span>.</li>
+</ul></div>
+
+<!-- ── STATION 1: ARMOR KING ── -->
+<h2 id="ak"><span>Station 1 · Armor King <span class="day-meta">7 tests · ~25 min</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+
+<article class="test" id="t-A1" data-id="A1">
+  <div class="test-head"><span class="tid">A1</span><span class="q">From −8 into BAD, does your jab beat BAD.3?</span><span class="meta"><span class="tag tag-first">Do first</span><span class="tag tag-ar">AK</span><span class="reps">10 reps</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">3+4,1~F</span> (hold F after the kick to enter BAD), then <span class="mono">BAD.3</span> as soon as it comes out. Second slot: same, ending in <span class="mono">BAD.1</span>. Random playback.</dd>
+    <dt>You</dt><dd>Block both hits of <span class="mono">3+4,1</span>, then press <span class="mono">1</span> the first frame you can.</dd>
+    <dt class="ok">Confirms</dt><dd>Your jab hits before either BAD move comes out. Your jab lands on his frame 2; BAD.3's armor doesn't start until his frame 7.</dd>
+    <dt class="bad">Disproves</dt><dd>BAD.3 absorbs the jab and hits you, or BAD.1 trades.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>3+4,1</b> −8, ~F into BAD (−8/+8) · <b>BAD.3</b> i20~21 mid, power crush 7~19, −13 · <b>BAD.1</b> i11 high · <b>f+3+4</b> "cannot block in stance"</dd>
+  </dl>
+  <div class="result" role="group" aria-label="A1 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-A1" type="text" placeholder="What happened (optional)" aria-label="A1 note"></div>
+</article>
+
+<article class="test" id="t-A2" data-id="A2">
+  <div class="test-head"><span class="tid">A2</span><span class="q">From +0 into BAD, does BAD.3 armor through your jab?</span><span class="meta"><span class="tag tag-ar">AK</span><span class="reps">10 reps</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Same two slots as A1, but the entry is <span class="mono">df+2,1~F</span>.</dd>
+    <dt>You</dt><dd>Block both hits, jab immediately. Then try 10 reps of just blocking.</dd>
+    <dt class="ok">Confirms</dt><dd>BAD.3 armors your jab and hits you; your jab still beats BAD.1 (by one frame). Lesson: at +0, block, don't jab.</dd>
+    <dt class="bad">Disproves</dt><dd>Your jab beats BAD.3 here too, or BAD.1 beats your jab.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>df+2,1</b> +0, ~F into BAD (+0/+8/+11), "interrupt with i1 from 1st block" · <b>BAD.3</b> armor from frame 7 · <b>BAD.1</b> i11</dd>
+  </dl>
+  <div class="result" role="group" aria-label="A2 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-A2" type="text" placeholder="What happened (optional)" aria-label="A2 note"></div>
+</article>
+
+<article class="test" id="t-A3" data-id="A3">
+  <div class="test-head"><span class="tid">A3</span><span class="q">Do df+1 and df+2 duck under your jab?</span><span class="meta"><span class="tag tag-ar">AK</span><span class="reps">10 + 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: <span class="mono">df+1</span>. Slot 2: <span class="mono">df+2</span>. Loop one at a time, close range.</dd>
+    <dt>You</dt><dd>Press <span class="mono">1</span> so it arrives during his startup, before his hit lands. Mix early and late jabs.</dd>
+    <dt class="ok">Confirms</dt><dd>Your jab passes over him on some reps and his move hits you clean.</dd>
+    <dt class="bad">Disproves</dt><dd>Every jab that's in time counter-hits him. Then a jab check is safe against both.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>df+1</b> i13~14 mid, −3, "Jab evasion?" · <b>df+2</b> i15~16 mid, −12, "Jab evasion?" (both still question-marked on Wavu)</dd>
+  </dl>
+  <div class="result" role="group" aria-label="A3 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-A3" type="text" placeholder="Which one evaded, if only one (optional)" aria-label="A3 note"></div>
+</article>
+
+<article class="test" id="t-V3" data-id="V3">
+  <div class="test-head"><span class="tid">V3</span><span class="q">What does Victor get after a generic low parry, and how late can you input it?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="reps">3 × 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">db+3</span> (slow low, good for timing). Fixed playback.</dd>
+    <dt>You</dt><dd>Set 1: tap <span class="mono">df</span> as the low lands and read the frame advantage. Set 2: after the parry, try <span class="mono">df+2</span>, then <span class="mono">b+3,1</span>, with the dummy guarding after; note which land. Set 3: input the parry later each rep until it stops working.</dd>
+    <dt class="ok">Confirms</dt><dd>The parry works and a launcher lands guaranteed. Write down the advantage number and the best follow-up. If it beats block → <span class="mono">ws1</span> on db+3 (−26, already a launch), keep it; on most lows it won't.</dd>
+    <dt class="bad">Disproves</dt><dd>Nothing big is guaranteed after it. Then blocking and using the crouching table is the better habit.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu">No row: the low parry is a system move, and Victor's punisher page has no low-parry entry · <b>AK db+3</b> i22~24 low, −26, homing · Victor's own weapon lows (<b>d+1</b>) are marked unparryable</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V3 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V3" type="text" placeholder="Advantage, best follow-up, latest timing" aria-label="V3 note"></div>
+</article>
+
+<article class="test" id="t-V4" data-id="V4">
+  <div class="test-head"><span class="tid">V4</span><span class="q">Does IAI.f parry lows, highs, or both?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="reps">10 + 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: <span class="mono">d+4</span> (low). Slot 2: <span class="mono">3</span> (high). Get into IAI first: <span class="mono">uf+1,1</span> then D cancels into it (Wavu), or finish <span class="mono">2,2,2</span>.</dd>
+    <dt>You</dt><dd>From IAI, press <span class="mono">f</span> as each attack arrives.</dd>
+    <dt class="ok">Confirms</dt><dd>Low: parried. High: whiffs over you (you're crouching) but isn't parried. Then it's a low parry with high crush, as Wavu says.</dd>
+    <dt class="bad">Disproves</dt><dd>It parries the high, or doesn't parry the low.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>IAI.f</b> "Parries low attacks" · parry 3?~11? · crouching 4~17 · <b>uf+1,1</b> "Cancel to IAI (−9/+4) with D or 3+4"</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V4 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V4" type="text" placeholder="Also: what you got after the parry (optional)" aria-label="V4 note"></div>
+</article>
+
+<article class="test" id="t-V5" data-id="V5">
+  <div class="test-head"><span class="tid">V5</span><span class="q">Which of your ground hits connect on a face-down and a face-up opponent?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="tag tag-ar">AK</span><span class="reps">5 per move per position</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Face-down: record <span class="mono">db+4</span> and block it; he ends lying face down, feet toward you. Face-up: record running <span class="mono">wr4</span> and block it. Round 1 with the dummy set to stay down; round 2 with wake-up on random.</dd>
+    <dt>You</dt><dd>Try <span class="mono">d+4</span>, <span class="mono">d+1</span>, <span class="mono">d+3</span>, <span class="mono">IAI.d+1</span>, <span class="mono">u+1+2</span> on each position.</dd>
+    <dt class="ok">Confirms</dt><dd>Your <span class="mono">d+4</span> theory holds if it connects on both positions in round 1 and still lands in round 2. Write down every move that connects.</dd>
+    <dt class="bad">Disproves</dt><dd><span class="mono">d+4</span> whiffs on either position. Then the best connecting move from your list replaces it as the AK db+4 punish.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu">All five have a capital hit level (hits grounded): <b>d+4</b> L i16 10 −13 · <b>d+1</b> L i16 7 −17 · <b>d+3</b> L i18~19 11 −13 · <b>IAI.d+1</b> M i18 25 ±0 · <b>u+1+2</b> M i31~32 32 −20c · <b>AK db+4</b> −17, he ends face down feet toward</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V5 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V5" type="text" placeholder="Which moves hit face-down / face-up" aria-label="V5 note"></div>
+</article>
+
+<article class="test" id="t-V6" data-id="V6">
+  <div class="test-head"><span class="tid">V6</span><span class="q">Does 2,2,2's Wall Crush give a guaranteed follow-up?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="reps">5 per follow-up</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Dummy's back to the wall. Record <span class="mono">df+2</span> (−12). Dummy guards everything after.</dd>
+    <dt>You</dt><dd>Block, punish with <span class="mono">2,2,2</span>, then try <span class="mono">1,2</span> (i10), <span class="mono">2</span> (i12~13), <span class="mono">f+4,1</span> (i14), <span class="mono">df+2</span> (i15~16).</dd>
+    <dt class="ok">Confirms</dt><dd>At least one follow-up lands every rep while the dummy is guarding. Note the slowest one that still lands.</dd>
+    <dt class="bad">Disproves</dt><dd>The dummy blocks everything you try after the wall crush. Then 32 damage is the whole punish.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>2,2,2</b> −3, +4 on hit, "Wall Crush +12g on hit", ends in IAI · <b>AK df+2</b> −12</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V6 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V6" type="text" placeholder="Best guaranteed follow-up (optional)" aria-label="V6 note"></div>
+</article>
+
+<!-- ── STATION 2: REINA ── -->
+<h2 id="reina"><span>Station 2 · Reina <span class="day-meta">7 tests · ~25 min</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+
+<article class="test" id="t-R1" data-id="R1">
+  <div class="test-head"><span class="tid">R1</span><span class="q">Which way do you step her five main pokes?</span><span class="meta"><span class="tag tag-first">Do first</span><span class="tag tag-re">Reina</span><span class="reps">10 SSR + 10 SSL each</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>One slot per move: <span class="mono">df+1</span>, <span class="mono">df+2</span>, <span class="mono">df+4</span>, <span class="mono">db+4</span>, <span class="mono">1,2</span>. Fixed timing, at the range where the move just reaches you.</dd>
+    <dt>You</dt><dd>Step as she starts the move: 10 reps SSR, 10 reps SSL, per move.</dd>
+    <dt class="ok">Confirms</dt><dd>The anti-strat page: SSR beats <span class="mono">df+2</span>, <span class="mono">df+4</span>, <span class="mono">db+4</span> and <span class="mono">1,2</span>; SSL beats <span class="mono">df+1</span>.</dd>
+    <dt class="bad">Disproves</dt><dd>SSL beats everything, as the @Mezerdie chart says, or a move tracks both ways. Write down the direction that worked for each one.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu">No "Whiffs vs" notes for these five · <b>df+1</b> i13~14 −3 · <b>df+2</b> i15~16 −12 · <b>df+4</b> i15 −4 · <b>db+4</b> i16 low −13 · <b>1,2</b> i10 −3</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R1 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R1" type="text" placeholder="Direction that worked, per move" aria-label="R1 note"></div>
+</article>
+
+<article class="test" id="t-R2" data-id="R2">
+  <div class="test-head"><span class="tid">R2</span><span class="q">After df+1~SEN, does your jab beat every SEN option except SEN.1?</span><span class="meta"><span class="tag tag-first">Do first</span><span class="tag tag-re">Reina</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Five slots, each <span class="mono">df+1~F</span> into SEN, then: <span class="mono">SEN.3</span> · <span class="mono">SEN.1</span> · <span class="mono">SEN.4</span> · <span class="mono">SEN.1+3</span> · nothing (empty stance). Random playback.</dd>
+    <dt>You</dt><dd>Block <span class="mono">df+1</span>, jab the first frame you can, every rep.</dd>
+    <dt class="ok">Confirms</dt><dd>Jab wins against SEN.3, SEN.4, SEN.1+3 and the empty stance, and SEN.1 armors through it. Your jab lands on her frame 7; SEN.1's armor is up on her frame 6.</dd>
+    <dt class="bad">Disproves</dt><dd>Any option other than SEN.1 beats your jab.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>df+1</b> −3, ~F into SEN, "cannot block up to i15 on empty transition" · <b>SEN.1</b> i16 mid, power crush 6~15, −14 · <b>SEN.3</b> i12~13 high, homing, +1 · <b>SEN.4</b> i26~27 mid, +4 · <b>SEN.1+3</b> i16 high throw, no break</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R2 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R2" type="text" placeholder="What beat your jab, if anything" aria-label="R2 note"></div>
+</article>
+
+<article class="test" id="t-R3" data-id="R3">
+  <div class="test-head"><span class="tid">R3</span><span class="q">After df+1~SEN, does ducking beat SEN.3 and SEN.1+3, and lose to the mids?</span><span class="meta"><span class="tag tag-first">Do first</span><span class="tag tag-re">Reina</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Same five slots as R2, plus a sixth ending in <span class="mono">SEN.2</span>.</dd>
+    <dt>You</dt><dd>Block <span class="mono">df+1</span>, then hold down. When something whiffs over you, punish with <span class="mono">ws1</span>.</dd>
+    <dt class="ok">Confirms</dt><dd>SEN.3 and SEN.1+3 whiff (both are highs) and <span class="mono">ws1</span> punishes the whiff; SEN.1, SEN.2 and SEN.4 hit you (all mids).</dd>
+    <dt class="bad">Disproves</dt><dd>SEN.3 or SEN.1+3 catches a duck, or <span class="mono">ws1</span> can't punish the whiffed SEN.3.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>SEN.3</b> high, r26 · <b>SEN.1+3</b> high throw · <b>SEN.1</b> mid · <b>SEN.2</b> mid i13 −6 · <b>SEN.4</b> mid i26~27, jumps 8~16 · <b>Victor ws1</b> i15~16, +53a</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R3 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R3" type="text" placeholder="Did ws1 punish the whiffed SEN.3? (optional)" aria-label="R3 note"></div>
+</article>
+
+<article class="test" id="t-R4" data-id="R4">
+  <div class="test-head"><span class="tid">R4</span><span class="q">Does the hellsweep go under your jab?</span><span class="meta"><span class="tag tag-re">Reina</span><span class="reps">10 reps</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">WGS.DF+4</span> (<span class="mono">df+3</span> into Wind God Step, then the hellsweep) from mid range. Fixed playback.</dd>
+    <dt>You</dt><dd>Jab as she comes in, timed to land around her low.</dd>
+    <dt class="ok">Confirms</dt><dd>Your jab whiffs over her and the low hits you. TekkenDocs and Wavu are right; the anti-strat page is wrong.</dd>
+    <dt class="bad">Disproves</dt><dd>Your jab hits or trades with her during the sweep.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>WGS.DF+4</b> i16 low, −23, crouching 15~55 · <b>WGS.DF+4,2</b> high, −22</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R4 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R4" type="text" placeholder="What happened (optional)" aria-label="R4 note"></div>
+</article>
+
+<article class="test" id="t-R5" data-id="R5">
+  <div class="test-head"><span class="tid">R5</span><span class="q">ws4,4 into WRA: is it really −10 vs −17, and does your −17 punish come out early?</span><span class="meta"><span class="tag tag-re">Reina</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: <span class="mono">ws4,4</span>. Slot 2: <span class="mono">ws4,4</span> held down into WRA. Random playback.</dd>
+    <dt>You</dt><dd>First 5 reps of each, just block and read the frame display. Then punish: <span class="mono">df+2</span> on the plain one, <span class="mono">1,2</span> on the WRA one.</dd>
+    <dt class="ok">Confirms</dt><dd>Display reads −17 and −10, and you can tell them apart in time (the crouch into WRA) to pick the right punish.</dd>
+    <dt class="bad">Disproves</dt><dd>The numbers differ, or <span class="mono">df+2</span> gets blocked or beaten on the WRA version every time you guess wrong (then default to <span class="mono">1,2</span> and lose 3 frames of reward).</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>ws4,4</b> −17, "transition to WRA r29 with D (−10/+6)"</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R5 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R5" type="text" placeholder="Could you tell them apart? (optional)" aria-label="R5 note"></div>
+</article>
+
+<article class="test" id="t-R6" data-id="R6">
+  <div class="test-head"><span class="tid">R6</span><span class="q">Which button breaks her two command throws?</span><span class="meta"><span class="tag tag-re">Reina</span><span class="reps">10 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: <span class="mono">uf+1+2</span>. Slot 2: <span class="mono">d,db,b,f+2</span>. Random playback.</dd>
+    <dt>You</dt><dd>Break each on the animation: <span class="mono">1+2</span> for uf+1+2, <span class="mono">2</span> for the motion throw.</dd>
+    <dt class="ok">Confirms</dt><dd>Both breaks work as Wavu lists. Note the animation tell that told you which one it was.</dd>
+    <dt class="bad">Disproves</dt><dd>Either listed break fails on clean reps.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>uf+1+2</b> i12, 35 dmg, break 1+2, side switch on break · <b>qcb,f+2</b> i12, 40 dmg, break 2 · <b>SEN.1+3</b> and <b>WRA.1+3</b> unbreakable</dd>
+  </dl>
+  <div class="result" role="group" aria-label="R6 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-R6" type="text" placeholder="The tell you used (optional)" aria-label="R6 note"></div>
+</article>
+
+<article class="test" id="t-V1" data-id="V1">
+  <div class="test-head"><span class="tid">V1</span><span class="q">Does f+4,1 leave a follow-up, or is 36 the whole punish?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="tag tag-re">Reina</span><span class="reps">5 per follow-up</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">df+1,2</span> (−14). Dummy guards everything after. Round 1 Heat normal (Heat used up); round 2 with Heat available.</dd>
+    <dt>You</dt><dd>Punish with <span class="mono">f+4,1</span>. Round 1: follow with <span class="mono">1</span>, then <span class="mono">df+1</span>, then <span class="mono">df+2</span>. Round 2: Heat Dash after it engages Heat, then any follow-up.</dd>
+    <dt class="ok">Confirms</dt><dd>Something lands every rep in round 1, or round 2 turns it into a combo. Write down the damage.</dd>
+    <dt class="bad">Disproves</dt><dd>The dummy blocks everything after it in both rounds. Then 36 is the punish.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>f+4,1</b> 15+21, +18a (+9), Heat Engager, Heat Dash +5 / +43d (+35), Balcony Break · <b>Reina df+1,2</b> −14</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V1 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V1" type="text" placeholder="Follow-up and total damage" aria-label="V1 note"></div>
+</article>
+
+<!-- ── STATION 3: KAZUYA ── -->
+<h2 id="kazuya"><span>Station 3 · Kazuya <span class="day-meta">9 tests · ~30 min</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+
+<article class="test" id="t-K1" data-id="K1">
+  <div class="test-head"><span class="tid">K1</span><span class="q">Does SSL beat the raw hellsweep and 1,2,4,3 from the third block?</span><span class="meta"><span class="tag tag-first">Do first</span><span class="tag tag-ka">Kaz</span><span class="reps">10 + 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: raw hellsweep <span class="mono">f,n,d,DF+4</span> from mid range. Slot 2: <span class="mono">1,2,4,3</span> with no delay.</dd>
+    <dt>You</dt><dd>Slot 1: SSL as he crouch-dashes in. Slot 2: block <span class="mono">1,2</span>, crouch-block the <span class="mono">,4</span> low, then SSL straight away. 5 reps of SSR on each as a control.</dd>
+    <dt class="ok">Confirms</dt><dd>Both whiff on SSL and hit you on SSR.</dd>
+    <dt class="bad">Disproves</dt><dd>Either one catches SSL.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>hellsweep</b> i16 low, −23 (counterplay page: "weak to sidestep left") · <b>1,2,4,3</b> ,3 i32 mid, −2, "Whiffs vs SSL from 3rd block", delayable 11F</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K1 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K1" type="text" placeholder="What happened (optional)" aria-label="K1 note"></div>
+</article>
+
+<article class="test" id="t-K2" data-id="K2">
+  <div class="test-head"><span class="tid">K2</span><span class="q">Does b+2 track SSL and lose to SSR?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">10 + 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">b+2</span> alone, fixed timing.</dd>
+    <dt>You</dt><dd>10 reps SSL, 10 reps SSR, stepping as it starts.</dd>
+    <dt class="ok">Confirms</dt><dd>It hits you on SSL and whiffs on SSR. Then b+2 is the one exception to your SSL default.</dd>
+    <dt class="bad">Disproves</dt><dd>It whiffs on SSL too, or hits on both.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>b+2</b> i14~15 mid, −8, +4 · no tracking note on Wavu (the claim is from the TekkenDocs Kazuya guide)</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K2 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K2" type="text" placeholder="What happened (optional)" aria-label="K2 note"></div>
+</article>
+
+<article class="test" id="t-K3" data-id="K3">
+  <div class="test-head"><span class="tid">K3</span><span class="q">After blocking the hellsweep, does staying down make ,4 whiff, and what punishes it?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: hellsweep <span class="mono">,1</span>. Slot 2: hellsweep <span class="mono">,4</span>. Random playback.</dd>
+    <dt>You</dt><dd>Crouch-block the low. Set 1: stay down every rep; when ,4 whiffs, <span class="mono">ws1</span>. Set 2: stand after the low; <span class="mono">df+2</span> on the blocked ,1.</dd>
+    <dt class="ok">Confirms</dt><dd>,4 whiffs over you and <span class="mono">ws1</span> launches; ,1 hits you if you stay down. Then the read is: stay down = beat ,4, lose to ,1.</dd>
+    <dt class="bad">Disproves</dt><dd>,4 hits you crouching, or <span class="mono">ws1</span> can't reach the whiff.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>,1</b> i26 mid, −16 · <b>,4</b> i30~31 high, −9, recovery r32 t79 · <b>Victor df+2</b> i15~16 (punishes −15)</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K3 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K3" type="text" placeholder="Whiff punish that worked (optional)" aria-label="K3 note"></div>
+</article>
+
+<article class="test" id="t-K4" data-id="K4">
+  <div class="test-head"><span class="tid">K4</span><span class="q">Does a jab whiff into his wavedash, and does a quick mid check it?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">10 + 10</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record two or three crouch dashes (<span class="mono">f,n,d,DF</span> chained) at mid range, ending in Wind God Fist.</dd>
+    <dt>You</dt><dd>10 reps: jab into the dash. 10 reps: <span class="mono">df+1</span> (i13~14 mid, −2) into the dash.</dd>
+    <dt class="ok">Confirms</dt><dd>The jab whiffs and eats the WGF; <span class="mono">df+1</span> hits him out of it.</dd>
+    <dt class="bad">Disproves</dt><dd>The jab hits him mid-dash. Then a jab is a fine wavedash check.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>f,n,d,DF</b> "recovers in FC at frame 20", block cancel on frames 1~6 · <b>WGF</b> i11~12 high · <b>Victor df+1</b> i13~14 mid, −2</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K4 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K4" type="text" placeholder="What happened (optional)" aria-label="K4 note"></div>
+</article>
+
+<article class="test" id="t-K5" data-id="K5">
+  <div class="test-head"><span class="tid">K5</span><span class="q">Which crouching launcher reaches a ducked b+4?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">5 per move</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">b+4</span>, fixed timing.</dd>
+    <dt>You</dt><dd>Hold down before it comes out so it whiffs. Then try <span class="mono">ws1</span>, <span class="mono">ws2</span>, <span class="mono">ws4</span>.</dd>
+    <dt class="ok">Confirms</dt><dd><span class="mono">ws1</span> launches every rep. Ducking b+4 then denies his Heat and costs him a combo.</dd>
+    <dt class="bad">Disproves</dt><dd>Only <span class="mono">ws4</span> or nothing reaches. Write down the best one that does.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>b+4</b> i17~18 high, homing, −5, Heat Engager, r26 t44 · <b>Victor ws1</b> i15~16 +53a · <b>ws2</b> i14~15 (+35a on CH) · <b>ws4</b> i11~12</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K5 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K5" type="text" placeholder="Best launcher that reached" aria-label="K5 note"></div>
+</article>
+
+<article class="test" id="t-K6" data-id="K6">
+  <div class="test-head"><span class="tid">K6</span><span class="q">db+1,2: can you punish the first hit at all?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: <span class="mono">db+1</span> alone. Slot 2: <span class="mono">db+1,2</span> with the ,2 as late as possible. Random playback.</dd>
+    <dt>You</dt><dd>Block, then press <span class="mono">1,2</span> right away every rep. On the full string, follow the blocked ,2 with <span class="mono">b+3,1</span>.</dd>
+    <dt class="ok">Confirms</dt><dd>Your <span class="mono">1,2</span> punishes db+1 alone, never beats the ,2, and <span class="mono">b+3,1</span> punishes the −19. That matches Wavu: no gap.</dd>
+    <dt class="bad">Disproves</dt><dd>Your <span class="mono">1,2</span> interrupts the late ,2.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>db+1</b> i13~14 mid, −10 · <b>db+1,2</b> −19, "Jail from 1st block with 1F delay", "Input can be delayed by 1F", Heat Engager · <b>Victor b+3,1</b> i17, 40 dmg</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K6 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K6" type="text" placeholder="What happened (optional)" aria-label="K6 note"></div>
+</article>
+
+<article class="test" id="t-K7" data-id="K7">
+  <div class="test-head"><span class="tid">K7</span><span class="q">Devil Blaster: step, backdash or wait, and what punishes the landing?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">5 per option</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Heat refilling for the dummy (Devil form moves only work in Heat). Record <span class="mono">DVK.3+4</span> from mid range.</dd>
+    <dt>You</dt><dd>Try SSL, SSR, two backdashes, and standing still. On every miss, punish the landing with <span class="mono">df+2</span>, then <span class="mono">b+3,1</span>.</dd>
+    <dt class="ok">Confirms</dt><dd>Stepping or backing off makes it miss, and a launcher lands on the landing every rep.</dd>
+    <dt class="bad">Disproves</dt><dd>It tracks your step, or his landing recovers in time to block.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>DVK.3+4</b> unblockable mid, i60~90, airborne 20~134, −45c~−41c on average if it misses, uses 150F of Heat</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K7 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K7" type="text" placeholder="Best answer + punish" aria-label="K7 note"></div>
+</article>
+
+<article class="test" id="t-K8" data-id="K8">
+  <div class="test-head"><span class="tid">K8</span><span class="q">Can you tell EWGF (+5) from plain WGF (−10) on block?</span><span class="meta"><span class="tag tag-ka">Kaz</span><span class="reps">20 random</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Slot 1: plain WGF <span class="mono">f,n,d,df+2</span>. Slot 2: Electric <span class="mono">f,n,d,df#2</span> (or plain WGF recorded while the dummy is in Heat, which Wavu says becomes Electric). Random playback.</dd>
+    <dt>You</dt><dd>Block, punish with <span class="mono">1,2</span> only when there are no blue sparks.</dd>
+    <dt class="ok">Confirms</dt><dd>16 of 20 right decisions: the sparks are readable in time.</dd>
+    <dt class="bad">Disproves</dt><dd>Under 12 of 20. Then don't punish WGF on reaction; only punish it out of Heat when you're sure it was a plain one.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>WGF</b> i11~12 high, −10 · <b>EWGF</b> +5, 5 chip, "actual startup i14" · In Heat WGF becomes Electric</dd>
+  </dl>
+  <div class="result" role="group" aria-label="K8 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-K8" type="text" placeholder="Score out of 20" aria-label="K8 note"></div>
+</article>
+
+<article class="test" id="t-V2" data-id="V2">
+  <div class="test-head"><span class="tid">V2</span><span class="q">At −17, which pays more: df+2 into your combo, or b+3,1? And when does df+2 stop reaching?</span><span class="meta"><span class="tag tag-vi">Punish</span><span class="tag tag-ka">Kaz</span><span class="reps">5 per range per move</span></span></div>
+  <dl class="spec">
+    <dt>Setup</dt><dd>Record <span class="mono">1,1,2</span> (−17). Run it close, at mid range, and at max range.</dd>
+    <dt>You</dt><dd>At each range: <span class="mono">df+2</span> into your best combo, then <span class="mono">b+3,1</span>. Note the damage shown.</dd>
+    <dt class="ok">Confirms</dt><dd><span class="mono">df+2</span> combo does more than 40 up close, and you find the range where it starts whiffing. That range is where <span class="mono">b+3,1</span> takes over.</dd>
+    <dt class="bad">Disproves</dt><dd><span class="mono">b+3,1</span> does as much or more at every range. Then it's the −17 default.</dd>
+    <dt class="wv">Wavu</dt><dd class="wavu"><b>df+2</b> i15~16, 14 dmg, +31a (+21) · <b>b+3,1</b> i17, 40 dmg, +21a (+16) · <b>Kazuya 1,1,2</b> −17</dd>
+  </dl>
+  <div class="result" role="group" aria-label="V2 result"><button type="button" data-r="confirmed">Confirmed</button><button type="button" data-r="disproved">Disproved</button><button type="button" data-r="unclear">Unclear</button><input class="rnote" id="note-V2" type="text" placeholder="Damage per range" aria-label="V2 note"></div>
+</article>
+
+<!-- ── RESULTS ── -->
+<h2 id="results"><span>Results</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<p class="note" style="font-style:normal">This list fills in as you tick results above. Copy it and send it to me, and I'll move each result into its guide as a Lab (Mike) line.</p>
+<textarea id="results-text" readonly aria-label="Your results, ready to copy"></textarea>
+<div class="actions">
+  <button type="button" class="btn btn-primary" id="copy-btn">Copy results</button>
+  <button type="button" class="btn" id="send-btn" hidden>Send to Claude</button>
+  <button type="button" class="btn" id="reset-btn">Clear all</button>
+  <span class="status" id="status" role="status"></span>
+</div>
+<div class="callout" id="reset-confirm" hidden>Clear every result and note on this page? <button type="button" class="btn" id="reset-yes">Clear them</button> <button type="button" class="btn" id="reset-no">Keep them</button></div>
+<p class="note">Not on this page because they aren't lab tests: Reina item 6 (review your next game-one loss clips) and the "she adjusts after a win" note. Both need real matches.</p>
+
+<!-- ── SOURCES ── -->
+<div class="sources" id="sources">
+  <div class="sources-head"><h2><span>Sources</span></h2><a class="to-top" href="#top">↑ Return to Top</a></div>
+  <p><span class="tag tag-ar">AK</span> <a href="https://claude.ai/artifact/MN71CqcFqU262aVBG9XS3v">Anti-Armor King</a>: BAD frame-race theory and To-test items 1–3, Mike's db+4 drill note. <span class="tag tag-re">Reina</span> <a href="https://claude.ai/artifact/6rsmupTaUPqyeVoK5BUpF9">Anti-Reina</a>: To-test items 1–5, unconfirmed command-throw breaks. <span class="tag tag-ka">Kaz</span> <a href="https://claude.ai/artifact/Xfsnc1CiuJ7rhcaSws1ZGs">Anti-Kazuya</a>: To-test items 1–8. <span class="tag tag-vi">Punish</span> <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt">Victor Punish Sheet</a>: To-test items, Low Parry and Grounded sections. IDs A1–A3, R1–R6 and V1–V6 match your <a href="https://claude.ai/artifact/SV64LRQkkPYst6eeZCTEFm">Weekly Lab Plan</a>'s Verify block; K1–K8 are new.</p>
+  <p>Frame data: <a href="https://wavu.wiki/t/Victor_movelist">Wavu Wiki — Victor movelist</a>, <a href="https://wavu.wiki/t/Victor_punishers">Victor punishers</a> (last edited 3 March 2025), <a href="https://wavu.wiki/t/Reina_movelist">Reina movelist</a>, <a href="https://wavu.wiki/t/Kazuya_movelist">Kazuya movelist</a>, <a href="https://wavu.wiki/t/Armor_King_movelist">Armor King movelist</a>, read 19 November 2026. The live pages only came through in part, so the full rows come from the copy of Wavu's movelists that TekkenDocs keeps in its open-source repository (<a href="https://github.com/pbruvoll/tekkendocs">pbruvoll/tekkendocs</a>, pulled 19 November 2026). Every row that came through on both matched, including 1,2,4,3, b+2, b+4, db+1,2, 1,1,2, SEN.3, df+1,2, 3+4,1, f+1+2, f+4,1, 2,2,2, IAI.d+1 and ws1. These rows rest on the copy alone: SEN.1, SEN.2, SEN.4, SEN.1+3, the Reina throws, WGS.DF+4, ws4,4, IAI.f, the Kazuya hellsweep family, WGF, EWGF, the crouch dash and DVK.3+4.</p>
+  <p>Disagreements with your guides, Wavu used here: Reina SEN.4 (Wavu i26~27 mid; anti-strat i8), SEN.2 (Wavu mid −6; guide low −4), command-throw breaks (Wavu lists them; guide says unconfirmed). The low parry has no Wavu row; that's why V3 measures it.</p>
+  <p>Lab (Mike): nothing on this page is lab-tested yet.</p>
+</div>
+
+<script>
+(function () {
+  const KEY = 'victor-theory-lab-v1';
+  const tests = Array.from(document.querySelectorAll('.test'));
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+  const label = { confirmed: 'Confirmed', disproved: 'Disproved', unclear: 'Unclear' };
+
+  function render() {
+    let done = 0;
+    const lines = [];
+    tests.forEach(t => {
+      const id = t.dataset.id;
+      const s = state[id] || {};
+      t.dataset.state = s.r || '';
+      t.querySelectorAll('.result button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.r === s.r)));
+      const note = t.querySelector('.rnote');
+      if (note && document.activeElement !== note) note.value = s.n || '';
+      if (s.r) {
+        done++;
+        const q = t.querySelector('.q').textContent.trim();
+        lines.push(id + ' ' + label[s.r] + ': ' + q + (s.n ? ' Note: ' + s.n : ''));
+      }
+    });
+    document.getElementById('done-count').textContent = done;
+    document.getElementById('done-bar').style.width = (done / tests.length * 100) + '%';
+    document.getElementById('results-text').value = lines.length
+      ? 'Theory lab results (' + done + ' of ' + tests.length + ')\n' + lines.join('\n')
+      : 'No results yet. Tick Confirmed, Disproved or Unclear on a test and it shows up here.';
+  }
+
+  tests.forEach(t => {
+    const id = t.dataset.id;
+    t.querySelectorAll('.result button').forEach(b => b.addEventListener('click', () => {
+      state[id] = state[id] || {};
+      state[id].r = state[id].r === b.dataset.r ? '' : b.dataset.r;
+      save(); render();
+    }));
+    const note = t.querySelector('.rnote');
+    note.addEventListener('input', () => { state[id] = state[id] || {}; state[id].n = note.value; save(); render(); });
+  });
+
+  const status = document.getElementById('status');
+  const area = document.getElementById('results-text');
+  document.getElementById('copy-btn').addEventListener('click', () => {
+    const text = area.value;
+    const fallback = () => { area.focus(); area.select(); status.textContent = 'Selected. Copy it with your keyboard or long-press.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => { status.textContent = 'Copied.'; }).catch(fallback);
+    } else { fallback(); }
+  });
+
+  const resetBox = document.getElementById('reset-confirm');
+  document.getElementById('reset-btn').addEventListener('click', () => { resetBox.hidden = false; });
+  document.getElementById('reset-no').addEventListener('click', () => { resetBox.hidden = true; });
+  document.getElementById('reset-yes').addEventListener('click', () => {
+    state = {}; save(); resetBox.hidden = true;
+    tests.forEach(t => { t.querySelector('.rnote').value = ''; });
+    render(); status.textContent = 'Cleared.';
+  });
+
+  const send = document.getElementById('send-btn');
+  if (window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('room').then(async (room) => {
+      const can = await room?.canSendToClaudeSession?.().catch(() => 'off');
+      send.hidden = can !== 'available';
+      const deliver = 'userActivation' in MessageEvent.prototype ? 'send' : 'stage';
+      send.onclick = () => {
+        status.textContent = '';
+        room.sendToClaudeSession({ results: area.value }, { deliver })
+          .then(() => { status.textContent = 'Check the channel.'; })
+          .catch(() => { status.textContent = 'This may not have reached Claude. Copy it instead.'; });
+      };
+    }).catch(() => {});
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -226,5 +226,23 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 19, l: 5 },
     added: '2026-11-19'
+  },
+  {
+    character: 'Reina',
+    file: 'guides/Anti-Reina.html',
+    artifact: 'https://claude.ai/artifact/6rsmupTaUPqyeVoK5BUpF9',
+    tags: ['Lean SSR, df1 SSL', 'Jab or Duck Empty SEN', 'Heat Smash +8'],
+    step: 'SSR',
+    record: { w: 11, l: 6 },
+    added: '2026-11-17'
+  },
+  {
+    character: 'Kazuya',
+    file: 'guides/Anti-Kazuya.html',
+    artifact: 'https://claude.ai/artifact/Xfsnc1CiuJ7rhcaSws1ZGs',
+    tags: ['SSL Default', 'Block Hellsweep, ws1', 'Heat Smash -14 Low'],
+    step: 'SSL',
+    record: { w: 10, l: 10 },
+    added: '2026-11-18'
   }
 ];

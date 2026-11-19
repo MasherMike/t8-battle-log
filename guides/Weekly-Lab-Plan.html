@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Victor Weekly Lab Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  /* Layout: one column, same dark guide look as the anti-character docs; days stack as panels */
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-muted: #8a8aa8;
+    --green: #00ff41;
+    --yellow: #ffd700;
+    --red: #ff3a3a;
+    --accent: #4a9eff;
+    --font-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+    --font-mono: 'Share Tech Mono', ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-block: 2rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 1rem;
+    text-wrap: balance; scroll-margin-top: 12px;
+  }
+  .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2.25rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    scroll-margin-top: 12px; text-wrap: balance;
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+  .day-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: none; font-weight: 500; }
+
+  .to-top {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2);
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+
+  .mono { font-family: var(--font-mono); font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 8px 12px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; margin: 0.25rem 0 0.5rem; }
+
+  .top3 { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 0.5rem 0 0.75rem; }
+  .top3 > div { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 10px 12px; min-width: 0; }
+  .top3 .rank { font-family: var(--font-mono); font-size: 11px; color: var(--green); letter-spacing: 0.08em; }
+  .top3 .what { font-weight: 700; font-size: 15px; margin: 2px 0 4px; }
+  .top3 .why { font-size: 12px; color: var(--text-muted); }
+  .move-icons { display: inline-flex; align-items: center; gap: 3px; flex-wrap: wrap; vertical-align: middle; }
+  .stance { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: white; margin-right: 2px; }
+  svg.arrow, svg.btn { display: inline-block; vertical-align: middle; }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 0.75rem; }
+  th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border); white-space: nowrap;
+  }
+  td { padding: 6px 10px 6px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  td.min, td.id { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  td.target { font-family: var(--font-mono); font-size: 12px; color: var(--green); white-space: nowrap; }
+  td.src { font-size: 11px; color: var(--text-muted); }
+  .week td.off { color: var(--text-muted); }
+  .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; padding: 0 6px; border: 0.5px solid var(--border); white-space: nowrap; }
+  .tag-ar { color: var(--yellow); }
+  .tag-re { color: #ff8ad8; }
+  .tag-vi { color: var(--accent); }
+
+  .verify-slot { font-size: 12px; color: var(--text-muted); border-top: 0.5px dashed var(--border); padding-top: 6px; margin-top: 2px; }
+  .verify-slot strong { color: var(--yellow); }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7; scroll-margin-top: 12px;
+  }
+  .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .sources a { color: var(--accent); text-decoration: none; }
+  .sources a:hover, .sources a:focus-visible { text-decoration: underline; outline: none; }
+
+  @media print {
+    body { background: white; color: black; padding: 1rem; }
+    .toc, .to-top { display: none; }
+  }
+</style>
+
+<script>
+  // Victor on P1 side: forward points right (same icon set as the guides)
+  const flipped = true;
+  function arrow(dir, held=false) {
+    const baseAngles = {f:90,b:270,u:180,d:0,df:45,db:315,uf:135,ub:225};
+    let rot = baseAngles[dir] || 0;
+    const diagonalFlips = {df:'db', db:'df', uf:'ub', ub:'uf'};
+    if (flipped && ['f','b'].includes(dir)) rot = (rot + 180) % 360;
+    if (flipped && dir in diagonalFlips) rot = baseAngles[diagonalFlips[dir]];
+    const fill = held ? 'white' : 'none';
+    const stroke = held ? '#111' : 'white';
+    return `<svg class="arrow" width="26" height="26" viewBox="0 0 60 60" aria-hidden="true"><g transform="rotate(${rot}, 30, 30)"><path d="M17,8 L17,34 L8,34 L30,54 L52,34 L43,34 L43,8 Z" fill="${fill}" stroke="${stroke}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></g></svg>`;
+  }
+  function btn(buttons) {
+    const active = Array.isArray(buttons) ? buttons : [buttons];
+    const pos = {1:'left',2:'top',3:'bottom',4:'right'};
+    const coords = {left:[12,30], top:[30,12], right:[48,30], bottom:[30,48]};
+    let circles = '';
+    ['1','2','3','4'].forEach(b => {
+      const [cx,cy] = coords[pos[b]];
+      circles += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active.includes(b)?'white':'#4a4a4a'}" stroke="#222" stroke-width="2"/>`;
+    });
+    return `<svg class="btn" width="26" height="26" viewBox="0 0 60 60" aria-hidden="true">${circles}</svg>`;
+  }
+  function buttons(str) {
+    if (str.includes('+')) return btn(str.split('+').filter(c => '1234'.includes(c)));
+    let html = '';
+    for (const ch of str) { if ('1234'.includes(ch)) html += btn(ch); }
+    return html;
+  }
+  function move(n) {
+    if (n.toLowerCase().startsWith('ws')) return '<span class="stance">WS</span>' + buttons(n.slice(2));
+    let dir = null;
+    for (const d of ['df','db','uf','ub','f','b','u','d']) {
+      if (n.toLowerCase().startsWith(d)) { dir = d; n = n.slice(d.length); break; }
+    }
+    return (dir ? arrow(dir, true) : '') + buttons(n);
+  }
+  function icons(...notations) {
+    return `<span class="move-icons" role="img" aria-label="${notations.join(', ')}">${notations.map(move).join('')}</span>`;
+  }
+</script>
+
+<h1 id="top">Victor Weekly Lab Plan &nbsp;|&nbsp; 5 × 25 min &nbsp;|&nbsp; −14 f4,1 &nbsp;|&nbsp; Low → ws1 &nbsp;|&nbsp; Empty SEN</h1>
+<p class="sub">Built 17 November 2026 from your Anti-Armor King guide, Anti-Reina guide and Victor Punish Sheet. Each session is about 25 minutes and stays under the guides' 150-rep cap. Days, not dates: run them in order and start over each week.</p>
+
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#practice" class="toc-key">Top 3 this week</a>
+  <a href="#warmup" class="toc-key">Ranked warm-up</a>
+  <a href="#week">Week at a glance</a>
+  <a href="#day1">Day 1 Punish</a>
+  <a href="#day2">Day 2 Lows</a>
+  <a href="#day3">Day 3 Reina</a>
+  <a href="#day4">Day 4 Armor King</a>
+  <a href="#day5">Day 5 Mix + Verify</a>
+  <a href="#verify">Verify block</a>
+  <a href="#rules">Rep rules</a>
+  <a href="#next">Next up</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── TOP 3 ── -->
+<h2 id="practice"><span>Top 3 This Week</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="top3">
+  <div>
+    <div class="rank">01 · DAY 1, 3 + WARM-UP</div>
+    <div class="what">−14 → <script>document.write(icons('f4','1'))</script></div>
+    <div class="why">36 damage vs 30 for uf+1,1, breaks walls and engages Heat. Reina's df+1,2 (−14) is the most common punish in that matchup, so it gets reps every Reina day.</div>
+  </div>
+  <div>
+    <div class="rank">02 · DAY 2, 4 + WARM-UP</div>
+    <div class="what">Block low → <script>document.write(icons('ws1'))</script></div>
+    <div class="why">Every −15+ low is a launch. Covers Reina's hellsweep (−23), db+2 (−16), d+4 (−15) and Armor King's db+3 (−26) and d+4 (−15).</div>
+  </div>
+  <div>
+    <div class="rank">03 · DAY 3 + WARM-UP</div>
+    <div class="what">Jab or duck the empty SEN</div>
+    <div class="why">She can't block for 12–15 frames after df+1, f+2,3 or b+1,1,3. Duck if you read SEN.3 (high, homing, +1, Heat Engager). This is the game-one habit.</div>
+  </div>
+</div>
+<div class="note">Why these three: they're the drills that show up in two guides at once, and two of them are Reina habits. She's your most-faced unguided opponent and you lose game one in 7 of 10 sets.</div>
+
+<!-- ── WARM-UP ── -->
+<h2 id="warmup"><span>Ranked Warm-up · 5 min</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Run the <a href="https://claude.ai/artifact/B4xxWXoNHzvPVTGFF3FT2w" style="color:var(--accent)">Game-One Warm-up</a> before every ranked session, lab day or not.</strong> It replaced the table that was here on 19 November: the same Reina drills plus a −12 vs −14 punish read and a one-minute first-sight card. Your log shows game one only dips against characters you've faced fewer than 15 times (38%) and against Reina (3–7).</div>
+<div class="note">The day totals on this page still count the old 30-rep warm-up. The new one is 43 reps, so on lab days cut 13 reps from the day's last drill to stay under the 150 cap.</div>
+<h3>Game-one rules vs Reina</h3>
+<div class="callout">1. Empty SEN after df+1 / f+2,3 / b+1,1,3: jab it, or duck if you read SEN.3. Respect f,F+2 (+2 into SEN).<br>
+2. Block low, launch with ws1. Her −17 standing strings (1,1,2 and ws4,4) are df+2.<br>
+3. In her Heat, stop pressing mids. Heat Smash is +8, 3,4,H.4 is only −8, and H.db+1+2 auto-parries mids and highs. Throw or low her while she holds WRA, and punish only once she's clearly stopped.</div>
+
+<!-- ── WEEK ── -->
+<h2 id="week"><span>Week at a Glance</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table class="week">
+  <thead><tr><th>Day</th><th>Suggested</th><th>Focus</th><th>Reps</th><th>Verify slot</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#day1" class="mono" style="color:var(--accent)">Day 1</a></td><td>Mon</td><td>Standing punish buckets: −12 and −14</td><td class="min">140</td><td class="min">V1, V6</td></tr>
+    <tr><td><a href="#day2" class="mono" style="color:var(--accent)">Day 2</a></td><td>Tue</td><td>Block low and launch, crouching buckets</td><td class="min">120</td><td class="min">R4, V3</td></tr>
+    <tr><td class="off">Off</td><td class="off">Wed</td><td class="off">Ranked only, warm-up first</td><td class="min">43</td><td class="min">—</td></tr>
+    <tr><td><a href="#day3" class="mono" style="color:var(--accent)">Day 3</a></td><td>Thu</td><td>Reina: steps, empty SEN, her Heat</td><td class="min">145</td><td class="min">R1, R2, R3, R5</td></tr>
+    <tr><td><a href="#day4" class="mono" style="color:var(--accent)">Day 4</a></td><td>Fri</td><td>Armor King: duck highs, step right, launch the big three</td><td class="min">145</td><td class="min">A1, A2, A3</td></tr>
+    <tr><td><a href="#day5" class="mono" style="color:var(--accent)">Day 5</a></td><td>Sat</td><td>Random gauntlet + verify block</td><td class="min">50 + tests</td><td class="min">V2, V4, V5, R6</td></tr>
+    <tr><td class="off">Off</td><td class="off">Sun</td><td class="off">Ranked only, warm-up first</td><td class="min">43</td><td class="min">—</td></tr>
+  </tbody>
+</table></div>
+<div class="note">The weekdays are a suggestion: the two days off are spaced so no more than two lab days run back to back. Reps include the warm-up.</div>
+
+<!-- ── DAY 1 ── -->
+<h2 id="day1"><span>Day 1 · Standing Punish <span class="day-meta">25 min · 140 reps</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Min</th><th>Dummy records</th><th>Your answer</th><th>Sets</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td class="min">5</td><td colspan="4"><a href="#warmup" style="color:var(--accent)">Ranked warm-up</a> (counts toward today's reps)</td><td class="src">—</td></tr>
+    <tr><td class="min">8</td><td>Reina <span class="mono">df+1,2</span> (−14)</td><td><span class="mono">f+4,1</span>, 36 dmg</td><td class="min">2 × 20</td><td class="target">18/20</td><td class="src"><span class="tag tag-vi">Punish</span> <span class="tag tag-re">Reina</span></td></tr>
+    <tr><td class="min">6</td><td>Armor King <span class="mono">f+1+2</span> power crush (−12), or Reina <span class="mono">df+2</span> (−12)</td><td><span class="mono">2,2,2</span>, 32 dmg</td><td class="min">2 × 20</td><td class="target">18/20</td><td class="src"><span class="tag tag-vi">Punish</span> <span class="tag tag-ar">AK</span></td></tr>
+    <tr><td class="min">6</td><td>Random playback: <span class="mono">df+1,2</span> (−14) and <span class="mono">df+2</span> (−12)</td><td>Pick the right bucket each time</td><td class="min">1 × 30</td><td class="target">80%</td><td class="src"><span class="tag tag-vi">Punish</span> Stage 2</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Rechecked on Wavu Wiki 19 Nov: Reina's df+1,2 is −14 on block with no forced crouch (no "c"), so you're standing and f+4,1 is the right punish.</div>
+<div class="note">If f+1+2 absorbed one of your hits it's only −6, so test it with you blocking cleanly. Using 2,1~F instead of 2,2,2 is fine only when you want Perfumer +7.</div>
+<div class="verify-slot"><strong>Verify slot:</strong> V1 (what follows f+4,1's +18a) and V6 (2,2,2's Wall Crush follow-up). See the <a href="#verify" style="color:var(--accent)">Verify block</a>.</div>
+
+<!-- ── DAY 2 ── -->
+<h2 id="day2"><span>Day 2 · Block Low, Launch <span class="day-meta">25 min · 120 reps</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Min</th><th>Dummy records</th><th>Your answer</th><th>Sets</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td class="min">5</td><td colspan="4"><a href="#warmup" style="color:var(--accent)">Ranked warm-up</a></td><td class="src">—</td></tr>
+    <tr><td class="min">8</td><td>Random lows at −15 or worse: AK <span class="mono">db+3</span> (−26), AK <span class="mono">d+4</span> (−15), Reina <span class="mono">d+4</span> (−15), Reina <span class="mono">db+2</span> (two lows, −16)</td><td><span class="mono">ws1</span> launch</td><td class="min">2 × 20</td><td class="target">18/20</td><td class="src"><span class="tag tag-ar">AK</span> Practice #3 · <span class="tag tag-re">Reina</span> Practice #2</td></tr>
+    <tr><td class="min">6</td><td>Random playback: AK <span class="mono">d+3</span> (−12) and AK <span class="mono">d+4</span> (−15)</td><td><span class="mono">ws4</span> on −12, <span class="mono">ws1</span> on −15</td><td class="min">1 × 30</td><td class="target">80%</td><td class="src"><span class="tag tag-vi">Punish</span> Crouching table</td></tr>
+    <tr><td class="min">6</td><td>Reina hellsweep <span class="mono">WGS.DF+4</span> (−23) and Heat <span class="mono">H.WRA.d+3+4</span> (low that jails into three mids, −17)</td><td>Block the low, hold block through the jail, <span class="mono">ws1</span></td><td class="min">1 × 20</td><td class="target">18/20</td><td class="src"><span class="tag tag-re">Reina</span> Low Block</td></tr>
+  </tbody>
+</table></div>
+<div class="note">The −12 vs −15 read matters because ws1 is −16 on block. Throwing it on a −12 low hands her the launch back.</div>
+<div class="verify-slot"><strong>Verify slot:</strong> R4 (does the hellsweep high crush?) and V3 (what the generic low parry gives you; AK's db+3 at i22~24 is a good slow low to try it on).</div>
+
+<!-- ── DAY 3 ── -->
+<h2 id="day3"><span>Day 3 · Reina <span class="day-meta">25 min · 145 reps</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Min</th><th>Dummy records</th><th>Your answer</th><th>Sets</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td class="min">5</td><td colspan="4"><a href="#warmup" style="color:var(--accent)">Ranked warm-up</a></td><td class="src">—</td></tr>
+    <tr><td class="min">8</td><td>Step drill. Stage 1: <span class="mono">df+2</span> and <span class="mono">df+1</span> alternating on fixed timing. Stage 2 once passed: random playback</td><td>SSR the df+2, SSL the df+1</td><td class="min">3 × 20</td><td class="target">18/20 ×3 · then 16/20 ×3</td><td class="src"><span class="tag tag-re">Reina</span> Lab drill</td></tr>
+    <tr><td class="min">7</td><td><span class="mono">df+1~SEN</span> → random <span class="mono">SEN.3</span> / <span class="mono">SEN.1</span> / <span class="mono">SEN.4</span> / <span class="mono">SEN.1+3</span></td><td>One set jabbing, one set ducking. Write down what each beats</td><td class="min">2 × 15</td><td class="target">Log it</td><td class="src"><span class="tag tag-re">Reina</span> Practice #1</td></tr>
+    <tr><td class="min">5</td><td>Heat on. Random playback: <span class="mono">3,4</span> (stops, −14) and <span class="mono">3,4,H.4</span> (−8)</td><td>Punish with <span class="mono">f+4,1</span> only when she stops; otherwise block and keep blocking</td><td class="min">1 × 25</td><td class="target">75%</td><td class="src"><span class="tag tag-re">Reina</span> Practice #3</td></tr>
+  </tbody>
+</table></div>
+<div class="note">The SEN set doubles as R2 and R3. Once you've logged which option beats what, drill the winner for the rest of the set.</div>
+<div class="verify-slot"><strong>Verify slot:</strong> R1 (step directions on df+4, db+4 and 1,2), R2 and R3 (inside the SEN set), R5 (ws4,4 into WRA).</div>
+
+<!-- ── DAY 4 ── -->
+<h2 id="day4"><span>Day 4 · Armor King <span class="day-meta">25 min · 145 reps</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Min</th><th>Dummy records</th><th>Your answer</th><th>Sets</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td class="min">5</td><td colspan="4"><a href="#warmup" style="color:var(--accent)">Ranked warm-up</a></td><td class="src">—</td></tr>
+    <tr><td class="min">7</td><td>Random playback: <span class="mono">ub+1</span> Neck Hunter (high, +5, homing), <span class="mono">f+2,1</span>, <span class="mono">df+1,2</span></td><td>Duck Neck Hunter. Block the first hit of the strings, duck the high ender, <span class="mono">ws1</span></td><td class="min">1 × 25</td><td class="target">75%</td><td class="src"><span class="tag tag-ar">AK</span> Practice #1</td></tr>
+    <tr><td class="min">8</td><td>Step drill. Stage 1: standalone <span class="mono">4</span> and standalone <span class="mono">d+3+4</span>. Stage 3 once you pass Stage 2: mix <span class="mono">4,3</span>, <span class="mono">d+3+4,1</span>, <span class="mono">d+3+4,3</span>, a stop after <span class="mono">d+3+4</span>, and his <span class="mono">3</span></td><td>SSR. Duck his <span class="mono">3</span> (it tracks right). On the stop, take the −16 instead of stepping</td><td class="min">3 × 20</td><td class="target">18/20 ×3 · Stage 3: 75% ×2</td><td class="src"><span class="tag tag-ar">AK</span> Practice #2, Lab drill</td></tr>
+    <tr><td class="min">5</td><td>Random playback: <span class="mono">f+1+4</span> (−19 mid), <span class="mono">db+3</span> (−26 low), <span class="mono">d+4</span> (−15 low)</td><td><span class="mono">df+2</span> on the mid, <span class="mono">ws1</span> on both lows</td><td class="min">1 × 30</td><td class="target">80%</td><td class="src"><span class="tag tag-ar">AK</span> Practice #3</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Pick up the step drill at whatever stage you finished last week. You're 7–1 as Victor against him in ranked since Oct 16, so this day is upkeep: drop it to every other week if Day 3 needs the time.</div>
+<div class="verify-slot"><strong>Verify slot:</strong> A1 and A2 (jab vs BAD.3 at −8 and at +0), A3 (jab evasion on df+1 and df+2).</div>
+
+<!-- ── DAY 5 ── -->
+<h2 id="day5"><span>Day 5 · Gauntlet + Verify <span class="day-meta">25 min · 50 reps + tests</span></span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Min</th><th>Dummy records</th><th>Your answer</th><th>Sets</th><th>Pass</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td class="min">10</td><td>Random playback across the week: Reina <span class="mono">df+1,2</span>, Reina <span class="mono">df+1~SEN.3</span>, AK <span class="mono">db+3</span>, AK <span class="mono">f+1+4</span></td><td><span class="mono">f+4,1</span> · duck, <span class="mono">ws1</span> · <span class="mono">ws1</span> · <span class="mono">df+2</span></td><td class="min">2 × 25</td><td class="target">75% ×2</td><td class="src">All three</td></tr>
+    <tr><td class="min">15</td><td colspan="4">Verify block: V2, V4, V5, R6. Use any leftover time on an item from earlier in the week that you didn't reach.</td><td class="src"><a href="#verify" style="color:var(--accent)">Verify</a></td></tr>
+  </tbody>
+</table></div>
+<div class="note">If any Day 1–4 drill missed its pass mark this week, swap it into the gauntlet in place of one that passed.</div>
+
+<!-- ── VERIFY ── -->
+<h2 id="verify"><span>Verify Block · Theory to Lab-test</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn">These are the items each guide marks as theory or unconfirmed. Test them, then send me the result and I'll move it into that guide as a <strong>Lab (Mike)</strong> line. Nothing here is a rep drill until it's confirmed.</div>
+<div class="table-wrap"><table>
+  <thead><tr><th>ID</th><th>Question</th><th>Setup</th><th>Day</th></tr></thead>
+  <tbody>
+    <tr><td class="id">V1</td><td>Does <span class="mono">f+4,1</span>'s +18a leave a follow-up, or is 36 the whole punish?</td><td>Block a −14, punish, try a dash-in follow-up</td><td class="min">1</td></tr>
+    <tr><td class="id">V2</td><td>At −17+, which pays more: <span class="mono">df+2</span> into your combo, or <span class="mono">b+3,1</span> (40)? At what range does df+2 stop reaching?</td><td>Reina <span class="mono">1,1,2</span> (−17) at close and far range</td><td class="min">5</td></tr>
+    <tr><td class="id">V3</td><td>What does Victor get after a generic low parry, and how late can you input it?</td><td>AK <span class="mono">db+3</span> (slow low), df on impact</td><td class="min">2</td></tr>
+    <tr><td class="id">V4</td><td>Does <span class="mono">IAI.f</span> parry lows, highs or both?</td><td>From IAI vs a low, then vs a high</td><td class="min">5</td></tr>
+    <tr><td class="id">V5</td><td>Which of <span class="mono">d+4</span>, <span class="mono">d+3</span>, <span class="mono">u+1+2</span> hit a face-up and a face-down opponent?</td><td>AK <span class="mono">db+4</span> (−17, ends face-down) for face-down; any knockdown for face-up</td><td class="min">5</td></tr>
+    <tr><td class="id">V6</td><td>Does <span class="mono">2,2,2</span>'s Wall Crush +12g give a guaranteed follow-up?</td><td>Punish a −12 with the dummy's back to the wall</td><td class="min">1</td></tr>
+    <tr><td class="id">A1</td><td>After <span class="mono">3+4,1~F</span> (−8 into BAD), does your jab beat BAD.3?</td><td>Dummy 3+4,1~F → BAD.3, block, jab</td><td class="min">4</td></tr>
+    <tr><td class="id">A2</td><td>After <span class="mono">df+2,1~F</span> (+0 into BAD), does BAD.3 armor your jab?</td><td>Same setup with df+2,1~F</td><td class="min">4</td></tr>
+    <tr><td class="id">A3</td><td>Do <span class="mono">df+1</span> and <span class="mono">df+2</span> evade a jab (Wavu's "Jab evasion?")?</td><td>Jab-check on each one's startup</td><td class="min">4</td></tr>
+    <tr><td class="id">R1</td><td>Which way to step: SSR or SSL vs <span class="mono">df+1</span>, <span class="mono">df+2</span>, <span class="mono">df+4</span>, <span class="mono">db+4</span>, <span class="mono">1,2</span>?</td><td>Each standalone, try both sides</td><td class="min">3</td></tr>
+    <tr><td class="id">R2</td><td>After <span class="mono">df+1~SEN</span>, does a jab beat every SEN option except SEN.1?</td><td>Inside the Day 3 SEN set</td><td class="min">3</td></tr>
+    <tr><td class="id">R3</td><td>Does a duck there beat SEN.3 and whiff SEN.1+3, and lose to SEN.1 and SEN.4?</td><td>Inside the Day 3 SEN set</td><td class="min">3</td></tr>
+    <tr><td class="id">R4</td><td>Does the hellsweep <span class="mono">WGS.DF+4</span> high crush?</td><td>Jab while she hellsweeps: whiff or trade</td><td class="min">2</td></tr>
+    <tr><td class="id">R5</td><td><span class="mono">ws4,4</span> held into WRA: is it really −10 vs −17, and does your −17 punish come out early?</td><td>Random playback of both versions</td><td class="min">3</td></tr>
+    <tr><td class="id">R6</td><td>Which button breaks her command throws <span class="mono">uf+1+2</span> and <span class="mono">d,db,b,f+2</span>?</td><td>Dummy throws each, try 1, 2 and 1+2</td><td class="min">5</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ── RULES ── -->
+<h2 id="rules"><span>Rep Rules</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout">These are the training-wheel rules from your guides, applied the same way to every drill here.<br>
+<strong>Stage 1</strong> (fixed timing, one move): 20-rep sets, graduate at 18/20 on 3 straight sets. My reading: the three sets can run across sessions, so a drill with 2 sets today can graduate on its next day.<br>
+<strong>Stage 2</strong> (random playback): 16/20 on 3 straight sets.<br>
+<strong>Stage 3</strong> (full mix, read included): 25-rep sets, 75% correct on 2 straight sets.<br>
+<strong>Stage 4:</strong> log what holds up in real matches.<br>
+<strong>Stop rules:</strong> cap a session around 100–150 reps; stop if accuracy drops 15 points from where you started; go back a stage if you're under 60% for two sets.</div>
+<div class="note">Rep counts are a rule of thumb, not research. One pass mark per week is enough: a drill that clears its mark three weeks running can drop to the warm-up or the Day 5 gauntlet.</div>
+
+<!-- ── NEXT ── -->
+<h2 id="next"><span>Next Up</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout">Your next most-faced characters without a guide (ranked, 60 days): <strong>Kazuya</strong> 22 games, 50%, and <strong>Fahkumram</strong> 22 games, 59%. No drills for them yet. Days 1 and 2 already carry over, because the punish buckets and the low → ws1 habit don't depend on who you're facing.</div>
+
+<!-- ── SOURCES ── -->
+<div class="sources" id="sources">
+  <div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  <span class="tag tag-ar">AK</span> <a href="https://claude.ai/artifact/MN71CqcFqU262aVBG9XS3v">Anti-Armor King</a>: Practice priorities (17 Nov), Lab drill (training wheels), To-test items 1–3, Mike's drills (14 Nov).<br>
+  <span class="tag tag-re">Reina</span> <a href="https://claude.ai/artifact/6rsmupTaUPqyeVoK5BUpF9">Anti-Reina</a>: Practice priorities and battle-log record (ranked, 18 Sep–16 Nov), Lab drill, To-test items 1–5, the unconfirmed command-throw breaks.<br>
+  <span class="tag tag-vi">Punish</span> <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt">Victor Punish Sheet</a>: Practice first (f+4,1, 2,2,2, ws1), crouching table, Lab drill, To-test items.<br>
+  Ranked warm-up: <a href="https://claude.ai/artifact/B4xxWXoNHzvPVTGFF3FT2w">Game-One Warm-up</a> (19 November 2026).<br>
+  Frame values on this page are copied from those guides, which took them from Wavu Wiki and TekkenDocs (read 17 November 2026). Reina df+1,2 (−14, no forced crouch) rechecked against <a href="https://wavu.wiki/t/Reina_movelist">Wavu Wiki</a> on 19 November 2026. Kazuya and Fahkumram counts are from your repo's battle log, as summarized in the Reina guide's build notes.<br>
+  <strong>Lab (Mike):</strong> nothing on this plan is lab-tested yet.
+</div>
+
+</body>
+</html>

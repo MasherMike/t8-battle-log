@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Victor Punish Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-muted: #7a7a9a;
+    --green: #00ff41;
+    --yellow: #ffd700;
+    --red: #ff3a3a;
+    --accent: #4a9eff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 2rem;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+
+  .entry {
+    display: flex; align-items: center; gap: 10px; padding: 5px 8px;
+    border-radius: 4px; margin-bottom: 3px; flex-wrap: wrap;
+  }
+  .entry:hover { background: var(--bg3); }
+  .move-icons { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; flex-wrap: wrap; }
+  .frame-data { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text-muted); flex: 1; min-width: 12rem; }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; padding-left: 20px; margin-bottom: 3px; }
+  .mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 6px 10px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+
+  .tier-green { color: #00cc44; font-size: 13px; }
+  .tier-yellow { color: var(--yellow); font-size: 13px; }
+  .tier-red { color: var(--red); font-size: 13px; }
+  .tier-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; margin: 0.75rem 0 0.25rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .stance { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: white; margin-right: 2px; }
+  svg.arrow, svg.btn { display: inline-block; vertical-align: middle; }
+
+  .toggle-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .toggle-btn {
+    font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--bg3); color: var(--text-muted);
+    border: 0.5px solid var(--border); border-radius: 4px; padding: 5px 14px; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toggle-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .side-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+
+  .table-wrap { overflow-x: auto; }
+  .step-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 1rem; }
+  .step-table th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .step-table td { padding: 4px 10px 4px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  .step-table td.mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .swr { color: #00cc44; font-weight: 600; }
+  .swl { color: var(--yellow); font-weight: 600; }
+  .both { color: var(--accent); font-weight: 600; }
+  .tracks { color: var(--red); font-weight: 600; }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7;
+  }
+  .sources a { color: var(--accent); text-decoration: none; }
+
+  @media print {
+    body { background: white; color: black; padding: 1rem; }
+    .entry:hover { background: none; }
+    .toggle-bar { display: none; }
+  }
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -0.5rem 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px; }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+  h1[id], h2[id], h3[id], .sources[id] { scroll-margin-top: 12px; }
+  html { scroll-behavior: smooth; }
+  h2[id], .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .to-top { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2); }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+  .pun-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.25rem 0 0.75rem; }
+  .pun-table th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0; border-bottom: 0.5px solid var(--border); white-space: nowrap; }
+  .pun-table td { padding: 5px 10px 5px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: middle; }
+  .pun-table td.fr { font-family: 'Share Tech Mono', monospace; font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .pun-table td.num { font-family: 'Share Tech Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .pun-table td.nt { font-size: 12px; color: var(--text-muted); min-width: 14rem; }
+  .pun-table tr.pick td.fr::after { content: " ★"; color: var(--green); }
+  .g { color: #00cc44; } .y { color: var(--yellow); } .r { color: var(--red); }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 0.5px solid var(--border); border-radius: 3px; padding: 0 5px; margin-left: 4px; vertical-align: middle; }
+  .badge.new { color: var(--green); border-color: var(--green); }
+  .badge.yours { color: var(--accent); border-color: var(--accent); }
+  .drill { counter-reset: d; list-style: none; margin: 0.25rem 0 0.75rem; }
+  .drill li { counter-increment: d; padding: 4px 0 4px 28px; position: relative; font-size: 14px; }
+  .drill li::before { content: counter(d); position: absolute; left: 0; top: 4px; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--green); color: #000; font-weight: 700; font-size: 12px; text-align: center; line-height: 20px; }
+  .sources ul { margin: 0.25rem 0 0.5rem 1.1rem; }
+  @media print { .toc, .to-top { display: none; } .pun-table td.nt { color: #333; } }
+
+  /* Phones only: smaller icons that stay on one line, table rows become cards */
+  @media (max-width: 600px) {
+    svg.arrow, svg.btn { width: 22px; height: 22px; }
+    .move-icons { flex-wrap: nowrap; gap: 2px; }
+    .table-wrap { overflow-x: visible; }
+    .pun-table, .pun-table tbody { display: block; }
+    .pun-table thead { display: none; }
+    .pun-table tr { display: grid; grid-template-columns: 5.5rem auto 1fr; align-items: center; column-gap: 14px; row-gap: 4px;
+      padding: 8px 4px; border-bottom: 0.5px solid var(--border); }
+    .pun-table td { display: block; padding: 0; border: 0; }
+    .pun-table td:nth-child(2) { grid-column: 2 / -1; }
+    .pun-table td.num::before { content: attr(data-label); display: block; font-family: 'Rajdhani', sans-serif;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); line-height: 1.2; }
+    .pun-table td.nt { grid-column: 1 / -1; min-width: 0; }
+  }
+</style>
+
+<h1 id="top">Victor Punish Sheet &nbsp;|&nbsp; -10 1,2 &nbsp;|&nbsp; -12 2,2,2 &nbsp;|&nbsp; -14 f4,1 &nbsp;|&nbsp; -15 df2 &nbsp;|&nbsp; WS -15 ws1</h1>
+<div class="toggle-bar">
+  <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
+  <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
+  <span class="side-label" id="side-label">Victor on P1 side — inputs face right</span>
+</div>
+<script>
+  let flipped = true;
+
+  function setSide(side) {
+    flipped = (side === 1);
+    document.getElementById('p1btn').classList.toggle('active', side === 1);
+    document.getElementById('p2btn').classList.toggle('active', side === 2);
+    document.getElementById('side-label').textContent = side === 1
+      ? 'Victor on P1 side — inputs face right'
+      : 'Victor on P2 side — inputs face left';
+    rebuildIcons();
+  }
+
+  function rebuildIcons() {
+    document.querySelectorAll('.move-icons').forEach(el => {
+      const notation = el.dataset.notation;
+      if (notation) el.innerHTML = JSON.parse(notation).map(n => move(n)).join('');
+    });
+  }
+
+function arrow(dir, held=false) {
+  const baseAngles = {f:90,b:270,u:180,d:0,df:45,db:315,uf:135,ub:225};
+  let rot = baseAngles[dir] || 0;
+  const diagonalFlips = {df:'db', db:'df', uf:'ub', ub:'uf'};
+  if (flipped && ['f','b'].includes(dir)) rot = (rot + 180) % 360;
+  if (flipped && dir in diagonalFlips) rot = baseAngles[diagonalFlips[dir]];
+  const fill = held ? 'white' : 'none';
+  const stroke = held ? '#111' : 'white';
+  return `<svg class="arrow" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <g transform="rotate(${rot}, 30, 30)">
+      <path d="M17,8 L17,34 L8,34 L30,54 L52,34 L43,34 L43,8 Z" fill="${fill}" stroke="${stroke}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+  </svg>`;
+}
+
+function btn(buttons) {
+  const active = Array.isArray(buttons) ? buttons : [buttons];
+  const pos = {1:'left',2:'top',3:'bottom',4:'right'};
+  const coords = {left:[12,30], top:[30,12], right:[48,30], bottom:[30,48]};
+  let circles = '';
+  ['1','2','3','4'].forEach(b => {
+    const [cx,cy] = coords[pos[b]];
+    circles += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active.includes(b)?'white':'#4a4a4a'}" stroke="#222" stroke-width="2"/>`;
+  });
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">${circles}</svg>`;
+}
+
+function neutral() {
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <polygon points="30,8 33.5,18 44,18 35.5,24.5 39,34.5 30,28 21,34.5 24.5,24.5 16,18 26.5,18" fill="white" stroke="#888" stroke-width="1"/>
+  </svg>`;
+}
+
+function stance(name) { return `<span class="stance">${name}</span>`; }
+function tilde(name) { return `<span class="stance">~${name}</span>`; }
+
+function buttons(str) {
+  let html = '';
+  if (str.includes('+')) {
+    html += btn(str.split('+').filter(c => '1234'.includes(c)));
+  } else {
+    for (const ch of str) { if ('1234'.includes(ch)) html += btn(ch); }
+  }
+  return html;
+}
+
+function move(notation) {
+  if (notation.toLowerCase().startsWith('ws')) {
+    return '<span class="stance">WS</span>' + buttons(notation.slice(2));
+  }
+  let html = '';
+  const parts = notation.split('.');
+  if (parts.length > 1) {
+    html += stance(parts.slice(0, -1).join('.'));
+    notation = parts[parts.length - 1];
+  }
+  if (notation.startsWith('~')) return html + tilde(notation.slice(1));
+  if (notation.toLowerCase().startsWith('cd')) {
+    return html + arrow('f',false) + neutral() + arrow('d',false) + arrow('df',true) + buttons(notation.slice(2));
+  }
+  if (notation.toLowerCase().startsWith('qcf')) {
+    return html + arrow('d',false) + arrow('df',false) + arrow('f',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('qcb')) {
+    return html + arrow('d',false) + arrow('db',false) + arrow('b',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ffn')) {   // f,f,n — dash then neutral
+    return html + arrow('f',false) + arrow('f',false) + neutral() + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ufn')) {   // uf,n — tap up-forward, return to neutral
+    return html + arrow('uf',false) + neutral() + buttons(notation.slice(3));
+  }
+  for (const tt of ['fff','bbb']) {
+    if (notation.toLowerCase().startsWith(tt)) {
+      const d = tt[0];
+      return html + arrow(d,false) + arrow(d,false) + arrow(d,true) + buttons(notation.slice(tt.length));
+    }
+  }
+  for (const dt of ['ff','bb','uu','dd']) {
+    if (notation.toLowerCase().startsWith(dt)) {
+      const d = dt[0];
+      return html + arrow(d,false) + arrow(d,true) + buttons(notation.slice(dt.length));
+    }
+  }
+  let dir = null;
+  for (const d of ['df','db','uf','ub','f','b','u','d']) {
+    if (notation.toLowerCase().startsWith(d)) { dir = d; notation = notation.slice(d.length); break; }
+  }
+  if (dir) html += arrow(dir, true);
+  return html + buttons(notation);
+}
+
+function icons(...notations) {
+  const html = notations.map(n => move(n)).join('');
+  const data = JSON.stringify(notations).replace(/"/g, '&quot;');
+  return `<span class="move-icons" data-notation="${data}" role="img" aria-label="${notations.join(', ')}">${html}</span>`;
+}
+</script>
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#practice" class="toc-key">Practice first</a>
+  <a href="#standing-block">Standing</a>
+  <a href="#low-block">Crouching</a>
+  <a href="#low-parry">Low Parry</a>
+  <a href="#grounded">Grounded</a>
+  <a href="#wall-heat">Wall &amp; Heat</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<div class="callout callout-key">How to read it: find how minus his move was, use the ★ row. <span class="badge yours">Yours</span> = already in your punish table (repo notes). <span class="badge new">New</span> = an upgrade from Wavu's Victor punisher page. Damage is the guaranteed punish, before any follow-up. "a" = airborne on hit (launch or juggle), "gc" = ground crumple, "c" = he recovers crouching.</div>
+
+<h3 id="practice">Practice first — the three that pay the most</h3>
+<ol class="drill">
+  <li><strong>-14 → <span class="mono">f+4,1</span></strong>: 36 dmg vs 30 for <span class="mono">uf+1,1</span> (+20%), and TekkenDocs says it breaks walls and engages Heat on hit. New to your table.</li>
+  <li><strong>-12 → <span class="mono">2,2,2</span></strong>: 32 dmg vs 22 for <span class="mono">2,1~F</span> (+45%), with Wall Crush +12g. Use <span class="mono">2,1~F</span> only when you want Perfumer +7.</li>
+  <li><strong>Crouching -15+ → <span class="mono">ws1</span></strong>: launches (+53a) vs 16 for <span class="mono">ws4</span>. Every blocked low at -15 or worse is a full combo you're leaving on the table if you default to <span class="mono">ws4</span>.</li>
+</ol>
+<div class="callout"><strong>Lab drill — training wheels:</strong> record the dummy doing one move from a bucket (e.g. a -14 string), block it, punish with the ★ row. Stage 1: 20 reps, graduate at 18/20 on 3 straight sets. Stage 2: record two moves from different buckets on random playback, so you have to read the frame value, not just react. Cap a session at ~100–150 reps; rep counts are a heuristic, not research-derived.</div>
+
+<h2 id="standing-block"><span>Standing Punish</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="table-wrap"><table class="pun-table">
+<thead><tr><th>He's at</th><th>Punisher</th><th>Startup</th><th>Damage</th><th>On hit</th><th>Note</th></tr></thead>
+<tbody>
+<tr class="pick"><td class="fr g">-10 / -11</td><td><script>document.write(icons('1','2'))</script></td><td class="num">i10</td><td class="num">17 (5,12)</td><td class="num">+8</td><td class="nt"><span class="badge yours">Yours</span> Keeps your turn | both hits high</td></tr>
+<tr><td class="fr g">-10 / -11</td><td><script>document.write(icons('1','1','2'))</script></td><td class="num">i10</td><td class="num">22 (5,5,5,7)</td><td class="num">+3</td><td class="nt">Wavu's -10 pick: +5 dmg, less advantage | ~F into PRF (-8/+7) | all high</td></tr>
+<tr class="pick"><td class="fr g">-12</td><td><script>document.write(icons('2','2','2'))</script></td><td class="num">i12</td><td class="num">32 (10,5,5,12)</td><td class="num">+4 ~IAI</td><td class="nt"><span class="badge yours">Yours</span> Best -12 damage | Wall Crush +12g | ender is a projectile, ends in IAI</td></tr>
+<tr><td class="fr g">-12</td><td><script>document.write(icons('2','1','~PRF'))</script></td><td class="num">i12</td><td class="num">22 (10,12)</td><td class="num">+5 / PRF +7</td><td class="nt"><span class="badge yours">Yours</span> Hold F for Perfumer | 10 less than 2,2,2</td></tr>
+<tr><td class="fr g">-12</td><td><script>document.write(icons('3','1+2'))</script></td><td class="num">i12</td><td class="num">30 (11,9,10)</td><td class="num">+5</td><td class="nt">All high | no stance transition</td></tr>
+<tr class="pick"><td class="fr y">-13</td><td><script>document.write(icons('uf1','1'))</script></td><td class="num">i13</td><td class="num">30 (9,21)</td><td class="num">+15gc</td><td class="nt"><span class="badge yours">Yours</span> Tornado + wall break (TekkenDocs) | ~F PRF +19gc | D or 3+4 → IAI +4</td></tr>
+<tr><td class="fr y">-13</td><td><script>document.write(icons('df4','2'))</script></td><td class="num">i13</td><td class="num">31 (15,16)</td><td class="num">+4 ~IAI</td><td class="nt">+1 dmg but you're locked into IAI (r36, can't cancel) | 2nd hit high</td></tr>
+<tr class="pick"><td class="fr y">-14</td><td><script>document.write(icons('f4','1'))</script></td><td class="num">i14</td><td class="num">36 (15,21)</td><td class="num">+18a (+9)</td><td class="nt"><span class="badge new">New</span> Wavu's -14 pick | wall break + Heat on hit (TekkenDocs) | uf+1,1 still works here</td></tr>
+<tr class="pick"><td class="fr r">-15 / -16</td><td><script>document.write(icons('df2'))</script></td><td class="num">i15~16</td><td class="num">14 + combo</td><td class="num">+31a (+21)</td><td class="nt"><span class="badge yours">Yours</span> Launcher | recovers 3f faster on hit</td></tr>
+<tr><td class="fr r">-17+</td><td><script>document.write(icons('b3','1'))</script></td><td class="num">i17</td><td class="num">40 (15,25)</td><td class="num">+21a (+16)</td><td class="nt">Wavu lists it at -17 | wall break (TekkenDocs) | df2 still fits; see To test</td></tr>
+</tbody></table></div>
+<div class="callout callout-warn">Punish the end of a string, not its first hit: if his opener is -10 but the full string is -15, wait for the last hit and take the bigger bucket. On a far-spaced block, every row is a range question; Wavu notes df2 "can connect for a full combo at closer ranges."</div>
+
+<h2 id="low-block"><span>Crouching Punish (after a blocked low)</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout">You're crouching after a low block or a "c" move, so jabs and standing strings don't come out. Use these.</div>
+<div class="table-wrap"><table class="pun-table">
+<thead><tr><th>He's at</th><th>Punisher</th><th>Startup</th><th>Damage</th><th>On hit</th><th>Note</th></tr></thead>
+<tbody>
+<tr class="pick"><td class="fr g">-11 / -12</td><td><script>document.write(icons('ws4'))</script></td><td class="num">i11~12</td><td class="num">16</td><td class="num">+5</td><td class="nt"><span class="badge yours">Yours</span> Fastest WS | -6 on block</td></tr>
+<tr class="pick"><td class="fr y">-13 / -14</td><td><script>document.write(icons('ws1+2','~PRF'))</script></td><td class="num">i13~14</td><td class="num">22 (10,12)</td><td class="num">+8 / PRF +8</td><td class="nt"><span class="badge yours">Yours</span> Hold F for Perfumer</td></tr>
+<tr><td class="fr y">-13 / -14</td><td><script>document.write(icons('uf1','1'))</script></td><td class="num">i13</td><td class="num">30 (9,21)</td><td class="num">+15gc</td><td class="nt"><span class="badge yours">Yours</span> Wavu lists it crouching too | +8 dmg over ws1+2</td></tr>
+<tr class="pick"><td class="fr r">-15+</td><td><script>document.write(icons('ws1'))</script></td><td class="num">i15~16</td><td class="num">20 + combo</td><td class="num">+53a</td><td class="nt"><span class="badge yours">Yours</span> Launcher | -16 on block, so don't throw it on a guess</td></tr>
+</tbody></table></div>
+
+<h2 id="low-parry"><span>Low Parry</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('df'))</script>
+  <span class="frame-data">Generic low parry | df timed as the low lands | reward frames not checked</span>
+</div>
+<div class="note">A community Victor sheet in your Drive lists it as "DF at the good timing" | Wavu's movelist doesn't list it (it's a system move) | Weapon lows say "unparryable" on Wavu: block those and use the crouching table</div>
+<div class="entry">
+  <script>document.write(icons('IAI.f'))</script>
+  <span class="frame-data">IAI parry | <strong>Parries low attacks</strong> (Wavu) | parry frames 3?~11? | crouching 4~17</span>
+</div>
+<div class="note">Wavu confirms it parries lows; the crouching frames are also why TekkenDocs calls it a high crush. What Victor gets after the parry is still untested | Needs IAI first (2,2,2 ends in it; uf+1,1 cancels into it with D or 3+4)</div>
+<div class="callout"><strong>Theory (Ledger):</strong> if you see a slow, predictable low (i18+), the parry pays more than block-then-ws4 at -11/-12. Against lows at -15+, blocking and taking ws1 is already a launch, so the parry adds risk for little gain.</div>
+
+<h2 id="grounded"><span>Grounded Opponent</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn">Wavu's Victor punisher page has <strong>no grounded-opponent entry</strong>. These moves have a hit level that Wavu marks as hitting grounded opponents (capital L or M). None is listed as a punisher, so all of it is a lead to lab, not an answer.</div>
+<div class="table-wrap"><table class="pun-table">
+<thead><tr><th>Level</th><th>Move</th><th>Startup</th><th>Damage</th><th>On block</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td class="fr">L</td><td><script>document.write(icons('d4'))</script></td><td class="num">i16</td><td class="num">10</td><td class="num">-13</td><td class="nt">Fastest ground hit with a real number | CH → Guilty Mariko</td></tr>
+<tr><td class="fr">L</td><td><script>document.write(icons('d1'))</script></td><td class="num">i16</td><td class="num">7</td><td class="num">-17</td><td class="nt">Weapon low (unparryable) | recovers FC</td></tr>
+<tr><td class="fr">L</td><td><script>document.write(icons('d3'))</script></td><td class="num">i18~19</td><td class="num">11</td><td class="num">-13</td><td class="nt">Slightly more damage, slower</td></tr>
+<tr><td class="fr">M</td><td><script>document.write(icons('IAI.d1'))</script></td><td class="num">i18</td><td class="num">25</td><td class="num">±0</td><td class="nt">From IAI only | Heat Engager | Balcony Break</td></tr>
+<tr><td class="fr">M</td><td><script>document.write(icons('u1+2'))</script></td><td class="num">i31~32</td><td class="num">32</td><td class="num">-20c</td><td class="nt">Overhead teleport | big read on someone who stays down | -20c is very punishable if he gets up and blocks</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>Theory (Ledger):</strong> vs someone lying still, <span class="mono">d4</span> is the safe tax (10 dmg, i16). Whether any of these connects depends on how he's lying (face up or down, head or feet toward you); none of that is on Wavu.</div>
+
+<h2 id="wall-heat"><span>Wall &amp; Heat</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('2','2','2'))</script>
+  <span class="frame-data">-12 | Wall Crush +12g on hit (Wavu)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('uf1','1'))</script>
+  <span class="frame-data">-13 | Breaks the wall on hit (TekkenDocs)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('f4','1'))</script>
+  <span class="frame-data">-14 | Breaks the wall + engages Heat on hit (TekkenDocs)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b3','1'))</script>
+  <span class="frame-data">-17 | Breaks the wall on hit (TekkenDocs)</span>
+</div>
+<div class="callout"><strong>Theory (Ledger):</strong> near a wall at -13 or -14, <span class="mono">f+4,1</span> is the punish that both breaks the wall and gives you Heat, so it's the one to want when he still has Heat-worthy health. Wavu's own notes on these moves didn't mention wall breaks or Heat in my reads, which is why they're credited to TekkenDocs.</div>
+
+<div class="sources" id="sources">
+  <div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  Punisher buckets from <a href="https://wavu.wiki/t/Victor_punishers">Wavu Wiki — Victor punishers</a> (standing -10 / -12 / -13 / -14 / -15 / -17, crouching -11 / -13 / -15; back-turned and grounded tables empty). Frame values from <a href="https://wavu.wiki/t/Victor_movelist">Wavu Wiki — Victor movelist</a> and <a href="https://wavu.wiki/t/Victor_counterplay">Wavu Wiki — Victor counterplay</a>. First-hit startup for strings, the ws moves, and the wall-break / Heat notes from <a href="https://tekkendocs.com/t8/victor">TekkenDocs — Victor</a>. All read 17 November 2026.<br>
+  <strong>How the data was read:</strong> the repo's <span class="mono">scripts/fetch_sources.py</span> couldn't reach Wavu or TekkenDocs from this environment, so every page was read through a summarizing fetch tool instead of a full download. The Wavu movelist's while-standing rows never came through; the ws values are from Wavu's punisher page and TekkenDocs, which agree. Re-run the script at home to confirm in full.<br>
+  <strong>Cross-check:</strong> no block-frame disagreements between Wavu and TekkenDocs on any move here. Wavu shows a string's later-hit startup (e.g. <span class="mono">f+4,1</span> ",i23~24"); the startup column uses the first hit, from TekkenDocs where Wavu's first-hit value wasn't read (<span class="mono">1,1,2</span> i10, <span class="mono">b+3,1</span> i17).<br>
+  <strong>Built on:</strong> your punish table in the repo's <span class="mono">notes/README.md</span> (-10/-11 1,2 · -12 2,2,2 or 2,1~F · -13/-14 uf+1,1 · -15+ df+2 · lows -11/-12 ws4 · -13/-14 ws1+2 or uf+1,1 · -15+ ws1). Every row of it matches Wavu. The only change is <span class="mono">f+4,1</span> at -14. The low-parry input note is from a community Victor sheet shared to your Drive (unverified).<br>
+  <strong>Updated 19 November 2026:</strong> the <span class="mono">IAI.f</span> row is from Wavu's full Victor movelist (the copy of Wavu's data that TekkenDocs keeps in its open-source repository): "Parries low attacks", parry frames 3?~11?, crouching frames 4~17. It was unconfirmed before.<br>
+  <strong>Lab (Mike):</strong> nothing on this sheet is lab-tested yet.<br>
+  <strong>To test — Theory (Ledger):</strong>
+  <ul>
+    <li><span class="mono">f+4,1</span> at -14: does the +18a leave any follow-up, or is 36 the whole punish?</li>
+    <li>At -17+, <span class="mono">df2</span> into your combo vs <span class="mono">b+3,1</span> (40): which does more, and at what range does df2 stop reaching?</li>
+    <li>Generic low parry: what Victor gets after it, and the latest frame it still works.</li>
+    <li><span class="mono">IAI.f</span>: Wavu says it parries lows. What does Victor get after it, and does a high just whiff over it?</li>
+    <li>Grounded: which of <span class="mono">d4</span>, <span class="mono">d3</span>, <span class="mono">u+1+2</span> hit a face-up and a face-down opponent.</li>
+    <li>Wall: does <span class="mono">2,2,2</span>'s Wall Crush +12g give a guaranteed follow-up?</li>
+  </ul>
+</div>
+
+
+<script>
+  // Give each cell its column name so the phone card layout can label Startup / Damage / On hit
+  document.querySelectorAll('.pun-table').forEach(t => {
+    const heads = [...t.querySelectorAll('thead th')].map(th => th.textContent);
+    t.querySelectorAll('tbody tr').forEach(r => [...r.children].forEach((td, i) => td.dataset.label = heads[i] || ''));
+  });
+</script>
+
+</body>
+</html>
