@@ -101,7 +101,7 @@ Your guide's wall rule ("block it out first, then move") was added 25 Oct. The 8
 
 It hasn't had the chance. Since the 25 Oct guide notes you've played one ranked Dragunov set (8 Nov). Since the 14 Nov drill notes you've played none; your last ranked game of any kind was 15 Nov.
 
-## Proposed changes to the Anti-Dragunov guide (waiting on your yes)
+## Changes to the Anti-Dragunov guide (made 19 Nov, on your yes)
 
 1. Add a Practice priorities line at the top: "You win game one (9–9). After a game-one win you're 3–11. Expect him to change his plan in game two."
 2. Add IAI.d+1 (mid, ±0, 25 dmg) as the close-out option, with the 8 Nov G3 R3 note.
