@@ -243,13 +243,15 @@
       padding: 4px;
       margin-bottom: 24px;
       width: fit-content;
+      max-width: 100%;
+      flex-wrap: wrap;
     }
     .view-btn {
       background: transparent;
       border: none;
       color: #888;
       border-radius: 7px;
-      padding: 8px 18px;
+      padding: 8px 14px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 500;
@@ -413,7 +415,7 @@
       .mu-row .bar-track, .mu-row .guide { display: none; }
       .live-panel .stage-row { grid-template-columns: 1fr 70px 44px 56px; }
       .view-switch { width: 100%; }
-      .view-btn { flex: 1; padding: 8px 10px; }
+      .view-btn { flex: 1 1 auto; justify-content: center; padding: 8px 10px; }
       .guide-search { width: 100%; }
     }
   </style>
@@ -426,6 +428,9 @@
       <button class="view-btn active" data-view-btn="stages">Stage Data</button>
       <button class="view-btn" data-view-btn="matchups">Matchups</button>
       <button class="view-btn" data-view-btn="guides">Matchup Guides<span class="count" id="guide-count"></span></button>
+      <a class="view-btn" href="guides/Weekly-Lab-Plan.html">Weekly Lab Plan</a>
+      <a class="view-btn" href="guides/Victor-Theory-Lab-Checklist.html">Theory Lab Checklist</a>
+      <a class="view-btn" href="guides/Victor-Punish-Sheet.html">Punishers</a>
       <a class="view-btn" href="review.html">Session Gallery</a>
     </nav>
 
