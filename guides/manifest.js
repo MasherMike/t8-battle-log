@@ -244,5 +244,14 @@ window.GUIDES = [
     step: 'SSL',
     record: { w: 10, l: 10 },
     added: '2026-11-18'
+  },
+  {
+    character: 'Jack-8',
+    file: 'guides/Anti-Jack-8.html',
+    artifact: 'https://claude.ai/artifact/Ki54CqJPNLhVvJMmve8SS9',
+    tags: ['SSR vs His Strings', 'Gamma Howl Has No Lows', 'Heat Smash -9'],
+    step: 'SSR',
+    record: { w: 10, l: 4 },
+    added: '2026-11-20'
   }
 ];

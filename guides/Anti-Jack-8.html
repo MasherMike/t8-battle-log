@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anti-Jack-8 | SSR vs His Strings | Gamma Howl Has No Lows | Heat Smash -9</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-muted: #7a7a9a;
+    --green: #00ff41;
+    --yellow: #ffd700;
+    --red: #ff3a3a;
+    --accent: #4a9eff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 2rem;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+
+  .entry {
+    display: flex; align-items: center; gap: 10px; padding: 5px 8px;
+    border-radius: 4px; margin-bottom: 3px; flex-wrap: wrap;
+  }
+  .entry:hover { background: var(--bg3); }
+  .move-icons { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; flex-wrap: wrap; }
+  .frame-data { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text-muted); flex: 1; min-width: 12rem; }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; padding-left: 20px; margin-bottom: 3px; }
+  .mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 6px 10px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+
+  .tier-green { color: #00cc44; font-size: 13px; }
+  .tier-yellow { color: var(--yellow); font-size: 13px; }
+  .tier-red { color: var(--red); font-size: 13px; }
+  .tier-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; margin: 0.75rem 0 0.25rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .stance { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: white; margin-right: 2px; }
+  svg.arrow, svg.btn { display: inline-block; vertical-align: middle; }
+
+  .toggle-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .toggle-btn {
+    font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--bg3); color: var(--text-muted);
+    border: 0.5px solid var(--border); border-radius: 4px; padding: 5px 14px; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toggle-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .side-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+
+  .table-wrap { overflow-x: auto; }
+  .step-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 1rem; }
+  .step-table th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .step-table td { padding: 4px 10px 4px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  .step-table td.mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .swr { color: #00cc44; font-weight: 600; }
+  .swl { color: var(--yellow); font-weight: 600; }
+  .both { color: var(--accent); font-weight: 600; }
+  .tracks { color: var(--red); font-weight: 600; }
+
+  .react { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 1px 7px; border-radius: 3px; border: 1px solid; white-space: nowrap; }
+  .r-yes { color: #00cc44; border-color: #00cc44; }
+  .r-mostly { color: var(--yellow); border-color: var(--yellow); }
+  .r-no { color: var(--red); border-color: var(--red); }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7;
+  }
+  .sources a { color: var(--accent); text-decoration: none; }
+
+
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -0.5rem 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+  h2[id], h3[id], .sources[id] { scroll-margin-top: 12px; }
+  html { scroll-behavior: smooth; }
+
+
+  h2[id], .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .to-top {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2);
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+  h1[id] { scroll-margin-top: 12px; }
+
+  @media print {
+    body { background: white; color: black; padding: 1rem; }
+    .entry:hover { background: none; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
+
+</head>
+<body>
+<h1 id="top">Anti-Jack-8 &nbsp;|&nbsp; SSR vs His Strings &nbsp;|&nbsp; Gamma Howl Has No Lows &nbsp;|&nbsp; Heat Smash -9</h1>
+<div class="toggle-bar">
+  <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
+  <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
+  <span class="side-label" id="side-label">Jack-8 on P1 side — inputs face right</span>
+</div>
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#practice" class="toc-key">Practice first</a>
+  <a href="#movement">Movement</a>
+  <a href="#standing-block">Standing Block</a>
+  <a href="#low-block">Low Block</a>
+  <a href="#duck-launch">Duck &amp; Launch</a>
+  <a href="#stances">Stances</a>
+  <a href="#heat">Heat</a>
+  <a href="#throws">Throws</a>
+  <a href="#power-crush">Power Crush &amp; Rage</a>
+  <a href="#counterplay">Counter Play</a>
+  <a href="#stance-check">Stance Check</a>
+  <a href="#sources">Sources</a>
+</nav>
+<script>
+  let flipped = true;
+
+  function setSide(side) {
+    flipped = (side === 1);
+    document.getElementById('p1btn').classList.toggle('active', side === 1);
+    document.getElementById('p2btn').classList.toggle('active', side === 2);
+    document.getElementById('side-label').textContent = side === 1
+      ? 'Jack-8 on P1 side — inputs face right'
+      : 'Jack-8 on P2 side — inputs face left';
+    rebuildIcons();
+  }
+
+  function rebuildIcons() {
+    document.querySelectorAll('.move-icons').forEach(el => {
+      const notation = el.dataset.notation;
+      if (notation) el.innerHTML = JSON.parse(notation).map(n => move(n)).join('');
+    });
+  }
+
+function arrow(dir, held=false) {
+  const baseAngles = {f:90,b:270,u:180,d:0,df:45,db:315,uf:135,ub:225};
+  let rot = baseAngles[dir] || 0;
+  const diagonalFlips = {df:'db', db:'df', uf:'ub', ub:'uf'};
+  if (flipped && ['f','b'].includes(dir)) rot = (rot + 180) % 360;
+  if (flipped && dir in diagonalFlips) rot = baseAngles[diagonalFlips[dir]];
+  const fill = held ? 'white' : 'none';
+  const stroke = held ? '#111' : 'white';
+  return `<svg class="arrow" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <g transform="rotate(${rot}, 30, 30)">
+      <path d="M17,8 L17,34 L8,34 L30,54 L52,34 L43,34 L43,8 Z" fill="${fill}" stroke="${stroke}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+  </svg>`;
+}
+
+function btn(buttons) {
+  const active = Array.isArray(buttons) ? buttons : [buttons];
+  const pos = {1:'left',2:'top',3:'bottom',4:'right'};
+  const coords = {left:[12,30], top:[30,12], right:[48,30], bottom:[30,48]};
+  let circles = '';
+  ['1','2','3','4'].forEach(b => {
+    const [cx,cy] = coords[pos[b]];
+    circles += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active.includes(b)?'white':'#4a4a4a'}" stroke="#222" stroke-width="2"/>`;
+  });
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">${circles}</svg>`;
+}
+
+function neutral() {
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <polygon points="30,8 33.5,18 44,18 35.5,24.5 39,34.5 30,28 21,34.5 24.5,24.5 16,18 26.5,18" fill="white" stroke="#888" stroke-width="1"/>
+  </svg>`;
+}
+
+function stance(name) { return `<span class="stance">${name}</span>`; }
+function tilde(name) { return `<span class="stance">~${name}</span>`; }
+
+function buttons(str) {
+  let html = '';
+  if (str.includes('+')) {
+    html += btn(str.split('+').filter(c => '1234'.includes(c)));
+  } else {
+    for (const ch of str) { if ('1234'.includes(ch)) html += btn(ch); }
+  }
+  return html;
+}
+
+function move(notation) {
+  if (notation.toLowerCase().startsWith('ws')) {
+    return '<span class="stance">WS</span>' + buttons(notation.slice(2));
+  }
+  let html = '';
+  const parts = notation.split('.');
+  if (parts.length > 1) {
+    html += stance(parts.slice(0, -1).join('.'));
+    notation = parts[parts.length - 1];
+  }
+  if (notation.startsWith('~')) return html + tilde(notation.slice(1));
+  if (notation.toLowerCase().startsWith('cd')) {
+    return html + arrow('f',false) + neutral() + arrow('d',false) + arrow('df',true) + buttons(notation.slice(2));
+  }
+  if (notation.toLowerCase().startsWith('qcf')) {
+    return html + arrow('d',false) + arrow('df',false) + arrow('f',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('qcb')) {
+    return html + arrow('d',false) + arrow('db',false) + arrow('b',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ffn')) {   // f,f,n — dash then neutral
+    return html + arrow('f',false) + arrow('f',false) + neutral() + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ufn')) {   // uf,n — tap up-forward, return to neutral
+    return html + arrow('uf',false) + neutral() + buttons(notation.slice(3));
+  }
+  for (const tt of ['fff','bbb']) {
+    if (notation.toLowerCase().startsWith(tt)) {
+      const d = tt[0];
+      return html + arrow(d,false) + arrow(d,false) + arrow(d,true) + buttons(notation.slice(tt.length));
+    }
+  }
+  for (const dt of ['ff','bb','uu','dd']) {
+    if (notation.toLowerCase().startsWith(dt)) {
+      const d = dt[0];
+      return html + arrow(d,false) + arrow(d,true) + buttons(notation.slice(dt.length));
+    }
+  }
+  let dir = null;
+  for (const d of ['df','db','uf','ub','f','b','u','d']) {
+    if (notation.toLowerCase().startsWith(d)) { dir = d; notation = notation.slice(d.length); break; }
+  }
+  if (dir) html += arrow(dir, true);
+  return html + buttons(notation);
+}
+
+function icons(...notations) {
+  const html = notations.map(n => move(n)).join('');
+  const data = JSON.stringify(notations).replace(/"/g, '&quot;');
+  return `<span class="move-icons" data-notation="${data}" role="img" aria-label="${notations.join(', ')}">${html}</span>`;
+}
+</script>
+
+
+
+
+<!-- ── MOVEMENT: WHICH WAY TO STEP ── -->
+
+<h2 id="movement"><span>Movement — Which Way to Step</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Default: Sidestep RIGHT (SSR) once you've blocked the opener of a string.</strong> Wavu's per-move notes have 11 of his strings whiffing on SSR/SWR and only one (<span class="mono">df+1,1</span>) whiffing on a left step. That covers his bread-and-butter strings: <span class="mono">1,2</span>, <span class="mono">2,1,2</span>, <span class="mono">f+1,1</span>, <span class="mono">df+1,2</span>, <span class="mono">b+1,2</span>, <span class="mono">b+3,2</span> and <span class="mono">b+3,2,2</span>. The TekkenDocs anti-strat page adds <span class="mono">df+2</span>, <span class="mono">2</span>, <span class="mono">db+4</span> and <span class="mono">f+2</span> as SSR.<br><br>
+<strong>Exceptions — these are the ones that catch the SSR habit:</strong><br>
+• <strong>His raw pokes are split.</strong> The anti-strat page says SSL for <span class="mono">df+1</span>, <span class="mono">db+1</span> and <span class="mono">3</span> (f+3). So the SSR rule is for strings after the first block, not for every raw poke.<br>
+• <span class="mono">df+1,1</span> whiffs on SSL/SWL (Wavu), while <span class="mono">df+1,2</span> whiffs on SSR/SWR. The anti-strat page says you can SSL both <span class="mono">df+1</span> branches; Wavu disagrees on <span class="mono">df+1,2</span>, and this guide follows Wavu. Don't guess the step here: block <span class="mono">df+1</span> (−4) and play from there.<br>
+• <span class="mono">f+1</span> and <span class="mono">df+4</span> "seem homing" (anti-strat); Wavu calls <span class="mono">f+1</span> "effectively homing?". Don't step them.<br>
+• <strong>Against Gamma Howl (GMH)</strong> the anti-strat page says "a big SSL or small SWL", and that <span class="mono">GMH.4</span> "will most likely switch sides if you step".<br>
+• Both standard throws, <span class="mono">1+2</span>, <span class="mono">ub+1+2</span>, <span class="mono">f,F+1+2</span>, the Debugger low and <span class="mono">GMH.1</span> are <strong>homing</strong>; see the list below.<br>
+• The @Mezerdie sidestep chart says <strong>SSL</strong> for the whole character. It disagrees with Wavu's string notes; this guide follows Wavu (Tier 1) for strings and keeps SSL for the raw pokes and GMH where the anti-strat page says so.</div>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">1,2</td><td class="swr">SSR / SWR</td><td>from 1st block (Wavu) — both hits high, ducking also works</td></tr>
+    <tr><td class="mono">2,1,2</td><td class="swr">SSR / SWR</td><td>from 1st block (Wavu) — 2,1 jails, so step before the 3rd hit</td></tr>
+    <tr><td class="mono">f+1,1</td><td class="swr">SSR</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">df+1,2</td><td class="swr">SSR / SWR</td><td>from 1st block (Wavu) — anti-strat says SSL; Wavu followed</td></tr>
+    <tr><td class="mono">b+1,2</td><td class="swr">SSR</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">b+3,2 / b+3,2,2</td><td class="swr">SSR</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">db+1,1,1,2</td><td class="swr">SSR / SWR</td><td>from 2nd block or 1st hit (Wavu)</td></tr>
+    <tr><td class="mono">f,F+1+2,2</td><td class="swr">SSR / SWR</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">FC.df+2,1,2</td><td class="swr">SSR / SWR</td><td>from 2nd block (Wavu)</td></tr>
+    <tr><td class="mono">FC.df+3+4*,uf+1+2</td><td class="swr">SSR</td><td>from 1st block (Wavu) — charged version only</td></tr>
+    <tr><td class="mono">2,1,uf+1+2</td><td class="swr">SS / SWR</td><td>from 1st block; SSR from 1st hit (Wavu)</td></tr>
+    <tr><td class="mono">df+2</td><td class="swr">SSR</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">2</td><td class="swr">SSR (SWR for 2,1)</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">db+4</td><td class="swr">SSR</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">f+2</td><td class="swr">SSR</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">df+1,1</td><td class="swl">SSL / SWL</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">df+1</td><td class="swl">SSL</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">db+1</td><td class="swl">SSL</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">3 (f+3)</td><td class="swl">SSL</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">GMH (stance)</td><td class="swl">Big SSL / small SWL</td><td>anti-strat; GMH.4 "will most likely switch sides if you step"</td></tr>
+    <tr><td class="mono">f+1,2,2*</td><td class="both">Either side (SS / SW)</td><td>from 2nd block or hit (Wavu) — charged version</td></tr>
+    <tr><td class="mono">b+3,2,2*</td><td class="both">Either side (SS / SW)</td><td>from 2nd hit or block (Wavu) — charged version</td></tr>
+    <tr><td class="mono">FC.df+3+4,uf+1+2</td><td class="both">Either side (SS / SW)</td><td>from 1st block (Wavu) — uncharged version</td></tr>
+    <tr><td class="mono">FC.1,2</td><td class="both">Either side (SS / SW)</td><td>from 1st block (Wavu)</td></tr>
+    <tr><td class="mono">FC.db+1,1,1*</td><td class="both">Either side (SS / SW)</td><td>from 2nd block (Wavu); SSR / SWR from 2nd hit</td></tr>
+    <tr><td class="mono">1</td><td class="both">Either side</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">f,F+1</td><td class="both">Either side</td><td>raw move (anti-strat)</td></tr>
+    <tr><td class="mono">f+1</td><td class="tracks">Tracks — don't step</td><td>Wavu: "effectively homing?"; anti-strat: "seems homing"</td></tr>
+    <tr><td class="mono">df+4</td><td class="tracks">Tracks — don't step</td><td>anti-strat: "seems homing"</td></tr>
+  </tbody>
+</table></div>
+<div class="callout "><strong>Evidence tier:</strong> the default comes from <strong>Tier 1</strong>, Wavu's per-move whiff notes (TekkenDocs' frame table carries the same notes): 11 strings lose to SSR, 1 to SSL, 5 to either side. Tier 2 is split: the TekkenDocs anti-strat Quick overview (community-written) gives four raw moves to SSR and three to SSL, plus SSL against GMH, and the @Mezerdie sidestep chart says SSL overall. <strong>The tiers disagree</strong>, so this guide follows Tier 1 for strings after the first block and keeps the anti-strat SSL calls for the raw pokes and GMH. Weighted by use: his jab and mid-poke strings (<span class="mono">1,2</span>, <span class="mono">2,1,2</span>, <span class="mono">df+1,2</span>, <span class="mono">b+1,2</span>, <span class="mono">b+3,2</span>) are what he throws most, and they all lose to SSR. Nothing here is lab-tested yet. The anti-strat page also notes: "Can't move well."</div>
+<h3>Homing — don't step these at all</h3>
+<div class="entry">
+  <script>document.write(icons('1+2'))</script>
+  <span class="frame-data">Mid, Mid | i15~16 | -13 | Homing | Instant Tornado | High evasion frames 4?~12?</span>
+</div>
+<div class="note">Block and punish at −13 | It evades highs early: don't jab-check into it</div>
+<div class="entry">
+  <script>document.write(icons('ub1+2'))</script>
+  <span class="frame-data">Power Crush | HIGH | i20 | -9 | Homing | Armor from frame 7</span>
+</div>
+<div class="note">A high: duck it</div>
+<div class="entry">
+  <script>document.write(icons('ff1+2'))</script>
+  <span class="frame-data">Mid | i15 | -15 | Homing</span>
+</div>
+<div class="note">Block and launch at −15</div>
+<div class="entry">
+  <script>document.write(icons('df1+4'))</script>
+  <span class="frame-data">Debugger | LOW | i34 (i29 via b,db,d,df+1) | -37 | Homing | High crush 6~89</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Slow: block it low and take your biggest crouching launch</div>
+<div class="entry">
+  <script>document.write(icons('GMH.1'))</script>
+  <span class="frame-data">Mid | i22 | -9 | Homing | From Gamma Howl</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('GMC.1'))</script>
+  <span class="frame-data">Mid | i22 | -6 | Homing | Launches on hit | Needs Gamma Charge (always on in Heat)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('1+3'))</script>
+  <span class="frame-data">Throw | i12 | Homing | Break 1 or 2</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2+4'))</script>
+  <span class="frame-data">Throw | i12 | Homing | Break 1 or 2 | Side switch</span>
+</div>
+
+<!-- ── STANDING BLOCK PUNISHMENT ── -->
+
+<h2 id="standing-block"><span>Standing Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout ">Block values are from Wavu's Jack-8 counterplay tables and movelist; all 193 moves on both sites match TekkenDocs. For your Victor answer to each bucket, use the ★ rows of your <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt" style="color:var(--accent)">Victor Punish Sheet</a>: −10/−11 <span class="mono">1,2</span> · −12 <span class="mono">2,2,2</span> · −13 <span class="mono">uf+1,1</span> · −14 <span class="mono">f+4,1</span> · −15/−16 <span class="mono">df+2</span> · −17+ <span class="mono">b+3,1</span>.<br><br>
+<strong>He is a big-plus, big-minus character.</strong> Several of his strongest-looking moves are launch-punishable: <span class="mono">b+1+2</span> (a Heat Engager) at −19, <span class="mono">df+3+4</span> at −23, <span class="mono">d+1+2</span> at −18 and the Windup Uppercut at −17. A few moves with a <span class="mono">c</span> suffix (<span class="mono">1,1</span>, <span class="mono">b+1,2</span>, <span class="mono">ws2,1</span>, <span class="mono">3,1+2</span>) leave you crouching; use a while-standing punish for those.</div>
+<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
+<div class="entry">
+  <script>document.write(icons('ff4'))</script>
+  <span class="frame-data">Mid | i16 | -10 | Tornado | 12 chip</span>
+</div>
+<div class="note">Anti-strat lists −10~−6: at range it may not be punishable</div>
+<div class="entry">
+  <script>document.write(icons('df1','2','1'))</script>
+  <span class="frame-data">Mid, High, High | -10 | Jails from 2nd block</span>
+</div>
+<div class="note">df+1,2,1,2 adds another high at −18 — duck it</div>
+<div class="entry">
+  <script>document.write(icons('f1','2','2'))</script>
+  <span class="frame-data">Charged (f+1,2,2*) | Mid, High, Mid | i61 | -10 | 16 chip</span>
+</div>
+<div class="note">Uncharged f+1,2,2 is +3 (see plus-on-block list)</div>
+<div class="entry">
+  <script>document.write(icons('df1','1'))</script>
+  <span class="frame-data">Mid, Mid | -11 | Tornado | Interrupt with i8 from 1st block | Whiffs vs SSL</span>
+</div>
+<div class="note">df+1 alone is −4. Wait for the 2nd hit</div>
+<div class="entry">
+  <script>document.write(icons('b1'))</script>
+  <span class="frame-data">Mid | i20 | -11</span>
+</div>
+<div class="note">Wait a beat: b+1,2 is −14c (combo from 1st hit with 5F delay)</div>
+<div class="entry">
+  <script>document.write(icons('3','1+2'))</script>
+  <span class="frame-data">Mid, Mid | -11c | Interrupt with i4 from 1st block</span>
+</div>
+<div class="note">Also f+3,1+2 / ws3,1+2 | You recover crouching</div>
+<div class="entry">
+  <script>document.write(icons('f3+4'))</script>
+  <span class="frame-data">Mid | i22~23 | -11 | Head</span>
+</div>
+<div class="note">Can go to GMH with D (−3 on block): still not his turn, but no punish then | Anti-strat: "use generic 1,2 for stance check"</div>
+<div class="entry">
+  <script>document.write(icons('db1','1','1','2'))</script>
+  <span class="frame-data">Low, Low, Low, Mid | -11 | Whiffs vs SSR from 2nd block</span>
+</div>
+<div class="note">The mid ender is the punish point; db+1,1,1 itself whiffs from block (see Low Block)</div>
+<div class="entry">
+  <script>document.write(icons('FC.df1','2','1'))</script>
+  <span class="frame-data">Mid, Mid, Mid | -11 | Jails from 1st block</span>
+</div>
+<div class="note">FC.df+1,2,1,1 ends in a high at +15 (guard break) — duck it</div>
+<div class="entry">
+  <script>document.write(icons('FC.1','2'))</script>
+  <span class="frame-data">Low, Mid | -11 | Interrupt with i15 from 1st block | Whiffs vs SS/SW from 1st block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2','1','2'))</script>
+  <span class="frame-data">High, Mid, Mid | -12 | Interrupt with i7 from 1st block | Whiffs vs SSR from 1st block</span>
+</div>
+<div class="note">2,1 alone is −3 and jails</div>
+<div class="entry">
+  <script>document.write(icons('f1','2','1'))</script>
+  <span class="frame-data">Mid, High, Mid | -12 | Instant Tornado | Interrupt with i7 from 1st block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('f2'))</script>
+  <span class="frame-data">HIGH | i10 | -12 | +32a on CH</span>
+</div>
+<div class="note">His i10 "Stop Sign" | A high: duck it if he fishes with it</div>
+<div class="entry">
+  <script>document.write(icons('f1+2'))</script>
+  <span class="frame-data">Power Crush | Mid, Mid | i27~28 | -12 | Armor frames 7~26</span>
+</div>
+<div class="note">−6 if the armor absorbed your hit first</div>
+<div class="entry">
+  <script>document.write(icons('df1','2'))</script>
+  <span class="frame-data">Mid, High | -12 | Delayable | Interrupt with i8 from 1st block</span>
+</div>
+<div class="note">The 2 is a high: duck and launch instead of blocking</div>
+<div class="entry">
+  <script>document.write(icons('FC.df4'))</script>
+  <span class="frame-data">Mid | i12 | -12 | Knee</span>
+</div>
+<div class="note">FC.df+4,2 continues at −14 with no interrupt or step window (anti-strat)</div>
+<div class="entry">
+  <script>document.write(icons('FC.df2','1','2'))</script>
+  <span class="frame-data">Mid, Mid, Mid | -12 | Whiffs vs SSR from 2nd block</span>
+</div>
+<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
+<div class="entry">
+  <script>document.write(icons('1+2'))</script>
+  <span class="frame-data">Mid, Mid | i15~16 | -13 | Homing | Instant Tornado</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2','3'))</script>
+  <span class="frame-data">High, Mid | -13 | Can't be interrupted | Knee</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b4'))</script>
+  <span class="frame-data">Mid | i13 | -13 | Knee</span>
+</div>
+<div class="note">Anti-strat: "i10 gap before followup" — b+4,4 is −4c | Punish only if he stopped</div>
+<div class="entry">
+  <script>document.write(icons('u1+2'))</script>
+  <span class="frame-data">HIGH | i19 | -13 | Launches on hit</span>
+</div>
+<div class="note">Anti-strat: "−11 pushback" | Slow high: duck on a read</div>
+<div class="entry">
+  <script>document.write(icons('ws1'))</script>
+  <span class="frame-data">Mid | i15 | -13 | Launches on hit</span>
+</div>
+<div class="note">Anti-strat: −13~−11</div>
+<div class="entry">
+  <script>document.write(icons('FC.df2'))</script>
+  <span class="frame-data">Mid | i17 | -13 | High crush</span>
+</div>
+<div class="note">Anti-strat: max-delay FC.df+2,f+1 is i10-interruptible, so punish the first hit if he fishes</div>
+<div class="entry">
+  <script>document.write(icons('GMH.3+4'))</script>
+  <span class="frame-data">Particle Barrier | Special Mid | i20 | -13 | Armor from frame 6 | Heat Engager</span>
+</div>
+<div class="note">Crouch-blocks fine (SM) | Anti-strat: "force field"</div>
+<div class="entry">
+  <script>document.write(icons('GMH.f2'))</script>
+  <span class="frame-data">Mid | i17 | -13 | Balcony Break</span>
+</div>
+<div class="note">Anti-strat: pushback</div>
+<div class="entry">
+  <script>document.write(icons('1','1'))</script>
+  <span class="frame-data">High, Mid | -14c | Interrupt with i4 from 1st block</span>
+</div>
+<div class="note">Can go to GMH with D (+4 on block): not punishable in that branch — see Stance Check</div>
+<div class="entry">
+  <script>document.write(icons('b1','2'))</script>
+  <span class="frame-data">Mid, Mid | -14c | Combo from 1st hit | Delayable 7F | Whiffs vs SSR from 1st block</span>
+</div>
+<div class="note">You recover crouching: use a while-standing punish</div>
+<div class="entry">
+  <script>document.write(icons('ws2','1'))</script>
+  <span class="frame-data">Mid, Mid | -14c | Interrupt with i2 from 1st block</span>
+</div>
+<div class="note">ws2,4 (high) is +4: duck it if he favours that branch</div>
+<div class="entry">
+  <script>document.write(icons('df2'))</script>
+  <span class="frame-data">Mid | i15 | -14 | Launches on hit</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.df4','2'))</script>
+  <span class="frame-data">Mid, Mid | -14 | Can't be interrupted</span>
+</div>
+<div class="note">Anti-strat: no interrupt or step window even at max delay</div>
+<div class="entry">
+  <script>document.write(icons('FC.db1','1','1'))</script>
+  <span class="frame-data">Low, Mid, Mid | -14 | Interrupt with i4 from 2nd block</span>
+</div>
+<div class="note">Charged version is −6</div>
+<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
+<div class="entry">
+  <script>document.write(icons('ff1+2'))</script>
+  <span class="frame-data">Mid | i15 | -15 | Homing</span>
+</div>
+<div class="note">f,F+1+2,2 is −9, f,F+1+2,1+2 a low at −19 — see General Counter Play</div>
+<div class="entry">
+  <script>document.write(icons('ws1+2'))</script>
+  <span class="frame-data">Mid | i20 | -15</span>
+</div>
+<div class="note">ws1+2,1+2 is −15 too (anti-strat: −15, −16); ws1+2,1+2,1+2 ends low at −23</div>
+<div class="entry">
+  <script>document.write(icons('ff2'))</script>
+  <span class="frame-data">Mid | i18 | -16 | Launches on hit</span>
+</div>
+<div class="note">Charged f,F+2* is −15</div>
+<div class="entry">
+  <script>document.write(icons('u4'))</script>
+  <span class="frame-data">Mid | i25 | -16 | Airborne | Balcony Break</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('1+4','df1'))</script>
+  <span class="frame-data">Windup Uppercut | Ordinary mid (M) | i20~23 | -17 | Tornado</span>
+</div>
+<div class="note">Also hcf,df+1, the just-frame 1+4:df+1 and GMH.f+1 — all −17 | Anti-strat: "pushback"</div>
+<div class="entry">
+  <script>document.write(icons('d1+2'))</script>
+  <span class="frame-data">Mid | i27 | -18 | High crush from frame 6 | Launches on hit</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('df1','2','1','2'))</script>
+  <span class="frame-data">Mid, High, High, High | -18</span>
+</div>
+<div class="note">Or duck the last high</div>
+<div class="entry">
+  <script>document.write(icons('df1+3'))</script>
+  <span class="frame-data">Body Press | Special Mid | i30~49 | -18c~+1c (avg −12c~−10c) | Airborne from 15</span>
+</div>
+<div class="note">Becomes a high attack-throw on a close standing hit; anti-strat: "duck on reaction"</div>
+<div class="entry">
+  <script>document.write(icons('FC.1+2','1+2'))</script>
+  <span class="frame-data">Low, Mid | -18 | Interrupt with i22 from 1st block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('R.df1+2'))</script>
+  <span class="frame-data">Rage Art | Mid, then throw | i20 | -18 | Power Crush 8~20</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b1+2'))</script>
+  <span class="frame-data">Tyulpan Blast | Mid | i14 | -19 | Heat Engager | Balcony Break</span>
+</div>
+<div class="note">A Heat Engager that you can launch: always punish it</div>
+<div class="entry">
+  <script>document.write(icons('FC.df1'))</script>
+  <span class="frame-data">Mid | i23 | -21</span>
+</div>
+<div class="note">FC.df+1,2 is −21 too and jails</div>
+<div class="entry">
+  <script>document.write(icons('df3+4'))</script>
+  <span class="frame-data">Dump Truck | Mid | i13 | -23 | Shoulder</span>
+</div>
+<div class="note">His fastest big-damage mid — and your biggest standing punish</div>
+<div class="entry">
+  <script>document.write(icons('df2','1'))</script>
+  <span class="frame-data">Mid, High | -32 | Launches on hit</span>
+</div>
+<div class="note">Or duck the 1 | Charged version −46 | Can go to GMH with D (anti-strat lists −37)</div>
+<div class="entry">
+  <script>document.write(icons('SIT.1+2'))</script>
+  <span class="frame-data">Mid | i24 | -44 | From Sit Down</span>
+</div>
+
+<!-- ── LOW BLOCK PUNISHMENT ── -->
+
+<h2 id="low-block"><span>Low Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout "><strong>Reactability tag</strong> (Mike's reaction rule, using the low's fastest startup frame): <span class="react r-yes">Reactable</span> 25f or slower · <span class="react r-mostly">Mostly reactable</span> 21–24f · <span class="react r-no">Not reactable — guess or condition</span> 20f or faster. Startups are from the Wavu movelist (for a string whose low is a later hit, Wavu's startup for that hit); a low with no stated startup gets no tag.</div>
+<div class="callout ">After a blocked low you're crouching, so use the crouching rows of your <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt" style="color:var(--accent)">Victor Punish Sheet</a>: −11/−12 <span class="mono">ws4</span> · −13/−14 <span class="mono">ws1+2</span> or <span class="mono">uf+1,1</span> · −15+ <span class="mono">ws1</span> launch.<br><br>
+<strong>His fast lows are mostly −11 to −15; his slow ones are launch-punishable.</strong> <span class="mono">db+2</span> (i22, −18), <span class="mono">db+3</span> (i21, −20), <span class="mono">d+3</span> (i20, −17) and the Debugger (i29, −37) are the big ones. His Cossack Kicks (<span class="mono">db+3,4,3…</span>) are all lows: the anti-strat page says low parry them, because he can end them with an unbreakable crouch grab. His <span class="mono">d+1</span> and <span class="mono">d+2</span> (i10/i11 special lows) are only −5/−4.</div>
+<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
+<div class="entry">
+  <script>document.write(icons('FC.db1'))</script>
+  <span class="frame-data">Low | i14 | -11 | High crush</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">FC.db+1,1 adds a mid at −6 (spike) | Anti-strat: +3 on hit</div>
+<div class="entry">
+  <script>document.write(icons('FC.df2','d1'))</script>
+  <span class="frame-data">Mid, Low | -11 | Interrupt with i5 from 1st block | Combo from 1st hit</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">The mix with FC.df+2,f+1 (high, −4): stay crouched after the first mid and the high whiffs, the low gets blocked</div>
+<div class="entry">
+  <script>document.write(icons('db1'))</script>
+  <span class="frame-data">Low | i12 | -12 | +1 on hit</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('db1','1','1'))</script>
+  <span class="frame-data">Low, Low, Low | -12 | Whiffs from 1st or 2nd block (−28)</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Wavu: the 3rd hit whiffs if you blocked the 1st or 2nd, leaving him −28. Hold your punish until it whiffs | db+1,1,1,2 ends in a mid at −11</div>
+<div class="entry">
+  <script>document.write(icons('FC.1','1'))</script>
+  <span class="frame-data">Low, Low | -12~-10 | Interrupt with i14 from 1st block | High crush 1~62</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('uf3'))</script>
+  <span class="frame-data">Terrapulser | Low (hits grounded) | i23 | -12 | Unparryable | Airborne from 9</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Into GMH on hit (+8c) | Heat version H.uf+3 is i19, also −12</div>
+<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
+<div class="entry">
+  <script>document.write(icons('db4'))</script>
+  <span class="frame-data">Low | i16 | -13 | High crush from 6</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Anti-strat lists it under while-standing −13</div>
+<div class="entry">
+  <script>document.write(icons('d2','1'))</script>
+  <span class="frame-data">Special Low, Low | -14 | Combo from 1st hit | First two hits of 10 hit combo</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Also FC.2,1 | d+2 alone is −4</div>
+<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
+<div class="entry">
+  <script>document.write(icons('d4'))</script>
+  <span class="frame-data">Low | i16 | -15 | High crush 4</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Also FC.d+4</div>
+<div class="entry">
+  <script>document.write(icons('FC.db1+2'))</script>
+  <span class="frame-data">Low | i24 | -15 | +13d on hit</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Also hFC.1+2 | FC.1+2,1+2 adds a mid at −18</div>
+<div class="entry">
+  <script>document.write(icons('d3'))</script>
+  <span class="frame-data">Low | i20 | -17 | High crush 4</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Also FC.d+3</div>
+<div class="entry">
+  <script>document.write(icons('db2'))</script>
+  <span class="frame-data">Power Shovel | Low | i22 | -18 | High crush from 6</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Charged db+2* is i35~36, −33 (anti-strat: pushback)</div>
+<div class="entry">
+  <script>document.write(icons('db3'))</script>
+  <span class="frame-data">Cossack Kick | Low | i21 | -20</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Extensions db+3,4 / ,3 / ,4 / ,3 / ,4 are all lows at −16 / −19 / −16 / −19 / −16, each interruptible with i7 | Low parry them (anti-strat)</div>
+<div class="entry">
+  <script>document.write(icons('db3','d1+2'))</script>
+  <span class="frame-data">Cossack Compactor | Low, then unbreakable crouch throw | i34</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Can come after any Cossack Kick hit. Anti-strat: "pretty slow" — low parry the kicks so he never gets it</div>
+<div class="entry">
+  <script>document.write(icons('db3','1+2'))</script>
+  <span class="frame-data">Cossack Smash | Low, High | +14g on block | Interrupt with i14 from 1st block</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note"><strong>Theory (Ledger):</strong> you block db+3 crouching, so if you stay down the high 1+2 should go over you; the +14g only matters if you stood up. To test</div>
+<div class="entry">
+  <script>document.write(icons('ff1+2','1+2'))</script>
+  <span class="frame-data">Mid, Low | -19 | Interrupt with i9 from 1st block</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Anti-strat: a hopkick beats both f,F+1+2 alone and this low ender</div>
+<div class="entry">
+  <script>document.write(icons('ws1+2','1+2','1+2'))</script>
+  <span class="frame-data">Mid, Mid, Low | -23 | Interrupt with i9 from 2nd block</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Anti-strat: hopkick between the 2nd and 3rd hit</div>
+<div class="entry">
+  <script>document.write(icons('df1+4'))</script>
+  <span class="frame-data">Debugger | LOW | i34 (i29 via b,db,d,df+1) | -37 | Homing | High crush 6~89</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Wavu: the b,db,d,df+1 input is fully bufferable, so i29 is the one to plan for</div>
+<div class="entry">
+  <script>document.write(icons('SIT.1'))</script>
+  <span class="frame-data">Low | i19 | -48 | From Sit Down</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">SIT.1,2 / ,1 / ,2 are lows at −47 | Anti-strat: "Sit strings: LP or float"</div>
+<div class="entry">
+  <script>document.write(icons('db1+2'))</script>
+  <span class="frame-data">Megaton Earthquake | Low, Low | i18 | -70 | Floor Break</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('ff1+4'))</script>
+  <span class="frame-data">Sliding Attack | Mid early, Low on landing | i21~30 (low i31~40) | -82~-73</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Anti-strat: long range, −108 | The biggest punish he can give you</div>
+<h3>Safe lows — block them, no punish</h3>
+<div class="entry">
+  <script>document.write(icons('d1'))</script>
+  <span class="frame-data">Special Low | i10 | -5 | High crush 4</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('d2'))</script>
+  <span class="frame-data">Special Low | i11 | -4 | High crush 4</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.1'))</script>
+  <span class="frame-data">Low (hits grounded) | i19~21 | -8 | High crush 1~46</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.db1','1'))</script>
+  <span class="frame-data">Low, Mid | -6 | Spike | Interrupt with i5 from 1st block</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+
+<!-- ── DUCK AND LAUNCH ── -->
+
+<h2 id="duck-launch"><span>Duck and Launch</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Many of his string enders are highs, and so is his power crush.</strong> The anti-strat page's duckable-high list is long: <span class="mono">1,2</span>, <span class="mono">2,1,1+2</span>, <span class="mono">f+1,1</span>, <span class="mono">f+1,2</span>, <span class="mono">3,2</span>, <span class="mono">df+1,2</span>, <span class="mono">b+3,2,2</span>, <span class="mono">ws2,4</span>, <span class="mono">FC.df+1,2,1,1</span>, <span class="mono">FC.df+2,f+1</span>. Most of them are mixes with a mid branch, so ducking is a read, not a reaction. His Heat Smash also starts with a high (i10).</div>
+<h3>String enders — duck the high after blocking the first hit(s)</h3>
+<div class="entry">
+  <script>document.write(icons('df1','2'))</script>
+  <span class="frame-data">Mid, High | -12 | Delayable | Combo only from 1st CH</span>
+</div>
+<div class="note">Mix with df+1,1 (mid, −11) | Duck the 2 and launch</div>
+<div class="entry">
+  <script>document.write(icons('df2','1'))</script>
+  <span class="frame-data">Mid, High | -32 | Combo from 1st hit</span>
+</div>
+<div class="note">Only on block: the 2nd hit is guaranteed on hit | Duck it or block and launch</div>
+<div class="entry">
+  <script>document.write(icons('f1','1'))</script>
+  <span class="frame-data">Mid, High | -7 | Combos from 1st hit | Interrupt with i6 from 1st block</span>
+</div>
+<div class="note">Duck on block only | Also whiffs on SSR</div>
+<div class="entry">
+  <script>document.write(icons('f1','2'))</script>
+  <span class="frame-data">Mid, High | -6 | Combos from 1st hit | Interrupt with i3</span>
+</div>
+<div class="note">Mix with f+1,2,1 / f+1,2,2 (both mid enders)</div>
+<div class="entry">
+  <script>document.write(icons('3','2'))</script>
+  <span class="frame-data">Mid, High | -9 | Combos from 1st hit | Interrupt with i2 from 1st block</span>
+</div>
+<div class="note">Also f+3,2 / ws3,2 | Mix with 3,1+2 (mid, −11c)</div>
+<div class="entry">
+  <script>document.write(icons('b3','2','2'))</script>
+  <span class="frame-data">Mid, High, High | -9 | Interrupt with i5 from 2nd block</span>
+</div>
+<div class="note">b+3,2 is −4 and can go to GMH | Charged b+3,2,2* ends in a mid</div>
+<div class="entry">
+  <script>document.write(icons('ws2','4'))</script>
+  <span class="frame-data">Mid, High | +4 | Combos from 1st hit | Interrupt with i3</span>
+</div>
+<div class="note">Plus on block — duck it if he likes this branch | Mix with ws2,1 (mid, −14c)</div>
+<div class="entry">
+  <script>document.write(icons('df3','2'))</script>
+  <span class="frame-data">Mid, High | -7 | Can't be interrupted</span>
+</div>
+<div class="note">The anti-strat list says "df4,2"; Wavu has no df+4,2, only df+3,2</div>
+<div class="entry">
+  <script>document.write(icons('FC.df1','2','1','1'))</script>
+  <span class="frame-data">Mid, Mid, Mid, High | +15 | Guard Break | Interrupt with i9 from 1st block</span>
+</div>
+<div class="note">Duck the last hit; it's a guard break if you block it</div>
+<div class="entry">
+  <script>document.write(icons('FC.df2','f1'))</script>
+  <span class="frame-data">Mid, High | -4 | Combos from 1st hit | Interrupt with i2</span>
+</div>
+<div class="note">Anti-strat: "7f fuzzy undelayed" | Mix with FC.df+2,d+1 (low, −11)</div>
+<div class="entry">
+  <script>document.write(icons('2','1','1+2'))</script>
+  <span class="frame-data">High, Mid, then 5 highs | -4 | Jails from 3rd block | Wavu: "Duckable"</span>
+</div>
+<div class="note">Interrupt with i7 from 1st block</div>
+<h3>Full-high strings — duck the opener</h3>
+<div class="entry">
+  <script>document.write(icons('1','2'))</script>
+  <span class="frame-data">High, High | -2 | Whiffs vs SSR from 1st block | Combo only from CH</span>
+</div>
+<div class="note">Anti-strat: "4f fuzzy, mid first" — 1,1 is the mid branch</div>
+<h3>Naked highs — duck on read</h3>
+<div class="entry">
+  <script>document.write(icons('ub1+2'))</script>
+  <span class="frame-data">Power Crush | HIGH | i20 | -9 | Homing | Armor from 7</span>
+</div>
+<div class="note">His standing power crush is a high: duck and launch</div>
+<div class="entry">
+  <script>document.write(icons('GMH.2'))</script>
+  <span class="frame-data">Exaton Blast | HIGH | i20 | +11g | Tornado</span>
+</div>
+<div class="note">With Gamma Charge (GMC.2) it's a power crush from frame 1 and a guard break | Duck it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.4'))</script>
+  <span class="frame-data">HIGH | i14~18 | +4 | Heat Engager | 9 chip</span>
+</div>
+<div class="note">Duck denies the engager too</div>
+<div class="entry">
+  <script>document.write(icons('SS.2'))</script>
+  <span class="frame-data">HIGH | i17 | +9 | Can go to GMH with D (+9)</span>
+</div>
+<div class="note">His biggest plus mid-range poke is a high</div>
+<div class="entry">
+  <script>document.write(icons('u1+2'))</script>
+  <span class="frame-data">Patriot Fist | HIGH | i19 | -13 | Launches on hit</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('f4','1'))</script>
+  <span class="frame-data">Dark Greeting (f+4~1) | Unblockable HIGH | i65</span>
+</div>
+<div class="note">Anti-strat: "UNB on reaction, but mix" — f+4~1,2 is a mid at +8</div>
+<div class="entry">
+  <script>document.write(icons('df1+3'))</script>
+  <span class="frame-data">Body Press | Special Mid → high attack-throw | i30~49</span>
+</div>
+<div class="note">Anti-strat: "attack throw, duck on reaction" | Special mid, so crouch-blocking it is fine too</div>
+<div class="entry">
+  <script>document.write(icons('H.2+3'))</script>
+  <span class="frame-data">Heat Smash | High, Mid, then throw | i10 | -9</span>
+</div>
+<div class="note"><strong>Theory (Ledger):</strong> the first hit is a high — test whether ducking it stops the rest</div>
+
+<!-- ── STANCE COUNTERPLAY ── -->
+
+<h2 id="stances"><span>Stance Counterplay</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<h3>GMH — Gamma Howl</h3>
+<div class="callout ">Raw entry is <span class="mono">3+4</span> (also <span class="mono">ws3+4</span>): an armor stance with power crush frames 7~22. If it absorbs a hit he gains <strong>Gamma Charge (GMC)</strong> and heals recoverable health. <strong>Plus entries (his turn):</strong> <span class="mono">SS.2~D</span> +9 · Heat <span class="mono">H.f+3+4~D</span> +8 · Make Some Noise (<span class="mono">2,1,uf+1+2</span>, <span class="mono">FC.df+3+4,uf+1+2</span>, <span class="mono">GMH.uf+1+2</span>) +5 · <span class="mono">1,1~D</span> and <span class="mono">f,F+1~D</span> +4 · <span class="mono">3~D</span> +2. <strong>Even or minus:</strong> <span class="mono">b+3,2~D</span> +0 · <span class="mono">f+3+4~D</span> −3. <span class="mono">uf+3</span> goes into GMH automatically on hit (+8c). (Wavu; the anti-strat list agrees except <span class="mono">df+2,1</span>, which it gives as −37; Wavu −32.)<br><br>
+<strong>Can he block in GMH?</strong> Neither Wavu nor TekkenDocs says. <strong>Lows:</strong> none — no GMH move is a low. What punishes you for crouching is two <strong>unbreakable crouch throws</strong>, <span class="mono">GMH.1+3</span> and <span class="mono">GMH.2+4</span> (i15). So the default is <strong>stand-block</strong>, and duck only on a read of <span class="mono">GMH.2</span> / <span class="mono">GMH.4</span> (both highs). <strong>Fastest move:</strong> <span class="mono">GMH.4</span>, a high at i14 (anti-strat agrees: "fastest high i14"). Fastest mid is <span class="mono">GMH.f+2</span> at i17 (the anti-strat page says i22). <strong>Power crush:</strong> <span class="mono">GMH.3+4</span>, armor from frame 6 — so a jab check into GMH can get absorbed. <strong>Anti-strat:</strong> "You can jab and still block shockwave from a +4 transition. For worse transitions you can 1,2 / df1 / ... and still block."</div>
+<div class="entry">
+  <script>document.write(icons('GMH.1'))</script>
+  <span class="frame-data">Mid | i22 | -9 | Homing | Balcony Break</span>
+</div>
+<div class="note">With GMC: GMC.1, −6 and a launch</div>
+<div class="entry">
+  <script>document.write(icons('GMH.2'))</script>
+  <span class="frame-data">HIGH | i20 | +11g | Tornado</span>
+</div>
+<div class="note">GMC.2: power crush from frame 1, guard break, +11 | Duck it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.3'))</script>
+  <span class="frame-data">Ordinary mid (M) | i24 | +4 | Floor Break</span>
+</div>
+<div class="note">Can go to FC with D</div>
+<div class="entry">
+  <script>document.write(icons('GMH.4'))</script>
+  <span class="frame-data">HIGH | i14~18 | +4 | Heat Engager</span>
+</div>
+<div class="note">Anti-strat: "will most likely switch sides if you step"</div>
+<div class="entry">
+  <script>document.write(icons('GMH.f2'))</script>
+  <span class="frame-data">Mid | i17 | -13</span>
+</div>
+<div class="note">Punish it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.f1'))</script>
+  <span class="frame-data">Ordinary mid (M) | i20 | -17 | Instant Tornado</span>
+</div>
+<div class="note">Launch it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.3+4'))</script>
+  <span class="frame-data">Special Mid | i20 | -13 | Armor from 6 | Heat Engager</span>
+</div>
+<div class="note">Punish it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.uf1+2'))</script>
+  <span class="frame-data">Mid | i21~22 | +5 back into GMH | Low crush 15</span>
+</div>
+<div class="note">The loop to respect</div>
+<div class="entry">
+  <script>document.write(icons('GMH.1+3'))</script>
+  <span class="frame-data">Crouch throw | i15 | Unbreakable</span>
+</div>
+<div class="note">Grabs you if you crouch</div>
+<div class="entry">
+  <script>document.write(icons('GMH.2+4'))</script>
+  <span class="frame-data">Crouch throw | i15 | Unbreakable | Heat Engager</span>
+</div>
+<div class="note">Same as d+2+4 from standing</div>
+<div class="entry">
+  <script>document.write(icons('GMH.1+2'))</script>
+  <span class="frame-data">Mimesis Overkill | Throw | i16 | Break 1+2</span>
+</div>
+<div class="entry"><span class="stance" style="margin-right:6px;">GMH.f / ub / uf</span><span class="frame-data">Walking Fortress walks forward; Breakout / Flying Fortress jump (js12) and recover crouching, low crush 12</span></div>
+<div class="callout callout-key"><strong>How to deal with it:</strong> after a +4 entry he has a high at i14 and crouch throws at i15, plus the GMH.3+4 armor. Stand-block by default; the crouch throws only catch you if you duck. The arithmetic for which entries your jab beats is in the <a href="#stance-check" style="color:var(--accent)">Stance Check</a> section. On the minus entries (<span class="mono">f+3+4~D</span> −3, <span class="mono">b+3,2~D</span> +0) the anti-strat page says you can press 1,2 or df+1 and still block.</div>
+<h3>SIT — Sit Down</h3>
+<div class="callout ">Entered with <span class="mono">d+3+4</span>, and automatically after <span class="mono">uf+3+4</span> / <span class="mono">SIT.3+4</span> Pancake Press on hit or block (+13cg on block). <span class="mono">FUFT.d+1+2</span> (get-up punch, +18g) also recovers in SIT. <strong>Can he block in SIT?</strong> No source says. <strong>Lows:</strong> <span class="mono">SIT.1</span> (i19, −48) and the SIT.1,2 strings (−47) — the anti-strat page says low parry or float them. Everything from SIT is a huge punish on block except <span class="mono">SIT.3+4</span> (i54, +13cg).</div>
+<div class="entry">
+  <script>document.write(icons('SIT.1'))</script>
+  <span class="frame-data">Low | i19 | -48</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SIT.1','2','1','2'))</script>
+  <span class="frame-data">Low ×4 | -47</span>
+</div>
+<div class="note">Alt SIT.2,1,2,1 recovers 4F faster</div>
+<div class="entry">
+  <script>document.write(icons('SIT.1+2'))</script>
+  <span class="frame-data">Mid | i24 | -44</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SIT.3+4'))</script>
+  <span class="frame-data">Extra Pancake Press | Ordinary mid (M) | i54 | +13cg | Airborne</span>
+</div>
+<div class="note">Slow: step it or interrupt it</div>
+<h3>Gamma Charge (GMC) — a buff, not a stance</h3>
+<div class="callout ">He gets GMC by absorbing a hit with <span class="mono">3+4</span>, or on hit/block of the charged moves (b+2*, f+1,2,2*, b+3,2,2*, db+2*, f,F+2*, FC.df+3+4*, FC.db+1,1,1*), and it is <strong>always on in Heat</strong>. It upgrades three GMH moves: <span class="mono">GMC.1</span> (homing mid, −6, launches), <span class="mono">GMC.2</span> (high, power crush from frame 1, +11 guard break) and <span class="mono">GMC.3+4</span> (special mid, −9). Watch for the blue glow after a charged move connects.</div>
+
+<!-- ── HEAT ── -->
+
+<h2 id="heat"><span>Heat</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('H.2+3'))</script>
+  <span class="frame-data">Heat Smash (Meteor Raid) | High, Mid, then throw | i10 | <strong>-9</strong> | Balcony Break | 10 chip</span>
+</div>
+<div class="note">Not punishable: −9 | Anti-strat: "long range (neutral)" | Theory: duck the i10 high (see To test)</div>
+<div class="entry">
+  <script>document.write(icons('H.f3+4'))</script>
+  <span class="frame-data">Heat move | Mid | i22~23 | +0 | Into GMH with D: +8 | Uses Heat time</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('H.uf3'))</script>
+  <span class="frame-data">Heat Terrapulser | Low (hits grounded) | i19 | -12 | Unparryable | Into GMH on hit</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2+3'))</script>
+  <span class="frame-data">Heat Burst | Mid | i16 | +1 | Power Crush 7~16</span>
+</div>
+<h3>Heat Engagers — how he gets in</h3>
+<div class="entry">
+  <script>document.write(icons('b1+2'))</script>
+  <span class="frame-data">Mid | i14 | -19 | Launch-punish it</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b2'))</script>
+  <span class="frame-data">Piston Gun Assault | Mid | i19 | +2 | Can be charged (b+2*: i35, −2, GMC)</span>
+</div>
+<div class="note">Anti-strat lists +5; Wavu +2</div>
+<div class="entry">
+  <script>document.write(icons('GMH.4'))</script>
+  <span class="frame-data">HIGH | i14~18 | +4 | Duck it</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('GMH.3+4'))</script>
+  <span class="frame-data">Special Mid | i20 | -13 | Armor from 6 | Punish it</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('GMC.3+4'))</script>
+  <span class="frame-data">Special Mid | i20 | -9 | Armor from 6 | Needs GMC</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('d2+4'))</script>
+  <span class="frame-data">Iron Gunman | Crouch throw | i12 | Unbreakable | Can't Heat Dash</span>
+</div>
+<div class="note">Only grabs a crouching opponent</div>
+<div class="callout ">Ducking only denies one of his engagers (<span class="mono">GMH.4</span>). The most useful one to punish is <span class="mono">b+1+2</span> at −19. <span class="mono">b+2</span> is plus and the charged version gives GMC; deny it by stepping or interrupting its i19 startup. <strong>Heat powers</strong> (anti-strat): Gamma Charge is always on, so <span class="mono">GMH.2</span> becomes the armored +11 guard break and <span class="mono">GMH.1</span> a −6 launcher.</div>
+
+<!-- ── THROWS ── -->
+
+<h2 id="throws"><span>Throws</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout "><strong>He's a grappler</strong> (anti-strat): eight command throws plus three unbreakable crouch throws. Both standard throws take either break and are homing. The rest need the listed break.</div>
+<div class="entry">
+  <script>document.write(icons('1+3'))</script>
+  <span class="frame-data">35 | i12 | Homing | Break 1 or 2</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2+4'))</script>
+  <span class="frame-data">35 | i12 | Homing | Side switch | Break 1 or 2</span>
+</div>
+<div class="entry"><span class="stance" style="margin-right:6px;">LEFT</span><span class="frame-data">Left throw | 40 | Break 1</span></div>
+<div class="entry"><span class="stance" style="margin-right:6px;">RIGHT</span><span class="frame-data">Right throw | 40 | Break 2</span></div>
+<div class="entry"><span class="stance" style="margin-right:6px;">BACK</span><span class="frame-data">Back throws | 70 | Unbreakable</span></div>
+<div class="entry">
+  <script>document.write(icons('df2+4'))</script>
+  <span class="frame-data">Volcano | i11 | Break 2</span>
+</div>
+<div class="note">df,DF+2+4 (Volcano Blaster) is i14, also break 2</div>
+<div class="entry">
+  <script>document.write(icons('db2+3'))</script>
+  <span class="frame-data">Body Smash | i11 | Break 2</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('qcb2'))</script>
+  <span class="frame-data">Back Breaker | i11 | Break 2</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('qcf1'))</script>
+  <span class="frame-data">Pyramid Driver | i11 | Break 1</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('uf1+2'))</script>
+  <span class="frame-data">Ground Zero | i11 | Break 1+2</span>
+</div>
+<div class="note">Follow-up d,df+2 is blockable: hold back on frame 60</div>
+<div class="entry"><span class="stance" style="margin-right:6px;">db,n,f+1+2</span><span class="frame-data">Pile Driver | i11 | Break 1+2</span></div>
+<div class="entry">
+  <script>document.write(icons('GMH.1+2'))</script>
+  <span class="frame-data">Mimesis Overkill | i16 | Break 1+2 | 57 at the wall</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('d1+3'))</script>
+  <span class="frame-data">Gun Bomb | Crouch throw | i12 (GMH.1+3 i15) | Unbreakable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('d2+4'))</script>
+  <span class="frame-data">Iron Gunman | Crouch throw | i12 (GMH.2+4 i15) | Unbreakable | Heat Engager</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('db3','d1+2'))</script>
+  <span class="frame-data">Cossack Compactor | Crouch throw after any Cossack Kick | Unbreakable</span>
+</div>
+<div class="entry"><span class="stance" style="margin-right:6px;">WALL</span><span class="frame-data">Twin Drivers | wall throw during your wall stun | Unbreakable</span></div>
+<div class="callout ">Break summary: 1 → left and qcf+1 · 2 → right, Volcano, Body Smash, qcb+2 · 1+2 → Ground Zero, Pile Driver, GMH.1+2 · either → 1+3 / 2+4. The crouch throws can't be broken at all — they only catch you crouching, so stand up when he's close and sitting low.</div>
+
+<!-- ── POWER CRUSH & RAGE ART ── -->
+
+<h2 id="power-crush"><span>Power Crush &amp; Rage Art</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('ub1+2'))</script>
+  <span class="frame-data">Barrel Jacket Hammer | HIGH | i20 | -9 | Armor from 7 | Homing</span>
+</div>
+<div class="note">−2 and 12 chip if it absorbed a hit</div>
+<div class="entry">
+  <script>document.write(icons('f1+2'))</script>
+  <span class="frame-data">Rolling Death Crusher | MID, Mid | i27~28 | -12 | Armor 7~26</span>
+</div>
+<div class="note">−6 and 12 chip if it absorbed a hit</div>
+<div class="entry">
+  <script>document.write(icons('GMH.3+4'))</script>
+  <span class="frame-data">Particle Barrier | Special Mid | i20 | -13 | Armor from 6</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('3+4'))</script>
+  <span class="frame-data">Gamma Howl | Armor stance | Armor 7~22 | Gains GMC on absorb</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2+3'))</script>
+  <span class="frame-data">Heat Burst | MID | i16 | +1 | Power Crush</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('R.df1+2'))</script>
+  <span class="frame-data">Rage Art | MID, then throw | i20 | -18 | Power Crush 8~20</span>
+</div>
+<div class="callout callout-warn"><strong>His standing power crush <span class="mono">ub+1+2</span> is a HIGH — duck it.</strong> <span class="mono">f+1+2</span> and <span class="mono">GMH.3+4</span> are mids: block and punish (−12, −13). <span class="mono">3+4</span> is a short armor stance that heals and gives him Gamma Charge if it absorbs your hit, so don't feed it a single poke; throw or wait it out. With GMC, <span class="mono">GMC.2</span> is a high power crush from frame 1.</div>
+
+<!-- ── GENERAL COUNTER PLAY ── -->
+
+<h2 id="counterplay"><span>General Counter Play</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<h3 id="practice">Practice priorities (20 Nov 2026)</h3>
+<div class="callout "><strong>What your battle log says:</strong> queue record 10–4 ranked; the repo log has you 12–8 ranked as Victor vs Jack-8 (27 Mar to 2 Nov). The last 60 days are worse: 2–4 as Victor, plus 0–2 as King and 0–2 as Paul. As Victor you lost 0–2 on 24 Oct to a lower-rated player and 0–2 on 2 Nov to a God of Destruction V. No mistakes are recorded, so these are matchup priorities, not a diagnosis.<br><br>
+<strong>If you only drill three things:</strong><br>
+1. <strong>Take the big punishes.</strong> <span class="mono">b+1+2</span> (−19, a Heat Engager), <span class="mono">df+3+4</span> (−23), <span class="mono">d+1+2</span> (−18) and the Windup Uppercut (−17) standing; <span class="mono">db+3</span> (−20), <span class="mono">db+2</span> (−18), <span class="mono">d+3</span> (−17) and the Debugger (−37) crouching.<br>
+2. <strong>Stand still against Gamma Howl.</strong> GMH has no lows; it beats ducking with unbreakable crouch throws. Stand-block, duck <span class="mono">GMH.2</span> / <span class="mono">GMH.4</span> only on a read, and don't feed a jab into <span class="mono">GMH.3+4</span> armor. See Stance Check for which entries your jab can beat.<br>
+3. <strong>SSR his strings after the first block</strong>; block <span class="mono">df+1</span> and <span class="mono">f+1</span>.</div>
+<div class="note">Record from queue.md (ranked) and repo data/battles.jsonl (ranked, to 16 Nov). Theory (Ledger) ranking: built from frame data, not from replays</div>
+<h3>Interruptible gaps and string traps</h3>
+<div class="entry">
+  <script>document.write(icons('2','1','uf1+2'))</script>
+  <span class="frame-data">Make Some Noise | High, Mid, Mid | +5 into GMH | Interrupt with i13 from 1st block</span>
+</div>
+<div class="note">Worth interrupting: it puts him +5 in GMH | FC.df+3+4,uf+1+2: i15 from 1st block</div>
+<div class="entry">
+  <script>document.write(icons('f1','2','2'))</script>
+  <span class="frame-data">Mid, High, Mid | +3 | Interrupt with i14 from 2nd block</span>
+</div>
+<div class="note">Anti-strat lists +6; Wavu +3 | Charged version: i42 from 2nd block</div>
+<div class="entry">
+  <script>document.write(icons('ff1+2','2'))</script>
+  <span class="frame-data">Mid, Mid | -9 | Interrupt with i13 from 1st block | Whiffs vs SSR</span>
+</div>
+<div class="note">Anti-strat: "Mid followup i13 interrupt or SSR"</div>
+<div class="entry">
+  <script>document.write(icons('b4','4'))</script>
+  <span class="frame-data">Mid, Mid | -4c | Interrupt with i10 from 1st block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('db1','1','1','2'))</script>
+  <span class="frame-data">Low ×3, Mid | Interrupt with i16 from 2nd block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b1','2'))</script>
+  <span class="frame-data">Mid, Mid | Interrupt with i8 from 1st block | Delayable 7F</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('df1','1'))</script>
+  <span class="frame-data">Mid, Mid | Interrupt with i8 from 1st block | Delayable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2','1','2'))</script>
+  <span class="frame-data">High, Mid, Mid | Interrupt with i7 from 1st block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('db3','4'))</script>
+  <span class="frame-data">Cossack Kicks | Each kick interruptible with i7 from the previous block</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.df1','2','1','1'))</script>
+  <span class="frame-data">Mid ×3, High | Interrupt with i9 from 1st block | +15 guard break</span>
+</div>
+<h3>Plus-on-block tools — respect the next turn</h3>
+<div class="entry">
+  <script>document.write(icons('1+4','1'))</script>
+  <span class="frame-data">Gigaton Punch | Mid | +21g | Unblockable after 2 spins (1+4*,1)</span>
+</div>
+<div class="note">Also hcf,1 | Spins are slow (i43+): step, backdash or interrupt the wind-up</div>
+<div class="entry">
+  <script>document.write(icons('db3','1+2'))</script>
+  <span class="frame-data">Cossack Smash | Low, High | +14g</span>
+</div>
+<div class="note">Stay crouched after the low (Theory, see Low Block)</div>
+<div class="entry">
+  <script>document.write(icons('FC.df1','2','1','1'))</script>
+  <span class="frame-data">Mid ×3, High | +15 | Guard Break</span>
+</div>
+<div class="note">Duck the last high</div>
+<div class="entry">
+  <script>document.write(icons('uf3+4'))</script>
+  <span class="frame-data">Pancake Press | Mid | i34 | +13cg into SIT | Airborne from 8</span>
+</div>
+<div class="note">Slow: step or interrupt it</div>
+<div class="entry">
+  <script>document.write(icons('GMH.2'))</script>
+  <span class="frame-data">HIGH | i20 | +11g</span>
+</div>
+<div class="note">Duck it</div>
+<div class="entry">
+  <script>document.write(icons('SS.2'))</script>
+  <span class="frame-data">HIGH | i17 | +9</span>
+</div>
+<div class="note">Duck it</div>
+<div class="entry">
+  <script>document.write(icons('f4','1','2'))</script>
+  <span class="frame-data">Sudden Elbow | Mid | +8</span>
+</div>
+<div class="note">After the Dark Greeting feint</div>
+<div class="entry">
+  <script>document.write(icons('fff2'))</script>
+  <span class="frame-data">Cemaho Chop | Mid | i22 | +6 | Unparryable | 7 chip</span>
+</div>
+<div class="note">Guarantees his i10 moves on hit</div>
+<div class="entry">
+  <script>document.write(icons('SS.1'))</script>
+  <span class="frame-data">Discharger | Ordinary mid (M) | i32 | +6c</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2','1','uf1+2'))</script>
+  <span class="frame-data">Make Some Noise | +5 into GMH</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('fff1+2'))</script>
+  <span class="frame-data">Charging Tackle | Mid | i20~23 | +4 | 10 chip</span>
+</div>
+<div class="note">Anti-strat: +4~+7</div>
+<div class="entry">
+  <script>document.write(icons('ws2','4'))</script>
+  <span class="frame-data">Mid, High | +4</span>
+</div>
+<div class="note">Duck the 4</div>
+<div class="entry">
+  <script>document.write(icons('uf2'))</script>
+  <span class="frame-data">Reactor Elbow | Mid | i24~25 | +4c | Low crush 9</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('ff3'))</script>
+  <span class="frame-data">Granite Stomping | Ordinary mid (M) | i26 | +4</span>
+</div>
+<div class="note">Also GMH.3</div>
+<div class="entry">
+  <script>document.write(icons('b3+4'))</script>
+  <span class="frame-data">Mimesis Rusty Nail | Mid | i25 | +4c</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b2'))</script>
+  <span class="frame-data">Mid | i19 | +2</span>
+</div>
+<div class="note">Anti-strat: +5</div>
+<h3>Unusual evasion</h3>
+<div class="callout "><span class="mono">1+2</span> Tornado Punch: high evasion frames 4?~12? and homing (Wavu) — don't jab into it.<br>
+<span class="mono">d+1</span>, <span class="mono">d+2</span>, <span class="mono">d+3</span>, <span class="mono">d+4</span>: high crush from frame 4; <span class="mono">db+2</span>, <span class="mono">db+4</span>, <span class="mono">d+1+2</span> from frame 6; the FC moves high crush throughout (TekkenDocs notes).<br>
+<span class="mono">uf+2</span>, <span class="mono">uf+3</span> low crush from 9; <span class="mono">uf+3+4</span> from 8; <span class="mono">2,1,uf</span> / <span class="mono">GMH.uf</span> jump from 12 and recover crouching.<br>
+<span class="mono">3+4</span> Gamma Howl: armor 7~22.</div>
+
+<!-- ── STANCE CHECK ── -->
+
+<h2 id="stance-check"><span>Stance Check — can a jab interrupt his plus stance entries?</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout ">Arithmetic only, all from Wavu. <strong>Effective startup = his raw startup − his frame advantage.</strong> Your jab is 10f, so effective i9 or faster → <em>jab can't interrupt</em>; exactly i10 → <em>trades</em>; i11 or slower → <em>a 10f jab interrupts</em>. Where Wavu gives a range, the fastest frame is used. Only entries with a <strong>stated plus</strong> advantage are covered.<br>Mike's rule: a character can't block in a unique stance unless a source says otherwise. No source says Jack-8 can block in GMH or SIT.<br><strong>Properties that change the read:</strong> <span class="mono">GMH.3+4</span> has armor from frame 6, and <span class="mono">GMC.2</span> from frame 1, so a jab that arrives during the armor is absorbed whatever the arithmetic says. <span class="mono">GMH.1</span> and <span class="mono">GMC.1</span> are homing. <span class="mono">GMH.1+3</span> / <span class="mono">GMH.2+4</span> are crouch throws: they only matter if you crouch, so a standing jab isn't racing them.</div>
+<h3>GMH on block — 3~D (+2), 1,1~D and f,F+1~D (+4), Make Some Noise (+5), H.f+3+4~D (+8), SS.2~D (+9)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>Attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +2</th><th>Eff. at +4</th><th>Eff. at +5</th><th>Eff. at +8</th><th>Eff. at +9</th><th>Read at +4</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">GMH.4</td><td>High</td><td class="mono">i14</td><td class="mono">i12 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="both">Trades</td><td>+4 on block; Heat Engager</td></tr>
+    <tr><td class="mono">GMH.1+3</td><td>Crouch throw</td><td class="mono">i15</td><td class="mono">i13</td><td class="mono">i11</td><td class="mono">i10</td><td class="mono">i7</td><td class="mono">i6</td><td class="both">Only if you crouch</td><td>Unbreakable; only grabs a crouching opponent</td></tr>
+    <tr><td class="mono">GMH.2+4</td><td>Crouch throw</td><td class="mono">i15</td><td class="mono">i13</td><td class="mono">i11</td><td class="mono">i10</td><td class="mono">i7</td><td class="mono">i6</td><td class="both">Only if you crouch</td><td>Unbreakable; Heat Engager</td></tr>
+    <tr><td class="mono">GMH.1+2</td><td>Throw</td><td class="mono">i16</td><td class="mono">i14 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="swr">A 10f jab interrupts</td><td>Break 1+2</td></tr>
+    <tr><td class="mono">GMH.f+2</td><td>Mid</td><td class="mono">i17</td><td class="mono">i15 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="swr">A 10f jab interrupts</td><td>−13 on block</td></tr>
+    <tr><td class="mono">GMH.2</td><td>High</td><td class="mono">i20</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>+11g on block</td></tr>
+    <tr><td class="mono">GMH.f+1</td><td>Mid (M)</td><td class="mono">i20</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>−17 on block</td></tr>
+    <tr><td class="mono">GMH.3+4</td><td>Special mid</td><td class="mono">i20</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="tracks">Armor beats the jab</td><td>Armor from frame 6 (eff. armor ≤ frame 2) — absorbs a jab</td></tr>
+    <tr><td class="mono">GMH.uf+1+2</td><td>Mid</td><td class="mono">i21</td><td class="mono">i19 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>+5 back into GMH; low crush 15</td></tr>
+    <tr><td class="mono">GMH.1</td><td>Mid</td><td class="mono">i22</td><td class="mono">i20 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Homing; −9</td></tr>
+    <tr><td class="mono">GMH.3</td><td>Mid (M)</td><td class="mono">i24</td><td class="mono">i22 — interrupts</td><td class="mono">i20 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>+4 on block</td></tr>
+    <tr><td class="mono">GMC.2</td><td>High</td><td class="mono">i20</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="tracks">Armor beats the jab</td><td>Needs GMC / Heat. Power crush from frame 1 — absorbs a jab</td></tr>
+    <tr><td class="mono">GMC.1</td><td>Mid</td><td class="mono">i22</td><td class="mono">i20 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Needs GMC / Heat. Homing; launches</td></tr>
+    <tr><td class="mono">GMC.3+4</td><td>Special mid</td><td class="mono">i20</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="tracks">Armor beats the jab</td><td>Needs GMC / Heat. Armor from frame 6 — absorbs a jab</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Not tabled: <span class="mono">b+3,2~D</span> (+0 on block) and <span class="mono">f+3+4~D</span> (−3) — not plus. <span class="mono">df+2,1~D</span> (+45a on hit) and <span class="mono">df+2,1*~D</span> (+70a) are juggle states, not a neutral turn. Raw startups for Make Some Noise from Wavu (<span class="mono">2,1,uf+1+2</span>, <span class="mono">FC.df+3+4,uf+1+2</span> and <span class="mono">GMH.uf+1+2</span> all +5 GMH on block).</div>
+<h3>GMH on hit — b+3,2~D (+5), uf+3 / H.uf+3 and 1,1~D / f,F+1~D (+8c), f+3+4~D (+15c), 3~D (+16), Make Some Noise / H.f+3+4~D (+17c)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>Attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +5</th><th>Eff. at +8</th><th>Eff. at +15</th><th>Eff. at +16</th><th>Eff. at +17</th><th>Read at +8</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">GMH.4</td><td>High</td><td class="mono">i14</td><td class="mono">i9 — can't</td><td class="mono">i6 — can't</td><td class="mono">i-1 — can't</td><td class="mono">i-2 — can't</td><td class="mono">i-3 — can't</td><td class="tracks">Jab can't interrupt</td><td>+4 on block; Heat Engager</td></tr>
+    <tr><td class="mono">GMH.1+3</td><td>Crouch throw</td><td class="mono">i15</td><td class="mono">i10</td><td class="mono">i7</td><td class="mono">i0</td><td class="mono">i-1</td><td class="mono">i-2</td><td class="both">Only if you crouch</td><td>Unbreakable; only grabs a crouching opponent</td></tr>
+    <tr><td class="mono">GMH.2+4</td><td>Crouch throw</td><td class="mono">i15</td><td class="mono">i10</td><td class="mono">i7</td><td class="mono">i0</td><td class="mono">i-1</td><td class="mono">i-2</td><td class="both">Only if you crouch</td><td>Unbreakable; Heat Engager</td></tr>
+    <tr><td class="mono">GMH.1+2</td><td>Throw</td><td class="mono">i16</td><td class="mono">i11 — interrupts</td><td class="mono">i8 — can't</td><td class="mono">i1 — can't</td><td class="mono">i0 — can't</td><td class="mono">i-1 — can't</td><td class="tracks">Jab can't interrupt</td><td>Break 1+2</td></tr>
+    <tr><td class="mono">GMH.f+2</td><td>Mid</td><td class="mono">i17</td><td class="mono">i12 — interrupts</td><td class="mono">i9 — can't</td><td class="mono">i2 — can't</td><td class="mono">i1 — can't</td><td class="mono">i0 — can't</td><td class="tracks">Jab can't interrupt</td><td>−13 on block</td></tr>
+    <tr><td class="mono">GMH.2</td><td>High</td><td class="mono">i20</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="swr">A 10f jab interrupts</td><td>+11g on block</td></tr>
+    <tr><td class="mono">GMH.f+1</td><td>Mid (M)</td><td class="mono">i20</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="swr">A 10f jab interrupts</td><td>−17 on block</td></tr>
+    <tr><td class="mono">GMH.3+4</td><td>Special mid</td><td class="mono">i20</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="tracks">Armor beats the jab</td><td>Armor from frame 6 (eff. armor ≤ frame 2) — absorbs a jab</td></tr>
+    <tr><td class="mono">GMH.uf+1+2</td><td>Mid</td><td class="mono">i21</td><td class="mono">i16 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="swr">A 10f jab interrupts</td><td>+5 back into GMH; low crush 15</td></tr>
+    <tr><td class="mono">GMH.1</td><td>Mid</td><td class="mono">i22</td><td class="mono">i17 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="swr">A 10f jab interrupts</td><td>Homing; −9</td></tr>
+    <tr><td class="mono">GMH.3</td><td>Mid (M)</td><td class="mono">i24</td><td class="mono">i19 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="swr">A 10f jab interrupts</td><td>+4 on block</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Not tabled: <span class="mono">SS.2~D</span> on hit is +35d (knockdown) — not a standing turn.</div>
+<h3>SIT — uf+3+4 / SIT.3+4 (+13cg on block)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>Attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +13</th><th>Read at +13</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">SIT.1</td><td>Low</td><td class="mono">i19</td><td class="mono">i6 — can't</td><td class="tracks">Jab can't interrupt</td><td>−48 on block; SIT.1,2 strings −47</td></tr>
+    <tr><td class="mono">SIT.1+2</td><td>Mid</td><td class="mono">i24</td><td class="mono">i11 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>−44 on block</td></tr>
+    <tr><td class="mono">SIT.3+4</td><td>Mid (M)</td><td class="mono">i54</td><td class="mono">i41 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>+13cg again; airborne</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Not tabled: <span class="mono">FUFT.d+1+2</span> (+18g, recovers in SIT then stands up) — a wake-up option, and Wavu doesn't say how long SIT lasts after it.</div>
+<div class="note">Summary: after his +4 GMH entries (<span class="mono">1,1~D</span>, <span class="mono">f,F+1~D</span>), only <span class="mono">GMH.4</span> (eff. i10) trades with your jab; every other GMH strike is eff. i13 or slower, so a 10f jab interrupts by timing, except that <span class="mono">GMH.3+4</span> armor absorbs it. After +8/+9 (<span class="mono">SS.2~D</span>, <span class="mono">H.f+3+4~D</span>), GMH.4 (eff. i5~6) and GMH.f+2 (eff. i8~9) beat a jab. After +2 (<span class="mono">3~D</span>), everything except the crouch throws is jab-able by timing. After <span class="mono">uf+3+4</span> into SIT (+13), SIT.1 (eff. i6) beats a jab; SIT.1+2 (eff. i11) loses to one.<br><strong>State check — Theory (Ledger):</strong> SIT is a sitting stance and GMH may have its own hurtbox; a standing jab is a high. If either state ducks highs, the jab whiffs regardless of the numbers. Nothing in the sources says, so check with a mid in the lab.</div>
+
+<div class="sources" id="sources">
+  <div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  Frame data from <a href="https://wavu.wiki/t/Jack-8_movelist">Wavu Wiki — Jack-8 movelist</a> (219 entries) and <a href="https://wavu.wiki/t/Jack-8_counterplay">Wavu Wiki — Jack-8 counterplay</a> (3 standing-punishment buckets, 49 moves; no prose sections), downloaded and parsed with the repo's <span class="mono">scripts/fetch_sources.py</span> on 20 November 2026. Every frame value, hit level, state, interrupt window, whiff note and stance transition in this guide is from Wavu.<br>
+  <strong>Cross-check:</strong> <a href="https://tekkendocs.com/t8/jack-8">TekkenDocs — Jack-8</a> frame data (199 rows), parsed by the same script: 193 moves on both sites, <strong>no block-frame disagreements</strong> (6 moves only on Wavu, 6 only on TekkenDocs). TekkenDocs notes supplied the high-crush and low-crush frames.<br>
+  <strong>Strategy notes</strong> (raw-move step directions, GMH advice, duckable-high, plus-on-block and low-minus lists, string handling, Heat powers) from the <a href="https://tekkendocs.com/t8/jack-8/antistrat">TekkenDocs Jack-8 anti-strat page</a>, community-written. Its frame numbers are claims; Wavu wins. Differences found: b+2 (page +5; Wavu +2), f+1,2,2 (page +6; Wavu +3), df+2,1 (page −37; Wavu −32), u+1+2 (page −11 pushback; Wavu −13), f,F+4 (page −10~−6; Wavu −10), "df4,2" (Wavu has no df+4,2; df+3,2 is the mid-high string), GMH "fastest mid i22" (Wavu GMH.f+2 i17), f,f,F+1+2 (page +4~+7; Wavu +4), and the df+1 extensions (page: SSL both; Wavu: df+1,2 whiffs vs SSR).<br>
+  <strong>Movement section:</strong> Tier 1, Wavu's per-move whiff notes (mirrored in TekkenDocs notes), sets the SSR default for strings. Tier 2: the TekkenDocs anti-strat Quick overview (split: SSR for df+2, 2, db+4, f+2; SSL for df+1, db+1, f+3 and GMH) and the <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie, via sidestep.md): <strong>SSL</strong>. Tier 1 and the chart disagree; Tier 1 is followed for strings.<br>
+  <strong>Low reactability tags:</strong> Mike's reaction rule (25f+ reactable, 21–24f mostly, ≤20f not), applied to Wavu's fastest startup frame of the low hit (for strings whose low is a later hit — FC.df+2,d+1, f,F+1+2,1+2, ws1+2,1+2,1+2 — Wavu's startup for that hit; for the slide, the i31 low landing).<br>
+  <strong>Stance Check:</strong> arithmetic on Wavu startup and stated advantage. No source states blocking in GMH or SIT.<br>
+  <strong>Mike's notes:</strong> no <span class="mono">notes/Jack-8.md</span> file yet.<br>
+  <strong>Battle log:</strong> ranked games vs Jack-8 from the repo's <span class="mono">data/battles.jsonl</span> (to 16 November 2026); queue record 10–4 ranked.<br>
+  <strong>Lab (Mike):</strong> nothing in this guide is lab-tested yet.<br>
+  <strong>Lab drill — training wheels:</strong> have the dummy throw the standalone opener, then step. Stage 1 (direction only, timing untested): dummy alternates a single <span class="mono">1</span> and a single <span class="mono">b+1</span> on fixed timing; after each one, SSR (training 1,2 and b+1,2), 20-rep sets, graduate at 18/20 on 3 straight sets. Stage 2: the real <span class="mono">1,2</span>, <span class="mono">2,1,2</span> and <span class="mono">b+1,2</span> on random playback, 16/20 on 3 straight sets. Stage 3: add <span class="mono">df+1,1</span> (whiffs SSL — your SSR loses), <span class="mono">f+1</span> (tracks: block it) and <span class="mono">1,1~D</span> into GMH (stand, don't step), 25-rep sets, 75% correct decisions on 2 straight sets. Stage 4: log what holds in real matches as Lab (Mike). Why Stage 3 matters for him: his df+1 branches whiff on opposite sides and his f+1 tracks, so the step has to become a read, not a habit. Weaknesses: a standalone opener has no follow-up on a clock and recovers differently from the same hit inside the string, and knowing it's coming removes the read. Cap a session around 100–150 reps; stop if accuracy drops 15 points from where you started; go back a stage if you're under 60% for two sets. Rep counts are a rule of thumb, not research.<br>
+  <strong>To test — Theory (Ledger):</strong><br>
+  1. Which way to step: record 1,2, 2,1,2, b+1,2 and df+1,2 and check each whiffs on SSR from 1st block; then df+1, db+1 and 3 against SSL (anti-strat).<br>
+  2. Heat Smash H.2+3: does ducking the i10 first hit make the whole Heat Smash whiff?<br>
+  3. db+3,1+2: if you stay crouched after blocking db+3, does the 1+2 high whiff? Boundary: if you stand, he is +14g.<br>
+  4. GMH state: after 1,1~D (+4), does your i10 jab hit him before GMH.4 (eff. i10, a trade by arithmetic)? If it whiffs or loses, GMH changes his hurtbox. Same check for SIT after uf+3+4.<br>
+  5. db+1,1,1 from block: confirm the 3rd hit whiffs and he's −28.
+</div>
+
+</body>
+</html>
