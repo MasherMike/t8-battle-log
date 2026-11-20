@@ -1,4 +1,4 @@
-// Anti-character guide index — read by index.html (Matchup Guides tab).
+// Anti-character guide index — read by index.html (Matchups tab).
 // The weekly scheduled task appends one entry here per new guide.
 //
 // Fields:
