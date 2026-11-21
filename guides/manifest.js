@@ -253,5 +253,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 10, l: 4 },
     added: '2026-11-20'
+  },
+  {
+    character: 'Kunimitsu',
+    file: 'guides/Anti-Kunimitsu.html',
+    artifact: 'https://claude.ai/artifact/RayyUSHj2AY4eDCihQERsy',
+    tags: ['SSR Default', 'Launch Her Lows', 'Heat Smash +3'],
+    step: 'SSR',
+    record: { w: 8, l: 7 },
+    added: '2026-11-21'
   }
 ];
