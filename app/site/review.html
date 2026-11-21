@@ -11,62 +11,88 @@
        raw files) and links to the "End session" workflow to run a new review.
      The root review.html on Pages just redirects here. -->
 <style>
+  /* Devil Gene theme (red edition): crimson main, violet accent, white wins, red losses.
+     The same block sits at the top of index.html, scoreboard.html, review.html and
+     overlay.html: change a color in all four together. */
+  :root {
+    --bg-base: #0a0306;
+    --bg-glow: radial-gradient(1200px 560px at 12% -12%, #5c0a1d 0%, transparent 62%),
+               radial-gradient(900px 520px at 108% 112%, #2a0b44 0%, transparent 55%);
+    --panel: linear-gradient(180deg, rgba(66,12,25,0.62), rgba(26,6,12,0.76));
+    --panel-solid: #1f070e;
+    --panel-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 30px rgba(0,0,0,0.5);
+    --line: rgba(255,92,112,0.15); --line2: rgba(255,92,112,0.36); --on-line: rgba(255,59,92,0.7);
+    --accent-line: rgba(186,112,255,0.6);
+    --hover: rgba(255,92,112,0.08); --active: rgba(255,59,92,0.2); --track: rgba(255,92,112,0.12);
+    --on-bg: linear-gradient(90deg, rgba(255,42,79,0.42), rgba(157,78,221,0.28));
+    --text: #ffffff; --text2: #f0dfe3; --muted: #c8a3ab; --dim: #a07f87; --faint: #7a5a62;
+    --brand: #ff2a4f; --brand-text: linear-gradient(90deg, #ff8094, #ff2a4f 65%, #c77dff);
+    --win: #ffffff; --loss: #ff3b5c; --mid: #c77dff; --even: #ffe6ea; --warn: #ffb84d;
+    --accent: #c77dff; --link: #cf9bff; --accent-soft: rgba(199,125,255,0.18);
+    --win-soft: rgba(255,255,255,0.14); --loss-soft: rgba(255,59,92,0.18);
+    --win-glow: 0 0 14px rgba(255,255,255,0.45); --loss-glow: 0 0 20px rgba(255,59,92,0.6);
+    --win-glow-box: 0 0 7px rgba(255,255,255,0.5); --loss-glow-box: 0 0 9px rgba(255,59,92,0.65);
+    --accent-glow: 0 0 10px rgba(199,125,255,0.9);
+    --edge: linear-gradient(180deg, #ff2a4f 0%, #ff2a4f 55%, #b46cff 100%);
+    --cta: linear-gradient(90deg, #ff2a4f, #9d4edd);
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #141414; color: #e0e0e0; min-height: 100vh;
+  body { background: var(--bg-glow), var(--bg-base); background-attachment: fixed; color: var(--text); min-height: 100vh;
          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
   .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
-  a { color: #8ab4ff; }
+  a { color: var(--link); }
   .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-  .back { color: #888; text-decoration: none; font-size: 13px; }
-  .back:hover { color: #ddd; }
+  .back { color: var(--muted); text-decoration: none; font-size: 13px; }
+  .back:hover { color: var(--text); }
   h1.page { font-size: 20px; font-weight: 700; }
 
-  .controls { background: #1b1b1b; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px;
+  .controls { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px;
               display: grid; gap: 12px; margin-bottom: 14px; }
   .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-  .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: .08em; width: 64px; flex-shrink: 0; }
-  .opt { background: transparent; border: 1px solid #333; color: #888; border-radius: 6px; padding: 5px 12px;
+  .label { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; width: 64px; flex-shrink: 0; }
+  .opt { background: transparent; border: 1px solid var(--line2); color: var(--muted); border-radius: 6px; padding: 5px 12px;
          cursor: pointer; font: inherit; font-size: 13px; }
-  .opt:hover { color: #ddd; }
-  .opt.active { background: #2e2e2e; border-color: #888; color: #fff; }
-  .range { display: none; align-items: center; gap: 6px; color: #888; font-size: 13px; }
+  .opt:hover { color: var(--text); }
+  .opt.active { background: var(--active); border-color: var(--on-line); color: var(--text); }
+  .range { display: none; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
   .range.show { display: flex; }
-  .range input { background: #141414; border: 1px solid #333; color: #e0e0e0; border-radius: 6px; padding: 4px 8px;
+  .range input { background: var(--panel-solid); border: 1px solid var(--line2); color: var(--text); border-radius: 6px; padding: 4px 8px;
                  font: inherit; font-size: 13px; color-scheme: dark; }
   .runrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .run { background: #e0e0e0; color: #111; border: 0; border-radius: 8px; padding: 9px 18px;
+  .run { background: var(--cta); color: var(--text); border: 0; border-radius: 8px; padding: 9px 18px;
          font: inherit; font-weight: 700; cursor: pointer; }
   .run:disabled { opacity: .5; cursor: wait; }
   a.run { text-decoration: none; display: inline-block; }
   .controls[hidden] { display: none; }
-  .hint { font-size: 12px; color: #666; }
-  .status { font-size: 13px; color: #888; margin-bottom: 14px; min-height: 18px; }
-  .status.err { color: #ff8a80; }
+  .hint { font-size: 12px; color: var(--dim); }
+  .status { font-size: 13px; color: var(--muted); margin-bottom: 14px; min-height: 18px; }
+  .status.err { color: var(--loss); }
   .status li { list-style: none; }
-  .status li::before { content: '✓ '; color: #3ddc84; }
+  .status li::before { content: '✓ '; color: var(--win); }
 
   .layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
-  .list { background: #1b1b1b; border: 1px solid #2a2a2a; border-radius: 10px; padding: 8px;
+  .list { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px;
           max-height: calc(100vh - 80px); overflow-y: auto; position: sticky; top: 16px; }
-  .list h2 { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: .08em; padding: 6px 8px 8px; font-weight: 600; }
+  .list h2 { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; padding: 6px 8px 8px; font-weight: 600; }
   .item { display: block; width: 100%; text-align: left; background: transparent; border: 0; border-radius: 8px;
           padding: 8px 10px; cursor: pointer; color: inherit; font: inherit; }
-  .item:hover { background: #222; }
-  .item.active { background: #2a2a2a; }
-  .item .t { font-size: 13px; font-weight: 600; color: #ddd; }
-  .item .s { font-size: 11px; color: #777; margin-top: 2px; line-height: 1.35; }
-  .empty { color: #666; padding: 8px; }
+  .item:hover { background: var(--hover); }
+  .item.active { background: var(--active); }
+  .item .t { font-size: 13px; font-weight: 600; color: var(--text); }
+  .item .s { font-size: 11px; color: var(--dim); margin-top: 2px; line-height: 1.35; }
+  .empty { color: var(--dim); padding: 8px; }
 
-  .report { background: #1b1b1b; border: 1px solid #2a2a2a; border-radius: 10px; padding: 20px 22px; line-height: 1.55; min-width: 0; }
+  .report { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; line-height: 1.55; min-width: 0; }
   .report h1 { font-size: 20px; margin-bottom: 4px; }
-  .report h2 { font-size: 15px; margin: 22px 0 8px; color: #fff; }
-  .report p { margin: 8px 0; color: #ccc; }
-  .report ul { margin: 8px 0 8px 20px; color: #ccc; }
+  .report h2 { font-size: 15px; margin: 22px 0 8px; color: var(--text); }
+  .report p { margin: 8px 0; color: var(--text2); }
+  .report ul { margin: 8px 0 8px 20px; color: var(--text2); }
   .report table { border-collapse: collapse; width: 100%; margin: 8px 0; font-variant-numeric: tabular-nums; font-size: 13px; }
-  .report th { text-align: left; color: #888; font-weight: 600; border-bottom: 1px solid #333; padding: 6px 8px; }
-  .report td { border-bottom: 1px solid #222; padding: 6px 8px; }
-  .report hr { border: 0; border-top: 1px solid #2a2a2a; margin: 20px 0 10px; }
-  .report .foot { font-size: 12px; color: #666; }
+  .report th { text-align: left; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line2); padding: 6px 8px; }
+  .report td { border-bottom: 1px solid var(--line); padding: 6px 8px; }
+  .report hr { border: 0; border-top: 1px solid var(--line); margin: 20px 0 10px; }
+  .report .foot { font-size: 12px; color: var(--dim); }
   .tablewrap { overflow-x: auto; }
 
   @media (max-width: 760px) {
