@@ -454,7 +454,7 @@ function icons(...notations) {
 <tbody>
 <tr class="pick"><td class="fr g">-10 / -11</td><td><script>document.write(icons('1','2'))</script></td><td class="num">i10</td><td class="num">17 (5,12)</td><td class="num">+8</td><td class="nt"><span class="badge yours">Yours</span> Keeps your turn | both hits high</td></tr>
 <tr><td class="fr g">-10 / -11</td><td><script>document.write(icons('1','1','2'))</script></td><td class="num">i10</td><td class="num">22 (5,5,5,7)</td><td class="num">+3</td><td class="nt">Wavu's -10 pick: +5 dmg, less advantage | ~F into PRF (-8/+7) | all high</td></tr>
-<tr class="pick"><td class="fr g">-12</td><td><script>document.write(icons('2','2','2'))</script></td><td class="num">i12</td><td class="num">32 (10,5,5,12)</td><td class="num">+4 ~IAI</td><td class="nt"><span class="badge yours">Yours</span> Best -12 damage | Wall Crush +12g | ender is a projectile, ends in IAI</td></tr>
+<tr class="pick"><td class="fr g">-12</td><td><script>document.write(icons('2','2','2'))</script></td><td class="num">i12</td><td class="num">32 (10,5,5,12)</td><td class="num">+4 ~IAI</td><td class="nt"><span class="badge yours">Yours</span> Best -12 damage | Wall Crush +12g, but no guaranteed follow-up (Lab, V6) | ender is a projectile, ends in IAI</td></tr>
 <tr><td class="fr g">-12</td><td><script>document.write(icons('2','1','~PRF'))</script></td><td class="num">i12</td><td class="num">22 (10,12)</td><td class="num">+5 / PRF +7</td><td class="nt"><span class="badge yours">Yours</span> Hold F for Perfumer | 10 less than 2,2,2</td></tr>
 <tr><td class="fr g">-12</td><td><script>document.write(icons('3','1+2'))</script></td><td class="num">i12</td><td class="num">30 (11,9,10)</td><td class="num">+5</td><td class="nt">All high | no stance transition</td></tr>
 <tr class="pick"><td class="fr y">-13</td><td><script>document.write(icons('uf1','1'))</script></td><td class="num">i13</td><td class="num">30 (9,21)</td><td class="num">+15gc</td><td class="nt"><span class="badge yours">Yours</span> Tornado + wall break (TekkenDocs) | ~F PRF +19gc | D or 3+4 → IAI +4</td></tr>
@@ -481,12 +481,14 @@ function icons(...notations) {
   <script>document.write(icons('df'))</script>
   <span class="frame-data">Generic low parry | df timed as the low lands | reward frames not checked</span>
 </div>
+<div class="note"><strong>Lab (Mike), 21 Nov 2026:</strong> a low parry nets an immediate <strong>tornado bound</strong> for any character, and you pick up the bound combo: <strong>51 damage</strong>. The latest input timing is still unmeasured (V3, unclear).</div>
 <div class="note">A community Victor sheet in your Drive lists it as "DF at the good timing" | Wavu's movelist doesn't list it (it's a system move) | Weapon lows say "unparryable" on Wavu: block those and use the crouching table</div>
 <div class="entry">
   <script>document.write(icons('IAI.f'))</script>
   <span class="frame-data">IAI parry | <strong>Parries low attacks</strong> (Wavu) | parry frames 3?~11? | crouching 4~17</span>
 </div>
-<div class="note">Wavu confirms it parries lows; the crouching frames are also why TekkenDocs calls it a high crush. What Victor gets after the parry is still untested | Needs IAI first (2,2,2 ends in it; uf+1,1 cancels into it with D or 3+4)</div>
+<div class="note">Wavu confirms it parries lows; the crouching frames are also why TekkenDocs calls it a high crush. Needs IAI first (2,2,2 ends in it; uf+1,1 cancels into it with D or 3+4)</div>
+<div class="note"><strong>Lab (Mike), 21 Nov 2026:</strong> parries <strong>lows only</strong>, and the combo after it is bigger than a normal low parry: <strong>72 damage (73 with Heat bound) vs 51</strong> (V4).</div>
 <div class="callout"><strong>Theory (Ledger):</strong> if you see a slow, predictable low (i18+), the parry pays more than block-then-ws4 at -11/-12. Against lows at -15+, blocking and taking ws1 is already a launch, so the parry adds risk for little gain.</div>
 
 <h2 id="grounded"><span>Grounded Opponent</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
@@ -500,6 +502,7 @@ function icons(...notations) {
 <tr><td class="fr">M</td><td><script>document.write(icons('IAI.d1'))</script></td><td class="num">i18</td><td class="num">25</td><td class="num">±0</td><td class="nt">From IAI only | Heat Engager | Balcony Break</td></tr>
 <tr><td class="fr">M</td><td><script>document.write(icons('u1+2'))</script></td><td class="num">i31~32</td><td class="num">32</td><td class="num">-20c</td><td class="nt">Overhead teleport | big read on someone who stays down | -20c is very punishable if he gets up and blocks</td></tr>
 </tbody></table></div>
+<div class="note"><strong>Lab (Mike), 21 Nov 2026:</strong> all five (d+4, d+1, d+3, IAI.d+1, u+1+2) connect on a face-down and a face-up opponent (V5). Against Armor King's db+4, <span class="mono">FC.d+1+2</span> and <span class="mono">ws1+2</span> punish it and allow a float combo.</div>
 <div class="callout"><strong>Theory (Ledger):</strong> vs someone lying still, <span class="mono">d4</span> is the safe tax (10 dmg, i16). Whether any of these connects depends on how he's lying (face up or down, head or feet toward you); none of that is on Wavu.</div>
 
 <h2 id="wall-heat"><span>Wall &amp; Heat</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
@@ -528,15 +531,15 @@ function icons(...notations) {
   <strong>Cross-check:</strong> no block-frame disagreements between Wavu and TekkenDocs on any move here. Wavu shows a string's later-hit startup (e.g. <span class="mono">f+4,1</span> ",i23~24"); the startup column uses the first hit, from TekkenDocs where Wavu's first-hit value wasn't read (<span class="mono">1,1,2</span> i10, <span class="mono">b+3,1</span> i17).<br>
   <strong>Built on:</strong> your punish table in the repo's <span class="mono">notes/README.md</span> (-10/-11 1,2 · -12 2,2,2 or 2,1~F · -13/-14 uf+1,1 · -15+ df+2 · lows -11/-12 ws4 · -13/-14 ws1+2 or uf+1,1 · -15+ ws1). Every row of it matches Wavu. The only change is <span class="mono">f+4,1</span> at -14. The low-parry input note is from a community Victor sheet shared to your Drive (unverified).<br>
   <strong>Updated 19 November 2026:</strong> the <span class="mono">IAI.f</span> row is from Wavu's full Victor movelist (the copy of Wavu's data that TekkenDocs keeps in its open-source repository): "Parries low attacks", parry frames 3?~11?, crouching frames 4~17. It was unconfirmed before.<br>
-  <strong>Lab (Mike):</strong> nothing on this sheet is lab-tested yet.<br>
+  <strong>Lab (Mike), 21 Nov 2026:</strong> generic low parry → tornado bound, 51 dmg (timing window unmeasured) · IAI.f parries lows only, 72 dmg (73 with Heat bound) · all five ground hits connect face-down and face-up · 2,2,2's Wall Crush gives no guaranteed follow-up, so 32 is the whole punish.<br>
   <strong>To test — Theory (Ledger):</strong>
   <ul>
     <li><span class="mono">f+4,1</span> at -14: does the +18a leave any follow-up, or is 36 the whole punish?</li>
     <li>At -17+, <span class="mono">df2</span> into your combo vs <span class="mono">b+3,1</span> (40): which does more, and at what range does df2 stop reaching?</li>
-    <li>Generic low parry: what Victor gets after it, and the latest frame it still works.</li>
-    <li><span class="mono">IAI.f</span>: Wavu says it parries lows. What does Victor get after it, and does a high just whiff over it?</li>
-    <li>Grounded: which of <span class="mono">d4</span>, <span class="mono">d3</span>, <span class="mono">u+1+2</span> hit a face-up and a face-down opponent.</li>
-    <li>Wall: does <span class="mono">2,2,2</span>'s Wall Crush +12g give a guaranteed follow-up?</li>
+    <li>Generic low parry: <s>what Victor gets after it</s> (tornado bound, 51) · still open: the latest frame it works.</li>
+    <li><s><span class="mono">IAI.f</span>: what it parries and what Victor gets</s>: lows only, 72 dmg (Lab).</li>
+    <li><s>Grounded: which ground hits connect</s>: all five, both positions (Lab).</li>
+    <li><s>Wall: 2,2,2's Wall Crush follow-up</s>: none guaranteed (Lab).</li>
   </ul>
 </div>
 
