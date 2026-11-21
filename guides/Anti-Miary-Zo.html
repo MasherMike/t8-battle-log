@@ -4,16 +4,25 @@
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #1a1a24;
-    --border: #2a2a3a;
-    --text: #e8e8f0;
-    --text-muted: #7a7a9a;
-    --green: #00ff41;
-    --yellow: #ffd700;
-    --red: #ff3a3a;
-    --accent: #4a9eff;
+    color-scheme: dark;
+    --bg: #0a0306;            /* near-black page */
+    --glow-a: #5c0a1d;        /* crimson glow, top-left */
+    --glow-b: #2a0b44;        /* violet glow, bottom-right */
+    --solid: #1f070e;         /* table headers, inputs */
+    --panel: linear-gradient(180deg, #420c199e, #1a060cc2);
+    --line: #ff5c7026;        /* subtle border */
+    --line2: #ff5c705c;       /* stronger border */
+    --active: #ff3b5cb3;      /* active border, launch rows */
+    --active-fill: #ff3b5c33;
+    --red: #ff2a4f;           /* titles, edges, launch */
+    --violet: #c77dff; --violet-deep: #9d4edd; --violet-light: #b46cff;
+    --link: #cf9bff;          /* links, move chips */
+    --violet-border: #ba70ff99;
+    --pink: #ff8094; --amber: #ffb84d;
+    --text: #ffffff; --text2: #f0dfe3; --muted: #c8a3ab; --dim: #a07f87; --faint: #7a5a62;
+    /* legacy names, so older rules still resolve */
+    --bg2: #1f070e; --bg3: #2a0a14; --border: #ff5c7026; --text-muted: #c8a3ab;
+    --green: #ffffff; --green-soft: #ffffff; --yellow: #cf9bff; --accent: #cf9bff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -224,7 +233,130 @@
     .toggle-bar { display: none; }
   }
 </style>
+<style id="f-theme">
+  /* "F" red/black theme layer. Tokens live in :root above; this block restyles components. */
+  body {
+    background: radial-gradient(900px 600px at 0% 0%, var(--glow-a), transparent 70%),
+                radial-gradient(900px 700px at 100% 100%, var(--glow-b), transparent 70%),
+                var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+  }
+  a { color: var(--link); }
+  a:hover { color: #fff; }
 
+  /* header band */
+  .guide-head {
+    position: relative; margin: 0 0 1.75rem; padding: 22px 22px 18px 40px;
+    background: linear-gradient(120deg, #5c0a1d 0%, #3a0717 45%, #2a0b44 100%);
+    border-bottom: 1px solid var(--line2); border-radius: 12px;
+    box-shadow: inset 0 1px 0 #ffffff0f, 0 10px 30px #00000080;
+  }
+  .guide-head::before {
+    content: ""; position: absolute; left: 18px; top: 22px; bottom: 18px; width: 6px; border-radius: 3px;
+    background: linear-gradient(180deg, #ff2a4f 0%, #ff2a4f 55%, #b46cff 100%);
+  }
+  .guide-head h1 { margin: 0; padding: 0; border: 0; }
+  .guide-head > :not(h1) { margin-top: 0.85rem; margin-bottom: 0; }
+  h1 {
+    background: linear-gradient(90deg, #ff8094, #ff2a4f 65%, #c77dff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    border-bottom-color: var(--line2);
+  }
+  .sub { color: var(--text2); }
+
+  /* section headings */
+  h2 { color: var(--red); text-transform: uppercase; border-bottom: 0.5px solid var(--line); }
+  h2::before {
+    content: ""; display: inline-block; flex: none; width: 28px; height: 3px; border-radius: 2px;
+    margin-right: 10px; vertical-align: middle; align-self: center;
+    background: linear-gradient(90deg, #ff2a4f, #9d4edd);
+  }
+  h2[id] { justify-content: flex-start; }
+  h2[id] .to-top { margin-left: auto; }
+  h3 { color: var(--muted); }
+
+  /* panels */
+  .callout, .top3 > div, .test, .verify-slot, .progress {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .callout { border-left: 3px solid var(--violet-border); }
+  .callout-key { border-left-color: var(--red); }
+  .callout-warn { border-left-color: var(--amber); }
+  .entry { border: 1px solid transparent; border-radius: 8px; }
+  .entry:hover { background: var(--active-fill); border-color: var(--line); }
+  .frame-data, .note { color: var(--muted); }
+  table th, .step-table th, .pun-table th { background: var(--solid); color: var(--muted); border-bottom-color: var(--line2); }
+  table td, .step-table td, .pun-table td { border-bottom-color: var(--line); }
+
+  /* move-icon chips: violet pill behind the white SVGs */
+  .move-icons:not(:empty) {
+    background: #ba70ff1f; border: 1px solid var(--violet-border); border-radius: 999px;
+    padding: 2px 9px; color: var(--link);
+  }
+
+  /* P1/P2 toggle */
+  .toggle-btn { background: transparent; color: var(--muted); border: 1px solid var(--line2); border-radius: 999px; }
+  .toggle-btn:hover { border-color: var(--link); color: var(--link); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--link); }
+  .toggle-btn.active { background: var(--active-fill); color: #fff; border-color: var(--active); }
+  .side-label { color: var(--text2); }
+
+  /* punish tiers: red = launch-size only */
+  .tier-label { font-size: 12px; letter-spacing: 0.1em; margin: 1rem 0 0.35rem; color: var(--muted); }
+  .tier-label.t-low::before, .tier-label.t-mid::before {
+    content: ""; width: 4px; height: 14px; border-radius: 2px; background: currentColor;
+  }
+  .tier-label.t-low { color: var(--muted); }
+  .tier-label.t-mid { color: #ffffff; }
+  .tier-pill {
+    background: var(--red); color: #0a0306; border-radius: 999px; font-weight: 700;
+    text-transform: uppercase; padding: 1px 11px;
+  }
+  .entry.t-low, .entry.t-mid { border-color: var(--line); }
+  .entry.t-high { border-color: var(--active); }
+  .t-low .blk { color: var(--muted); }
+  .t-mid .blk { color: #ffffff; }
+  .t-high .blk { color: var(--red); }
+  .g { color: var(--muted); } .y { color: #ffffff; } .r { color: var(--red); }   /* punish-sheet tiers */
+  .good { color: #ffffff; }
+
+  /* step-direction table */
+  .swr    { color: #ffffff;      font-weight: 600; }
+  .swl    { color: var(--link);  font-weight: 600; }
+  .both   { color: var(--amber); font-weight: 600; }
+  .tracks { color: var(--red);   font-weight: 600; }
+
+  /* reaction badges */
+  .r-yes { color: #ffffff; border-color: #ffffff; }
+  .r-mostly { color: var(--link); border-color: var(--violet-border); }
+  .r-no { color: var(--pink); border-color: var(--pink); }
+  .tag-re { color: var(--pink); }
+
+  /* jump-to row and return to top */
+  .toc a { color: var(--link); background: #ba70ff1f; border: 0.5px solid var(--violet-border);
+    border-radius: 999px; padding: 3px 10px; text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--link); color: #fff; outline: none; }
+  .toc a.toc-key { color: #fff; background: var(--active-fill); border-color: var(--active); }
+  .to-top { color: var(--muted); background: var(--solid); border: 0.5px solid var(--line2); border-radius: 999px; }
+  .to-top:hover, .to-top:focus-visible { color: var(--link); border-color: var(--link); outline: none; }
+  .sources { border-top-color: var(--line); }
+  .sources a { color: var(--link); }
+  .btn-primary { background: linear-gradient(90deg, #ff2a4f, #9d4edd); color: #fff; border-color: transparent; }
+
+  @media print {
+    body { background: white; color: black; }
+    .guide-head { background: none; box-shadow: none; padding: 0 0 0.5rem; border-radius: 0; }
+    .guide-head::before, h2::before { display: none; }
+    h1 { color: #c8102e; background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+    .callout, .entry, .top3 > div, .test, table th { background: none; }
+    .move-icons:not(:empty) { background: #333; }
+    .tier-pill { background: none; color: #c8102e; border: 1.5px solid #c8102e; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
+
+<header class="guide-head">
 <h1>Anti-Miary Zo &nbsp;|&nbsp; Duck BAO.1 &nbsp;|&nbsp; Heat Smash &rarr; BAO +6</h1>
 
 <div class="toggle-bar">
@@ -232,6 +364,7 @@
   <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
   <span class="side-label" id="side-label">Miary Zo on P1 side — inputs face right</span>
 </div>
+</header>
 
 <script>
   let flipped = true;
@@ -416,232 +549,232 @@ function icons(...notations) {
 <!-- ── STANDING BLOCK PUNISHMENT ── -->
 <h2>Standing Block Punishment</h2>
 
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('3','1'))</script>
-  <span class="frame-data">i18~19 | -10 | Mid, Mid</span>
+  <span class="frame-data">i18~19 | <span class="blk">-10</span> | Mid, Mid</span>
 </div>
 <div class="note">Naked 3 alone is only -9 — barely changes on the ,1 ender. He can also cancel from here into MOR at -7</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('f1+2'))</script>
-  <span class="frame-data">i14~15, i8~9 | -10 | Mid, Mid | Opens the Claw Rain flurry</span>
+  <span class="frame-data">i14~15, i8~9 | <span class="blk">-10</span> | Mid, Mid | Opens the Claw Rain flurry</span>
 </div>
 <div class="note">Extends to f+1+2,1+2 (-13) and f+1+2,1+2,3+4 (-22, see Red tier) — punish the first hit rather than let the chain run</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('4'))</script>
-  <span class="frame-data">i12 | -12 | High</span>
+  <span class="frame-data">i12 | <span class="blk">-12</span> | High</span>
 </div>
 <div class="note">Naked 4 — extends to 4,4 (-13, both High — duck it, see Duck and Launch)</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('b2'))</script>
-  <span class="frame-data">i13 | -12 | High | Homing</span>
+  <span class="frame-data">i13 | <span class="blk">-12</span> | High | Homing</span>
 </div>
 <div class="note">His homing high — duck it instead of trying to sidestep (see Duck and Launch)</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('db2'))</script>
-  <span class="frame-data">i15 | -11 | Mid</span>
+  <span class="frame-data">i15 | <span class="blk">-11</span> | Mid</span>
 </div>
 <div class="note">Branches: db+2,3 (mid knee) is also -11 — interrupt with i4 after the first hit, or wait and punish; db+2,4 is -13 (see below)</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('uf2','4'))</script>
-  <span class="frame-data">i31~32 | -11 | High, Mid | Floor Break | Combo from 1st CH | Interrupt with i4 from 1st block</span>
+  <span class="frame-data">i31~32 | <span class="blk">-11</span> | High, Mid | Floor Break | Combo from 1st CH | Interrupt with i4 from 1st block</span>
 </div>
 <div class="note">Duck the uf+2 and the ,4 mid is what's left — block it and punish the -11</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df1','1','2'))</script>
-  <span class="frame-data">i13, i19, i30 | -12 | Mid, High, Mid | Spike | Weapon</span>
+  <span class="frame-data">i13, i19, i30 | <span class="blk">-12</span> | Mid, High, Mid | Spike | Weapon</span>
 </div>
 <div class="note">Third-hit branch off df+1,1 (-3 alone) — his other branch, df+1,1,1+2, is a Tornado at -17 (see Red tier). Wait a beat before committing</div>
 
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('3','1','2'))</script>
-  <span class="frame-data">i16~18 | -14 | Mid, Mid, Mid</span>
+  <span class="frame-data">i16~18 | <span class="blk">-14</span> | Mid, Mid, Mid</span>
 </div>
 <div class="note">3,1 alone is only -10 — the ,2 ender can be delayed up to 9f, so he controls when he commits to the bigger punish</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('4','4'))</script>
-  <span class="frame-data">i29~30 | -13 | High, High</span>
+  <span class="frame-data">i29~30 | <span class="blk">-13</span> | High, High</span>
 </div>
 <div class="note">Naked 4 is already -12 — both hits High, duck instead of blocking (see Duck and Launch)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('f2'))</script>
-  <span class="frame-data">i20 | -13 | Mid | Punch Sabaki (parry, frames 5~10)</span>
+  <span class="frame-data">i20 | <span class="blk">-13</span> | Mid | Punch Sabaki (parry, frames 5~10)</span>
 </div>
 <div class="note">This is also his own punch parry — on a successful parry he gets +30 and a Balcony Break. Mix kicks/mids into your pressure instead of pure jabs</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('f1+2','1+2'))</script>
-  <span class="frame-data">i14~15, i7~8, i7~8 | -13 | Mid ×5 | Lightning Claws</span>
+  <span class="frame-data">i14~15, i7~8, i7~8 | <span class="blk">-13</span> | Mid ×5 | Lightning Claws</span>
 </div>
 <div class="note">Second stage of the claw flurry — extends further to f+1+2,1+2,3+4 (-22, see Red tier)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ws2'))</script>
-  <span class="frame-data">i15~16 | -13 | Mid | Possible jab evasion (unconfirmed per wiki)</span>
+  <span class="frame-data">i15~16 | <span class="blk">-13</span> | Mid | Possible jab evasion (unconfirmed per wiki)</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('MOR.1','4'))</script>
-  <span class="frame-data">i22~23 | -13 | Mid, Mid | Knee</span>
+  <span class="frame-data">i22~23 | <span class="blk">-13</span> | Mid, Mid | Knee</span>
 </div>
 <div class="note">MOR.1 alone is only -4 — delayable up to 10f before he commits to the knee (see Stance Counterplay)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('MOR.3'))</script>
-  <span class="frame-data">i17 | -13 | Mid | Power Crush (pc7~16)</span>
+  <span class="frame-data">i17 | <span class="blk">-13</span> | Mid | Power Crush (pc7~16)</span>
 </div>
 <div class="note">His stance power crush — it's a Mid, so armor through it with block, not a duck (see Power Crush)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('df1','4'))</script>
-  <span class="frame-data">i18~19 | -13 | Mid, Mid | Knee</span>
+  <span class="frame-data">i18~19 | <span class="blk">-13</span> | Mid, Mid | Knee</span>
 </div>
 <div class="note">df+1 alone is -2 (near safe) — delayable up to 9f before the knee comes out</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('df3','3'))</script>
-  <span class="frame-data">i26~27 | -13 | Mid, Mid | Weapon</span>
+  <span class="frame-data">i26~27 | <span class="blk">-13</span> | Mid, Mid | Weapon</span>
 </div>
 <div class="note">Naked df+3 is -9 and Homing — can't step it, and it's Mid so can't duck it either, just block. The ,3 ender is what makes it punishable</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('db2','4'))</script>
-  <span class="frame-data">i22~23 | -13 | Mid, Mid | Knee</span>
+  <span class="frame-data">i22~23 | <span class="blk">-13</span> | Mid, Mid | Knee</span>
 </div>
 <div class="note">db+2 alone is already -11 — the ,4 knee ender only adds 2 more frames of risk for him</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b1','4'))</script>
-  <span class="frame-data">i22~23 | -13 | High, High</span>
+  <span class="frame-data">i22~23 | <span class="blk">-13</span> | High, High</span>
 </div>
 <div class="note">Naked b+1 (Elbow) is -9 if he stops — full string is entirely High, duck it (see Duck and Launch). CH on the first hit launches him into a bigger combo for you anyway on block</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3'))</script>
-  <span class="frame-data">i16~17 | -13 | Mid</span>
+  <span class="frame-data">i16~17 | <span class="blk">-13</span> | Mid</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3','4'))</script>
-  <span class="frame-data">i24 | -13 | Mid, High</span>
+  <span class="frame-data">i24 | <span class="blk">-13</span> | Mid, High</span>
 </div>
 <div class="note">Same -13 as the naked version — but adds a High ender. Duck the ,4 on block only, it's a true combo on hit (see Duck and Launch)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3','4','2'))</script>
-  <span class="frame-data">i28~29 | -13 | Mid, High, High | Strong Aerial Tailspin</span>
+  <span class="frame-data">i28~29 | <span class="blk">-13</span> | Mid, High, High | Strong Aerial Tailspin</span>
 </div>
 <div class="note">Duck starting at the ,4 — both remaining hits are High (see Duck and Launch)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b1+2'))</script>
-  <span class="frame-data">i18 | -13 | Mid | Power Crush (pc7~17) | Spike</span>
+  <span class="frame-data">i18 | <span class="blk">-13</span> | Mid | Power Crush (pc7~17) | Spike</span>
 </div>
 <div class="note">His other power crush, thrown from neutral — Mid, block and launch (see Power Crush)</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('u4'))</script>
-  <span class="frame-data">i16~17 | -13 | Mid | Knee</span>
+  <span class="frame-data">i16~17 | <span class="blk">-13</span> | Mid | Knee</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('uf4','4'))</script>
-  <span class="frame-data">i24~25 | -13 | Mid, Mid | Tornado</span>
+  <span class="frame-data">i24~25 | <span class="blk">-13</span> | Mid, Mid | Tornado</span>
 </div>
 <div class="note">Naked uf+4 alone is actually worse for him (-15, see Red tier) — if he commits to the ,4 ender it softens to -13. Either way, launch him</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ws1','4'))</script>
-  <span class="frame-data">i20 | -13 | Mid, Mid | Heat Engager | Balcony Break</span>
+  <span class="frame-data">i20 | <span class="blk">-13</span> | Mid, Mid | Heat Engager | Balcony Break</span>
 </div>
 <div class="note">ws1 alone is -8 — the ,4 ender is how he tries to Heat Engage from a while-standing situation, delayable up to 9f</div>
 
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('f1+2','1+2','3+4'))</script>
-  <span class="frame-data">i16~17, i6~7 | -22 | Mid ×7 | Oram-Baratra | Balcony Break</span>
+  <span class="frame-data">i16~17, i6~7 | <span class="blk">-22</span> | Mid ×7 | Oram-Baratra | Balcony Break</span>
 </div>
 <div class="note">Full claw flurry commitment — minimal delay (1f) on the final input, so don't wait for this if you already had a punish earlier in the chain</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('f3+4','2'))</script>
-  <span class="frame-data">i29~30 | -20 | Mid, Mid | Tornado | Fanasin'ny Mpamsavy</span>
+  <span class="frame-data">i29~30 | <span class="blk">-20</span> | Mid, Mid | Tornado | Fanasin'ny Mpamsavy</span>
 </div>
 <div class="note">Naked f+3+4 alone is only -9 — the ,2 ender is the trap. Instant Tornado on hit, can hit grounded off-axis</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">i20 | -18 | Mid, Throw | Rage Art | pc8~</span>
+  <span class="frame-data">i20 | <span class="blk">-18</span> | Mid, Throw | Rage Art | pc8~</span>
 </div>
 <div class="note">Block it and launch. 55–82 dmg scaling with his missing health, freezes the timer on activation</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('BAO.2'))</script>
-  <span class="frame-data">i23~25 | -18 | Mid | Tornado | Weapon | Steel pedal</span>
+  <span class="frame-data">i23~25 | <span class="blk">-18</span> | Mid | Tornado | Weapon | Steel pedal</span>
 </div>
 <div class="note">Free launch if he throws this out of Baobab Mihira — see Stance Counterplay</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df1','1','1+2'))</script>
-  <span class="frame-data">i27~28 | -17 | Mid, High, Mid | Tornado | Weapon</span>
+  <span class="frame-data">i27~28 | <span class="blk">-17</span> | Mid, High, Mid | Tornado | Weapon</span>
 </div>
 <div class="note">The other branch off df+1,1 — his ,2 ender is only -12 (see Green tier), this ,1+2 ender is much worse for him. Wait for the ender</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d1+2'))</script>
-  <span class="frame-data">i19~20 | -17 | Mid | Tornado | Weapon | Sometimes written Buffalo Horn</span>
+  <span class="frame-data">i19~20 | <span class="blk">-17</span> | Mid | Tornado | Weapon | Sometimes written Buffalo Horn</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('uf4'))</script>
-  <span class="frame-data">i15~16 | -15 | Mid</span>
+  <span class="frame-data">i15~16 | <span class="blk">-15</span> | Mid</span>
 </div>
 <div class="note">Naked version of the move above — bigger punish if he stops here instead of adding ,4</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('uf1'))</script>
-  <span class="frame-data">i17 | -15 | Mid, Throw</span>
+  <span class="frame-data">i17 | <span class="blk">-15</span> | Mid, Throw</span>
 </div>
 <div class="note">Transitions to an attack throw on hit — Floor Break, side switch on hit</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ub1'))</script>
-  <span class="frame-data">i17 | -15 | Mid, Throw</span>
+  <span class="frame-data">i17 | <span class="blk">-15</span> | Mid, Throw</span>
 </div>
 <div class="note">Mirror of uf+1 — also transitions to an attack throw on hit, Floor Break</div>
 
 <!-- ── LOW BLOCK PUNISHMENT ── -->
 <h2>Low Block Punishment</h2>
 
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('MOR.4'))</script>
-  <span class="frame-data">i17 | -12 | Low | His only low from Morengy Miroso stance</span>
+  <span class="frame-data">i17 | <span class="blk">-12</span> | Low | His only low from Morengy Miroso stance</span>
 </div>
 <div class="note">If he adds ,3 it becomes a High ender at -13 — see Duck and Launch</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('db4'))</script>
-  <span class="frame-data">i18 | -12 | Low</span>
+  <span class="frame-data">i18 | <span class="blk">-12</span> | Low</span>
 </div>
 
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('d3'))</script>
-  <span class="frame-data">i20 | -14 | Low | Weapon</span>
+  <span class="frame-data">i20 | <span class="blk">-14</span> | Low | Weapon</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('uf2','3'))</script>
-  <span class="frame-data">i27~28 | -14 | High, Low | Cannot be interrupted</span>
+  <span class="frame-data">i27~28 | <span class="blk">-14</span> | High, Low | Cannot be interrupted</span>
 </div>
 <div class="note">The opener is high — duck it, and you're already crouching for the low. Block the ,3 low and punish with your WS punisher</div>
 
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('BAO.4'))</script>
-  <span class="frame-data">i18~19, i27~28 | -24 | Low, Mid | Tornado | His only low from Baobab Mihira</span>
+  <span class="frame-data">i18~19, i27~28 | <span class="blk">-24</span> | Low, Mid | Tornado | His only low from Baobab Mihira</span>
 </div>
 <div class="note">Fixed sequence — the mid follow-up is only available after the low hits or is blocked, so block both low-then-mid for the full -24. This is the single biggest defensive reason to respect BAO instead of pressing buttons into it</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('MOR.4','3','H.1+2'))</script>
-  <span class="frame-data">i29~30 | -17 | Low, High, Mid | Heat-only</span>
+  <span class="frame-data">i29~30 | <span class="blk">-17</span> | Low, High, Mid | Heat-only</span>
 </div>
 <div class="note">Only available in Heat — block the low, then the natural combo, for a full launch (see Heat)</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df3+4'))</script>
-  <span class="frame-data">i21 | -15 | Low</span>
+  <span class="frame-data">i21 | <span class="blk">-15</span> | Low</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('db3'))</script>
-  <span class="frame-data">i22~23 | -26 | Low</span>
+  <span class="frame-data">i22~23 | <span class="blk">-26</span> | Low</span>
 </div>
 <div class="note">Stagger on block — you still recover in time to launch, the stagger animation doesn't change the frame advantage</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('FC.df4'))</script>
-  <span class="frame-data">i18~19 | -26 | Low | From crouch</span>
+  <span class="frame-data">i18~19 | <span class="blk">-26</span> | Low | From crouch</span>
 </div>
 <div class="note">Stagger on block, same as db+3 — still launch punishable</div>
 

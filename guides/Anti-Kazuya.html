@@ -8,16 +8,25 @@
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #1a1a24;
-    --border: #2a2a3a;
-    --text: #e8e8f0;
-    --text-muted: #7a7a9a;
-    --green: #00ff41;
-    --yellow: #ffd700;
-    --red: #ff3a3a;
-    --accent: #4a9eff;
+    color-scheme: dark;
+    --bg: #0a0306;            /* near-black page */
+    --glow-a: #5c0a1d;        /* crimson glow, top-left */
+    --glow-b: #2a0b44;        /* violet glow, bottom-right */
+    --solid: #1f070e;         /* table headers, inputs */
+    --panel: linear-gradient(180deg, #420c199e, #1a060cc2);
+    --line: #ff5c7026;        /* subtle border */
+    --line2: #ff5c705c;       /* stronger border */
+    --active: #ff3b5cb3;      /* active border, launch rows */
+    --active-fill: #ff3b5c33;
+    --red: #ff2a4f;           /* titles, edges, launch */
+    --violet: #c77dff; --violet-deep: #9d4edd; --violet-light: #b46cff;
+    --link: #cf9bff;          /* links, move chips */
+    --violet-border: #ba70ff99;
+    --pink: #ff8094; --amber: #ffb84d;
+    --text: #ffffff; --text2: #f0dfe3; --muted: #c8a3ab; --dim: #a07f87; --faint: #7a5a62;
+    /* legacy names, so older rules still resolve */
+    --bg2: #1f070e; --bg3: #2a0a14; --border: #ff5c7026; --text-muted: #c8a3ab;
+    --green: #ffffff; --green-soft: #ffffff; --yellow: #cf9bff; --accent: #cf9bff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -136,15 +145,139 @@
     .toggle-bar, .toc, .to-top { display: none; }
   }
 </style>
+<style id="f-theme">
+  /* "F" red/black theme layer. Tokens live in :root above; this block restyles components. */
+  body {
+    background: radial-gradient(900px 600px at 0% 0%, var(--glow-a), transparent 70%),
+                radial-gradient(900px 700px at 100% 100%, var(--glow-b), transparent 70%),
+                var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+  }
+  a { color: var(--link); }
+  a:hover { color: #fff; }
+
+  /* header band */
+  .guide-head {
+    position: relative; margin: 0 0 1.75rem; padding: 22px 22px 18px 40px;
+    background: linear-gradient(120deg, #5c0a1d 0%, #3a0717 45%, #2a0b44 100%);
+    border-bottom: 1px solid var(--line2); border-radius: 12px;
+    box-shadow: inset 0 1px 0 #ffffff0f, 0 10px 30px #00000080;
+  }
+  .guide-head::before {
+    content: ""; position: absolute; left: 18px; top: 22px; bottom: 18px; width: 6px; border-radius: 3px;
+    background: linear-gradient(180deg, #ff2a4f 0%, #ff2a4f 55%, #b46cff 100%);
+  }
+  .guide-head h1 { margin: 0; padding: 0; border: 0; }
+  .guide-head > :not(h1) { margin-top: 0.85rem; margin-bottom: 0; }
+  h1 {
+    background: linear-gradient(90deg, #ff8094, #ff2a4f 65%, #c77dff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    border-bottom-color: var(--line2);
+  }
+  .sub { color: var(--text2); }
+
+  /* section headings */
+  h2 { color: var(--red); text-transform: uppercase; border-bottom: 0.5px solid var(--line); }
+  h2::before {
+    content: ""; display: inline-block; flex: none; width: 28px; height: 3px; border-radius: 2px;
+    margin-right: 10px; vertical-align: middle; align-self: center;
+    background: linear-gradient(90deg, #ff2a4f, #9d4edd);
+  }
+  h2[id] { justify-content: flex-start; }
+  h2[id] .to-top { margin-left: auto; }
+  h3 { color: var(--muted); }
+
+  /* panels */
+  .callout, .top3 > div, .test, .verify-slot, .progress {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .callout { border-left: 3px solid var(--violet-border); }
+  .callout-key { border-left-color: var(--red); }
+  .callout-warn { border-left-color: var(--amber); }
+  .entry { border: 1px solid transparent; border-radius: 8px; }
+  .entry:hover { background: var(--active-fill); border-color: var(--line); }
+  .frame-data, .note { color: var(--muted); }
+  table th, .step-table th, .pun-table th { background: var(--solid); color: var(--muted); border-bottom-color: var(--line2); }
+  table td, .step-table td, .pun-table td { border-bottom-color: var(--line); }
+
+  /* move-icon chips: violet pill behind the white SVGs */
+  .move-icons:not(:empty) {
+    background: #ba70ff1f; border: 1px solid var(--violet-border); border-radius: 999px;
+    padding: 2px 9px; color: var(--link);
+  }
+
+  /* P1/P2 toggle */
+  .toggle-btn { background: transparent; color: var(--muted); border: 1px solid var(--line2); border-radius: 999px; }
+  .toggle-btn:hover { border-color: var(--link); color: var(--link); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--link); }
+  .toggle-btn.active { background: var(--active-fill); color: #fff; border-color: var(--active); }
+  .side-label { color: var(--text2); }
+
+  /* punish tiers: red = launch-size only */
+  .tier-label { font-size: 12px; letter-spacing: 0.1em; margin: 1rem 0 0.35rem; color: var(--muted); }
+  .tier-label.t-low::before, .tier-label.t-mid::before {
+    content: ""; width: 4px; height: 14px; border-radius: 2px; background: currentColor;
+  }
+  .tier-label.t-low { color: var(--muted); }
+  .tier-label.t-mid { color: #ffffff; }
+  .tier-pill {
+    background: var(--red); color: #0a0306; border-radius: 999px; font-weight: 700;
+    text-transform: uppercase; padding: 1px 11px;
+  }
+  .entry.t-low, .entry.t-mid { border-color: var(--line); }
+  .entry.t-high { border-color: var(--active); }
+  .t-low .blk { color: var(--muted); }
+  .t-mid .blk { color: #ffffff; }
+  .t-high .blk { color: var(--red); }
+  .g { color: var(--muted); } .y { color: #ffffff; } .r { color: var(--red); }   /* punish-sheet tiers */
+  .good { color: #ffffff; }
+
+  /* step-direction table */
+  .swr    { color: #ffffff;      font-weight: 600; }
+  .swl    { color: var(--link);  font-weight: 600; }
+  .both   { color: var(--amber); font-weight: 600; }
+  .tracks { color: var(--red);   font-weight: 600; }
+
+  /* reaction badges */
+  .r-yes { color: #ffffff; border-color: #ffffff; }
+  .r-mostly { color: var(--link); border-color: var(--violet-border); }
+  .r-no { color: var(--pink); border-color: var(--pink); }
+  .tag-re { color: var(--pink); }
+
+  /* jump-to row and return to top */
+  .toc a { color: var(--link); background: #ba70ff1f; border: 0.5px solid var(--violet-border);
+    border-radius: 999px; padding: 3px 10px; text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--link); color: #fff; outline: none; }
+  .toc a.toc-key { color: #fff; background: var(--active-fill); border-color: var(--active); }
+  .to-top { color: var(--muted); background: var(--solid); border: 0.5px solid var(--line2); border-radius: 999px; }
+  .to-top:hover, .to-top:focus-visible { color: var(--link); border-color: var(--link); outline: none; }
+  .sources { border-top-color: var(--line); }
+  .sources a { color: var(--link); }
+  .btn-primary { background: linear-gradient(90deg, #ff2a4f, #9d4edd); color: #fff; border-color: transparent; }
+
+  @media print {
+    body { background: white; color: black; }
+    .guide-head { background: none; box-shadow: none; padding: 0 0 0.5rem; border-radius: 0; }
+    .guide-head::before, h2::before { display: none; }
+    h1 { color: #c8102e; background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+    .callout, .entry, .top3 > div, .test, table th { background: none; }
+    .move-icons:not(:empty) { background: #333; }
+    .tier-pill { background: none; color: #c8102e; border: 1.5px solid #c8102e; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
 
 </head>
 <body>
+<header class="guide-head">
 <h1 id="top">Anti-Kazuya &nbsp;|&nbsp; SSL Default &nbsp;|&nbsp; Block Hellsweep, ws1 &nbsp;|&nbsp; Heat Smash −14 Low</h1>
 <div class="toggle-bar">
   <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
   <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
   <span class="side-label" id="side-label">Kazuya on P1 side — inputs face right</span>
 </div>
+</header>
 <nav class="toc" aria-label="Jump to section">
   <span class="toc-label">Jump to</span>
   <a href="#practice" class="toc-key">Practice first</a>
@@ -337,181 +470,181 @@ function icons(...notations) {
 <h2 id="standing-block"><span>Standing Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="callout ">Block values are from Wavu's Kazuya counterplay tables, checked against the movelist. For your Victor answer to each bucket, use the ★ rows of your <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt" style="color:var(--accent)">Victor Punish Sheet</a>: −10/−11 <span class="mono">1,2</span> · −12 <span class="mono">2,2,2</span> · −13 <span class="mono">uf+1,1</span> · −14 <span class="mono">f+4,1</span> · −15/−16 <span class="mono">df+2</span> · −17+ <span class="mono">b+3,1</span>.<br><br>
 <strong>EWGF is +5, WGF is −10.</strong> They look almost the same. The Electric version (<span class="mono">f,n,d,df#2</span>, blue sparks, 5 chip damage) is plus on block, so don't press. The plain Wind God Fist (no sparks) is −10, a free <span class="mono">1,2</span>. In Heat he can get the Electric without the just-frame input (Wavu), so in Heat assume it's the +5 one.</div>
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
-<div class="entry">
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
   <script>document.write(icons('b1'))</script>
   <span class="frame-data">High | i11~12 | −10</span>
 </div>
 <div class="note">b+1,2 continues to −14; the gap needs an i6 to interrupt, so don't jab it — wait for the 2nd hit</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('db1'))</script>
   <span class="frame-data">Mid | i13~14 | −10</span>
 </div>
 <div class="note">Usually goes into db+1,2 (−19), which jails, so the full string is the real punish</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('b2','2'))</script>
   <span class="frame-data">Mid, Mid | −10 | Interrupt with i4 from 1st block</span>
 </div>
 <div class="note">b+2,2,1+2 continues with a high (−8), duckable</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('cd2'))</script>
   <span class="frame-data">High | i11~12 | −10 | Wind God Fist (non-electric)</span>
 </div>
 <div class="note">Only the non-electric one. EWGF is +5</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df1','4'))</script>
   <span class="frame-data">Mid, High | −11 | Combo from 1st hit with 4F delay</span>
 </div>
 <div class="note">The 4 is high: ducking it is better than blocking it; see Duck and Launch</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df3','2'))</script>
   <span class="frame-data">Mid, Mid | −11 | Move cannot be interrupted</span>
 </div>
 <div class="note">df+3,2,1 continues to −14 — wait a beat before you press</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df3+4','1'))</script>
   <span class="frame-data">Mid, High, Mid | −11 | Jail from 1st block</span>
 </div>
 <div class="note">His 3rd input can be delayed 19F, then df+3+4,1,2 is −19. Anti-strat: "you have to guess" if he finishes</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df2'))</script>
   <span class="frame-data">Mid | i14 | −12 | Homing | Balcony Break on air hit</span>
 </div>
 <div class="note">CH launcher. Punishable but homing, so you have to block it to get the turn</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('1','2','2'))</script>
   <span class="frame-data">High, High, High | −12 | Jail from 1st block</span>
 </div>
 <div class="note">1,2,2~3 is a slow mid (−9); 1,2,4 is a low. All three start high, so ducking the 1 beats the branch</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('ws1','2'))</script>
   <span class="frame-data">Mid, Mid | −12 | Tornado | Interrupt with i2 from 1st block</span>
 </div>
 <div class="note">ws1 alone is −5</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('f2'))</script>
   <span class="frame-data">Mid | i20 | −12 | Power crush (pc7~19) | Tornado</span>
 </div>
 <div class="note">Absorbs your attack, then it's only −8 on block. Don't press into it</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('uf2'))</script>
   <span class="frame-data">High | i15~16 | −12 | Hook</span>
 </div>
 <div class="note">Also duckable on read</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('uf4'))</script>
   <span class="frame-data">Mid | i25 | −12 | Jumps from frame 9</span>
 </div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('ub1'))</script>
   <span class="frame-data">Mid | i18 | −12 | Jumping Knuckle | Spike</span>
 </div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('BT.u3'))</script>
   <span class="frame-data">−12 | from back turn</span>
 </div>
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
-<div class="entry">
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
   <script>document.write(icons('1+2'))</script>
   <span class="frame-data">Mid, Mid | i12 | −13 | Acute Pain</span>
 </div>
 <div class="note">Common punisher of his — and a common punish for you</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('f3'))</script>
   <span class="frame-data">Mid | i17~18 | −13 | Oni Front Kick</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ufn4'))</script>
   <span class="frame-data">Mid | i23 | −13 | Delayed Rising Toe Kick | Jumps from frame 9</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('SS.4','1'))</script>
   <span class="frame-data">Mid, Mid | −13 | Elbow</span>
 </div>
 <div class="note">SS.4 alone is −6</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b1','2'))</script>
   <span class="frame-data">High, Mid | i20 | −14 | Combo from 1st hit with 9F delay</span>
 </div>
 <div class="note">Can be delayed 8F. Block and wait</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b2','4','1'))</script>
   <span class="frame-data">Mid, High, Mid | −14 | Interrupt with i8 from 2nd block</span>
 </div>
 <div class="note">b+2,4 alone is −3; the 4 is high, so duck it on read</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3','1','4','1'))</script>
   <span class="frame-data">High, High, Low, Mid | −14 | Cannot be interrupted</span>
 </div>
 <div class="note">The 3rd hit is a low; block it crouching, then stand for the mid. b+3,1,4 alone is −10c</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('df3','2','1'))</script>
   <span class="frame-data">Mid, Mid, Mid | −14 | Interrupt with i6 from 2nd block</span>
 </div>
 <div class="note">The charged version df+3,2,1* is +11 on block; see Counter Play</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('H.2+3'))</script>
   <span class="frame-data">Low, Mid, Throw | −14 | Heat Smash</span>
 </div>
 <div class="note">Starts low — see Low Block and Heat</div>
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
-<div class="entry">
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
   <script>document.write(icons('df4','4'))</script>
   <span class="frame-data">Mid, Mid | −15 | Jail from 1st block with 3F delay</span>
 </div>
 <div class="note">df+4 alone is −9 — wait for the 2nd hit</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ws4','4'))</script>
   <span class="frame-data">Mid, Mid | −15 | Jail from 1st block</span>
 </div>
 <div class="note">ws4 alone is −3</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('DVK.SS.2'))</script>
   <span class="frame-data">Mid | −15 | Heat only</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('cd1'))</script>
   <span class="frame-data">Mid | i20~22 | −16 | Thunder God Fist | Tornado | Jumps 20~41</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('DVK.cd1'))</script>
   <span class="frame-data">Mid, Throw | −16 | Heat only (Damnation)</span>
 </div>
 <div class="note">Throw only on hit</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('cd4','1'))</script>
   <span class="frame-data">Low, Mid | −16 | Hellsweep, Left Hook</span>
 </div>
 <div class="note">After blocking the low, stand to block the 1 — see Low Block</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('1','1','2'))</script>
   <span class="frame-data">High, High, Mid | −17 | Flash Punch Combo</span>
 </div>
 <div class="note">His main knockdown starter. 2nd hit can be delayed 11F, so don't guess. −17 → <span class="mono">b+3,1</span></div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('uf4','4','4','4'))</script>
   <span class="frame-data">Mid, Low, Low, Mid | −17</span>
 </div>
 <div class="note">If he stops after the 2nd hit (a low), it's −23: see Low Block</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ws2'))</script>
   <span class="frame-data">Mid | i16~17 | −18 | Homing</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('R.df1+2'))</script>
   <span class="frame-data">Mid | i20 | −18 | Rage Art | Power crush</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('db1','2'))</script>
   <span class="frame-data">Mid, Mid, Mid | −19 | Jail from 1st block with 1F delay | Heat Engager</span>
 </div>
 <div class="note">Can't be delayed, so block it and punish the end</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df3+4','1','2'))</script>
   <span class="frame-data">Mid, High, Mid, Mid, Mid | −19 | Projectile</span>
 </div>
 <div class="note">7 chip damage on block</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('cd4','1','DVK.1'))</script>
   <span class="frame-data">Low, Mid, Mid, Throw | −19 | Heat only (Abyss Damnation)</span>
 </div>
@@ -519,71 +652,71 @@ function icons(...notations) {
 
 <h2 id="low-block"><span>Low Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="callout ">After a blocked low you're crouching, so use the crouching rows of your <a href="https://claude.ai/artifact/71mLdDboC8WMRivXQd5qXt" style="color:var(--accent)">Victor Punish Sheet</a>: −11/−12 <span class="mono">ws4</span> · −13/−14 <span class="mono">ws1+2</span> or <span class="mono">uf+1,1</span> · −15+ <span class="mono">ws1</span> launch. A "c" on the block value means he recovers crouching too.</div>
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
-<div class="entry">
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
   <script>document.write(icons('b3','1','4'))</script>
   <span class="frame-data">High, High, Low | −10c | Cannot be low parried from 2nd hit</span>
 </div>
 <div class="note">Usually continues: ,1 is a mid (−14), ,3 is a low (−13c). Stand after blocking the low unless you read the 3</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('db4'))</script>
   <span class="frame-data">Low | i20~21 | −12 | Stature Smash | +4 on hit</span>
 </div>
 <div class="note">His "rage bait" low that "is almost homing" (TekkenDocs Kazuya guide). −12 → <span class="mono">ws4</span>. The Kazuya guide says a low parry is the real punish</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('db3'))</script>
   <span class="frame-data">Low | i19~20 | −12 | High crush (cs6~50) | recovers FC</span>
 </div>
 <div class="note">Expect a ws1+2 or sidestep mind game after it</div>
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('OTG.d3+4'))</script>
   <span class="frame-data">Low | i23 | −12 | Oni Stomp</span>
 </div>
 <div class="note">Only on a grounded opponent</div>
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
-<div class="entry">
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
   <script>document.write(icons('d1+2'))</script>
   <span class="frame-data">Low | i23 | −14c | High crush (cs6~56) | CH +27a</span>
 </div>
 <div class="note">Slow and reactable (TekkenDocs Kazuya guide: "This move is reactable"). Don't press highs into it</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('1','2','4'))</script>
   <span class="frame-data">High, High, Low | −14c | Interrupt with i3 from 1st block</span>
 </div>
 <div class="note">Wavu: the 4 "can be low parried". 1,2,4,3 continues with a mid that's −2</div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('H.2+3'))</script>
   <span class="frame-data">Low, Mid, Throw | i18 | −14 | Heat Smash | 8 chip</span>
 </div>
 <div class="note">−14 → <span class="mono">ws1+2</span> or <span class="mono">uf+1,1</span></div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3','1','4','3'))</script>
   <span class="frame-data">High, High, Low, Low | −13c | Cannot be low parried from 3rd hit</span>
 </div>
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('DVK.OTG.db1+2'))</script>
   <span class="frame-data">Low | −13~−8 | Heat only, grounded</span>
 </div>
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
-<div class="entry">
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
   <script>document.write(icons('cd4'))</script>
   <span class="frame-data">Low | i16 | <strong>−23</strong> | Hellsweep</span>
 </div>
 <div class="note">His big low. Block and <span class="mono">ws1</span>. If he extends: ,1 is a mid (−16, stand to block it) and ,4 is a high (−9). Theory (Ledger): staying crouched should make the high whiff. Anti-strat: "4f fuzzy, mid first"</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('uf4','4'))</script>
   <span class="frame-data">Mid, Low | −23</span>
 </div>
 <div class="note">Wavu prose: "The second 4 in uf+4,4,4,4 is a low that can be blocked and launched." uf+4,4,4 is also −23</div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d3'))</script>
   <span class="frame-data">Low | i16 | −17 | High crush | recovers FC</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d4'))</script>
   <span class="frame-data">Low | i12 | −15 | High crush | recovers FC</span>
 </div>
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('DVK.db3+4'))</script>
   <span class="frame-data">Low | i24 | −19 | Devil Impact | Weapon (can't be low parried) | Projectile</span>
 </div>

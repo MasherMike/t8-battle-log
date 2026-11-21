@@ -8,16 +8,25 @@
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #1a1a24;
-    --border: #2a2a3a;
-    --text: #e8e8f0;
-    --text-muted: #7a7a9a;
-    --green: #00ff41;
-    --yellow: #ffd700;
-    --red: #ff3a3a;
-    --accent: #4a9eff;
+    color-scheme: dark;
+    --bg: #0a0306;            /* near-black page */
+    --glow-a: #5c0a1d;        /* crimson glow, top-left */
+    --glow-b: #2a0b44;        /* violet glow, bottom-right */
+    --solid: #1f070e;         /* table headers, inputs */
+    --panel: linear-gradient(180deg, #420c199e, #1a060cc2);
+    --line: #ff5c7026;        /* subtle border */
+    --line2: #ff5c705c;       /* stronger border */
+    --active: #ff3b5cb3;      /* active border, launch rows */
+    --active-fill: #ff3b5c33;
+    --red: #ff2a4f;           /* titles, edges, launch */
+    --violet: #c77dff; --violet-deep: #9d4edd; --violet-light: #b46cff;
+    --link: #cf9bff;          /* links, move chips */
+    --violet-border: #ba70ff99;
+    --pink: #ff8094; --amber: #ffb84d;
+    --text: #ffffff; --text2: #f0dfe3; --muted: #c8a3ab; --dim: #a07f87; --faint: #7a5a62;
+    /* legacy names, so older rules still resolve */
+    --bg2: #1f070e; --bg3: #2a0a14; --border: #ff5c7026; --text-muted: #c8a3ab;
+    --green: #ffffff; --green-soft: #ffffff; --yellow: #cf9bff; --accent: #cf9bff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -121,15 +130,139 @@
     .toggle-bar { display: none; }
   }
 </style>
+<style id="f-theme">
+  /* "F" red/black theme layer. Tokens live in :root above; this block restyles components. */
+  body {
+    background: radial-gradient(900px 600px at 0% 0%, var(--glow-a), transparent 70%),
+                radial-gradient(900px 700px at 100% 100%, var(--glow-b), transparent 70%),
+                var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+  }
+  a { color: var(--link); }
+  a:hover { color: #fff; }
+
+  /* header band */
+  .guide-head {
+    position: relative; margin: 0 0 1.75rem; padding: 22px 22px 18px 40px;
+    background: linear-gradient(120deg, #5c0a1d 0%, #3a0717 45%, #2a0b44 100%);
+    border-bottom: 1px solid var(--line2); border-radius: 12px;
+    box-shadow: inset 0 1px 0 #ffffff0f, 0 10px 30px #00000080;
+  }
+  .guide-head::before {
+    content: ""; position: absolute; left: 18px; top: 22px; bottom: 18px; width: 6px; border-radius: 3px;
+    background: linear-gradient(180deg, #ff2a4f 0%, #ff2a4f 55%, #b46cff 100%);
+  }
+  .guide-head h1 { margin: 0; padding: 0; border: 0; }
+  .guide-head > :not(h1) { margin-top: 0.85rem; margin-bottom: 0; }
+  h1 {
+    background: linear-gradient(90deg, #ff8094, #ff2a4f 65%, #c77dff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    border-bottom-color: var(--line2);
+  }
+  .sub { color: var(--text2); }
+
+  /* section headings */
+  h2 { color: var(--red); text-transform: uppercase; border-bottom: 0.5px solid var(--line); }
+  h2::before {
+    content: ""; display: inline-block; flex: none; width: 28px; height: 3px; border-radius: 2px;
+    margin-right: 10px; vertical-align: middle; align-self: center;
+    background: linear-gradient(90deg, #ff2a4f, #9d4edd);
+  }
+  h2[id] { justify-content: flex-start; }
+  h2[id] .to-top { margin-left: auto; }
+  h3 { color: var(--muted); }
+
+  /* panels */
+  .callout, .top3 > div, .test, .verify-slot, .progress {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .callout { border-left: 3px solid var(--violet-border); }
+  .callout-key { border-left-color: var(--red); }
+  .callout-warn { border-left-color: var(--amber); }
+  .entry { border: 1px solid transparent; border-radius: 8px; }
+  .entry:hover { background: var(--active-fill); border-color: var(--line); }
+  .frame-data, .note { color: var(--muted); }
+  table th, .step-table th, .pun-table th { background: var(--solid); color: var(--muted); border-bottom-color: var(--line2); }
+  table td, .step-table td, .pun-table td { border-bottom-color: var(--line); }
+
+  /* move-icon chips: violet pill behind the white SVGs */
+  .move-icons:not(:empty) {
+    background: #ba70ff1f; border: 1px solid var(--violet-border); border-radius: 999px;
+    padding: 2px 9px; color: var(--link);
+  }
+
+  /* P1/P2 toggle */
+  .toggle-btn { background: transparent; color: var(--muted); border: 1px solid var(--line2); border-radius: 999px; }
+  .toggle-btn:hover { border-color: var(--link); color: var(--link); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--link); }
+  .toggle-btn.active { background: var(--active-fill); color: #fff; border-color: var(--active); }
+  .side-label { color: var(--text2); }
+
+  /* punish tiers: red = launch-size only */
+  .tier-label { font-size: 12px; letter-spacing: 0.1em; margin: 1rem 0 0.35rem; color: var(--muted); }
+  .tier-label.t-low::before, .tier-label.t-mid::before {
+    content: ""; width: 4px; height: 14px; border-radius: 2px; background: currentColor;
+  }
+  .tier-label.t-low { color: var(--muted); }
+  .tier-label.t-mid { color: #ffffff; }
+  .tier-pill {
+    background: var(--red); color: #0a0306; border-radius: 999px; font-weight: 700;
+    text-transform: uppercase; padding: 1px 11px;
+  }
+  .entry.t-low, .entry.t-mid { border-color: var(--line); }
+  .entry.t-high { border-color: var(--active); }
+  .t-low .blk { color: var(--muted); }
+  .t-mid .blk { color: #ffffff; }
+  .t-high .blk { color: var(--red); }
+  .g { color: var(--muted); } .y { color: #ffffff; } .r { color: var(--red); }   /* punish-sheet tiers */
+  .good { color: #ffffff; }
+
+  /* step-direction table */
+  .swr    { color: #ffffff;      font-weight: 600; }
+  .swl    { color: var(--link);  font-weight: 600; }
+  .both   { color: var(--amber); font-weight: 600; }
+  .tracks { color: var(--red);   font-weight: 600; }
+
+  /* reaction badges */
+  .r-yes { color: #ffffff; border-color: #ffffff; }
+  .r-mostly { color: var(--link); border-color: var(--violet-border); }
+  .r-no { color: var(--pink); border-color: var(--pink); }
+  .tag-re { color: var(--pink); }
+
+  /* jump-to row and return to top */
+  .toc a { color: var(--link); background: #ba70ff1f; border: 0.5px solid var(--violet-border);
+    border-radius: 999px; padding: 3px 10px; text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--link); color: #fff; outline: none; }
+  .toc a.toc-key { color: #fff; background: var(--active-fill); border-color: var(--active); }
+  .to-top { color: var(--muted); background: var(--solid); border: 0.5px solid var(--line2); border-radius: 999px; }
+  .to-top:hover, .to-top:focus-visible { color: var(--link); border-color: var(--link); outline: none; }
+  .sources { border-top-color: var(--line); }
+  .sources a { color: var(--link); }
+  .btn-primary { background: linear-gradient(90deg, #ff2a4f, #9d4edd); color: #fff; border-color: transparent; }
+
+  @media print {
+    body { background: white; color: black; }
+    .guide-head { background: none; box-shadow: none; padding: 0 0 0.5rem; border-radius: 0; }
+    .guide-head::before, h2::before { display: none; }
+    h1 { color: #c8102e; background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+    .callout, .entry, .top3 > div, .test, table th { background: none; }
+    .move-icons:not(:empty) { background: #333; }
+    .tier-pill { background: none; color: #c8102e; border: 1.5px solid #c8102e; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
 
 </head>
 <body>
+<header class="guide-head">
 <h1>Anti-Lee &nbsp;|&nbsp; SSR Close &nbsp;|&nbsp; Duck the Magic 4 &nbsp;|&nbsp; High Power Crushes</h1>
 <div class="toggle-bar">
   <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
   <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
   <span class="side-label" id="side-label">Lee on P1 side — inputs face right</span>
 </div>
+</header>
 <script>
   let flipped = true;
 
@@ -302,222 +435,222 @@ function icons(...notations) {
 <!-- ── STANDING BLOCK PUNISHMENT ── -->
 <h2>Standing Block Punishment</h2>
 <div class="callout callout-warn"><strong>Three traps.</strong> (1) <strong>HMS cancels:</strong> a lot of his punishable moves can go into Hitman Stance with 3 / 4 / 3+4 — usually at the <em>same</em> block frame (1,2,4 → HMS -14; 4,4,4,4 family; ws3,3 → HMS -15), so the punish stays. Where it changes the frame, it's noted. (2) <strong>Magic 4 tree:</strong> <span class="mono">4,3</span> -14 and <span class="mono">4,4</span> / <span class="mono">4,4,4</span> -13, but the just-frame <span class="mono">4,4:4</span> is only -9 and <span class="mono">4,u+3</span> -1 — see Duck and Launch. (3) <strong>Pushback:</strong> the anti-strat flags <span class="mono">1,3:3:3</span> (-17) and <span class="mono">ub+3</span> (-13); <span class="mono">f+2,1</span> is "-10 at wall" and <span class="mono">b+1,1,2</span> "-11 at wall".</div>
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
-<div class="entry">
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
   <script>document.write(icons('f2','1'))</script>
-  <span class="frame-data">i19~20 | -10 | Mid, High | +16cg on hit | Balcony Break | Combo from 1st hit with 10F delay</span>
+  <span class="frame-data">i19~20 | <span class="blk">-10</span> | Mid, High | +16cg on hit | Balcony Break | Combo from 1st hit with 10F delay</span>
 </div>
 <div class="note">The ,1 is high — duck it (interrupt with i1 from 1st block). Anti-strat: "-10 at wall"</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df3','2'))</script>
-  <span class="frame-data">i19~20 | -10 | Mid, High | +5 on hit | Jail from 1st block with no delay</span>
+  <span class="frame-data">i19~20 | <span class="blk">-10</span> | Mid, High | +5 on hit | Jail from 1st block with no delay</span>
 </div>
 <div class="note">Undelayed it jails, so block it. Continues to the mid ,3 (-14)</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('3','3'))</script>
-  <span class="frame-data">i17 | -10 | Mid, High | +1 on hit | Jail from 1st block with 2F delay</span>
+  <span class="frame-data">i17 | <span class="blk">-10</span> | Mid, High | +1 on hit | Jail from 1st block with 2F delay</span>
 </div>
 <div class="note">Anti-strat: "Jails on no delay." Delayed, the high can be ducked</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df1','2'))</script>
-  <span class="frame-data">i20 | -10 | Mid, High | +1 on hit | 10-hit combo (2nd hit) | Can't be delayed</span>
+  <span class="frame-data">i20 | <span class="blk">-10</span> | Mid, High | +1 on hit | 10-hit combo (2nd hit) | Can't be delayed</span>
 </div>
 <div class="note">Continues — see the 10-hit combo in 🔴</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('df1','2','2','1'))</script>
-  <span class="frame-data">,i13 | -10 | Mid, High, High, High | +1 on hit | 10-hit combo (4th hit)</span>
+  <span class="frame-data">,i13 | <span class="blk">-10</span> | Mid, High, High, High | +1 on hit | 10-hit combo (4th hit)</span>
 </div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('1','3'))</script>
-  <span class="frame-data">i16 | -11 | High, High | +0 on hit | Jail from 1st block with 2F delay</span>
+  <span class="frame-data">i16 | <span class="blk">-11</span> | High, High | +0 on hit | Jail from 1st block with 2F delay</span>
 </div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('1','3','3'))</script>
-  <span class="frame-data">,i9 | -11 | High, High, Mid | +0 on hit | Jail from 1st block | Just-frame 3rd hit</span>
+  <span class="frame-data">,i9 | <span class="blk">-11</span> | High, High, Mid | +0 on hit | Jail from 1st block | Just-frame 3rd hit</span>
 </div>
 <div class="note">Anti-strat: "1,3,3 (-11,-11)". Continues to <span class="mono">1,3:3:3</span> (Acid Rain, -17)</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('b1','1','2'))</script>
-  <span class="frame-data">i20 | -11 | High, Mid, High | +1 on hit | Combos from 1st hit</span>
+  <span class="frame-data">i20 | <span class="blk">-11</span> | High, Mid, High | +1 on hit | Combos from 1st hit</span>
 </div>
 <div class="note">Anti-strat: "nothing to do about this string, you just have to hold it and guess. SWR in neutral beats it." -11 at wall. The just-frame <span class="mono">b+1:1,2</span> is only -6</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('1','2','4'))</script>
-  <span class="frame-data">,i18 | -12 | High, High, Mid | -1 on hit | +58a on CH | Jail from 1st block</span>
+  <span class="frame-data">,i18 | <span class="blk">-12</span> | High, High, Mid | -1 on hit | +58a on CH | Jail from 1st block</span>
 </div>
 <div class="note">Into HMS with 3 at -14. The just-frame <span class="mono">1,2:4</span> is also -12 (+5 on hit)</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('2','1','1'))</script>
-  <span class="frame-data">i20~21 | -12 | High, High, Mid | +3 on hit | +26a on CH | Recovers FC | Interrupt with i6 from 1st block</span>
+  <span class="frame-data">i20~21 | <span class="blk">-12</span> | High, High, Mid | +3 on hit | +26a on CH | Recovers FC | Interrupt with i6 from 1st block</span>
 </div>
 <div class="note">Recovers crouching — a WS punish fits</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('uf3','1'))</script>
-  <span class="frame-data">i21 | -12 | Mid, Mid | +3 on hit | +26a on CH | Recovers FC</span>
+  <span class="frame-data">i21 | <span class="blk">-12</span> | Mid, Mid | +3 on hit | +26a on CH | Recovers FC</span>
 </div>
 <div class="note">Mix with <span class="mono">uf+3,4</span> (mid, high, -3) — anti-strat: "4f fuzzy, mid first"</div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('MS.3'))</script>
-  <span class="frame-data">i15 | -12 | Mid | -1 on hit | Airborne (js) | From Mist Step</span>
+  <span class="frame-data">i15 | <span class="blk">-12</span> | Mid | -1 on hit | Airborne (js) | From Mist Step</span>
 </div>
 <div class="note">Anti-strat: "f,n,3 (second hit jails, just spam punish)" — MS.3,4 is -13</div>
 
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
-<div class="entry">
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
   <script>document.write(icons('1','2','2'))</script>
-  <span class="frame-data">,i20~21 | -13 | High, High, Mid | -2 on hit | Interrupt with i2 from 1st block</span>
+  <span class="frame-data">,i20~21 | <span class="blk">-13</span> | High, High, Mid | -2 on hit | Interrupt with i2 from 1st block</span>
 </div>
 <div class="note">Wait a beat: <span class="mono">1,2,2,3</span> (high ender) is only -3. Duck the ,3 instead</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('2','2'))</script>
-  <span class="frame-data">i20~21 | -13 | High, Mid | -2 on hit | Interrupt with i2 from 1st block</span>
+  <span class="frame-data">i20~21 | <span class="blk">-13</span> | High, Mid | -2 on hit | Interrupt with i2 from 1st block</span>
 </div>
 <div class="note">Same trap: <span class="mono">2,2,3</span> is -3 — duck it</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('4','4'))</script>
-  <span class="frame-data">,i10 | -13 | High, High | -2 on hit | Jail from 1st block</span>
+  <span class="frame-data">,i10 | <span class="blk">-13</span> | High, High | -2 on hit | Jail from 1st block</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('4','4','4'))</script>
-  <span class="frame-data">,i10 | -13 | High, High, High | -2 on hit | Jail from 1st block with 1F delay</span>
+  <span class="frame-data">,i10 | <span class="blk">-13</span> | High, High, High | -2 on hit | Jail from 1st block with 1F delay</span>
 </div>
 <div class="note"><strong>Mike's drill (14 Nov 2026):</strong> crouch, block and punish. Victor: Duck it, or block it all → <b>uf+1,1</b>.</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('4','3','3'))</script>
-  <span class="frame-data">i19~21 | -13 | High, High, Mid | +8d on hit | Spike | Can't be interrupted</span>
+  <span class="frame-data">i19~21 | <span class="blk">-13</span> | High, High, Mid | +8d on hit | Spike | Can't be interrupted</span>
 </div>
 <div class="note"><strong>Mike's drill (14 Nov 2026):</strong> crouch, block and punish. Victor: Duck the highs, stand for the mid → <b>uf+1,1</b>.</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('f1+2'))</script>
-  <span class="frame-data">i13, i14~15 | -13 | High, High | +18a (+9) on hit | Jails from 1st block | Balcony Break</span>
+  <span class="frame-data">i13, i14~15 | <span class="blk">-13</span> | High, High | +18a (+9) on hit | Jails from 1st block | Balcony Break</span>
 </div>
 <div class="note">Both hits high — ducking beats it</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('uf4'))</script>
-  <span class="frame-data">i15 | -13 | Mid | +31a (+21) on hit | Knee | Airborne (js) | Low crush (TekkenDocs)</span>
+  <span class="frame-data">i15 | <span class="blk">-13</span> | Mid | +31a (+21) on hit | Knee | Airborne (js) | Low crush (TekkenDocs)</span>
 </div>
 <div class="note"><strong>Mike's drill (14 Nov 2026):</strong> −13 punish. Victor: <b>uf+1,1</b>.</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ufn4'))</script>
-  <span class="frame-data">i23 | -13 | Mid | +32a (+22) on hit | Airborne (js)</span>
+  <span class="frame-data">i23 | <span class="blk">-13</span> | Mid | +32a (+22) on hit | Airborne (js)</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ub3'))</script>
-  <span class="frame-data">i18~22 | -13 | Mid (M) | +20a (+13) on hit | +74a on CH (instant tornado) | fs17~34</span>
+  <span class="frame-data">i18~22 | <span class="blk">-13</span> | Mid (M) | +20a (+13) on hit | +74a on CH (instant tornado) | fs17~34</span>
 </div>
 <div class="note">Ordinary mid that hits grounded. Anti-strat: pushback</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('ws2','3'))</script>
-  <span class="frame-data">i20 | -13 | Mid, Mid | +32a (+22) on hit | Tornado</span>
+  <span class="frame-data">i20 | <span class="blk">-13</span> | Mid, Mid | +32a (+22) on hit | Tornado</span>
 </div>
 <div class="note">Mix with <span class="mono">ws2,4</span> (mid, high, -2) — anti-strat: "7f fuzzy, mid first. Backdash duck helps"</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('MS.3','4'))</script>
-  <span class="frame-data">i15 | -13 | Mid, Mid | +32a (+22) on hit | From Mist Step</span>
+  <span class="frame-data">i15 | <span class="blk">-13</span> | Mid, Mid | +32a (+22) on hit | From Mist Step</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('HMS.2'))</script>
-  <span class="frame-data">i19~20 | -13 | Mid | +39a (+29) on hit | Tornado | High evasion (backsway)</span>
+  <span class="frame-data">i19~20 | <span class="blk">-13</span> | Mid | +39a (+29) on hit | Tornado | High evasion (backsway)</span>
 </div>
 <div class="note">His HMS mid launcher (Wavu counterplay: "watch out for the mid launcher")</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('4','3'))</script>
-  <span class="frame-data">i18 | -14 | High, High | -3 on hit | Can't be interrupted</span>
+  <span class="frame-data">i18 | <span class="blk">-14</span> | High, High | -3 on hit | Can't be interrupted</span>
 </div>
 <div class="note">Anti-strat: "If they stop here, it's -14." Both hits high</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('df3','2','3'))</script>
-  <span class="frame-data">i22~23 | -14 | Mid, High, Mid | +13cg on hit | Heat Engager | Interrupt with i3 from 1st block</span>
+  <span class="frame-data">i22~23 | <span class="blk">-14</span> | Mid, High, Mid | +13cg on hit | Heat Engager | Interrupt with i3 from 1st block</span>
 </div>
 <div class="note">Anti-strat lists it as -16; Wavu -14 (Wavu followed). Duck the ,2 if delayed</div>
 
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
-<div class="entry">
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
   <script>document.write(icons('ws3'))</script>
-  <span class="frame-data">i10 | -21 | Mid (M) | -10 on hit</span>
+  <span class="frame-data">i10 | <span class="blk">-21</span> | Mid (M) | -10 on hit</span>
 </div>
 <div class="note">i10 mid, <strong>-21</strong> on block and still -10 on hit — biggest naked punish in his kit</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ws3','3'))</script>
-  <span class="frame-data">i15 | -15 | Mid (M), Mid | -4c on hit</span>
+  <span class="frame-data">i15 | <span class="blk">-15</span> | Mid (M), Mid | -4c on hit</span>
 </div>
 <div class="note">Into HMS with 4 at -15. Starts the infinite kick chains — see General Counter Play</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ws3','3','df3'))</script>
-  <span class="frame-data">i26 | -19 | Mid (M), Mid, Mid | -8 on hit</span>
+  <span class="frame-data">i26 | <span class="blk">-19</span> | Mid (M), Mid, Mid | -8 on hit</span>
 </div>
 <div class="note"><span class="mono">ws3,3,DF+3,3…</span> (mid, high repeat) is -16</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('f3'))</script>
-  <span class="frame-data">i15 | -18 | Mid | -7 on hit</span>
+  <span class="frame-data">i15 | <span class="blk">-18</span> | Mid | -7 on hit</span>
 </div>
 <div class="note">Every <span class="mono">f+3</span> extension (f+3,3 … f+3,3,3,3,3) is <strong>-18</strong>; f+3,3 jails. Only the <span class="mono">,4</span> ender (Acid Storm, -9, all-high after hit 2) is safe — duck it. Wavu counterplay: "identify whether Lee stops the string or commits"</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df1','2','2'))</script>
-  <span class="frame-data">,i22 | -18 | Mid, High, High | -7 on hit | 10-hit combo (3rd hit)</span>
+  <span class="frame-data">,i22 | <span class="blk">-18</span> | Mid, High, High | -7 on hit | 10-hit combo (3rd hit)</span>
 </div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df1','2','2','1','3'))</script>
-  <span class="frame-data">,i22~23 | -26~-25 | Mid, High×4 | -15~-14 on hit | 10-hit combo (5th hit)</span>
+  <span class="frame-data">,i22~23 | <span class="blk">-26~-25</span> | Mid, High×4 | -15~-14 on hit | 10-hit combo (5th hit)</span>
 </div>
 <div class="note">The 6th hit is a low (-25) — see Low Block Punishment</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('1','3','3','3'))</script>
-  <span class="frame-data">,i21 | -17 | High, High, Mid, High | +14a on hit | Just-frame | Interrupt with i1 from 1st block</span>
+  <span class="frame-data">,i21 | <span class="blk">-17</span> | High, High, Mid, High | +14a on hit | Just-frame | Interrupt with i1 from 1st block</span>
 </div>
 <div class="note">Acid Rain. Anti-strat: "You can duck the last hit… but I wouldn't bother, it's -17 anyway." Pushback</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('qcf4'))</script>
-  <span class="frame-data">i22~24 | -17 | Mid (M) | +50a (+40) on hit | Tornado</span>
+  <span class="frame-data">i22~24 | <span class="blk">-17</span> | Mid (M) | +50a (+40) on hit | Tornado</span>
 </div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('FC.uf4'))</script>
-  <span class="frame-data">i18~28 | -17 | Mid | +28a (+18) on hit | Airborne | Recovers FC</span>
+  <span class="frame-data">i18~28 | <span class="blk">-17</span> | Mid | +28a (+18) on hit | Airborne | Recovers FC</span>
 </div>
 <div class="note">Into HMS with 3 at -17. Recovers crouching — WS punish</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d4','4','4','4'))</script>
-  <span class="frame-data">i24~25 | -20 | Low, Low, Low, Mid | +11a (+2) on hit | Interrupt with i4 from 3rd block</span>
+  <span class="frame-data">i24~25 | <span class="blk">-20</span> | Low, Low, Low, Mid | +11a (+2) on hit | Interrupt with i4 from 3rd block</span>
 </div>
 <div class="note">Into HMS with 3 at <strong>-11</strong> — anti-strat: "-20 or -11 HIT, not a true punish". The lows are covered in Low Block Punishment</div>
 <div class="note"><strong>Mike's drill ⚠️ (14 Nov 2026):</strong> hold d/f + launch. Victor: The 4th hit is a mid: crouch-block the lows, stand for the mid → <b>df+2</b> launch. (Notes file: Wavu lists it as low, low, low, <b>mid</b> · −20 · i4 interrupt after the 3rd hit — the fresh 15 Nov data still says this)</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">i20 | -18 | Mid, Throw | +0d on hit | Rage Art | Power crush 8~20</span>
+  <span class="frame-data">i20 | <span class="blk">-18</span> | Mid, Throw | +0d on hit | Rage Art | Power crush 8~20</span>
 </div>
 
 
@@ -525,133 +658,133 @@ function icons(...notations) {
 <h2>Low Block Punishment</h2>
 <div class="callout "><strong>Reactability tag</strong> (Mike's reaction rule, using the low's fastest startup frame): <span class="react r-yes">Reactable</span> 25f or slower · <span class="react r-mostly">Mostly reactable</span> 21–24f · <span class="react r-no">Not reactable — guess or condition</span> 20f or faster. Startups are from the Wavu movelist (for a string's low hit, Wavu's startup for that hit); a low with no stated startup gets no tag.</div>
 <div class="callout callout-key">Lee's everyday lows are fast and unreactable but punishable: <span class="mono">d+4</span> (i12, -13), <span class="mono">db+3</span> (i20, -12), <span class="mono">b+3</span> (i15, -14), and the counter-hit launcher <span class="mono">d+3</span> (i16, <strong>-15</strong>, +17a on CH, high-crushing 6~47 — Wavu counterplay calls it a main threat). Most of his crouch lows (<span class="mono">db+4</span>, <span class="mono">FC.3</span>, <span class="mono">FC.df+4</span>, Slide) recover crouching, so use WS punishes. The slow ones you can see coming are <span class="mono">2,1,4</span> (i25) and <span class="mono">MS.3+4</span> (i25~31).</div>
-<div class="tier-label"><span class="tier-green">🟢</span> -10 to -12</div>
-<div class="entry">
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
   <script>document.write(icons('db3'))</script>
-  <span class="frame-data">i20 | -12 | Low (L) | -1 on hit</span>
+  <span class="frame-data">i20 | <span class="blk">-12</span> | Low (L) | -1 on hit</span>
   <span class="react r-no">Not reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-low">
   <script>document.write(icons('b3','3'))</script>
-  <span class="frame-data">i19 | -12 | Low, High | -1 on hit | Combos from 1st hit</span>
+  <span class="frame-data">i19 | <span class="blk">-12</span> | Low, High | -1 on hit | Combos from 1st hit</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">Tag is for the low (b+3, i15). Anti-strat: "second hit jails, just spam punish". Can go to Mist Step with F at -7</div>
 
-<div class="tier-label"><span class="tier-yellow">🟡</span> -13 to -14</div>
-<div class="entry">
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
   <script>document.write(icons('d4'))</script>
-  <span class="frame-data">i12 | -13 | Low | -14 on hit</span>
+  <span class="frame-data">i12 | <span class="blk">-13</span> | Low | -14 on hit</span>
   <span class="react r-no">Not reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('db3+4'))</script>
-  <span class="frame-data">i21~23 | -13 | Low (L) | +4 on hit | +38a on CH</span>
+  <span class="frame-data">i21~23 | <span class="blk">-13</span> | Low (L) | +4 on hit | +38a on CH</span>
   <span class="react r-mostly">Mostly reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('HMS.4'))</script>
-  <span class="frame-data">i22~24 | -13 | Low (L) | +4c on hit | +72a (+56) on CH — instant tornado | Crouching 6~54 | Recovers FC</span>
+  <span class="frame-data">i22~24 | <span class="blk">-13</span> | Low (L) | +4c on hit | +72a (+56) on CH — instant tornado | Crouching 6~54 | Recovers FC</span>
   <span class="react r-mostly">Mostly reactable</span>
 </div>
 <div class="note">Wavu counterplay: HMS "low counter-hit launcher". Highs whiff on it</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('MS.b','4'))</script>
-  <span class="frame-data">i21 | -13 | Low | +3 on hit | +12 on CH | From Mist Step (b,n,4)</span>
+  <span class="frame-data">i21 | <span class="blk">-13</span> | Low | +3 on hit | +12 on CH | From Mist Step (b,n,4)</span>
   <span class="react r-mostly">Mostly reactable</span>
 </div>
 <div class="note">Anti-strat lists "f,n,b,n,4 (-13~12)" and the MS low at "~i23"; Wavu -13, i21</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('b3'))</script>
-  <span class="frame-data">i15 | -14 | Low | -3 on hit</span>
+  <span class="frame-data">i15 | <span class="blk">-14</span> | Low | -3 on hit</span>
   <span class="react r-no">Not reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('FC.df4'))</script>
-  <span class="frame-data">i16~17 | -14 | Low | +3c on hit | +25d on CH | Recovers FC</span>
+  <span class="frame-data">i16~17 | <span class="blk">-14</span> | Low | +3c on hit | +25d on CH | Recovers FC</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">Into HMS with 3 at -14 (anti-strat says -3 on hit; Wavu +3c)</div>
 
-<div class="entry">
+<div class="entry t-mid">
   <script>document.write(icons('H.2+3'))</script>
-  <span class="frame-data">i20 | -14 | Low (throw), Mid, Mid | +0d on hit | Heat Smash</span>
+  <span class="frame-data">i20 | <span class="blk">-14</span> | Low (throw), Mid, Mid | +0d on hit | Heat Smash</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">See Heat. Anti-strat block-punish list says -15; its HEAT section and Wavu say -14</div>
 
-<div class="tier-label"><span class="tier-red">🔴</span> -15+</div>
-<div class="entry">
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
   <script>document.write(icons('d3'))</script>
-  <span class="frame-data">i16 | -15 | Low (L) | -1 on hit | +17a on CH | Crouching 6~47 | Recovers FC</span>
+  <span class="frame-data">i16 | <span class="blk">-15</span> | Low (L) | -1 on hit | +17a on CH | Crouching 6~47 | Recovers FC</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">CH launcher. Into HMS with 4 at -15. Highs whiff on it</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d4','4'))</script>
-  <span class="frame-data">i20 | -15 | Low, Low | -16 on hit | Can't be interrupted from 1st block | Low parryable</span>
+  <span class="frame-data">i20 | <span class="blk">-15</span> | Low, Low | -16 on hit | Can't be interrupted from 1st block | Low parryable</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">Hold d for the 2nd kick. Anti-strat: low-parry it <em>on hit</em> — "can't interrupt even oB"</div>
 <div class="note"><strong>Mike's drill ⚠️ (14 Nov 2026):</strong> hold d/f + launch (d+4~4). Victor: Check the input. (Wavu has no d+4~4; the nearest entries are d+4,4 — "must hold D to input" — and d+4,n,4)</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('d4','4','4'))</script>
-  <span class="frame-data">i20 | -15 | Low, Low, Low | -16 on hit | Can't be interrupted from 2nd block | Low parryable</span>
+  <span class="frame-data">i20 | <span class="blk">-15</span> | Low, Low, Low | -16 on hit | Can't be interrupted from 2nd block | Low parryable</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">Continues to the mid <span class="mono">d+4,4,4,4</span> (-20) — stand for it</div>
 <div class="note"><strong>Mike's drill ⚠️ (14 Nov 2026):</strong> hold d/f + launch (d+4,4,3,3). Victor: Check the input. (Wavu has no d+4,4,3,3; the d+4 strings it lists are d+4,4 / d+4,4,4 / d+4,4,4,4 / d+4,n,4)</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('db4'))</script>
-  <span class="frame-data">i12 | -15 | Low | -4 on hit | Crouching | Recovers FC (FC.4)</span>
+  <span class="frame-data">i12 | <span class="blk">-15</span> | Low | -4 on hit | Crouching | Recovers FC (FC.4)</span>
   <span class="react r-no">Not reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('FC.3'))</script>
-  <span class="frame-data">i13 | -17 | Low | -6 on hit | Crouching</span>
+  <span class="frame-data">i13 | <span class="blk">-17</span> | Low | -6 on hit | Crouching</span>
   <span class="react r-no">Not reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('FC.df','d','df3'))</script>
-  <span class="frame-data">i18~24 | -15~-9 | Low | +5c on hit | Crouching, airborne | Recovers FC</span>
+  <span class="frame-data">i18~24 | <span class="blk">-15~-9</span> | Low | +5c on hit | Crouching, airborne | Recovers FC</span>
   <span class="react r-no">Not reactable</span>
 </div>
 <div class="note">Friction Spear (Slide). <strong>-15 up close, -9 at tip range.</strong> Anti-strat: "NO FLOAT". Just-frame version same frames</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('MS.3+4'))</script>
-  <span class="frame-data">i25~31 | -15~-9 | Low | +5c on hit | From Mist Step | Recovers FC</span>
+  <span class="frame-data">i25~31 | <span class="blk">-15~-9</span> | Low | +5c on hit | From Mist Step | Recovers FC</span>
   <span class="react r-yes">Reactable</span>
 </div>
 <div class="note">The Mist Step version of the Slide — spacing-dependent like FC.df,d,DF+3</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('2','1','4'))</script>
-  <span class="frame-data">i25~26 | -15 | High, High, Low (L) | +1 on hit | Crouching 15~56 | Interrupt with i10 from 1st block</span>
+  <span class="frame-data">i25~26 | <span class="blk">-15</span> | High, High, Low (L) | +1 on hit | Crouching 15~56 | Interrupt with i10 from 1st block</span>
   <span class="react r-yes">Reactable</span>
 </div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('ws3','3','d3'))</script>
-  <span class="frame-data">i26 | -19 | Mid (M), Mid, Low | -8 on hit</span>
+  <span class="frame-data">i26 | <span class="blk">-19</span> | Mid (M), Mid, Low | -8 on hit</span>
   <span class="react r-yes">Reactable</span>
 </div>
 <div class="note">Infinite Kick Chain: Low starts here; <span class="mono">,3</span> after it is a high (-16). Anti-strat: "LP the low OR block mid then duck the high"</div>
 
-<div class="entry">
+<div class="entry t-high">
   <script>document.write(icons('df1','2','2','1','3','3'))</script>
-  <span class="frame-data">,i24 | -25 | Mid, High×4, Low (L) | -14 on hit | 10-hit combo (6th hit)</span>
+  <span class="frame-data">,i24 | <span class="blk">-25</span> | Mid, High×4, Low (L) | -14 on hit | 10-hit combo (6th hit)</span>
   <span class="react r-mostly">Mostly reactable</span>
 </div>
 
