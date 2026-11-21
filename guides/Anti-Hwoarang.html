@@ -1,5 +1,8 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Anti-Hwoarang | SSR Default | Flamingo Can't Block</title>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/></head><body><!DOCTYPE html>
+
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
@@ -241,17 +244,30 @@
     .toggle-bar, .toc, .to-top { display: none; }
   }
 </style>
-
-<header class="guide-head">
-<h1>Anti-Hwoarang &nbsp;|&nbsp; SSR Default &nbsp;|&nbsp; Flamingo Can't Block</h1>
-
+<style>
+/* Lab / Theory badges (F palette) */
+.lab-badge, .theory-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 1px 8px; border-radius: 999px; margin-right: 4px; white-space: nowrap; vertical-align: 1px; }
+.lab-badge { color: #cf9bff; background: #ba70ff24; border: 1px solid #ba70ff99; }
+.theory-badge { color: #c8a3ab; background: transparent; border: 1px dashed #ff5c705c; }
+.nuance-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; display: flex; flex-direction: column; gap: 6px; }
+.nuance-list li { background: linear-gradient(180deg, #420c199e, #1a060cc2); border: 1px solid #ff5c7026; border-radius: 10px;
+  padding: 8px 12px; font-size: 13px; line-height: 1.45; color: #f0dfe3; }
+.nuance-list .nuance-sec { color: #c8a3ab; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+.nuance-list a { color: #cf9bff; text-decoration: none; white-space: nowrap; }
+.nuance-list a:hover { color: #ffffff; }
+.nuance-intro { color: #c8a3ab; font-size: 13px; margin: 0 0 0.5rem; }
+[id^="nu-"] { scroll-margin-top: 12px; }
+@media print { .lab-badge, .theory-badge { color: #000; background: none; border: 1px solid #555; } .nuance-list a { display: none; } }
+</style>
+</head><body>
+<title>Anti-Hwoarang | SSR Default | Flamingo Can't Block</title>
+<h1>Anti-Hwoarang  |  SSR Default  |  Flamingo Can't Block</h1>
 <div class="toggle-bar">
-  <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
-  <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
-  <span class="side-label" id="side-label">Hwoarang on P1 side — inputs face right</span>
+<button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
+<button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
+<span class="side-label" id="side-label">Hwoarang on P1 side — inputs face right</span>
 </div>
-</header>
-
 <script>
   let flipped = true;
 
@@ -367,737 +383,728 @@ function icons(...notations) {
   return `<span class="move-icons" data-notation="${data}" role="img" aria-label="${notations.join(', ')}">${html}</span>`;
 }
 </script>
-
 <!-- ── MOVEMENT: WHICH WAY TO STEP ── -->
 <h2>Movement — Which Way to Step</h2>
-<div class="callout callout-key"><strong>Default: Sidestep / sidewalk RIGHT (SSR / SWR)</strong> — with a stance-shaped asterisk. Hwoarang is the one character on the @Mezerdie chart with no fixed direction: it marks him <strong>SSC*</strong>, "usually Hwoarang's moves are stepped away from his chest position" — meaning the answer moves with his feet. Wavu's data is what turns that into a default. Its counterplay page prescribes stepping <em>right</em> three times — against his Right Flamingo follow-ups ("block, then immediately step to the right and block whatever comes next"), against <span class="mono">d+3,4</span>, and against the second hit of <span class="mono">df+3,4</span> — and <span class="mono">RFS.d+3,3</span> is documented whiffing to your right. That's Tier 1, and it points right.<br><br><strong>The chest rule shows up in his elbows.</strong> From his standard stance, <span class="mono">b+2</span> has good <em>right</em> sidestep tracking — it catches SSR. From Right Foot Forward, <span class="mono">RFF.b+1</span> has good <em>left</em> sidestep tracking — it catches SSL. Same move, mirrored by stance. So SSR is cheapest when he's in RFF or Flamingo, and costs you a b+2 when he's standing normally.<br><br><strong>The exception that matters most:</strong> after <span class="mono">RFS.4,3</span> (+4 on block), his normally-steppable <span class="mono">d+3,4</span> <strong>tracks you to either side</strong>. Wavu's advice there is to low parry instead of stepping.</div>
+<div class="callout callout-key"><strong>Default: Sidestep / sidewalk RIGHT (SSR / SWR)</strong> — with a stance-shaped asterisk. Hwoarang is the one character on the @Mezerdie chart with no fixed direction: it marks him <strong>SSC*</strong>, "usually Hwoarang's moves are stepped away from his chest position" — meaning the answer moves with his feet. Wavu's data is what turns that into a default. Its counterplay page prescribes stepping <em>right</em> three times — against his Right Flamingo follow-ups ("block, then immediately step to the right and block whatever comes next"), against <span class="mono">d+3,4</span>, and against the second hit of <span class="mono">df+3,4</span> — and <span class="mono">RFS.d+3,3</span> is documented whiffing to your right. That's Tier 1, and it points right.<br/><br/><strong>The chest rule shows up in his elbows.</strong> From his standard stance, <span class="mono">b+2</span> has good <em>right</em> sidestep tracking — it catches SSR. From Right Foot Forward, <span class="mono">RFF.b+1</span> has good <em>left</em> sidestep tracking — it catches SSL. Same move, mirrored by stance. So SSR is cheapest when he's in RFF or Flamingo, and costs you a b+2 when he's standing normally.<br/><br/><strong>The exception that matters most:</strong> after <span class="mono">RFS.4,3</span> (+4 on block), his normally-steppable <span class="mono">d+3,4</span> <strong>tracks you to either side</strong>. Wavu's counterplay prose says to low parry instead of stepping. <strong>Lab update (Mike, 16–17 Oct 2026):</strong> the <span class="mono">d+3</span> there whiffs to the left — and <strong>more reliably to a sidewalk left (SWL) than a quick SSL</strong>. The <span class="mono">,4</span> may re-align to you, but it's a high — so <strong>SWL, then duck</strong> beats the whole string. Low parry is still the zero-movement option.</div>
 <div class="table-wrap"><table class="step-table">
-  <thead>
-    <tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
-  </thead>
-  <tbody>
-    <tr><td class="mono">RFS follow-ups</td><td class="swr">SSR</td><td>Wavu counterplay — block, step right, block again</td></tr>
-    <tr><td class="mono">d+3,4</td><td class="swr">SSR (or duck / low parry)</td><td>Wavu counterplay, in neutral</td></tr>
-    <tr><td class="mono">df+3,4</td><td class="swr">SSR</td><td>the 2nd hit — Wavu counterplay</td></tr>
-    <tr><td class="mono">RFS.d+3,3</td><td class="swr">SSR</td><td>from 1st block</td></tr>
-    <tr><td class="mono">b+2</td><td class="tracks">Tracks your SSR</td><td>standard stance</td></tr>
-    <tr><td class="mono">RFF.b+1</td><td class="tracks">Tracks your SSL</td><td>Right Foot Forward</td></tr>
-    <tr><td class="mono">d+3,4 after RFS.4,3</td><td class="tracks">Tracks both sides</td><td>Wavu counterplay — low parry instead</td></tr>
-    <tr><td class="mono">10-hit, 7th and 9th hits</td><td class="both">Either side</td><td>Wavu marks both "can be sidestepped"</td></tr>
-  </tbody>
+<thead>
+<tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
+</thead>
+<tbody>
+<tr><td class="mono">RFS follow-ups</td><td class="swr">SSR</td><td>Wavu counterplay — block, step right, block again</td></tr>
+<tr><td class="mono">d+3,4</td><td class="swr">SSR (or duck / low parry)</td><td>Wavu counterplay, in neutral</td></tr>
+<tr><td class="mono">df+3,4</td><td class="swr">SSR</td><td>the 2nd hit — Wavu counterplay</td></tr>
+<tr><td class="mono">RFS.d+3,3</td><td class="swr">SSR</td><td>from 1st block</td></tr>
+<tr><td class="mono">b+2</td><td class="tracks">Tracks your SSR</td><td>standard stance</td></tr>
+<tr><td class="mono">RFF.b+1</td><td class="tracks">Tracks your SSL</td><td>Right Foot Forward</td></tr>
+<tr><td class="mono">d+3,4 after RFS.4,3</td><td class="swl">SWL, then duck the ,4</td><td><span class="lab-badge" id="nu-5">Lab (Mike):</span> d+3 whiffs to SWL more often than to SSL; the ,4 may re-align, so duck it. Wavu says it tracks both ways — low parry also works</td></tr>
+<tr><td class="mono">LFS.df+3,4 after 3,3~F</td><td class="swl">SSL right after your jab is absorbed</td><td><span class="lab-badge" id="nu-6">Lab (Mike):</span> df+3 whiffs; counter-hit the ,4 with a launcher (+31 in the lab) or block it</td></tr>
+<tr><td class="mono">10-hit, 7th and 9th hits</td><td class="both">Either side</td><td>Wavu marks both "can be sidestepped"</td></tr>
+</tbody>
 </table></div>
 <div class="note">He has a lot of built-in evasion of his own, which is part of why stepping him feels inconsistent: <span class="mono">b+1</span>, <span class="mono">f+3</span> (into Left Flamingo) and <span class="mono">RFF.b+3</span> all sidestep to his right; <span class="mono">f,n,4</span> (into Right Flamingo) and <span class="mono">u+2</span> sidestep to his left.</div>
 <h3>Homing — don't step these at all</h3>
 <div class="entry">
-  <script>document.write(icons('RFF.df3'))</script>
-  <span class="frame-data">Mid | i22~24 | <strong>+1</strong> | Homing | Heat Engager | Jumps from frame 9 | Balcony Break</span>
+<script>document.write(icons('RFF.df3'))</script>
+<span class="frame-data">Mid | i22~24 | <strong>+1</strong> | Homing | Heat Engager | Jumps from frame 9 | Balcony Break</span>
 </div>
 <div class="note">Black Kite. Wavu calls it "one of the most abusable moves in Tekken" — fast, long range, homing, wall-splatting, plus on block, and it crushes lows. Block it; don't step it, don't low-check RFF</div>
 <div class="entry">
-  <script>document.write(icons('RFF.3~4'))</script>
-  <span class="frame-data">High | i27~30 | +4~+7 | Homing | Power Crush (pc8~26) | Backlash</span>
+<script>document.write(icons('RFF.3~4'))</script>
+<span class="frame-data">High | i27~30 | +4~+7 | Homing | Power Crush (pc8~26) | Backlash</span>
 </div>
 <div class="note">Duck it or throw it (see Power Crush)</div>
 <div class="entry">
-  <script>document.write(icons('df4'))</script>
-  <span class="frame-data">Mid | i16~17 | -8~-7 | Homing | Wall splats | Goes to RFF</span>
+<script>document.write(icons('df4'))</script>
+<span class="frame-data">Mid | i16~17 | -8~-7 | Homing | Wall splats | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('u2'))</script>
-  <span class="frame-data">High | i13~15 | -9 | Homing | Built-in left sidestep</span>
+<script>document.write(icons('u2'))</script>
+<span class="frame-data">High | i13~15 | -9 | Homing | Built-in left sidestep</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('d3+4'))</script>
-  <span class="frame-data">Low | i21~22 | -14 | Homing | Goes to LFS on hit</span>
+<script>document.write(icons('d3+4'))</script>
+<span class="frame-data">Low | i21~22 | -14 | Homing | Goes to LFS on hit</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.f4'))</script>
-  <span class="frame-data">Mid | i17~18 | -10 | Homing</span>
+<script>document.write(icons('LFS.f4'))</script>
+<span class="frame-data">Mid | i17~18 | -10 | Homing</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.f3'))</script>
-  <span class="frame-data">Mid | i20~21 | -10 | Homing</span>
+<script>document.write(icons('RFS.f3'))</script>
+<span class="frame-data">Mid | i20~21 | -10 | Homing</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.u4'))</script>
-  <span class="frame-data">High | i25~26 | -2 | Homing | Goes to RFF</span>
+<script>document.write(icons('RFS.u4'))</script>
+<span class="frame-data">High | i25~26 | -2 | Homing | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('1+3'))</script>
-  <span class="frame-data">Generic throws are homing — and so is 2+4,B</span>
+<script>document.write(icons('1+3'))</script>
+<span class="frame-data">Generic throws are homing — and so is 2+4,B</span>
 </div>
-<div class="callout">The SSR default is Tier 1 (Wavu's counterplay prose and one whiff note). The @Mezerdie chart doesn't contradict it — it declines to give a fixed direction at all, and the mirrored elbow tracking is the data behind that. Nothing here is lab-derived.</div>
-
+<div class="callout">The SSR default is Tier 1 (Wavu's counterplay prose and one whiff note). The @Mezerdie chart doesn't contradict it — it declines to give a fixed direction at all, and the mirrored elbow tracking is the data behind that. Two rows are lab-tested: d+3,4 after RFS.4,3 (SWL, then duck — Mike's lab, 16–17 Oct 2026) and LFS.df+3,4 after 3,3~F (SSL once your jab is absorbed — Mike's lab video, 17 Oct 2026). Both point the same way: his follow-ups out of Flamingo transitions lose to left movement.</div>
 <!-- ── STANDING BLOCK PUNISHMENT ── -->
 <h2>Standing Block Punishment</h2>
 <div class="callout callout-warn">Wavu's warning up front: "the simple block-and-punish method won't work against him," because he's almost always plus and recovers fast from stance. Everything below is real, but expect him to give you few of these on purpose.</div>
 <div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
-<div class="entry t-low">
-  <script>document.write(icons('b4'))</script>
-  <span class="frame-data">i13~14 | <span class="blk">-10</span> | High | Nose Bleeder | +50a on CH | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('b4'))</script>
+<span class="frame-data">i13~14 | -10 | High | Nose Bleeder | +50a on CH | Goes to RFF</span>
 </div>
 <div class="note">Also RFF.b+3 (-10, sidesteps right)</div>
-<div class="entry t-low">
-  <script>document.write(icons('uf3+4'))</script>
-  <span class="frame-data">i14, i9 | <span class="blk">-10</span> | Mid, High | Jails from 1st block</span>
+<div class="entry">
+<script>document.write(icons('uf3+4'))</script>
+<span class="frame-data">i14, i9 | -10 | Mid, High | Jails from 1st block</span>
 </div>
 <div class="note">uf+3+4,4 (Mid, High, Mid) is also -10</div>
-<div class="entry t-low">
-  <script>document.write(icons('RFS.f3'))</script>
-  <span class="frame-data">i20~21 | <span class="blk">-10</span> | Mid | Homing</span>
+<div class="entry">
+<script>document.write(icons('RFS.f3'))</script>
+<span class="frame-data">i20~21 | -10 | Mid | Homing</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('LFS.f4'))</script>
-  <span class="frame-data">i17~18 | <span class="blk">-10</span> | Mid | Homing</span>
+<div class="entry">
+<script>document.write(icons('LFS.f4'))</script>
+<span class="frame-data">i17~18 | -10 | Mid | Homing</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('LFS.1+2'))</script>
-  <span class="frame-data">i15~16 | <span class="blk">-10</span> | Mid</span>
+<div class="entry">
+<script>document.write(icons('LFS.1+2'))</script>
+<span class="frame-data">i15~16 | -10 | Mid</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('3','3','2'))</script>
-  <span class="frame-data">i21~22 | <span class="blk">-11</span> | High, Mid, Mid | Delayable 10F</span>
+<div class="entry">
+<script>document.write(icons('3','3','2'))</script>
+<span class="frame-data">i21~22 | -11 | High, Mid, Mid | Delayable 10F</span>
 </div>
 <div class="note">Also LFS.3,2 (-11)</div>
-<div class="entry t-low">
-  <script>document.write(icons('ws3'))</script>
-  <span class="frame-data">i14~16 | <span class="blk">-12</span> | Mid | Iron Heel</span>
+<div class="entry">
+<script>document.write(icons('ws3'))</script>
+<span class="frame-data">i14~16 | -12 | Mid | Iron Heel</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('SS.3'))</script>
-  <span class="frame-data">i18~19 | <span class="blk">-12</span> | Mid</span>
+<div class="entry">
+<script>document.write(icons('SS.3'))</script>
+<span class="frame-data">i18~19 | -12 | Mid</span>
 </div>
 <div class="note">SS.3,3 (Mid, High) is +3 and jails — see Duck and Launch</div>
-<div class="entry t-low">
-  <script>document.write(icons('LFS.b3'))</script>
-  <span class="frame-data">i20~22 | <span class="blk">-12</span> | Mid | Power Crush (pc8~19)</span>
+<div class="entry">
+<script>document.write(icons('LFS.b3'))</script>
+<span class="frame-data">i20~22 | -12 | Mid | Power Crush (pc8~19)</span>
 </div>
 <div class="note">Also RFS.b+4 (-12). Only -8 after absorbing a hit</div>
 <div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
-<div class="entry t-mid">
-  <script>document.write(icons('3','3'))</script>
-  <span class="frame-data">i18 | <span class="blk">-13</span> | High, Mid | Jails from 1st block</span>
+<div class="entry">
+<script>document.write(icons('3','3'))</script>
+<span class="frame-data">i18 | -13 | High, Mid | Jails from 1st block</span>
 </div>
 <div class="note">Can go to LFS with F (+2) — then it's not punishable. Also LFS.3 (-13)</div>
-<div class="entry t-mid">
-  <script>document.write(icons('RFS.uf4'))</script>
-  <span class="frame-data">i17~18 | <span class="blk">-13</span> | Mid | Tornado | Air Blade</span>
+<div class="note"><span class="lab-badge" id="nu-1">Lab (Mike):</span> no punish after the +2 LFS transition — <span class="mono">LFS.df+3,4</span> (mid power crush) absorbs your i10+ press | <strong>If your jab gets absorbed, SSL immediately</strong> — df+3 whiffs and a launcher counter-hits the ,4 (+31 in the lab) | A <strong>low or a throw</strong> also beats the power crush | LFS.4 jumps frames 8~27, so it beats both of those — it's a read, not a free answer</div>
+<div class="entry">
+<script>document.write(icons('RFS.uf4'))</script>
+<span class="frame-data">i17~18 | -13 | Mid | Tornado | Air Blade</span>
 </div>
 <div class="note">Wavu: "blocking it gives you 14 whole frames, so be sure to always punish it"</div>
-<div class="entry t-mid">
-  <script>document.write(icons('RFF.f4~4'))</script>
-  <span class="frame-data">i18~20 | <span class="blk">-13</span> | Mid | Tornado | Plasma Blade</span>
+<div class="entry">
+<script>document.write(icons('RFF.f4~4'))</script>
+<span class="frame-data">i18~20 | -13 | Mid | Tornado | Plasma Blade</span>
 </div>
 <div class="note">Also BT.3 and BT.4 (both -13)</div>
-<div class="entry t-mid">
-  <script>document.write(icons('LFS.1+2','4'))</script>
-  <span class="frame-data">i23~27 | <span class="blk">-13</span> | Mid, Mid | Spike</span>
+<div class="entry">
+<script>document.write(icons('LFS.1+2','4'))</script>
+<span class="frame-data">i23~27 | -13 | Mid, Mid | Spike</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('ufn4'))</script>
-  <span class="frame-data">i23~25 | <span class="blk">-13</span> | Mid | Delayed hopkick</span>
+<div class="entry">
+<script>document.write(icons('ufn4'))</script>
+<span class="frame-data">i23~25 | -13 | Mid | Delayed hopkick</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('df3+4'))</script>
-  <span class="frame-data">i13, i14, i24~25 | <span class="blk">-14</span> | Mid, High, Mid | Heat Engager | Jails</span>
+<div class="entry">
+<script>document.write(icons('df3+4'))</script>
+<span class="frame-data">i13, i14, i24~25 | -14 | Mid, High, Mid | Heat Engager | Jails</span>
 </div>
 <div class="note">Ignition Barrage</div>
-<div class="entry t-mid">
-  <script>document.write(icons('df3','4'))</script>
-  <span class="frame-data">i24~25 | <span class="blk">-14</span> | Mid, Mid | Power Crush on the first hit</span>
+<div class="entry">
+<script>document.write(icons('df3','4'))</script>
+<span class="frame-data">i24~25 | -14 | Mid, Mid | Power Crush on the first hit</span>
 </div>
 <div class="note">Wavu: SSR the second hit, or punish with i14. The first hit is delayable 7F</div>
-<div class="entry t-mid">
-  <script>document.write(icons('uf3','4','3'))</script>
-  <span class="frame-data">i27~28 | <span class="blk">-14</span> | Mid, Mid, Mid | Hunting Hawk</span>
+<div class="entry">
+<script>document.write(icons('uf3','4','3'))</script>
+<span class="frame-data">i27~28 | -14 | Mid, Mid, Mid | Hunting Hawk</span>
 </div>
 <div class="note">Also LFS.uf+3,4,3 (-14)</div>
-<div class="entry t-mid">
-  <script>document.write(icons('3','3','3'))</script>
-  <span class="frame-data">i21 | <span class="blk">-14</span> | High, Mid, Mid | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('3','3','3'))</script>
+<span class="frame-data">i21 | -14 | High, Mid, Mid | Balcony Break</span>
 </div>
 <div class="note">Also LFS.3,3 (-14)</div>
-<div class="entry t-mid">
-  <script>document.write(icons('LFS.uf4'))</script>
-  <span class="frame-data">i19~20 | <span class="blk">-14</span> | Mid | Tornado | Switch Plasma Blade</span>
+<div class="entry">
+<script>document.write(icons('LFS.uf4'))</script>
+<span class="frame-data">i19~20 | -14 | Mid | Tornado | Switch Plasma Blade</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('4','4','3'))</script>
-  <span class="frame-data">i25~31 | <span class="blk">-14c</span> | High, High, Mid | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('4','4','3'))</script>
+<span class="frame-data">i25~31 | -14c | High, High, Mid | Goes to RFF</span>
 </div>
 <div class="note">-14c — WS launcher. Also RFF.4,3 and RFF.2,4,3 (both -14c)</div>
 <div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
-<div class="entry t-high">
-  <script>document.write(icons('b1'))</script>
-  <span class="frame-data">i15 | <span class="blk">-15</span> | Mid | Spike | Built-in right sidestep</span>
+<div class="entry">
+<script>document.write(icons('b1'))</script>
+<span class="frame-data">i15 | -15 | Mid | Spike | Built-in right sidestep</span>
 </div>
 <div class="note">Also LFS.b+1 (-15)</div>
-<div class="entry t-high">
-  <script>document.write(icons('f3~3'))</script>
-  <span class="frame-data">i20 | <span class="blk">-16</span> | Mid | Cheap Shot Snap Kick | Sidesteps right</span>
+<div class="entry">
+<script>document.write(icons('f3~3'))</script>
+<span class="frame-data">i20 | -16 | Mid | Cheap Shot Snap Kick | Sidesteps right</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('CD.4'))</script>
-  <span class="frame-data">i16 | <span class="blk">-18</span> | Mid | Tornado | Sky Rocket</span>
+<div class="entry">
+<script>document.write(icons('CD.4'))</script>
+<span class="frame-data">i16 | -18 | Mid | Tornado | Sky Rocket</span>
 </div>
 <div class="note">Only the non-just-frame version. The just-frame Lethal Sky Rocket (<span class="mono">f,n,df#4</span>) is <strong>-8</strong> — the sound and spark tell you which one you blocked</div>
-<div class="entry t-high">
-  <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">i20 | <span class="blk">-18</span> | Rage Art | Power Crush (pc8~) | Possible from RFF, LFS and RFS</span>
+<div class="entry">
+<script>document.write(icons('R.df1+2'))</script>
+<span class="frame-data">i20 | -18 | Rage Art | Power Crush (pc8~) | Possible from RFF, LFS and RFS</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('b3'))</script>
-  <span class="frame-data">i16~17 | <strong>-19</strong> | Mid | Tornado | Left Plasma Blade</span>
+<div class="entry">
+<script>document.write(icons('b3'))</script>
+<span class="frame-data">i16~17 | <strong>-19</strong> | Mid | Tornado | Left Plasma Blade</span>
 </div>
 <div class="note">Wavu: "one of the best whiff punishers in the game." If you block it, launch</div>
-
 <!-- ── LOW BLOCK PUNISHMENT ── -->
 <h2>Low Block Punishment</h2>
 <div class="callout">Wavu's general advice on his lows: "it's generally advisable to low parry his low options whenever you get the chance" — most are risky to block-punish, and parrying makes him think twice about rushing you.</div>
 <div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
-<div class="entry t-low">
-  <script>document.write(icons('RFF.d3'))</script>
-  <span class="frame-data">i18 | <span class="blk">-11</span> | Low | Goes to BT</span>
+<div class="entry">
+<script>document.write(icons('RFF.d3'))</script>
+<span class="frame-data">i18 | -11 | Low | Goes to BT</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('RFF.d3+4'))</script>
-  <span class="frame-data">i19 | <span class="blk">-11</span> | Low | Heel Screw | Stays in RFF</span>
+<div class="entry">
+<script>document.write(icons('RFF.d3+4'))</script>
+<span class="frame-data">i19 | -11 | Low | Heel Screw | Stays in RFF</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('db4'))</script>
-  <span class="frame-data">i16 | <span class="blk">-12</span> | Low</span>
+<div class="entry">
+<script>document.write(icons('db4'))</script>
+<span class="frame-data">i16 | -12 | Low</span>
 </div>
 <div class="note">Can go to RFS with F (-1) — then it's not punishable</div>
-<div class="entry t-low">
-  <script>document.write(icons('1','1','3'))</script>
-  <span class="frame-data">i21 | <span class="blk">-12</span> | High, High, Low</span>
+<div class="entry">
+<script>document.write(icons('1','1','3'))</script>
+<span class="frame-data">i21 | -12 | High, High, Low</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('LFS.d4'))</script>
-  <span class="frame-data">i20~21 | <span class="blk">-12</span> | Low | Combat Low | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('LFS.d4'))</script>
+<span class="frame-data">i20~21 | -12 | Low | Combat Low | Goes to RFF</span>
 </div>
 <div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
-<div class="entry t-mid">
-  <script>document.write(icons('d3'))</script>
-  <span class="frame-data">i17 | <span class="blk">-13</span> | Low</span>
+<div class="entry">
+<script>document.write(icons('d3'))</script>
+<span class="frame-data">i17 | -13 | Low</span>
 </div>
 <div class="note">Almost always followed by ,4 into Flamingo — see Duck and Launch</div>
-<div class="entry t-mid">
-  <script>document.write(icons('db3'))</script>
-  <span class="frame-data">i19 | <span class="blk">-13</span> | Low | Crouches frames 6~51</span>
+<div class="entry">
+<script>document.write(icons('db3'))</script>
+<span class="frame-data">i19 | -13 | Low | Crouches frames 6~51</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('RFS.d3'))</script>
-  <span class="frame-data">i15 | <span class="blk">-13</span> | Low | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('RFS.d3'))</script>
+<span class="frame-data">i15 | -13 | Low | Goes to RFF</span>
 </div>
 <div class="note">RFS.d+3,3 (Low, High) is -2 and whiffs to your right</div>
-<div class="entry t-mid">
-  <script>document.write(icons('BT.d3'))</script>
-  <span class="frame-data">i18~19 | <span class="blk">-13</span> | Low | +31a on CH</span>
+<div class="entry">
+<script>document.write(icons('BT.d3'))</script>
+<span class="frame-data">i18~19 | -13 | Low | +31a on CH</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('SS.4'))</script>
-  <span class="frame-data">i19~20 | <span class="blk">-13</span> | Low | +31a on CH | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('SS.4'))</script>
+<span class="frame-data">i19~20 | -13 | Low | +31a on CH | Goes to RFF</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('d4','4'))</script>
-  <span class="frame-data">i20 | <span class="blk">-13</span> | Low, High | Tornado | Firecracker | Jails from 1st normal hit</span>
+<div class="entry">
+<script>document.write(icons('d4','4'))</script>
+<span class="frame-data">i20 | -13 | Low, High | Tornado | Firecracker | Jails from 1st normal hit</span>
 </div>
 <div class="note">If d+4 hit you, the ,4 is jailed. If you blocked the low, duck the ,4</div>
-<div class="entry t-mid">
-  <script>document.write(icons('d3+4'))</script>
-  <span class="frame-data">i21~22 | <span class="blk">-14</span> | Low | Homing | Goes to LFS on hit</span>
+<div class="entry">
+<script>document.write(icons('d3+4'))</script>
+<span class="frame-data">i21~22 | -14 | Low | Homing | Goes to LFS on hit</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('1','1','3','3'))</script>
-  <span class="frame-data">i20 | <span class="blk">-14</span> | High, High, Low, High | Home Surgery</span>
+<div class="entry">
+<script>document.write(icons('1','1','3','3'))</script>
+<span class="frame-data">i20 | -14 | High, High, Low, High | Home Surgery</span>
 </div>
 <div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
-<div class="entry t-high">
-  <script>document.write(icons('hFC.4'))</script>
-  <span class="frame-data">i12 | <span class="blk">-15</span> | Low</span>
+<div class="entry">
+<script>document.write(icons('hFC.4'))</script>
+<span class="frame-data">i12 | -15 | Low</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('hFC.3'))</script>
-  <span class="frame-data">i16 | <span class="blk">-17</span> | Low</span>
+<div class="entry">
+<script>document.write(icons('hFC.3'))</script>
+<span class="frame-data">i16 | -17 | Low</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('LFS.d3'))</script>
-  <span class="frame-data">i16 | <span class="blk">-17</span> | Low</span>
+<div class="entry">
+<script>document.write(icons('LFS.d3'))</script>
+<span class="frame-data">i16 | -17 | Low</span>
 </div>
 <div class="note">LFS.d+3,4 (Low, High) is +8g~+10g — duck the ,4</div>
-<div class="entry t-high">
-  <script>document.write(icons('d4'))</script>
-  <span class="frame-data">i19 | <span class="blk">-17</span> | Low | Crouches frames 6~55</span>
+<div class="entry">
+<script>document.write(icons('d4'))</script>
+<span class="frame-data">i19 | -17 | Low | Crouches frames 6~55</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('RFS.d4'))</script>
-  <span class="frame-data">i20~21 | <strong>-23</strong> | Low | Stagger on block | Goes to RFF</span>
+<div class="entry">
+<script>document.write(icons('RFS.d4'))</script>
+<span class="frame-data">i20~21 | <strong>-23</strong> | Low | Stagger on block | Goes to RFF</span>
 </div>
 <div class="note">Wavu: "block the first hit and launch him." It gets worse in Heat (RFS.d+4,H.3,4) — same answer</div>
-
 <!-- ── DUCK AND LAUNCH ── -->
 <h2>Duck and Launch</h2>
 <h3>String enders — duck the high after blocking the first hit(s)</h3>
 <div class="entry">
-  <script>document.write(icons('d3','4'))</script>
-  <span class="frame-data">(LOW, HIGH) | +8g~+10g oB | Goes to RFS</span>
+<script>document.write(icons('d3','4'))</script>
+<span class="frame-data">(LOW, HIGH) | +8g~+10g oB | Goes to RFS</span>
 </div>
 <div class="note">His most common way to start offense. Wavu: low parry it, duck the ,4 and punish, or SSR. In neutral it's an easy punish | Punish with character's FC or WS launcher</div>
 <div class="entry">
-  <script>document.write(icons('RFS.f4','4'))</script>
-  <span class="frame-data">(HIGH, HIGH, HIGH) | -6 oB | i8 start | Tornado | Flappy kicks</span>
+<script>document.write(icons('RFS.f4','4'))</script>
+<span class="frame-data">(HIGH, HIGH, HIGH) | -6 oB | i8 start | Tornado | Flappy kicks</span>
 </div>
 <div class="note">Wavu: duck and launch. "If he finishes the flappy kick string, ducking it grants you a nice WS launch punish, but be careful if he doesn't, since he'll still be in RFS" | Punish with character's FC or WS launcher</div>
 <div class="entry">
-  <script>document.write(icons('RFS.d3','3'))</script>
-  <span class="frame-data">(LOW, HIGH) | -2 oB | Whiffs vs SSR from 1st block | 11 chip</span>
+<script>document.write(icons('RFS.d3','3'))</script>
+<span class="frame-data">(LOW, HIGH) | -2 oB | Whiffs vs SSR from 1st block | 11 chip</span>
 </div>
 <div class="note">Duck the ,3 or step it right | Interrupt with i9 from 1st block</div>
 <div class="entry">
-  <script>document.write(icons('RFS.d4','3'))</script>
-  <span class="frame-data">(LOW, HIGH) | -9 oB</span>
+<script>document.write(icons('RFS.d4','3'))</script>
+<span class="frame-data">(LOW, HIGH) | -9 oB</span>
 </div>
 <div class="note">Duck the ,3 — though the first hit at -23 is the better punish</div>
 <div class="entry">
-  <script>document.write(icons('RFF.3','4'))</script>
-  <span class="frame-data">(MID, HIGH) | +10g~+11g oB | Volcannon | Goes to RFS</span>
+<script>document.write(icons('RFF.3','4'))</script>
+<span class="frame-data">(MID, HIGH) | +10g~+11g oB | Volcannon | Goes to RFS</span>
 </div>
 <div class="note">Duck the ,4 — blocking it hands him a plus Flamingo</div>
 <div class="entry">
-  <script>document.write(icons('ws2','3'))</script>
-  <span class="frame-data">(MID, HIGH) | +3 oB | Tornado | Goes to LFS</span>
+<script>document.write(icons('ws2','3'))</script>
+<span class="frame-data">(MID, HIGH) | +3 oB | Tornado | Goes to LFS</span>
 </div>
 <div class="note">Duck the ,3</div>
 <div class="entry">
-  <script>document.write(icons('SS.3','3'))</script>
-  <span class="frame-data">(MID, HIGH) | +3 oB | Jails from 1st block | Goes to LFS</span>
+<script>document.write(icons('SS.3','3'))</script>
+<span class="frame-data">(MID, HIGH) | +3 oB | Jails from 1st block | Goes to LFS</span>
 </div>
 <div class="note">Jailed — duck it on read, not reaction</div>
 <div class="entry">
-  <script>document.write(icons('LFS.b4','3'))</script>
-  <span class="frame-data">(MID, HIGH) | +0 oB | Jails from 1st block | Goes to RFF</span>
+<script>document.write(icons('LFS.b4','3'))</script>
+<span class="frame-data">(MID, HIGH) | +0 oB | Jails from 1st block | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('3','3','4'))</script>
-  <span class="frame-data">(HIGH, MID, HIGH) | +8 oB | Goes to RFS</span>
+<script>document.write(icons('3','3','4'))</script>
+<span class="frame-data">(HIGH, MID, HIGH) | +8 oB | Goes to RFS</span>
 </div>
 <div class="note">Also LFS.3,4 (+8). Duck the ender</div>
 <div class="entry">
-  <script>document.write(icons('3','3','f4'))</script>
-  <span class="frame-data">(HIGH, MID, HIGH) | -1 oB | Balcony Break</span>
+<script>document.write(icons('3','3','f4'))</script>
+<span class="frame-data">(HIGH, MID, HIGH) | -1 oB | Balcony Break</span>
 </div>
 <div class="note">Also LFS.3,f+4 (-1)</div>
 <h3>Full-high strings — duck the opener</h3>
 <div class="entry">
-  <script>document.write(icons('4','4'))</script>
-  <span class="frame-data">(HIGH, HIGH) | -1 oB | Goes to RFS</span>
+<script>document.write(icons('4','4'))</script>
+<span class="frame-data">(HIGH, HIGH) | -1 oB | Goes to RFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('4','4','4'))</script>
-  <span class="frame-data">(HIGH, HIGH, HIGH) | -2 oB | Goes to RFF</span>
+<script>document.write(icons('4','4','4'))</script>
+<span class="frame-data">(HIGH, HIGH, HIGH) | -2 oB | Goes to RFF</span>
 </div>
 <div class="note">4,4,4,4 (all high) is +0 and forces a tech roll</div>
 <div class="entry">
-  <script>document.write(icons('1','2','f4'))</script>
-  <span class="frame-data">(HIGH, HIGH, HIGH) | -2 oB | Balcony Break</span>
+<script>document.write(icons('1','2','f4'))</script>
+<span class="frame-data">(HIGH, HIGH, HIGH) | -2 oB | Balcony Break</span>
 </div>
 <div class="note">Also 2,f+4 (-2)</div>
 <div class="entry">
-  <script>document.write(icons('RFF.4','4'))</script>
-  <span class="frame-data">(HIGH, HIGH) | -5 oB | Balcony Break</span>
+<script>document.write(icons('RFF.4','4'))</script>
+<span class="frame-data">(HIGH, HIGH) | -5 oB | Balcony Break</span>
 </div>
 <div class="note">Also RFF.2,4,4 (-5)</div>
 <div class="entry">
-  <script>document.write(icons('LFS.4~3'))</script>
-  <span class="frame-data">(HIGH, HIGH) | +6 oB | Lightning Halberd | Jails from 1st block</span>
+<script>document.write(icons('LFS.4~3'))</script>
+<span class="frame-data">(HIGH, HIGH) | +6 oB | Lightning Halberd | Jails from 1st block</span>
 </div>
 <h3>Naked highs — duck on read</h3>
 <div class="entry">
-  <script>document.write(icons('f4'))</script>
-  <span class="frame-data">i17~23 | +7~+13 | Goes to RFS</span>
+<script>document.write(icons('f4'))</script>
+<span class="frame-data">i17~23 | +7~+13 | Goes to RFS</span>
 </div>
 <div class="note">Right hook kick into Flamingo, very plus. Ducking it denies the stance entry</div>
 <div class="entry">
-  <script>document.write(icons('RFF.f3'))</script>
-  <span class="frame-data">i14~17 | +12~+15 | Cheap Shot | Goes to LFS</span>
+<script>document.write(icons('RFF.f3'))</script>
+<span class="frame-data">i14~17 | +12~+15 | Cheap Shot | Goes to LFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('fff4'))</script>
-  <span class="frame-data">i18~19 | +5 | Torpedo Kick | 11 chip | Side swap on hit, leaves you backturned</span>
+<script>document.write(icons('fff4'))</script>
+<span class="frame-data">i18~19 | +5 | Torpedo Kick | 11 chip | Side swap on hit, leaves you backturned</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('u3'))</script>
-  <span class="frame-data">i20 | +5 | Jump kick | Goes to LFS</span>
+<script>document.write(icons('u3'))</script>
+<span class="frame-data">i20 | +5 | Jump kick | Goes to LFS</span>
 </div>
 <div class="note">Airborne from frame 9, so your lows go under him | Launches on hit (+44a) — a counter-hit u+3 is a full combo | Duck it and punish the landing</div>
 <div class="entry">
-  <script>document.write(icons('LFS.4'))</script>
-  <span class="frame-data">i14~16 | +4 | Step kick | Jumps frames 8~27 | Goes to RFS</span>
+<script>document.write(icons('LFS.4'))</script>
+<span class="frame-data">i14~16 | +4 | Step kick | Jumps frames 8~27 | Goes to RFS</span>
 </div>
 <div class="note">Also RFS.3 (+4, goes to LFS)</div>
 <div class="entry">
-  <script>document.write(icons('LFS.1'))</script>
-  <span class="frame-data">i13 | +5 | Backhand</span>
+<script>document.write(icons('LFS.1'))</script>
+<span class="frame-data">i13 | +5 | Backhand</span>
 </div>
 <div class="note">Also RFS.2 (+5)</div>
 <div class="entry">
-  <script>document.write(icons('RFF.3~4'))</script>
-  <span class="frame-data">i27~30 | +4~+7 | Homing | Power Crush</span>
+<script>document.write(icons('RFF.3~4'))</script>
+<span class="frame-data">i27~30 | +4~+7 | Homing | Power Crush</span>
 </div>
 <div class="note">His high power crush — see Power Crush &amp; Rage Art</div>
-
 <!-- ── STANCE COUNTERPLAY ── -->
 <h2>Stance Counterplay</h2>
 <div class="callout callout-key"><strong>The single most important fact about Hwoarang:</strong> Wavu notes that in both Flamingo stances he <strong>cannot block or crouch</strong>. He lives in Flamingo, he usually arrives there plus, and his fastest option out of it is very fast — but if he's idling there, he can be hit.</div>
 <h3>RFS — Right Flamingo</h3>
 <div class="callout">Entered raw with <span class="mono">f,n,4</span> (sidesteps left), and off <span class="mono">f+4</span> (+7~+13), <span class="mono">d+3,4</span> (+8~+10), <span class="mono">3,3,4</span> (+8), <span class="mono">RFF.3,4</span> (+10), <span class="mono">4,4</span> (-1), <span class="mono">uf+3,4</span> (+2), <span class="mono">db+4</span> with F (-1), and his Heat Smash (+11). Nearly every entry is plus. <strong>Cannot block or crouch in stance.</strong></div>
 <div class="entry">
-  <script>document.write(icons('RFS.f4'))</script>
-  <span class="frame-data">HIGH, HIGH | <strong>i8</strong> | +0 | Flappy kicks | Jails</span>
+<script>document.write(icons('RFS.f4'))</script>
+<span class="frame-data">HIGH, HIGH | <strong>i8</strong> | +0 | Flappy kicks | Jails</span>
 </div>
 <div class="note">His fastest option anywhere — it beats your jab. RFS.f+4,4 (-6, tornado) is the duck-and-launch ender</div>
 <div class="entry">
-  <script>document.write(icons('RFS.4','3'))</script>
-  <span class="frame-data">Mid, Mid | i23~24 | <strong>+4</strong> | Tornado | Wall splat | Goes to LFS</span>
+<script>document.write(icons('RFS.4','3'))</script>
+<span class="frame-data">Mid, Mid | i23~24 | <strong>+4</strong> | Tornado | Wall splat | Goes to LFS</span>
 </div>
-<div class="note">Wavu: "his best mid" from Flamingo. Can't duck it. After it, d+3,4 tracks both sides</div>
+<div class="note">Wavu: "his best mid" from Flamingo. Can't duck it. After it, d+3 whiffs left — SWL beats it more often than SSL (Mike's lab) — then duck the ,4</div>
 <div class="entry">
-  <script>document.write(icons('RFS.4'))</script>
-  <span class="frame-data">Mid | i14 | -9 | Goes to RFF</span>
-</div>
-<div class="entry">
-  <script>document.write(icons('RFS.1'))</script>
-  <span class="frame-data">Mid | i16 | -2 | Starts his 10-hit string</span>
+<script>document.write(icons('RFS.4'))</script>
+<span class="frame-data">Mid | i14 | -9 | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.df4'))</script>
-  <span class="frame-data">Mid | i17~19 | +1 | Snap Kick</span>
+<script>document.write(icons('RFS.1'))</script>
+<span class="frame-data">Mid | i16 | -2 | Starts his 10-hit string</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.uf4'))</script>
-  <span class="frame-data">Mid | i17~18 | -13 | Tornado | Air Blade</span>
+<script>document.write(icons('RFS.df4'))</script>
+<span class="frame-data">Mid | i17~19 | +1 | Snap Kick</span>
+</div>
+<div class="entry">
+<script>document.write(icons('RFS.uf4'))</script>
+<span class="frame-data">Mid | i17~18 | -13 | Tornado | Air Blade</span>
 </div>
 <div class="note">Always punish it</div>
 <div class="entry">
-  <script>document.write(icons('RFS.b3'))</script>
-  <span class="frame-data">Mid | i16~17 | -9 | Heat Engager</span>
+<script>document.write(icons('RFS.b3'))</script>
+<span class="frame-data">Mid | i16~17 | -9 | Heat Engager</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.b4'))</script>
-  <span class="frame-data">Mid | i20~22 | -12 | Power Crush</span>
+<script>document.write(icons('RFS.b4'))</script>
+<span class="frame-data">Mid | i20~22 | -12 | Power Crush</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.d3'))</script>
-  <span class="frame-data">LOW | i15 | -13 | Goes to RFF</span>
+<script>document.write(icons('RFS.d3'))</script>
+<span class="frame-data">LOW | i15 | -13 | Goes to RFF</span>
 </div>
 <div class="note">RFS.d+3,3 adds a high (-2) that whiffs to your right</div>
 <div class="entry">
-  <script>document.write(icons('RFS.d4'))</script>
-  <span class="frame-data">LOW | i20~21 | -23 | Stagger on block</span>
+<script>document.write(icons('RFS.d4'))</script>
+<span class="frame-data">LOW | i20~21 | -23 | Stagger on block</span>
 </div>
 <div class="note">Block and launch</div>
 <div class="entry">
-  <script>document.write(icons('RFS.u4'))</script>
-  <span class="frame-data">High | i25~26 | -2 | Homing</span>
+<script>document.write(icons('RFS.u4'))</script>
+<span class="frame-data">High | i25~26 | -2 | Homing</span>
 </div>
 <div class="callout callout-key"><strong>How to deal with it:</strong> Wavu's answer is <strong>block, then immediately step right and block whatever comes next</strong>. Against a mashing Hwoarang you can jab-check Flamingo since he can't block there — but the i8 flappy kicks win a straight trade with your i10 jab, so only do it when he's been slow to act. Two lows from the stance, RFS.d+3 (-13) and RFS.d+4 (-23); block either and punish.</div>
 <h3>LFS — Left Flamingo</h3>
 <div class="callout">Entered raw with <span class="mono">f+3</span> (sidesteps right), and off <span class="mono">RFS.3</span> (+4), <span class="mono">RFS.4,3</span> (+4), <span class="mono">RFF.f+3</span> (+12~+15), <span class="mono">u+3</span> (+5), <span class="mono">ws2,3</span> (+3), <span class="mono">3,3</span> with F (+2), <span class="mono">df+1,3</span> (-2), <span class="mono">4,3</span> with F (-6), and <span class="mono">1,2</span> or <span class="mono">2</span> with 3. <strong>Cannot block or crouch in stance.</strong></div>
 <div class="entry">
-  <script>document.write(icons('LFS.1'))</script>
-  <span class="frame-data">HIGH | i13 | +5 | His fastest option</span>
+<script>document.write(icons('LFS.1'))</script>
+<span class="frame-data">HIGH | i13 | +5 | His fastest option</span>
 </div>
 <div class="note">Duck it</div>
 <div class="entry">
-  <script>document.write(icons('LFS.3'))</script>
-  <span class="frame-data">Mid | i14 | -13 | Can loop back into LFS with F (+2)</span>
+<script>document.write(icons('LFS.3'))</script>
+<span class="frame-data">Mid | i14 | -13 | Can loop back into LFS with F (+2)</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.4'))</script>
-  <span class="frame-data">HIGH | i14~16 | +4 | Jumps frames 8~27 | Goes to RFS</span>
+<script>document.write(icons('LFS.4'))</script>
+<span class="frame-data">HIGH | i14~16 | +4 | Jumps frames 8~27 | Goes to RFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.4~3'))</script>
-  <span class="frame-data">HIGH, HIGH | i15~16 | +6 | Jails</span>
+<script>document.write(icons('LFS.4~3'))</script>
+<span class="frame-data">HIGH, HIGH | i15~16 | +6 | Jails</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.2'))</script>
-  <span class="frame-data">Mid | i16 | -2 | Goes to RFF | Starts his 10-hit string</span>
+<script>document.write(icons('LFS.2'))</script>
+<span class="frame-data">Mid | i16 | -2 | Goes to RFF | Starts his 10-hit string</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.f3'))</script>
-  <span class="frame-data">Mid | i19~20 | +4 | Heat Engager | Flamingo Rocket | Stays in LFS</span>
+<script>document.write(icons('LFS.f3'))</script>
+<span class="frame-data">Mid | i19~20 | +4 | Heat Engager | Flamingo Rocket | Stays in LFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.f4'))</script>
-  <span class="frame-data">Mid | i17~18 | -10 | Homing</span>
+<script>document.write(icons('LFS.f4'))</script>
+<span class="frame-data">Mid | i17~18 | -10 | Homing</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.b3'))</script>
-  <span class="frame-data">Mid | i20~22 | -12 | Power Crush</span>
+<script>document.write(icons('LFS.b3'))</script>
+<span class="frame-data">Mid | i20~22 | -12 | Power Crush</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.d3'))</script>
-  <span class="frame-data">LOW | i16 | -17</span>
+<script>document.write(icons('LFS.d3'))</script>
+<span class="frame-data">LOW | i16 | -17</span>
 </div>
 <div class="note">LFS.d+3,4 adds a high (+8g) — duck it</div>
 <div class="entry">
-  <script>document.write(icons('LFS.d4'))</script>
-  <span class="frame-data">LOW | i20~21 | -12 | Goes to RFF</span>
+<script>document.write(icons('LFS.d4'))</script>
+<span class="frame-data">LOW | i20~21 | -12 | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.1+4'))</script>
-  <span class="frame-data">Power Blast | Unblockable | i66~69 | 80 dmg | Cancel with b,b</span>
+<script>document.write(icons('LFS.1+4'))</script>
+<span class="frame-data">Power Blast | Unblockable | i66~69 | 80 dmg | Cancel with b,b</span>
 </div>
-<div class="callout callout-key"><strong>How to deal with it:</strong> his fastest option, LFS.1, is a high, and his two lows are -17 and -12 — so <strong>stand block is the default</strong> and a duck covers his quickest button. Most of his LFS mids are plus or near-safe; the ones to punish are LFS.3 (-13) and LFS.d+3 (-17).</div>
+<div class="callout callout-key"><strong>How to deal with it:</strong> his fastest option, LFS.1, is a high, and his two lows are -17 and -12 — so <strong>stand block is the default</strong> and a duck covers his quickest button. Most of his LFS mids are plus or near-safe; the ones to punish are LFS.3 (-13) and LFS.d+3 (-17).<br/><br/><span class="lab-badge" id="nu-2">Lab (Mike), after 3,3 with F (+2 into LFS):</span> you're -2, and <span class="mono">LFS.df+3,4</span> power crushes any jab or punish you press. Answer with a <strong>low or a throw</strong> — power crushes don't absorb either. The risk is LFS.4 (jumps frames 8~27), which goes over both.<br/><br/><span class="lab-badge" id="nu-3">Lab (Mike), video, 3 reps — the jab isn't wasted:</span> jab (absorbed, status "Power Crush") → ~20f later <strong>SSL</strong> → ~18f later a launcher. <span class="mono">LFS.df+3</span> whiffed every rep (his damage counter never moved), and the launcher counter-hit the <span class="mono">,4</span> during its startup: <strong>Counter, +31</strong>, full combo. In the rep where the SSL was followed by holding back, the <span class="mono">,4</span> was simply blocked. The jab baits the power crush; the step beats it.<br/><span class="theory-badge" id="nu-4">Theory (Ledger):</span> a human may stop after df+3 instead of finishing with ,4. Your launcher should still punish df+3's whiff recovery (it's -14 even on block), but that's untested — see Sources.</div>
 <h3>RFF — Right Foot Forward</h3>
 <div class="callout">Entered with <span class="mono">3+4</span> (Motion Switch), and off <span class="mono">df+4</span>, <span class="mono">b+4</span>, <span class="mono">f+2</span>, <span class="mono">4,4,4</span>, <span class="mono">f,F+3</span> (+6), <span class="mono">f,F+4</span> and <span class="mono">ws4,4</span>. Many of his normal moves are "also possible during RFF." Wavu doesn't flag any blocking restriction here.</div>
 <div class="entry">
-  <script>document.write(icons('RFF.df3'))</script>
-  <span class="frame-data">Mid | i22~24 | <strong>+1</strong> | Homing | Heat Engager | Crushes lows</span>
+<script>document.write(icons('RFF.df3'))</script>
+<span class="frame-data">Mid | i22~24 | <strong>+1</strong> | Homing | Heat Engager | Crushes lows</span>
 </div>
 <div class="note">Black Kite — block it, don't low-check RFF</div>
 <div class="entry">
-  <script>document.write(icons('RFF.3~4'))</script>
-  <span class="frame-data">HIGH | i27~30 | +4~+7 | Homing | Power Crush | Backlash</span>
+<script>document.write(icons('RFF.3~4'))</script>
+<span class="frame-data">HIGH | i27~30 | +4~+7 | Homing | Power Crush | Backlash</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.b1'))</script>
-  <span class="frame-data">High | i14 | -4 | Elbow | Good left sidestep tracking</span>
+<script>document.write(icons('RFF.b1'))</script>
+<span class="frame-data">High | i14 | -4 | Elbow | Good left sidestep tracking</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.b2'))</script>
-  <span class="frame-data">Mid | i16~17 | +4~+5 | 5 chip | Stays in RFF</span>
+<script>document.write(icons('RFF.b2'))</script>
+<span class="frame-data">Mid | i16~17 | +4~+5 | 5 chip | Stays in RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.b4'))</script>
-  <span class="frame-data">High | i18~19 | -9 | Spin Kick | Crouches frames 6~17</span>
+<script>document.write(icons('RFF.b4'))</script>
+<span class="frame-data">High | i18~19 | -9 | Spin Kick | Crouches frames 6~17</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.1'))</script>
-  <span class="frame-data">High | i10 | +0 | Stays in RFF</span>
+<script>document.write(icons('RFF.1'))</script>
+<span class="frame-data">High | i10 | +0 | Stays in RFF</span>
 </div>
 <div class="note">Also RFF.2 (i10, +2)</div>
 <div class="entry">
-  <script>document.write(icons('RFF.d3'))</script>
-  <span class="frame-data">LOW | i18 | -11 | Goes to BT</span>
+<script>document.write(icons('RFF.d3'))</script>
+<span class="frame-data">LOW | i18 | -11 | Goes to BT</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.d3+4'))</script>
-  <span class="frame-data">LOW | i19 | -11 | Stays in RFF</span>
+<script>document.write(icons('RFF.d3+4'))</script>
+<span class="frame-data">LOW | i19 | -11 | Stays in RFF</span>
 </div>
-
 <!-- ── HEAT ── -->
 <h2>Heat</h2>
 <div class="entry">
-  <script>document.write(icons('H.2+3'))</script>
-  <span class="frame-data">Heat Smash | Mid, (Throw), Mid, High | i17~18 | <strong>+11 oB</strong> | Jails | 5 chip</span>
+<script>document.write(icons('H.2+3'))</script>
+<span class="frame-data">Heat Smash | Mid, (Throw), Mid, High | i17~18 | <strong>+11 oB</strong> | Jails | 5 chip</span>
 </div>
 <div class="note">Not punishable. On block he goes into <strong>Right Flamingo at +11</strong> — the RFS section above is what comes next. Also possible from RFF and LFS</div>
 <div class="callout callout-warn"><strong>What Heat changes:</strong> powered-up Flamingo moves (<span class="mono">RFS.d+4,H.3,4</span>, <span class="mono">H.RFS.f+4,4</span>), extra chip on every RFS kick, and <span class="mono">RFS.4,3</span> becomes a true combo from the first hit.</div>
 <h3>Heat Engagers — how he gets in</h3>
 <div class="entry">
-  <script>document.write(icons('df3+4'))</script>
-  <span class="frame-data">Mid, High, Mid | -14 | Jails | Ignition Barrage</span>
+<script>document.write(icons('df3+4'))</script>
+<span class="frame-data">Mid, High, Mid | -14 | Jails | Ignition Barrage</span>
 </div>
 <div class="note">Also possible during RFF</div>
 <div class="entry">
-  <script>document.write(icons('ff4'))</script>
-  <span class="frame-data">Mid | i17~18 | -7 | Peacekeeper | Goes to RFF</span>
+<script>document.write(icons('ff4'))</script>
+<span class="frame-data">Mid | i17~18 | -7 | Peacekeeper | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.df3'))</script>
-  <span class="frame-data">Mid | +1 | Homing | Black Kite</span>
+<script>document.write(icons('RFF.df3'))</script>
+<span class="frame-data">Mid | +1 | Homing | Black Kite</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('LFS.f3'))</script>
-  <span class="frame-data">Mid | +4 | Flamingo Rocket</span>
+<script>document.write(icons('LFS.f3'))</script>
+<span class="frame-data">Mid | +4 | Flamingo Rocket</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.b3'))</script>
-  <span class="frame-data">Mid | -9 | Left Heel Lance</span>
+<script>document.write(icons('RFS.b3'))</script>
+<span class="frame-data">Mid | -9 | Left Heel Lance</span>
 </div>
 <h3>Heat-only moves</h3>
 <div class="entry">
-  <script>document.write(icons('H.RFS.f4','4'))</script>
-  <span class="frame-data">High, High, High | -6 | Tornado | Costs 300F</span>
+<script>document.write(icons('H.RFS.f4','4'))</script>
+<span class="frame-data">High, High, High | -6 | Tornado | Costs 300F</span>
 </div>
 <div class="note">Duck and launch, same as out of Heat</div>
 <div class="entry">
-  <script>document.write(icons('RFS.d4','H.3'))</script>
-  <span class="frame-data">Low, High | -9 | Costs 600F | Combos from the first hit in Heat</span>
+<script>document.write(icons('RFS.d4','H.3'))</script>
+<span class="frame-data">Low, High | -9 | Costs 600F | Combos from the first hit in Heat</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFS.d4','H.3','4'))</script>
-  <span class="frame-data">Low, High, High | -9 | Balcony Break | 9 chip in Heat</span>
+<script>document.write(icons('RFS.d4','H.3','4'))</script>
+<span class="frame-data">Low, High, High | -9 | Balcony Break | 9 chip in Heat</span>
 </div>
 <div class="note">Block the first low and launch — it's still -23</div>
 <div class="entry">
-  <script>document.write(icons('RFS.4','3'))</script>
-  <span class="frame-data">Mid, Mid | +4 | Costs 180F in Heat | Combo from 1st hit during Heat</span>
+<script>document.write(icons('RFS.4','3'))</script>
+<span class="frame-data">Mid, Mid | +4 | Costs 180F in Heat | Combo from 1st hit during Heat</span>
 </div>
-
 <!-- ── THROWS ── -->
 <h2>Throws</h2>
 <div class="callout">Generic throws are i12~14 and homing. Note that <span class="mono">2+4</span> and <span class="mono">2+4,B</span> start identically but break differently — <strong>breaking with 2 covers both</strong>.</div>
 <div class="entry">
-  <script>document.write(icons('1+3'))</script>
-  <span class="frame-data">Pickpocket | 35 | Break 1 or 2 | Homing | Side swap on break</span>
+<script>document.write(icons('1+3'))</script>
+<span class="frame-data">Pickpocket | 35 | Break 1 or 2 | Homing | Side swap on break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('2+4'))</script>
-  <span class="frame-data">Falcon Dice Kick | 25 | Break 1 or 2 | Homing | Floor Break</span>
+<script>document.write(icons('2+4'))</script>
+<span class="frame-data">Falcon Dice Kick | 25 | Break 1 or 2 | Homing | Floor Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('2+4','b'))</script>
-  <span class="frame-data">Roll and Choke | 40 | <strong>Break 2 only</strong> | Homing | Leaves him BT on hit</span>
+<script>document.write(icons('2+4','b'))</script>
+<span class="frame-data">Roll and Choke | 40 | <strong>Break 2 only</strong> | Homing | Leaves him BT on hit</span>
 </div>
 <div class="entry"><span class="stance" style="margin-right:6px;">LEFT</span><span class="frame-data">Left throw | 45 | Break 1 | Also possible during RFF</span></div>
 <div class="entry"><span class="stance" style="margin-right:6px;">RIGHT</span><span class="frame-data">Right throw | 44 | Break 2 | Also possible during RFF</span></div>
 <div class="entry"><span class="stance" style="margin-right:6px;">BACK</span><span class="frame-data">Back throw | 60 | Unbreakable</span></div>
 <div class="entry">
-  <script>document.write(icons('f2+3'))</script>
-  <span class="frame-data">Human Cannonball | 35 | i12 | Break 1+2 | Possible from RFF, LFS and RFS</span>
+<script>document.write(icons('f2+3'))</script>
+<span class="frame-data">Human Cannonball | 35 | i12 | Break 1+2 | Possible from RFF, LFS and RFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('uf1+2'))</script>
-  <span class="frame-data">Leg Hook Throw | 40 | i12 | Break 1+2</span>
+<script>document.write(icons('uf1+2'))</script>
+<span class="frame-data">Leg Hook Throw | 40 | i12 | Break 1+2</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('qcb3'))</script>
-  <span class="frame-data">Door Mat | 45 | i11 | <strong>Break 1</strong> | Floor Break</span>
+<script>document.write(icons('qcb3'))</script>
+<span class="frame-data">Door Mat | 45 | i11 | <strong>Break 1</strong> | Floor Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('RFF.1+3'))</script>
-  <span class="frame-data">Jackknife | 45 | i12 | Break 1+2</span>
+<script>document.write(icons('RFF.1+3'))</script>
+<span class="frame-data">Jackknife | 45 | i12 | Break 1+2</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('b1+3'))</script>
-  <span class="frame-data">Parry | Catches high and mid punches frames 5~12</span>
+<script>document.write(icons('b1+3'))</script>
+<span class="frame-data">Parry | Catches high and mid punches frames 5~12</span>
 </div>
 <div class="note">Pressing 4 after a successful parry gives Shotgun Shuffle</div>
-
 <!-- ── POWER CRUSH & RAGE ── -->
 <div class="entry"><span class="stance" style="margin-right:6px;">AIR.ub+3+4</span><span class="frame-data">Air throw | Mid-hitting | i15~16 | <strong>Unbreakable</strong> | Side switch</span></div>
 <div class="note">Catches you in the air (hopping or juggled) — no break, so don't jump around in front of him</div>
 <h2>Power Crush &amp; Rage Art</h2>
 <div class="entry">
-  <script>document.write(icons('RFF.3~4'))</script>
-  <span class="frame-data"><strong>HIGH</strong> power crush | i27~30 | +4~+7 | pc8~26 | Homing | 10 chip</span>
+<script>document.write(icons('RFF.3~4'))</script>
+<span class="frame-data"><strong>HIGH</strong> power crush | i27~30 | +4~+7 | pc8~26 | Homing | 10 chip</span>
 </div>
 <div class="note">Backlash — the one high power crush in the matchup. Ducking beats it, but Wavu calls ducking "very risky" because it recovers so fast; a <strong>throw</strong> is the safest answer</div>
 <div class="entry">
-  <script>document.write(icons('df3'))</script>
-  <span class="frame-data">Mid power crush | i22~23 | -14~-13 | pc7~21 | Reversal Break</span>
+<script>document.write(icons('df3'))</script>
+<span class="frame-data">Mid power crush | i22~23 | -14~-13 | pc7~21 | Reversal Break</span>
 </div>
 <div class="note">df+3,4 adds a second mid (-14). Wavu: SSR the second hit</div>
 <div class="entry">
-  <script>document.write(icons('RFF.df2+3'))</script>
-  <span class="frame-data">Mid power crush | i22~23 | -14</span>
+<script>document.write(icons('RFF.df2+3'))</script>
+<span class="frame-data">Mid power crush | i22~23 | -14</span>
 </div>
-<div class="note">Also LFS.df+3 (-14)</div>
+<div class="note">Also LFS.df+3 (-14). Lab (Mike): after 3,3~F into LFS (+2), LFS.df+3,4 eats your i10+ press — SSL right after the absorbed jab makes df+3 whiff and sets up a counter-hit launch on the ,4; a low or a throw also works</div>
 <div class="entry">
-  <script>document.write(icons('LFS.b3'))</script>
-  <span class="frame-data">Mid power crush | i20~22 | -12 | pc8~19</span>
+<script>document.write(icons('LFS.b3'))</script>
+<span class="frame-data">Mid power crush | i20~22 | -12 | pc8~19</span>
 </div>
 <div class="note">Also RFS.b+4 (-12)</div>
 <div class="entry">
-  <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">Rage Art | Mid | i20 | -18 | pc8~ | 55–82 dmg scaling with his missing health</span>
+<script>document.write(icons('R.df1+2'))</script>
+<span class="frame-data">Rage Art | Mid | i20 | -18 | pc8~ | 55–82 dmg scaling with his missing health</span>
 </div>
-
 <!-- ── GENERAL COUNTER PLAY ── -->
 <h2>General Counter Play</h2>
 <div class="callout callout-key"><strong>Beat the player, not the character.</strong> Wavu's overview is blunt: there's "no one set counterplay strategy" against Hwoarang, so the winning approach is reading this opponent's patterns — most Hwoarangs start offense with d+3,4 into Flamingo — and making them second-guess it.</div>
 <h3>Approach killers — from your replays</h3>
 <div class="callout callout-key"><strong>Both of his combo starters landed while you were the one acting.</strong> Three ranked replays (Oct 15, 2026, a GoD IV Hwoarang) showed the same pattern: he waits at about 3 distance, and the moment you dash in or press after a small plus frame, he meets it. Every value below was read off the in-game frame data panel and matches Wavu exactly.</div>
 <div class="entry">
-  <script>document.write(icons('u3'))</script>
-  <span class="frame-data">High | i20 | +5 oB | +44a (+38) on hit | Airborne f9</span>
+<script>document.write(icons('u3'))</script>
+<span class="frame-data">High | i20 | +5 oB | +44a (+38) on hit | Airborne f9</span>
 </div>
 <div class="note">Caught you twice, both on counter hit (30 dmg), both while you dashed in from ~3.2 distance — it hit at 1.0–2.0 | It's thrown before you arrive, so you run into it | Lows lose (he's airborne from f9); crouching beats it completely</div>
 <div class="note">Fix: don't dash straight into ~3 distance. Step in with a fast mid that's already out during his 20f startup, or approach crouched and punish the landing with character's FC or WS launcher</div>
 <div class="entry">
-  <script>document.write(icons('d3','4'))</script>
-  <span class="frame-data">Low, High | i17 low, ,4 at i21~23 | 7, 13 dmg | +14g oH | +8g~+10g oB</span>
+<script>document.write(icons('d3','4'))</script>
+<span class="frame-data">Low, High | i17 low, ,4 at i21~23 | 7, 13 dmg | +14g oH | +8g~+10g oB</span>
 </div>
 <div class="note">Caught you right after you blocked his mid and were +3 — you pressed, his d+3 counter-hit you, and the ,4 combos from the 1st hit | Check what you pressed: if it was a high, his low went under it</div>
 <div class="note">Fix: the low is -13 on its own. Block it crouching and STAY crouched — the ,4 is a high that whiffs over you, then punish with character's FC or WS launcher | Standing up after the low is what gave him +8 in the replay</div>
 <h3>Plus-on-block tools — TekkenDocs anti-strat list, checked on Wavu</h3>
 <div class="callout callout-warn">This is why block-and-punish alone doesn't work against him: all of these leave <strong>him</strong> with the next turn. When you block one, either block again or check with your fastest move — don't start a slow string.</div>
 <div class="entry">
-  <script>document.write(icons('fff3'))</script>
-  <span class="frame-data">Mid | i22~24 | <strong>+6</strong> | Running kick | 9 chip</span>
+<script>document.write(icons('fff3'))</script>
+<span class="frame-data">Mid | i22~24 | <strong>+6</strong> | Running kick | 9 chip</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('ff3'))</script>
-  <span class="frame-data">Mid | i20~24 | <strong>+6</strong> | Goes to RFF</span>
+<script>document.write(icons('ff3'))</script>
+<span class="frame-data">Mid | i20~24 | <strong>+6</strong> | Goes to RFF</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('uf2'))</script>
-  <span class="frame-data">Mid | i26 | <strong>+5c</strong> | Airborne from frame 13</span>
+<script>document.write(icons('uf2'))</script>
+<span class="frame-data">Mid | i26 | <strong>+5c</strong> | Airborne from frame 13</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('CD.3'))</script>
-  <span class="frame-data">Mid | i18~19 | <strong>+4</strong> | Tornado | 8 chip | Goes to LFS</span>
+<script>document.write(icons('CD.3'))</script>
+<span class="frame-data">Mid | i18~19 | <strong>+4</strong> | Tornado | 8 chip | Goes to LFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('u4'))</script>
-  <span class="frame-data">Mid | i16~18 | <strong>+3</strong> | Airborne from frame 9 | Goes to RFS</span>
+<script>document.write(icons('u4'))</script>
+<span class="frame-data">Mid | i16~18 | <strong>+3</strong> | Airborne from frame 9 | Goes to RFS</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('uf4','4','4'))</script>
-  <span class="frame-data">High, Mid, Low | i9~10 | +1 | Goes to RFS</span>
+<script>document.write(icons('uf4','4','4'))</script>
+<span class="frame-data">High, Mid, Low | i9~10 | +1 | Goes to RFS</span>
 </div>
 <div class="note">Starts with a high — duck the first kick. Wavu: the third hit can't be low-parried if the first one hit</div>
 <div class="entry">
-  <script>document.write(icons('db4','4'))</script>
-  <span class="frame-data">Low, High | -1~+1 | Combo only from a 1st-hit CH</span>
+<script>document.write(icons('db4','4'))</script>
+<span class="frame-data">Low, High | -1~+1 | Combo only from a 1st-hit CH</span>
 </div>
 <div class="note">After you block the low, stay down — the ,4 is a high</div>
-<div class="callout "><strong>Stance tips from the TekkenDocs anti-strat page</strong> (community notes, not on Wavu):<br>• Sidewalk <strong>left</strong> against Left Flamingo (LFS) and <strong>right</strong> against Right Flamingo (RFS).<br>• After a weak Flamingo transition, a single jab or 1,2 is a good check. His fastest Flamingo move is the i13 jab; per an unconfirmed note carried over from Tekken 7, if your jab trades with it you're +4.<br>• Right Foot Forward (RFF) is fairly weak to sidesteps.<br>• Heat Smash: if the first two hits whiff, duck the last hit and launch.</div>
+<div class="callout"><strong>Stance tips from the TekkenDocs anti-strat page</strong> (community notes, not on Wavu):<br/>• Sidewalk <strong>left</strong> against Left Flamingo (LFS) and <strong>right</strong> against Right Flamingo (RFS).<br/>• After a weak Flamingo transition, a single jab or 1,2 is a good check. His fastest Flamingo move is the i13 jab; per an unconfirmed note carried over from Tekken 7, if your jab trades with it you're +4.<br/>• Right Foot Forward (RFF) is fairly weak to sidesteps.<br/>• Heat Smash: if the first two hits whiff, duck the last hit and launch.</div>
 <h3>Everything else</h3>
 <div class="entry">
-  <script>document.write(icons('b3'))</script>
-  <span class="frame-data">Mid | i16~17 | -19 | Tornado</span>
+<script>document.write(icons('b3'))</script>
+<span class="frame-data">Mid | i16~17 | -19 | Tornado</span>
 </div>
 <div class="note">His whiff punisher — don't whiff in front of it. Block it and launch</div>
 <div class="entry">
-  <script>document.write(icons('d3','4'))</script>
-  <span class="frame-data">Low, High | +8g~+10g</span>
+<script>document.write(icons('d3','4'))</script>
+<span class="frame-data">Low, High | +8g~+10g</span>
 </div>
-<div class="note">Low parry, duck, or SSR in neutral. After RFS.4,3 it tracks both ways — low parry</div>
+<div class="note">Low parry, duck, or SSR in neutral. After RFS.4,3: SWL, then duck the ,4 (Mike's lab), or low parry</div>
 <div class="entry">
-  <script>document.write(icons('df2'))</script>
-  <span class="frame-data">Mid | i15~16 | -7 | Launches on hit (+34a)</span>
+<script>document.write(icons('df2'))</script>
+<span class="frame-data">Mid | i15~16 | -7 | Launches on hit (+34a)</span>
 </div>
 <div class="note">Only a stagger (+4s) on a crouching hit — Wavu's overview lists it alongside b+3 as one of his launch threats from range</div>
 <div class="entry">
-  <script>document.write(icons('CD.4'))</script>
-  <span class="frame-data">Mid | i16 | -18 | Sky Rocket</span>
+<script>document.write(icons('CD.4'))</script>
+<span class="frame-data">Mid | i16 | -18 | Sky Rocket</span>
 </div>
 <div class="note">The just-frame version (f,n,df#4) is only -8 — learn the spark</div>
 <div class="entry">
-  <script>document.write(icons('LFS.1+4'))</script>
-  <span class="frame-data">Power Blast | Unblockable | i66~69 | 80 dmg</span>
+<script>document.write(icons('LFS.1+4'))</script>
+<span class="frame-data">Power Blast | Unblockable | i66~69 | 80 dmg</span>
 </div>
 <div class="note">Also b,B+2+3 Dynamite Heel (unblockable, i61~62). Step or interrupt</div>
 <div class="entry">
-  <script>document.write(icons('LFS.2'))</script>
-  <span class="frame-data">10-hit string from LFS.2 or RFS.1</span>
+<script>document.write(icons('LFS.2'))</script>
+<span class="frame-data">10-hit string from LFS.2 or RFS.1</span>
 </div>
 <div class="note">Interrupt windows: i13 from 4th block, i18 from 6th block, i33 from 8th block. Hits 7 and 9 can be sidestepped</div>
 <div class="entry">
-  <script>document.write(icons('1+2+3+4'))</script>
-  <span class="frame-data">Ki Charge — can't block for 5 seconds</span>
+<script>document.write(icons('1+2+3+4'))</script>
+<span class="frame-data">Ki Charge — can't block for 5 seconds</span>
 </div>
 <div class="note">Walk in and take everything</div>
-
-<div class="sources">
-  <strong>Sources</strong><br>
-  Frame data from <a href="https://wavu.wiki/t/Hwoarang_movelist">Wavu Wiki — Hwoarang movelist</a> (last edited 12 September 2026) and <a href="https://wavu.wiki/t/Hwoarang_counterplay">Wavu Wiki — Hwoarang counterplay</a>, including its prose on Flamingo, d3,4, df3,4, RFS.f4,4, RFF3~4, b3 and low parrying. Step direction cross-checked against the <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie), which marks him SSC* — "step away from his chest position."<br><strong>Movement section:</strong> the SSR default is Tier 1 — Wavu's counterplay prose plus one per-move whiff note — and is consistent with the chart's stance-dependent rule. Nothing here is lab-derived. Blocking in RFF isn't addressed on Wavu either way.<br><strong>Approach killers:</strong> replay-observed — three of Mike's ranked replays from Oct 15, 2026, read from the in-game frame data panel (hit level, startup, damage, frame advantage, counter flag). Move identities confirmed by matching every panel value to Wavu (u+3: i20, 25 dmg, +44a (+38); d+3,4: 7/13 dmg, i21~23, +14g oH, +8g~+10g oB). The "what you pressed" and spacing notes describe those replays, not general Hwoarang behavior.<br>
-  <strong>Revision, 16 October 2026:</strong> read the <a href="https://tekkendocs.com/t8/hwoarang/antistrat">TekkenDocs Hwoarang anti-strat page</a> for the first time and added a plus-on-block list (every value confirmed on Wavu), its stance tips, and the unbreakable air throw. Fixed the delayed hopkick's input icon: it showed uf+4, a different move (a high at -2), when the move is uf,n,4. Every existing entry re-checked against the full Wavu movelist; no frame changes needed.
+<section id="nuances"><h2 id="nuances-h"><span>Defensive Nuances</span></h2><p class="nuance-intro">Every Lab (Mike) and Theory (Ledger) note in this guide, in page order. Each link jumps to the note in place.</p><ul class="nuance-list"><li><span class="lab-badge">Lab</span><span class="nuance-sec">Standing Block Punishment</span>Lab (Mike): no punish after the +2 LFS transition — LFS.df+3,4 (mid power crush) absorbs your i10+ press | If your jab gets absorbed, SSL immediately — df+3 whiffs… <a href="#nu-1">Go to note →</a></li><li><span class="lab-badge">Lab</span><span class="nuance-sec">Stance Counterplay</span>How to deal with it: his fastest option, LFS.1, is a high, and his two lows are -17 and -12 — so stand block is the default and a duck covers his quickest button.… <a href="#nu-2">Go to note →</a></li><li><span class="lab-badge">Lab</span><span class="nuance-sec">Stance Counterplay</span>How to deal with it: his fastest option, LFS.1, is a high, and his two lows are -17 and -12 — so stand block is the default and a duck covers his quickest button.… <a href="#nu-3">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Stance Counterplay</span>How to deal with it: his fastest option, LFS.1, is a high, and his two lows are -17 and -12 — so stand block is the default and a duck covers his quickest button.… <a href="#nu-4">Go to note →</a></li><li><span class="lab-badge">Lab</span><span class="nuance-sec">Movement — Which Way to Step</span>d+3,4 after RFS.4,3 · SWL, then duck the ,4 · Lab (Mike): d+3 whiffs to SWL more often than to SSL; the ,4 may re-align, so duck it. Wavu says it tracks both ways —… <a href="#nu-5">Go to note →</a></li><li><span class="lab-badge">Lab</span><span class="nuance-sec">Movement — Which Way to Step</span>LFS.df+3,4 after 3,3~F · SSL right after your jab is absorbed · Lab (Mike): df+3 whiffs; counter-hit the ,4 with a launcher (+31 in the lab) or block it <a href="#nu-6">Go to note →</a></li></ul></section><div class="sources">
+<strong>Sources</strong><br/>
+  Frame data from <a href="https://wavu.wiki/t/Hwoarang_movelist">Wavu Wiki — Hwoarang movelist</a> (last edited 12 September 2026) and <a href="https://wavu.wiki/t/Hwoarang_counterplay">Wavu Wiki — Hwoarang counterplay</a>, including its prose on Flamingo, d3,4, df3,4, RFS.f4,4, RFF3~4, b3 and low parrying. Step direction cross-checked against the <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie), which marks him SSC* — "step away from his chest position."<br/><strong>Movement section:</strong> the SSR default is Tier 1 — Wavu's counterplay prose plus one per-move whiff note — and is consistent with the chart's stance-dependent rule. One row is lab-derived (see Revision below). Blocking in RFF isn't addressed on Wavu either way.<br/><strong>Approach killers:</strong> replay-observed — three of Mike's ranked replays from Oct 15, 2026, read from the in-game frame data panel (hit level, startup, damage, frame advantage, counter flag). Move identities confirmed by matching every panel value to Wavu (u+3: i20, 25 dmg, +44a (+38); d+3,4: 7/13 dmg, i21~23, +14g oH, +8g~+10g oB). The "what you pressed" and spacing notes describe those replays, not general Hwoarang behavior.<br/>
+<strong>Revision, 16 October 2026:</strong> read the <a href="https://tekkendocs.com/t8/hwoarang/antistrat">TekkenDocs Hwoarang anti-strat page</a> for the first time and added a plus-on-block list (every value confirmed on Wavu), its stance tips, and the unbreakable air throw. Fixed the delayed hopkick's input icon: it showed uf+4, a different move (a high at -2), when the move is uf,n,4. Every existing entry re-checked against the full Wavu movelist; no frame changes needed.<br/><strong>Lab note, 16 October 2026 (Mike):</strong> after RFS.4,3, d+3 whiffs to SSL; the ,4 may re-align, but SSL then duck beats it. This replaces the "tracks both sides" row, which came from Wavu's counterplay prose — Wavu's low-parry advice is kept as the alternative.<br/><strong>Lab update, 17 October 2026 (Mike):</strong> d+3 whiffs to SWL more often than to SSL, so the row now says SWL, then duck.<br/><strong>Lab video, 17 October 2026 (Mike, 3 reps, 20.8 s, practice mode with frame data and input display on):</strong> after 3,3~F into LFS, Mike pressed jab (i10, 5 dmg, absorbed while Hwoarang's status read "Power Crush"), then SSL (u, 2–3f) about 20 frames later. LFS.df+3 whiffed in all three reps — Hwoarang's Total Damage never changed. Reps 2 and 3: Victor's df+2 (i15 mid, 16 dmg) landed as a Counter during the ,4's startup, +31 (+21), Hwoarang airborne, 14-hit 80-damage combo. Rep 1: Mike held back and blocked the ,4; the panel showed him +9 (Wavu lists df+3,4 at -14 on block — unexplained). Read frame by frame by Claude from the input log and frame data panel; the df+2 button was identified from the zoomed input icon.<br/><strong>To test — Theory (Ledger):</strong> (1) If he stops after LFS.df+3 (no ,4), does a launcher still punish its whiff recovery? (2) Does SSR make LFS.df+3 whiff too, or only SSL? (3) LFS.4 against a low that crouches early — mutual whiff, or does he win? (4) Why the blocked ,4 read +9 instead of -14 after the step.<br/><strong>Lab note, 17 October 2026 (Mike):</strong> after 3,3 with F into LFS (+2), LFS.df+3,4 power crushes an i10+ punish attempt; a low or throw beats it. The LFS.4 caveat (jumps frames 8~27) is from Wavu's frame data, not the lab.
 </div>
-
-</body></html>
+</body></html></body></html>

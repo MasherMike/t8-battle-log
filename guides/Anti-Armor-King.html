@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anti-Armor King | SSR Default | Duck Neck Hunter | Heat Smash +9</title>
-<style>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/></head><body><!DOCTYPE html>
+
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
   :root {
@@ -245,17 +243,44 @@
     .toggle-bar, .toc, .to-top { display: none; }
   }
 </style>
-
-</head>
-<body>
-<header class="guide-head">
-<h1>Anti-Armor King &nbsp;|&nbsp; SSR Default &nbsp;|&nbsp; Duck Neck Hunter &nbsp;|&nbsp; Heat Smash +9</h1>
+<style>
+/* Lab / Theory badges (F palette) */
+.lab-badge, .theory-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 1px 8px; border-radius: 999px; margin-right: 4px; white-space: nowrap; vertical-align: 1px; }
+.lab-badge { color: #cf9bff; background: #ba70ff24; border: 1px solid #ba70ff99; }
+.theory-badge { color: #c8a3ab; background: transparent; border: 1px dashed #ff5c705c; }
+.nuance-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; display: flex; flex-direction: column; gap: 6px; }
+.nuance-list li { background: linear-gradient(180deg, #420c199e, #1a060cc2); border: 1px solid #ff5c7026; border-radius: 10px;
+  padding: 8px 12px; font-size: 13px; line-height: 1.45; color: #f0dfe3; }
+.nuance-list .nuance-sec { color: #c8a3ab; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+.nuance-list a { color: #cf9bff; text-decoration: none; white-space: nowrap; }
+.nuance-list a:hover { color: #ffffff; }
+.nuance-intro { color: #c8a3ab; font-size: 13px; margin: 0 0 0.5rem; }
+[id^="nu-"] { scroll-margin-top: 12px; }
+@media print { .lab-badge, .theory-badge { color: #000; background: none; border: 1px solid #555; } .nuance-list a { display: none; } }
+</style>
+</head><body>
+<title>Anti-Armor King | SSR Default | Duck Neck Hunter | Heat Smash +9</title>
+<h1 id="top">Anti-Armor King  |  SSR Default  |  Duck Neck Hunter  |  Heat Smash +9</h1>
 <div class="toggle-bar">
-  <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
-  <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
-  <span class="side-label" id="side-label">Armor King on P1 side — inputs face right</span>
+<button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
+<button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
+<span class="side-label" id="side-label">Armor King on P1 side — inputs face right</span>
 </div>
-</header>
+<nav aria-label="Jump to section" class="toc">
+<span class="toc-label">Jump to</span>
+<a class="toc-key" href="#practice">Practice first</a>
+<a href="#movement">Movement</a>
+<a href="#standing-block">Standing Block</a>
+<a href="#low-block">Low Block</a>
+<a href="#duck-launch">Duck &amp; Launch</a>
+<a href="#stances">Stances</a>
+<a href="#heat">Heat</a>
+<a href="#throws">Throws</a>
+<a href="#power-crush">Power Crush &amp; Rage</a>
+<a href="#counterplay">Counter Play</a>
+<a href="#nuances">Nuances</a><a href="#sources">Sources</a>
+</nav>
 <script>
   let flipped = true;
 
@@ -374,581 +399,567 @@ function icons(...notations) {
   return `<span class="move-icons" data-notation="${data}" role="img" aria-label="${notations.join(', ')}">${html}</span>`;
 }
 </script>
-
-
 <!-- ── MOVEMENT: WHICH WAY TO STEP ── -->
-
-<h2>Movement — Which Way to Step</h2>
-<div class="callout callout-key"><strong>Default: Sidestep / sidewalk RIGHT (SSR / SWR).</strong> Wavu's per-move whiff notes tally six strings that whiff to your right against two that whiff to your left, and the right-side list includes strings he throws constantly: <span class="mono">4,3</span>, the Heat Engager <span class="mono">ws3,1</span>, and both Taurus Cutter follow-ups off <span class="mono">d+3+4</span>. The @Mezerdie chart also calls SSR, so the two tiers agree. Several of the SSR rows are marked "inconsistent" on Wavu — it's a lean, not a free pass.<br><br>
-<strong>Exceptions — these are the ones that catch the SSR habit:</strong><br>
-• His <span class="mono">3</span> high kick (i15) and the <span class="mono">BAD.3</span> power crush both have <em>"good right sidestep tracking"</em> — they follow your SSR. <span class="mono">3</span> is a high, so duck it instead.<br>
-• <span class="mono">f+3,2,1</span> whiffs only to your <em>left</em>, from the 2nd block. <span class="mono">db+2,3</span> also leans left (inconsistent).<br>
+<h2 id="movement"><span>Movement — Which Way to Step</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Default: Sidestep / sidewalk RIGHT (SSR / SWR).</strong> Wavu's per-move whiff notes tally six strings that whiff to your right against two that whiff to your left, and the right-side list includes strings he throws constantly: <span class="mono">4,3</span>, the Heat Engager <span class="mono">ws3,1</span>, and both Taurus Cutter follow-ups off <span class="mono">d+3+4</span>. The @Mezerdie chart also calls SSR, so the two tiers agree. Several of the SSR rows are marked "inconsistent" on Wavu — it's a lean, not a free pass.<br/><br/>
+<strong>Exceptions — these are the ones that catch the SSR habit:</strong><br/>
+• His <span class="mono">3</span> high kick (i15) and the <span class="mono">BAD.3</span> power crush both have <em>"good right sidestep tracking"</em> — they follow your SSR. <span class="mono">3</span> is a high, so duck it instead.<br/>
+• <span class="mono">f+3,2,1</span> whiffs only to your <em>left</em>, from the 2nd block. <span class="mono">db+2,3</span> also leans left (inconsistent).<br/>
 • <span class="mono">ub+1</span> Neck Hunter, <span class="mono">f,F+3</span>, <span class="mono">b+3+4</span> and <span class="mono">db+3</span> are <strong>homing</strong> — stepping does nothing; see the list below.</div>
 <div class="table-wrap"><table class="step-table">
-  <thead>
-    <tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
-  </thead>
-  <tbody>
-    <tr><td class="mono">4,3</td><td class="swr">SSR / SWR</td><td>from 1st block</td></tr>
-    <tr><td class="mono">3+4,2</td><td class="swr">SSR / SWR</td><td>from 1st block</td></tr>
-    <tr><td class="mono">ws3,1</td><td class="swr">SSR</td><td>from 1st block (Wavu: not possible vs big bodies)</td></tr>
-    <tr><td class="mono">d+3+4,1</td><td class="swr">SSR / SWR</td><td>from 1st block (inconsistent)</td></tr>
-    <tr><td class="mono">d+3+4,3</td><td class="swr">SSR / SWR / SWL</td><td>from 1st block (SSL less consistent)</td></tr>
-    <tr><td class="mono">uf+2,1</td><td class="swr">SSR (may whiff)</td><td>from 1st block (inconsistent)</td></tr>
-    <tr><td class="mono">f+3,2,1</td><td class="swl">SSL</td><td>from 2nd block</td></tr>
-    <tr><td class="mono">db+2,3</td><td class="swl">SSL / SWL</td><td>from 1st block (inconsistent, character &amp; range dependent)</td></tr>
-    <tr><td class="mono">3+4 (hold)</td><td class="both">Either side (SS / SW)</td><td>from 1st block or hit</td></tr>
-    <tr><td class="mono">3+4,1+2</td><td class="both">Either side (SS / SW)</td><td>from 1st block</td></tr>
-    <tr><td class="mono">3</td><td class="tracks">Tracks your SSR</td><td>— duck it (high)</td></tr>
-    <tr><td class="mono">BAD.3</td><td class="tracks">Tracks your SSR</td><td>— power crush; block it (-13)</td></tr>
-  </tbody>
+<thead>
+<tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
+</thead>
+<tbody>
+<tr><td class="mono">4,3</td><td class="swr">SSR / SWR</td><td>from 1st block</td></tr>
+<tr><td class="mono">3+4,2</td><td class="swr">SSR / SWR</td><td>from 1st block</td></tr>
+<tr><td class="mono">ws3,1</td><td class="swr">SSR</td><td>from 1st block (Wavu: not possible vs big bodies)</td></tr>
+<tr><td class="mono">d+3+4,1</td><td class="swr">SSR / SWR</td><td>from 1st block (inconsistent)</td></tr>
+<tr><td class="mono">d+3+4,3</td><td class="swr">SSR / SWR / SWL</td><td>from 1st block (SSL less consistent)</td></tr>
+<tr><td class="mono">uf+2,1</td><td class="swr">SSR (may whiff)</td><td>from 1st block (inconsistent)</td></tr>
+<tr><td class="mono">f+3,2,1</td><td class="swl">SSL</td><td>from 2nd block</td></tr>
+<tr><td class="mono">db+2,3</td><td class="swl">SSL / SWL</td><td>from 1st block (inconsistent, character &amp; range dependent)</td></tr>
+<tr><td class="mono">3+4 (hold)</td><td class="both">Either side (SS / SW)</td><td>from 1st block or hit</td></tr>
+<tr><td class="mono">3+4,1+2</td><td class="both">Either side (SS / SW)</td><td>from 1st block</td></tr>
+<tr><td class="mono">3</td><td class="tracks">Tracks your SSR</td><td>— duck it (high)</td></tr>
+<tr><td class="mono">BAD.3</td><td class="tracks">Tracks your SSR</td><td>— power crush; block it (-13)</td></tr>
+</tbody>
 </table></div>
 <div class="note"><span class="mono">ub+1+2</span> / <span class="mono">BAD.ub+1+2</span> Straight Arrow has a built-in step to <em>his</em> right — it moves itself, it isn't a tracking note</div>
 <h3>Homing — don't step these at all</h3>
 <div class="entry">
-  <script>document.write(icons('ub1'))</script>
-  <span class="frame-data">High | i24~25 | <strong>+5</strong> | Homing | 6 chip | Balcony Break</span>
+<script>document.write(icons('ub1'))</script>
+<span class="frame-data">High | i24~25 | <strong>+5</strong> | Homing | 6 chip | Balcony Break</span>
 </div>
 <div class="note">Neck Hunter — plus, homing, and a high. Duck it on read. In Heat (H.ub+1) it becomes an instant Tornado, still +5</div>
 <div class="entry">
-  <script>document.write(icons('ff3'))</script>
-  <span class="frame-data">High | i17~19 | <strong>+2</strong> | Homing | 6 chip | Balcony Break</span>
+<script>document.write(icons('ff3'))</script>
+<span class="frame-data">High | i17~19 | <strong>+2</strong> | Homing | 6 chip | Balcony Break</span>
 </div>
 <div class="note">Comeback Kick — also high, also duckable</div>
 <div class="entry">
-  <script>document.write(icons('b3+4'))</script>
-  <span class="frame-data">Mid | i20~21 | -9 | Homing | Balcony Break</span>
+<script>document.write(icons('b3+4'))</script>
+<span class="frame-data">Mid | i20~21 | -9 | Homing | Balcony Break</span>
 </div>
 <div class="note">Pendulum Kick — block it; nothing to punish</div>
 <div class="entry">
-  <script>document.write(icons('db3'))</script>
-  <span class="frame-data">Low | i22~24 | <strong>-26</strong> | Homing | High crush 6~51 | +74a on CH</span>
+<script>document.write(icons('db3'))</script>
+<span class="frame-data">Low | i22~24 | <strong>-26</strong> | Homing | High crush 6~51 | +74a on CH</span>
 </div>
 <div class="note">Foot Sweep — block low and launch</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> block and launch. Victor: <b>ws1</b>.</div>
 <div class="entry">
-  <script>document.write(icons('1+3'))</script>
-  <span class="frame-data">Generic throws are homing | Break 1 or 2</span>
+<script>document.write(icons('1+3'))</script>
+<span class="frame-data">Generic throws are homing | Break 1 or 2</span>
 </div>
-<div class="callout "><strong>Evidence tier:</strong> the SSR default is set by Tier 1 — Wavu's per-move "Whiffs vs …" and tracking notes, every row quoted. Tier 2, the TekkenDocs community sidestep chart by @Mezerdie, also says <strong>SSR</strong>, so there's no disagreement to resolve. Nothing in this section is lab-tested.</div>
-
+<div class="callout"><strong>Evidence tier:</strong> the SSR default is set by Tier 1 — Wavu's per-move "Whiffs vs …" and tracking notes, every row quoted. Tier 2, the TekkenDocs community sidestep chart by @Mezerdie, also says <strong>SSR</strong>, so there's no disagreement to resolve. Nothing in this section is lab-tested.</div>
 <!-- ── STANDING BLOCK PUNISHMENT ── -->
-
-<h2>Standing Block Punishment</h2>
+<h2 id="standing-block"><span>Standing Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
-<div class="entry t-low">
-  <script>document.write(icons('1+2'))</script>
-  <span class="frame-data">i17~19 | <span class="blk">-10</span> | Mid | Can transition to BT with B (still -10)</span>
+<div class="entry">
+<script>document.write(icons('1+2'))</script>
+<span class="frame-data">i17~19 | -10 | Mid | Can transition to BT with B (still -10)</span>
 </div>
 <div class="note">Dark Buzzsaw extensions: 1+2,2 is -3 (high — duck it), 1+2,4 is -13. Wait for him to stop</div>
-<div class="entry t-low">
-  <script>document.write(icons('cd2'))</script>
-  <span class="frame-data">i11~12 | -10 | <strong>High</strong> | Dark Upper | +36a on hit</span>
+<div class="entry">
+<script>document.write(icons('cd2'))</script>
+<span class="frame-data">i11~12 | -10 | <strong>High</strong> | Dark Upper | +36a on hit</span>
 </div>
 <div class="note">His crouch-dash launcher — it's high, so ducking beats it outright. Also f,n,df+2 (i13+)</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> −10 punish. Victor: <b>1,2</b>. It's high, so ducking it on read also works.</div>
-<div class="entry t-low">
-  <script>document.write(icons('ff3+4'))</script>
-  <span class="frame-data">i23~24 | <span class="blk">-10</span> | High | Drop Kick | 10 chip | Low crush 14~39</span>
+<div class="entry">
+<script>document.write(icons('ff3+4'))</script>
+<span class="frame-data">i23~24 | -10 | High | Drop Kick | 10 chip | Low crush 14~39</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('BT.4'))</script>
-  <span class="frame-data">i18 | <span class="blk">-10</span> | Mid | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('BT.4'))</script>
+<span class="frame-data">i18 | -10 | Mid | Balcony Break</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('f2'))</script>
-  <span class="frame-data">i15~16 | <span class="blk">-11</span> | Mid | Elbow</span>
+<div class="entry">
+<script>document.write(icons('f2'))</script>
+<span class="frame-data">i15~16 | -11 | Mid | Elbow</span>
 </div>
 <div class="note">f+2,1 is only -9 and a Heat Engager — the ,1 is high. Duck it on block (see Duck and Launch)</div>
-<div class="entry t-low">
-  <script>document.write(icons('f3','2'))</script>
-  <span class="frame-data">i20~21 | <span class="blk">-11</span> | Mid, Mid | Cannot be interrupted</span>
+<div class="entry">
+<script>document.write(icons('f3','2'))</script>
+<span class="frame-data">i20~21 | -11 | Mid, Mid | Cannot be interrupted</span>
 </div>
 <div class="note">f+3,2,1 continues to -13 and whiffs vs SSL from 2nd block</div>
-<div class="entry t-low">
-  <script>document.write(icons('db2'))</script>
-  <span class="frame-data">i14 | <span class="blk">-11</span> | Mid</span>
+<div class="entry">
+<script>document.write(icons('db2'))</script>
+<span class="frame-data">i14 | -11 | Mid</span>
 </div>
 <div class="note">Branches: db+2,3 -12 | db+2,4 -5 (high — duck) | db+2,H.1 +3 in Heat</div>
-<div class="entry t-low">
-  <script>document.write(icons('b2'))</script>
-  <span class="frame-data">i13 | <span class="blk">-11</span> | Mid</span>
+<div class="entry">
+<script>document.write(icons('b2'))</script>
+<span class="frame-data">i13 | -11 | Mid</span>
 </div>
 <div class="note">b+2,1 is -12 and can't be interrupted; b+2,1,2 ends -7 with a high</div>
-<div class="entry t-low">
-  <script>document.write(icons('d2','4','3'))</script>
-  <span class="frame-data">i35~40 | <strong>-11c</strong> | Mid, Mid, Mid | Jab evasion</span>
+<div class="entry">
+<script>document.write(icons('d2','4','3'))</script>
+<span class="frame-data">i35~40 | <strong>-11c</strong> | Mid, Mid, Mid | Jab evasion</span>
 </div>
 <div class="note">Recovers crouching — punish with character's WS punisher, not a standing one</div>
-<div class="entry t-low">
-  <script>document.write(icons('df2'))</script>
-  <span class="frame-data">i15~16 | <span class="blk">-12</span> | Mid | Concussion Hook | +22a on CH | Jab evasion?</span>
+<div class="entry">
+<script>document.write(icons('df2'))</script>
+<span class="frame-data">i15~16 | -12 | Mid | Concussion Hook | +22a on CH | Jab evasion?</span>
 </div>
 <div class="note">df+2,1 is +0 and the ,1 is high — see Duck and Launch</div>
-<div class="entry t-low">
-  <script>document.write(icons('uf2'))</script>
-  <span class="frame-data">i15~16 | <span class="blk">-12</span> | Mid | Also u+2 / ub+2</span>
+<div class="entry">
+<script>document.write(icons('uf2'))</script>
+<span class="frame-data">i15~16 | -12 | Mid | Also u+2 / ub+2</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('f1+2'))</script>
-  <span class="frame-data">i22~23 | <span class="blk">-12</span> | Mid | Power Crush (pc7~21)</span>
+<div class="entry">
+<script>document.write(icons('f1+2'))</script>
+<span class="frame-data">i22~23 | -12 | Mid | Power Crush (pc7~21)</span>
 </div>
 <div class="note">Only -6 if it absorbed one of your hits — then you lose the punish</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> −12 punish. Victor: <b>2,2,2</b> / 2,1~F.</div>
-<div class="entry t-low">
-  <script>document.write(icons('ws1'))</script>
-  <span class="frame-data">i15~16 | <span class="blk">-12</span> | Mid | Snap Uppercut | +31a on hit</span>
+<div class="entry">
+<script>document.write(icons('ws1'))</script>
+<span class="frame-data">i15~16 | -12 | Mid | Snap Uppercut | +31a on hit</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('db2','3'))</script>
-  <span class="frame-data">i26~27 | <span class="blk">-12</span> | Mid, Mid | Balcony Break | Whiffs vs SSL/SWL from 1st block (inconsistent)</span>
+<div class="entry">
+<script>document.write(icons('db2','3'))</script>
+<span class="frame-data">i26~27 | -12 | Mid, Mid | Balcony Break | Whiffs vs SSL/SWL from 1st block (inconsistent)</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('db2','4','2'))</script>
-  <span class="frame-data">i30~31 | <span class="blk">-12</span> | Mid, High, Mid | Dark Flood</span>
+<div class="entry">
+<script>document.write(icons('db2','4','2'))</script>
+<span class="frame-data">i30~31 | -12 | Mid, High, Mid | Dark Flood</span>
 </div>
 <div class="note">Interrupt with i5 from 2nd block — or duck the ,4 high</div>
-<div class="entry t-low">
-  <script>document.write(icons('b1','2'))</script>
-  <span class="frame-data">i20~21 | <span class="blk">-12</span> | High, Mid | Jails from 1st block (2F delay)</span>
+<div class="entry">
+<script>document.write(icons('b1','2'))</script>
+<span class="frame-data">i20~21 | -12 | High, Mid | Jails from 1st block (2F delay)</span>
 </div>
 <div class="note">Can dash into BAD with F — he's still -12, so take your turn</div>
-<div class="entry t-low">
-  <script>document.write(icons('b2','1'))</script>
-  <span class="frame-data">i18 | <span class="blk">-12</span> | Mid, Mid | Cannot be interrupted</span>
+<div class="entry">
+<script>document.write(icons('b2','1'))</script>
+<span class="frame-data">i18 | -12 | Mid, Mid | Cannot be interrupted</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('b3'))</script>
-  <span class="frame-data">i16~18 | -12 | <strong>High</strong> | Tornado | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('b3'))</script>
+<span class="frame-data">i16~18 | -12 | <strong>High</strong> | Tornado | Balcony Break</span>
 </div>
 <div class="note">Dark Toll Kick — high, so ducking also beats it</div>
-<div class="entry t-low">
-  <script>document.write(icons('BAD.2','4'))</script>
-  <span class="frame-data">i18~19 | <span class="blk">-12</span> | Mid, Mid, Throw | Throw on front hit only</span>
+<div class="entry">
+<script>document.write(icons('BAD.2','4'))</script>
+<span class="frame-data">i18~19 | -12 | Mid, Mid, Throw | Throw on front hit only</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('BAD.1','2'))</script>
-  <span class="frame-data">i24~25 | <span class="blk">-12</span> | High, Mid | Heat Engager | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('BAD.1','2'))</script>
+<span class="frame-data">i24~25 | -12 | High, Mid | Heat Engager | Balcony Break</span>
 </div>
 <div class="note">Duck the BAD.1 and none of this happens</div>
-<div class="entry t-low">
-  <script>document.write(icons('SS.2'))</script>
-  <span class="frame-data">i19~20 | -12 | <strong>Low</strong> | High crush 6~50 | Also BT.d+2</span>
+<div class="entry">
+<script>document.write(icons('SS.2'))</script>
+<span class="frame-data">i19~20 | -12 | <strong>Low</strong> | High crush 6~50 | Also BT.d+2</span>
 </div>
 <div class="note">Low — listed here for the sidestep entry; see Low Block Punishment</div>
 <div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
-<div class="entry t-mid">
-  <script>document.write(icons('ub4'))</script>
-  <span class="frame-data">i15~17 | <span class="blk">-13</span> | Mid | +19a on hit</span>
+<div class="entry">
+<script>document.write(icons('ub4'))</script>
+<span class="frame-data">i15~17 | -13 | Mid | +19a on hit</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('uf4'))</script>
-  <span class="frame-data">i15~17 | <span class="blk">-13</span> | Mid | Jump frames 9~30 | Also u+4</span>
+<div class="entry">
+<script>document.write(icons('uf4'))</script>
+<span class="frame-data">i15~17 | -13 | Mid | Jump frames 9~30 | Also u+4</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('ufn4'))</script>
-  <span class="frame-data">i23~25 | <span class="blk">-13</span> | Mid | Delayed Rising Toe Kick</span>
+<div class="entry">
+<script>document.write(icons('ufn4'))</script>
+<span class="frame-data">i23~25 | -13 | Mid | Delayed Rising Toe Kick</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('uf2','1'))</script>
-  <span class="frame-data">i25~26 | <span class="blk">-13</span> | Mid, Mid | Death Sandwich | May whiff vs SSR from 1st block</span>
+<div class="entry">
+<script>document.write(icons('uf2','1'))</script>
+<span class="frame-data">i25~26 | -13 | Mid, Mid | Death Sandwich | May whiff vs SSR from 1st block</span>
 </div>
 <div class="note">Interrupt with i7</div>
-<div class="entry t-mid">
-  <script>document.write(icons('f3','2','1'))</script>
-  <span class="frame-data">i24~26 | <span class="blk">-13</span> | Mid, Mid, Mid | Dark Tide | Tornado | Whiffs vs SSL from 2nd block</span>
+<div class="entry">
+<script>document.write(icons('f3','2','1'))</script>
+<span class="frame-data">i24~26 | -13 | Mid, Mid, Mid | Dark Tide | Tornado | Whiffs vs SSL from 2nd block</span>
 </div>
 <div class="note">Interrupt with i8 from 2nd block</div>
-<div class="entry t-mid">
-  <script>document.write(icons('ws3','1'))</script>
-  <span class="frame-data">i24~25 | <span class="blk">-13</span> | Mid, Mid | Heat Engager | Balcony Break | Whiffs vs SSR from 1st block</span>
+<div class="entry">
+<script>document.write(icons('ws3','1'))</script>
+<span class="frame-data">i24~25 | -13 | Mid, Mid | Heat Engager | Balcony Break | Whiffs vs SSR from 1st block</span>
 </div>
 <div class="note">Interrupt with i6 from 1st block | Heat Dash makes it +43d on hit</div>
-<div class="note"><strong>Mike's drill (14 Nov):</strong> −13, character dependent. Victor: Victor: <b>uf+1,1</b> (i13).</div>
-<div class="entry t-mid">
-  <script>document.write(icons('1+2','4'))</script>
-  <span class="frame-data">i19~20 | <span class="blk">-13</span> | Mid, Mid | +58a on CH</span>
+<div class="note"><strong>Mike's drill (14 Nov):</strong> −13, character dependent. Victor: <b>uf+1,1</b> (i13).</div>
+<div class="entry">
+<script>document.write(icons('1+2','4'))</script>
+<span class="frame-data">i19~20 | -13 | Mid, Mid | +58a on CH</span>
 </div>
 <div class="note">Interrupt with i3 from 1st block</div>
-<div class="entry t-mid">
-  <script>document.write(icons('3','4','1'))</script>
-  <span class="frame-data">i21~22 | <span class="blk">-13</span> | High, Mid, Mid | Dark Stampede | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('3','4','1'))</script>
+<span class="frame-data">i21~22 | -13 | High, Mid, Mid | Dark Stampede | Balcony Break</span>
 </div>
 <div class="note">Can cancel the ,1 with B (-14). The opener is high — duck it and the string never starts</div>
-<div class="entry t-mid">
-  <script>document.write(icons('BAD.3'))</script>
-  <span class="frame-data">i20~21 | <span class="blk">-13</span> | Mid | Power Crush (pc7~19) | Tracks SSR</span>
+<div class="entry">
+<script>document.write(icons('BAD.3'))</script>
+<span class="frame-data">i20~21 | -13 | Mid | Power Crush (pc7~19) | Tracks SSR</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('ub1+2'))</script>
-  <span class="frame-data">i30~31 | <span class="blk">-14</span> | Mid | Straight Arrow | Built-in step | Also BAD.ub+1+2</span>
+<div class="entry">
+<script>document.write(icons('ub1+2'))</script>
+<span class="frame-data">i30~31 | -14 | Mid | Straight Arrow | Built-in step | Also BAD.ub+1+2</span>
 </div>
 <div class="note">Charged version ub+1+2* (i50~52) is +0, +8 in Heat — don't press into the charge</div>
-<div class="entry t-mid">
-  <script>document.write(icons('d2','4'))</script>
-  <span class="frame-data">i22~23 | <span class="blk">-14</span> | Mid, Mid | Input cannot be delayed</span>
+<div class="entry">
+<script>document.write(icons('d2','4'))</script>
+<span class="frame-data">i22~23 | -14 | Mid, Mid | Input cannot be delayed</span>
 </div>
 <div class="note">d+2,4,3 adds a third mid at -11c — wait a beat; if he continues, it's a WS punish</div>
-<div class="entry t-mid">
-  <script>document.write(icons('BT.3'))</script>
-  <span class="frame-data">i13~14 | <span class="blk">-14</span> | Mid | Tornado | Unparryable by kick parries (bug?)</span>
+<div class="entry">
+<script>document.write(icons('BT.3'))</script>
+<span class="frame-data">i13~14 | -14 | Mid | Tornado | Unparryable by kick parries (bug?)</span>
 </div>
 <div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
-<div class="entry t-high">
-  <script>document.write(icons('3+4','2'))</script>
-  <span class="frame-data">i17~34 | <strong>-18d</strong> | Mid, Mid | Low crush 9~37 | Whiffs vs SSR/SWR from 1st block</span>
+<div class="entry">
+<script>document.write(icons('3+4','2'))</script>
+<span class="frame-data">i17~34 | <strong>-18d</strong> | Mid, Mid | Low crush 9~37 | Whiffs vs SSR/SWR from 1st block</span>
 </div>
 <div class="note">Ends knocked down on block — punish with a grounded-reach or FC/WS move if your character has one</div>
-<div class="entry t-high">
-  <script>document.write(icons('BAD.db1+2'))</script>
-  <span class="frame-data">i14~17 | <strong>-18c</strong> | Mid, Throw | Low crush 14~34</span>
+<div class="entry">
+<script>document.write(icons('BAD.db1+2'))</script>
+<span class="frame-data">i14~17 | <strong>-18c</strong> | Mid, Throw | Low crush 14~34</span>
 </div>
 <div class="note">Recovers crouching — punish with character's WS launcher</div>
-<div class="entry t-high">
-  <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">i20 | <span class="blk">-18</span> | Rage Art | Mid | Power Crush</span>
+<div class="entry">
+<script>document.write(icons('R.df1+2'))</script>
+<span class="frame-data">i20 | -18 | Rage Art | Mid | Power Crush</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('f1+4'))</script>
-  <span class="frame-data">i13~15 | <strong>-19</strong> | Mid | Shoulder Impact | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('f1+4'))</script>
+<span class="frame-data">i13~15 | <strong>-19</strong> | Mid | Shoulder Impact | Balcony Break</span>
 </div>
 <div class="note">Fast and unsafe — launch it</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> −19 punish. Victor: <b>df+2</b> launch.</div>
-<div class="entry t-high">
-  <script>document.write(icons('FUFT.b3+4'))</script>
-  <span class="frame-data">i16~28 | <strong>-25</strong> | Mid | Whirling Spring Kick | His face-up wake-up kick | Balcony Break</span>
+<div class="entry">
+<script>document.write(icons('FUFT.b3+4'))</script>
+<span class="frame-data">i16~28 | <strong>-25</strong> | Mid | Whirling Spring Kick | His face-up wake-up kick | Balcony Break</span>
 </div>
 <div class="note">Airborne frames 12~34, so a low meant to catch his wake-up goes under it | Block it and launch — knocks down on hit (+4a)</div>
-
 <!-- ── LOW BLOCK PUNISHMENT ── -->
-
-<h2>Low Block Punishment</h2>
+<h2 id="low-block"><span>Low Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
-<div class="entry t-low">
-  <script>document.write(icons('d1','4'))</script>
-  <span class="frame-data">i15 | <span class="blk">-10</span> | Special low, Mid | Jails from 1st block</span>
+<div class="entry">
+<script>document.write(icons('d1','4'))</script>
+<span class="frame-data">i15 | -10 | Special low, Mid | Jails from 1st block</span>
 </div>
 <div class="note">The d+1 is a special low — standing block takes it. The ,4 mid jails, so block it out and punish the -10</div>
-<div class="entry t-low">
-  <script>document.write(icons('d3'))</script>
-  <span class="frame-data">i17 | <span class="blk">-12</span> | Low | Stomp | +9 on CH</span>
+<div class="entry">
+<script>document.write(icons('d3'))</script>
+<span class="frame-data">i17 | -12 | Low | Stomp | +9 on CH</span>
 </div>
-<div class="entry t-low">
-  <script>document.write(icons('SS.2'))</script>
-  <span class="frame-data">i19~20 | <span class="blk">-12</span> | Low | High crush 6~50 | Also BT.d+2</span>
+<div class="entry">
+<script>document.write(icons('SS.2'))</script>
+<span class="frame-data">i19~20 | -12 | Low | High crush 6~50 | Also BT.d+2</span>
 </div>
 <div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
-<div class="entry t-mid">
-  <script>document.write(icons('BAD.4'))</script>
-  <span class="frame-data">i17~18 | <span class="blk">-13</span> | Low | +26a on CH | His only low out of BAD</span>
+<div class="entry">
+<script>document.write(icons('BAD.4'))</script>
+<span class="frame-data">i17~18 | -13 | Low | +26a on CH | His only low out of BAD</span>
 </div>
-<div class="entry t-mid">
-  <script>document.write(icons('ffn2'))</script>
-  <span class="frame-data">i19 | <span class="blk">-13</span> | Low | Underhanded | High crush 8~37</span>
+<div class="entry">
+<script>document.write(icons('ffn2'))</script>
+<span class="frame-data">i19 | -13 | Low | Underhanded | High crush 8~37</span>
 </div>
 <div class="note">His running low that ducks your highs. On hit he can dash into BAD (+8)</div>
 <div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
-<div class="entry t-high">
-  <script>document.write(icons('d4'))</script>
-  <span class="frame-data">i14 | <span class="blk">-15</span> | Low | High crush 4~48 | Also hFC.4</span>
+<div class="entry">
+<script>document.write(icons('d4'))</script>
+<span class="frame-data">i14 | -15 | Low | High crush 4~48 | Also hFC.4</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('d3+4','3'))</script>
-  <span class="frame-data">i23~24 | <span class="blk">-15</span> | Low, Mid | Taurus Cutter Trap | Tornado | Whiffs vs SSR/SWR/SWL from 1st block</span>
+<div class="entry">
+<script>document.write(icons('d3+4','3'))</script>
+<span class="frame-data">i23~24 | -15 | Low, Mid | Taurus Cutter Trap | Tornado | Whiffs vs SSR/SWR/SWL from 1st block</span>
 </div>
 <div class="note">Interrupt with i11 after blocking the d+3+4. Or step right and it whiffs</div>
-<div class="entry t-high">
-  <script>document.write(icons('d3+4'))</script>
-  <span class="frame-data">i17 | <span class="blk">-16</span> | Low | High crush 6~52 | Recovers 3F faster on hit</span>
+<div class="entry">
+<script>document.write(icons('d3+4'))</script>
+<span class="frame-data">i17 | -16 | Low | High crush 6~52 | Recovers 3F faster on hit</span>
 </div>
 <div class="note">d+3+4,1 (high ender) is -9 — stay crouched and it whiffs. d+3+4,3 (mid ender) is -15</div>
-<div class="entry t-high">
-  <script>document.write(icons('hFC.3'))</script>
-  <span class="frame-data">i18 | <span class="blk">-16</span> | Low | From crouch</span>
+<div class="entry">
+<script>document.write(icons('hFC.3'))</script>
+<span class="frame-data">i18 | -16 | Low | From crouch</span>
 </div>
-<div class="entry t-high">
-  <script>document.write(icons('db4'))</script>
-  <span class="frame-data">i29~31 | <span class="blk">-17</span> | Low | Low Drop Kick | He ends face-down on the floor</span>
+<div class="entry">
+<script>document.write(icons('db4'))</script>
+<span class="frame-data">i29~31 | -17 | Low | Low Drop Kick | He ends face-down on the floor</span>
 </div>
 <div class="note">He's grounded after this — punish with a low/grounded hit or step in and pressure his wake-up</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> character-specific punish. Victor: Needs a move that hits a grounded opponent; not in your punish table yet — lab it.</div>
-<div class="entry t-high">
-  <script>document.write(icons('db3'))</script>
-  <span class="frame-data">i22~24 | <strong>-26</strong> | Low | Homing | High crush 6~51 | +74a on CH</span>
+<div class="entry">
+<script>document.write(icons('db3'))</script>
+<span class="frame-data">i22~24 | <strong>-26</strong> | Low | Homing | High crush 6~51 | +74a on CH</span>
 </div>
 <div class="note">Foot Sweep — big launch on block. Slow (i22~24), so watch for it</div>
 <div class="note">Running <span class="mono">wr4</span> Dashing Low Drop Kick (i20~24) is <strong>-21</strong> and leaves him face-up on the floor — punish it the same way</div>
-<div class="entry t-high">
-  <script>document.write(icons('OTG.d4','4','4'))</script>
-  <span class="frame-data">i18~21 | <strong>-16c</strong> | Low, Low, Low | Crazy Stomp | Hits you on the ground | Floor Break</span>
+<div class="entry">
+<script>document.write(icons('OTG.d4','4','4'))</script>
+<span class="frame-data">i18~21 | <strong>-16c</strong> | Low, Low, Low | Crazy Stomp | Hits you on the ground | Floor Break</span>
 </div>
 <div class="note">His ground stomps after a knockdown. Scaled combo from the 1st hit while you're down | Get up and block the first stomp and it's -16c — punish with character's WS launcher</div>
 <div class="note">OTG.d+4,4,3+4 Crazy Torment ends in a jumping stomp (i30~32, airborne 13~32) and is -17c | If the first stomp hits you standing he's -5; Torment's last hit is +5 on a standing hit</div>
-
 <!-- ── DUCK AND LAUNCH ── -->
-
-<h2>Duck and Launch</h2>
+<h2 id="duck-launch"><span>Duck and Launch</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <h3>String enders — duck the high after blocking the first hit(s)</h3>
 <div class="entry">
-  <script>document.write(icons('f2','1'))</script>
-  <span class="frame-data">(MID, HIGH) | -9 oB | Heat Engager | Balcony Break</span>
+<script>document.write(icons('f2','1'))</script>
+<span class="frame-data">(MID, HIGH) | -9 oB | Heat Engager | Balcony Break</span>
 </div>
 <div class="note">Combo from 1st hit (5F delay), so ducking only works once you've blocked the f+2 | Ducking also denies the Heat engage | Punish with character's FC or WS launcher</div>
 <div class="entry">
-  <script>document.write(icons('df2','1'))</script>
-  <span class="frame-data">(MID, HIGH) | +0 oB | Combo from 1st hit</span>
+<script>document.write(icons('df2','1'))</script>
+<span class="frame-data">(MID, HIGH) | +0 oB | Combo from 1st hit</span>
 </div>
 <div class="note">Interrupt with i1 from 1st block — effectively no gap, so this is a duck on read, not reaction. Can dash into BAD with F (+0)</div>
 <div class="entry">
-  <script>document.write(icons('df1','2'))</script>
-  <span class="frame-data">(MID, HIGH) | -6 oB | Combo only on 1st CH</span>
+<script>document.write(icons('df1','2'))</script>
+<span class="frame-data">(MID, HIGH) | -6 oB | Combo only on 1st CH</span>
 </div>
 <div class="note">Duck the ,2 after blocking df+1 | Punish with character's FC or WS launcher</div>
 <div class="note"><strong>Mike's drill (14 Nov):</strong> crouch and launch. Victor: Duck the ,2 → <b>ws1</b>.</div>
 <div class="entry">
-  <script>document.write(icons('db2','4'))</script>
-  <span class="frame-data">(MID, HIGH) | -5 oB | Cannot be interrupted</span>
+<script>document.write(icons('db2','4'))</script>
+<span class="frame-data">(MID, HIGH) | -5 oB | Cannot be interrupted</span>
 </div>
 <div class="note">Duck the ,4 | db+2,4,2 adds a mid (-12)</div>
 <div class="entry">
-  <script>document.write(icons('1+2','2'))</script>
-  <span class="frame-data">(MID, HIGH) | -3 oB | Combo from 1st hit | Cannot be delayed</span>
+<script>document.write(icons('1+2','2'))</script>
+<span class="frame-data">(MID, HIGH) | -3 oB | Combo from 1st hit | Cannot be delayed</span>
 </div>
 <div class="note">Duck it after blocking the 1+2. The 1+2,4 mid branch is -13</div>
 <div class="entry">
-  <script>document.write(icons('3+4','1'))</script>
-  <span class="frame-data">(MID, HIGH) | -8 oB | Combo from 1st hit</span>
+<script>document.write(icons('3+4','1'))</script>
+<span class="frame-data">(MID, HIGH) | -8 oB | Combo from 1st hit</span>
 </div>
 <div class="note">Interrupt with i6 from 1st block. Can dash into BAD with F (-8)</div>
 <div class="entry">
-  <script>document.write(icons('b2','1','2'))</script>
-  <span class="frame-data">(MID, MID, HIGH) | -7 oB | Balcony Break</span>
+<script>document.write(icons('b2','1','2'))</script>
+<span class="frame-data">(MID, MID, HIGH) | -7 oB | Balcony Break</span>
 </div>
 <div class="note">Interrupt with i5 from 2nd block — or duck the last hit</div>
 <div class="entry">
-  <script>document.write(icons('BAD.2','3'))</script>
-  <span class="frame-data">(MID, HIGH) | -7 oB | Tornado | Balcony Break</span>
+<script>document.write(icons('BAD.2','3'))</script>
+<span class="frame-data">(MID, HIGH) | -7 oB | Tornado | Balcony Break</span>
 </div>
 <div class="note">Duck the ,3</div>
 <div class="entry">
-  <script>document.write(icons('d3+4','1'))</script>
-  <span class="frame-data">(LOW, HIGH) | -9 oB | Balcony Break</span>
+<script>document.write(icons('d3+4','1'))</script>
+<span class="frame-data">(LOW, HIGH) | -9 oB | Balcony Break</span>
 </div>
 <div class="note">Stay crouched after blocking the low and the ,1 whiffs</div>
 <h3>Full-high strings — duck the opener</h3>
 <div class="entry">
-  <script>document.write(icons('1','2'))</script>
-  <span class="frame-data">(HIGH, HIGH) | -3 oB | Jails from 1st block</span>
+<script>document.write(icons('1','2'))</script>
+<span class="frame-data">(HIGH, HIGH) | -3 oB | Jails from 1st block</span>
 </div>
 <div class="note">Duck the jab and the whole branch whiffs. 1,2,1 ends in a mid (-5) — interrupt with i4 from 2nd block</div>
 <div class="entry">
-  <script>document.write(icons('4','3'))</script>
-  <span class="frame-data">(HIGH, HIGH) | +0 oB | +27d on CH | Whiffs vs SSR/SWR from 1st block</span>
+<script>document.write(icons('4','3'))</script>
+<span class="frame-data">(HIGH, HIGH) | +0 oB | +27d on CH | Whiffs vs SSR/SWR from 1st block</span>
 </div>
 <div class="note">Interrupt with i5 from 1st block. Ducking or stepping right both beat it</div>
 <div class="entry">
-  <script>document.write(icons('BAD.1','4'))</script>
-  <span class="frame-data">(HIGH, HIGH) | +4~+5 oB | Ends back-turned</span>
+<script>document.write(icons('BAD.1','4'))</script>
+<span class="frame-data">(HIGH, HIGH) | +4~+5 oB | Ends back-turned</span>
 </div>
 <div class="note">Plus on block — duck the BAD.1 instead of blocking it</div>
 <h3>Naked highs — duck on read</h3>
 <div class="entry">
-  <script>document.write(icons('ub1'))</script>
-  <span class="frame-data">i24~25 | <strong>+5</strong> | Homing | 6 chip | Balcony Break</span>
+<script>document.write(icons('ub1'))</script>
+<span class="frame-data">i24~25 | <strong>+5</strong> | Homing | 6 chip | Balcony Break</span>
 </div>
 <div class="note">Neck Hunter — the single best reason to duck in this matchup. You can't step it and you can't punish it on block</div>
 <div class="entry">
-  <script>document.write(icons('cd1'))</script>
-  <span class="frame-data">i15~16 | <strong>+5</strong> | 6 chip | Recovers 8F faster on hit</span>
+<script>document.write(icons('cd1'))</script>
+<span class="frame-data">i15~16 | <strong>+5</strong> | 6 chip | Recovers 8F faster on hit</span>
 </div>
 <div class="note">Crouch-dash high — plus on block. If you duck the crouch dash, his cd4 mid knee (-9) is what beats you</div>
 <div class="entry">
-  <script>document.write(icons('cd2'))</script>
-  <span class="frame-data">i11~12 | -10 | Dark Upper | +36a on hit</span>
+<script>document.write(icons('cd2'))</script>
+<span class="frame-data">i11~12 | -10 | Dark Upper | +36a on hit</span>
 </div>
 <div class="note">Duck it and launch</div>
 <div class="entry">
-  <script>document.write(icons('ff3'))</script>
-  <span class="frame-data">i17~19 | <strong>+2</strong> | Homing | 6 chip</span>
+<script>document.write(icons('ff3'))</script>
+<span class="frame-data">i17~19 | <strong>+2</strong> | Homing | 6 chip</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('3'))</script>
-  <span class="frame-data">i15~16 | -4 | Tracks SSR</span>
+<script>document.write(icons('3'))</script>
+<span class="frame-data">i15~16 | -4 | Tracks SSR</span>
 </div>
 <div class="note">The reason not to SSR on reflex. 3,4 and 3,4,1 follow with mids</div>
 <div class="entry">
-  <script>document.write(icons('b3'))</script>
-  <span class="frame-data">i16~18 | -12 | Tornado | Balcony Break</span>
+<script>document.write(icons('b3'))</script>
+<span class="frame-data">i16~18 | -12 | Tornado | Balcony Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('db3+4'))</script>
-  <span class="frame-data">i20~21 | -7 | High crush 6~19 | 4 chip | Opponent recovers crouching on hit</span>
+<script>document.write(icons('db3+4'))</script>
+<span class="frame-data">i20~21 | -7 | High crush 6~19 | 4 chip | Opponent recovers crouching on hit</span>
 </div>
-<div class="callout ">All three of his power crushes (f+1+2, BAD.3, the Rage Art) and his Heat Burst are <strong>mids</strong> — ducking beats none of them.</div>
-
+<div class="callout">All three of his power crushes (f+1+2, BAD.3, the Rage Art) and his Heat Burst are <strong>mids</strong> — ducking beats none of them.</div>
 <!-- ── STANCE COUNTERPLAY ── -->
-
-<h2>Stance Counterplay</h2>
+<h2 id="stances"><span>Stance Counterplay</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <h3>BAD — Bad Jaguar (his dash stance)</h3>
-<div class="callout ">Entered with F off a string or a parry. <strong>On block:</strong> <span class="mono">df+2,1</span> → +0, <span class="mono">3+4,1</span> → -8, <span class="mono">b+1,2</span> → -12, <span class="mono">1,2,1</span> cancel → -19, <span class="mono">H.ub+1</span> → +5. <strong>On hit only:</strong> <span class="mono">f+1+2</span> (+26g), <span class="mono">f,f,n,2</span> (+8). Raw entry is the <span class="mono">f+3+4</span> punch parry.<br>
-<strong>Can he block in BAD?</strong> <strong>No.</strong> Wavu's <span class="mono">f+3+4</span> (Bad Jaguar) entry says "Cannot block in stance," and TekkenDocs agrees. He can hold the stance for up to 25 frames before choosing a move, but he can't guard while he's in it — so when he enters it minus, anything you press first wins unless he answers with the BAD.3 power crush.<br>
-<strong>His only low:</strong> <span class="mono">BAD.4</span>, i17~18, -13. Everything else is mid or high, so stand-block is the default.<br>
+<div class="callout">Entered with F off a string or a parry. <strong>On block:</strong> <span class="mono">df+2,1</span> → +0, <span class="mono">3+4,1</span> → -8, <span class="mono">b+1,2</span> → -12, <span class="mono">1,2,1</span> cancel → -19, <span class="mono">H.ub+1</span> → +5. <strong>On hit only:</strong> <span class="mono">f+1+2</span> (+26g), <span class="mono">f,f,n,2</span> (+8). Raw entry is the <span class="mono">f+3+4</span> punch parry.<br/>
+<strong>Can he block in BAD?</strong> <strong>No.</strong> Wavu's <span class="mono">f+3+4</span> (Bad Jaguar) entry says "Cannot block in stance," and TekkenDocs agrees. He can hold the stance for up to 25 frames before choosing a move, but he can't guard while he's in it — so when he enters it minus, anything you press first wins unless he answers with the BAD.3 power crush.<br/>
+<strong>His only low:</strong> <span class="mono">BAD.4</span>, i17~18, -13. Everything else is mid or high, so stand-block is the default.<br/>
 <strong>Fastest option:</strong> <span class="mono">BAD.1</span> at i11 — and it's a <strong>high</strong>. So from the -8, -12 and -19 entries your i10 jab wins outright, and a duck beats BAD.1 and both its follow-ups' openers. From the +0 and +5 entries it's his turn.</div>
 <div class="entry">
-  <script>document.write(icons('BAD.1'))</script>
-  <span class="frame-data">HIGH | i11 | +1 | His fastest move here</span>
+<script>document.write(icons('BAD.1'))</script>
+<span class="frame-data">HIGH | i11 | +1 | His fastest move here</span>
 </div>
 <div class="note">Duck it</div>
 <div class="entry">
-  <script>document.write(icons('BAD.1','2'))</script>
-  <span class="frame-data">High, Mid | -12 | Heat Engager | Balcony Break</span>
+<script>document.write(icons('BAD.1','2'))</script>
+<span class="frame-data">High, Mid | -12 | Heat Engager | Balcony Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.1','4'))</script>
-  <span class="frame-data">High, High | +4~+5 | Ends BT</span>
+<script>document.write(icons('BAD.1','4'))</script>
+<span class="frame-data">High, High | +4~+5 | Ends BT</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.2'))</script>
-  <span class="frame-data">Mid | i15~16 | -7</span>
+<script>document.write(icons('BAD.2'))</script>
+<span class="frame-data">Mid | i15~16 | -7</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.2','3'))</script>
-  <span class="frame-data">Mid, High | -7 | Tornado</span>
+<script>document.write(icons('BAD.2','3'))</script>
+<span class="frame-data">Mid, High | -7 | Tornado</span>
 </div>
 <div class="note">Duck the ,3</div>
 <div class="entry">
-  <script>document.write(icons('BAD.2','4'))</script>
-  <span class="frame-data">Mid, Mid, Throw | -12 | Throw on front hit only</span>
+<script>document.write(icons('BAD.2','4'))</script>
+<span class="frame-data">Mid, Mid, Throw | -12 | Throw on front hit only</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.3'))</script>
-  <span class="frame-data">Mid | i20~21 | -13 | Power Crush (pc7~19) | Tracks SSR</span>
+<script>document.write(icons('BAD.3'))</script>
+<span class="frame-data">Mid | i20~21 | -13 | Power Crush (pc7~19) | Tracks SSR</span>
 </div>
 <div class="note">His answer to you pressing buttons at him in BAD. Block it and punish</div>
 <div class="entry">
-  <script>document.write(icons('BAD.4'))</script>
-  <span class="frame-data">LOW | i17~18 | -13 | +26a on CH</span>
+<script>document.write(icons('BAD.4'))</script>
+<span class="frame-data">LOW | i17~18 | -13 | +26a on CH</span>
 </div>
 <div class="note">His only low — block it and punish</div>
 <div class="entry">
-  <script>document.write(icons('BAD.1+2'))</script>
-  <span class="frame-data">Mid | i26~27 | <strong>+5</strong> | Head</span>
+<script>document.write(icons('BAD.1+2'))</script>
+<span class="frame-data">Mid | i26~27 | <strong>+5</strong> | Head</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.db1+2'))</script>
-  <span class="frame-data">Mid, Throw | i14~17 | -18c | Low crush 14~34</span>
+<script>document.write(icons('BAD.db1+2'))</script>
+<span class="frame-data">Mid, Throw | i14~17 | -18c | Low crush 14~34</span>
 </div>
 <div class="note">Jumps your lows — WS punish</div>
 <div class="entry">
-  <script>document.write(icons('BAD.ub1+2'))</script>
-  <span class="frame-data">Mid | i30~31 | -14 | Charged version +0 (+8 in Heat)</span>
+<script>document.write(icons('BAD.ub1+2'))</script>
+<span class="frame-data">Mid | i30~31 | -14 | Charged version +0 (+8 in Heat)</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.2+4'))</script>
-  <span class="frame-data">Command throw | 45 | Break 2 | Homing in Heat</span>
+<script>document.write(icons('BAD.2+4'))</script>
+<span class="frame-data">Command throw | 45 | Break 2 | Homing in Heat</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('H.2+3'))</script>
-  <span class="frame-data">Heat Smash also comes out of BAD | +9 oB</span>
+<script>document.write(icons('H.2+3'))</script>
+<span class="frame-data">Heat Smash also comes out of BAD | +9 oB</span>
 </div>
 <div class="callout callout-key"><strong>How to deal with it:</strong> watch the entry. From his minus entries (b+1,2 / 3+4,1 / the 1,2,1 cancel) a fast mid or jab takes your turn — only BAD.3 power crush beats a slow button, and it's -13. From his plus entries, duck if you read BAD.1, stand-block everything else, and respect BAD.1+2 (+5).</div>
+<div class="note"><span class="theory-badge" id="nu-1">Theory (Ledger):</span> the frame race above holds because he can't block in BAD and BAD.1 is a standing high, so your jab can connect | From −8 or worse, BAD.3's armor starts on his frame 7, so it's up by your frame 15 at the earliest, after your jab lands on frame 10: jab beats every BAD option there | Boundary: at +0 (df+2,1~F) the armor is up on frame 7, before your jab, so the jab loses to BAD.3 and only beats BAD.1 by one frame | Untested, see the To-test list</div>
 <h3>BT — back turned</h3>
-<div class="callout ">Entered from <span class="mono">1+2</span> with B (-10 on block) and after <span class="mono">BAD.1,4</span> (+4~+5). He has one low (BT.d+2, -12) — stand block is the default.</div>
+<div class="callout">Entered from <span class="mono">1+2</span> with B (-10 on block) and after <span class="mono">BAD.1,4</span> (+4~+5). He has one low (BT.d+2, -12) — stand block is the default.</div>
 <div class="entry">
-  <script>document.write(icons('BT.3'))</script>
-  <span class="frame-data">Mid | i13~14 | -14 | Tornado</span>
+<script>document.write(icons('BT.3'))</script>
+<span class="frame-data">Mid | i13~14 | -14 | Tornado</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BT.4'))</script>
-  <span class="frame-data">Mid | i18 | -10 | Balcony Break</span>
+<script>document.write(icons('BT.4'))</script>
+<span class="frame-data">Mid | i18 | -10 | Balcony Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BT.d2'))</script>
-  <span class="frame-data">LOW | i19~20 | -12 | High crush 4~50</span>
+<script>document.write(icons('BT.d2'))</script>
+<span class="frame-data">LOW | i19~20 | -12 | High crush 4~50</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BT.3+4'))</script>
-  <span class="frame-data">Mid | i25~32 | -7 | Spins back to front-facing</span>
+<script>document.write(icons('BT.3+4'))</script>
+<span class="frame-data">Mid | i25~32 | -7 | Spins back to front-facing</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BT.1+4'))</script>
-  <span class="frame-data">Mid | i41~47 | Low crush 12~42</span>
+<script>document.write(icons('BT.1+4'))</script>
+<span class="frame-data">Mid | i41~47 | Low crush 12~42</span>
 </div>
 <div class="note">Slow and jumps your lows — a fast mid interrupts it</div>
-
 <!-- ── HEAT ── -->
-
-<h2>Heat</h2>
+<h2 id="heat"><span>Heat</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="entry">
-  <script>document.write(icons('H.2+3'))</script>
-  <span class="frame-data">Heat Smash (Infierno Jaguar) | Mid, Throw | i17 | <strong>+9 oB</strong> | 54 dmg | Balcony Break</span>
+<script>document.write(icons('H.2+3'))</script>
+<span class="frame-data">Heat Smash (Infierno Jaguar) | Mid, Throw | i17 | <strong>+9 oB</strong> | 54 dmg | Balcony Break</span>
 </div>
 <div class="note">Plus nine on block — no punish, don't press. Also comes out of BAD</div>
 <div class="entry">
-  <script>document.write(icons('2+3'))</script>
-  <span class="frame-data">Heat Burst | Mid | i16 | +1 oB | Power Crush (pc7~16)</span>
+<script>document.write(icons('2+3'))</script>
+<span class="frame-data">Heat Burst | Mid | i16 | +1 oB | Power Crush (pc7~16)</span>
 </div>
 <h3>Heat Engagers — how he gets in</h3>
 <div class="entry">
-  <script>document.write(icons('f2','1'))</script>
-  <span class="frame-data">Mid, High | -9 | Duck the ,1 on block and the engage never happens</span>
+<script>document.write(icons('f2','1'))</script>
+<span class="frame-data">Mid, High | -9 | Duck the ,1 on block and the engage never happens</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('ff4'))</script>
-  <span class="frame-data">Mid | i14 | -8 | Brawler Kick | Forces tech roll on hit</span>
+<script>document.write(icons('ff4'))</script>
+<span class="frame-data">Mid | i14 | -8 | Brawler Kick | Forces tech roll on hit</span>
 </div>
 <div class="note">His fast dash mid — block it, nothing to punish</div>
 <div class="entry">
-  <script>document.write(icons('ws3','1'))</script>
-  <span class="frame-data">Mid, Mid | -13 | Punish it | Or SSR — it whiffs from 1st block</span>
+<script>document.write(icons('ws3','1'))</script>
+<span class="frame-data">Mid, Mid | -13 | Punish it | Or SSR — it whiffs from 1st block</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.1','2'))</script>
-  <span class="frame-data">High, Mid | -12 | Duck the BAD.1</span>
+<script>document.write(icons('BAD.1','2'))</script>
+<span class="frame-data">High, Mid | -12 | Duck the BAD.1</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('d2+4'))</script>
-  <span class="frame-data">Storm Maker | Mid-hitting throw | i12~13 | <strong>Unbreakable</strong> | Can't Heat Dash</span>
+<script>document.write(icons('d2+4'))</script>
+<span class="frame-data">Storm Maker | Mid-hitting throw | i12~13 | <strong>Unbreakable</strong> | Can't Heat Dash</span>
 </div>
 <div class="note">Can't be broken — the answer is not being there when he presses it</div>
-<div class="callout ">Two of his five engagers (f+2,1 and BAD.1,2) are beaten by a duck. ws3,1 is a punish and whiffs to your right. f,F+4 just has to be blocked.</div>
+<div class="callout">Two of his five engagers (f+2,1 and BAD.1,2) are beaten by a duck. ws3,1 is a punish and whiffs to your right. f,F+4 just has to be blocked.</div>
 <h3>Heat-only moves</h3>
 <div class="entry">
-  <script>document.write(icons('db2','H.1'))</script>
-  <span class="frame-data">Mid, Mid | <strong>+3</strong> | Costs 240F of Heat</span>
+<script>document.write(icons('db2','H.1'))</script>
+<span class="frame-data">Mid, Mid | <strong>+3</strong> | Costs 240F of Heat</span>
 </div>
 <div class="note">Watch db+2 in Heat — the extension is plus</div>
 <div class="entry">
-  <script>document.write(icons('H.ub1'))</script>
-  <span class="frame-data">High | +5 | Instant Tornado | Homing | Costs 150F</span>
+<script>document.write(icons('H.ub1'))</script>
+<span class="frame-data">High | +5 | Instant Tornado | Homing | Costs 150F</span>
 </div>
 <div class="note">Still a high — duck it</div>
 <div class="entry">
-  <script>document.write(icons('H.BAD.ub1+2*'))</script>
-  <span class="frame-data">Mid | i50~52 | +8 | Costs 240F</span>
+<script>document.write(icons('H.BAD.ub1+2*'))</script>
+<span class="frame-data">Mid | i50~52 | +8 | Costs 240F</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('BAD.3','H.2'))</script>
-  <span class="frame-data">Mid, Mid | -9 | Jails from 1st block | Costs 240F</span>
+<script>document.write(icons('BAD.3','H.2'))</script>
+<span class="frame-data">Mid, Mid | -9 | Jails from 1st block | Costs 240F</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('H.cd1+2'))</script>
-  <span class="frame-data">Malice Mist | Unblockable high | i25~28 | Costs 600F | Also H.BAD.f+1+2</span>
+<script>document.write(icons('H.cd1+2'))</script>
+<span class="frame-data">Malice Mist | Unblockable high | i25~28 | Costs 600F | Also H.BAD.f+1+2</span>
 </div>
 <div class="note">On hit, your throw breaks are disabled for the stun — duck it. Out of Heat the mist (cd1+2) is i35~38</div>
 <div class="note">In Heat, his command throws f,hcf+1 / BAD.1+3, BAD.2+4, qcb+1+2 and the running throw become homing — stepping no longer helps, break them</div>
-
 <!-- ── THROWS ── -->
-
-<h2>Throws</h2>
-<div class="callout ">Huge throw game. Most command throws are i10~12 and break on one button — learn the animation. The ones marked unbreakable need you to duck, step, or not be there.</div>
+<h2 id="throws"><span>Throws</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout">Huge throw game. Most command throws are i10~12 and break on one button — learn the animation. The ones marked unbreakable need you to duck, step, or not be there.</div>
 <div class="entry">
-  <script>document.write(icons('1+3'))</script>
-  <span class="frame-data">35 | Break 1 or 2 | Homing</span>
+<script>document.write(icons('1+3'))</script>
+<span class="frame-data">35 | Break 1 or 2 | Homing</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('2+4'))</script>
-  <span class="frame-data">35 | Break 1 or 2 | Homing</span>
+<script>document.write(icons('2+4'))</script>
+<span class="frame-data">35 | Break 1 or 2 | Homing</span>
 </div>
 <div class="note">2+4,d+1+2 adds an <strong>unbreakable</strong> extension (+38)</div>
 <div class="entry"><span class="stance" style="margin-right:6px;">LEFT</span><span class="frame-data">Left throw | 40 | Break 1</span></div>
@@ -956,220 +967,227 @@ function icons(...notations) {
 <div class="entry"><span class="stance" style="margin-right:6px;">BACK</span><span class="frame-data">Back throw | 60 | Unbreakable</span></div>
 <div class="entry"><span class="stance" style="margin-right:6px;">f,hcf+1</span><span class="frame-data">Jaguar-motion throw | 40–70 | i10 | Break 1 | Side switch | Also BAD.1+3 | Homing in Heat</span></div>
 <div class="entry">
-  <script>document.write(icons('qcb1+2'))</script>
-  <span class="frame-data">40 | i11 | Break 1+2 | Balcony Break | Homing in Heat</span>
+<script>document.write(icons('qcb1+2'))</script>
+<span class="frame-data">40 | i11 | Break 1+2 | Balcony Break | Homing in Heat</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('ff2+4'))</script>
-  <span class="frame-data">Running/dash throw | 40 | i10 | Break 1+2 | Homing in Heat | Blue-spark version +5</span>
+<script>document.write(icons('ff2+4'))</script>
+<span class="frame-data">Running/dash throw | 40 | i10 | Break 1+2 | Homing in Heat | Blue-spark version +5</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('uf1+2'))</script>
-  <span class="frame-data">40 | i12 | Break 1+2 | Floor Break</span>
+<script>document.write(icons('uf1+2'))</script>
+<span class="frame-data">40 | i12 | Break 1+2 | Floor Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('df2+3'))</script>
-  <span class="frame-data">40 | i12 | Break 2 | Floor Break</span>
+<script>document.write(icons('df2+3'))</script>
+<span class="frame-data">40 | i12 | Break 2 | Floor Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('db1+2'))</script>
-  <span class="frame-data">40 | i11 | Break 1+2 | Side switch</span>
+<script>document.write(icons('db1+2'))</script>
+<span class="frame-data">40 | i11 | Break 1+2 | Side switch</span>
 </div>
 <div class="entry"><span class="stance" style="margin-right:6px;">db,n,f+2+4</span><span class="frame-data">53 | Break 2</span></div>
 <div class="entry">
-  <script>document.write(icons('BAD.2+4'))</script>
-  <span class="frame-data">45 | Break 2 | Homing in Heat</span>
+<script>document.write(icons('BAD.2+4'))</script>
+<span class="frame-data">45 | Break 2 | Homing in Heat</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('hFC.1+2'))</script>
-  <span class="frame-data">Crouch throw | i26 | Break 1+2 (except from behind) | Catches standing and crouching from all directions</span>
+<script>document.write(icons('hFC.1+2'))</script>
+<span class="frame-data">Crouch throw | i26 | Break 1+2 (except from behind) | Catches standing and crouching from all directions</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('d1+3'))</script>
-  <span class="frame-data">Mid-hitting throw | 35 | i12~13 | <strong>Unbreakable</strong> | Floor Break</span>
+<script>document.write(icons('d1+3'))</script>
+<span class="frame-data">Mid-hitting throw | 35 | i12~13 | <strong>Unbreakable</strong> | Floor Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('d2+4'))</script>
-  <span class="frame-data">Storm Maker | 35 | i12~13 | <strong>Unbreakable</strong> | Heat Engager</span>
+<script>document.write(icons('d2+4'))</script>
+<span class="frame-data">Storm Maker | 35 | i12~13 | <strong>Unbreakable</strong> | Heat Engager</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('3+4'))</script>
-  <span class="frame-data">Hold: Phenomenon Shadow DDT | i35 | Cannot be broken | Whiffs vs SS/SW from 1st block or hit</span>
+<script>document.write(icons('3+4'))</script>
+<span class="frame-data">Hold: Phenomenon Shadow DDT | i35 | Cannot be broken | Whiffs vs SS/SW from 1st block or hit</span>
 </div>
 <div class="note">Low crush 14~38 — step it</div>
 <div class="entry">
-  <script>document.write(icons('df3+4'))</script>
-  <span class="frame-data">Frankensteiner | i28~35 | Cannot be broken | Low crush 13~37 | Only when you're standing close</span>
+<script>document.write(icons('df3+4'))</script>
+<span class="frame-data">Frankensteiner | i28~35 | Cannot be broken | Low crush 13~37 | Only when you're standing close</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('b4','1+2'))</script>
-  <span class="frame-data">Toe Kick &gt; Stunner | Throw only on front hit of b+4</span>
+<script>document.write(icons('b4','1+2'))</script>
+<span class="frame-data">Toe Kick &gt; Stunner | Throw only on front hit of b+4</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('cd1+3'))</script>
-  <span class="frame-data">Dark-motion grab into DMD | i12 (i20 from neutral) | Break 1 or 2 depending on his input | Side switch</span>
+<script>document.write(icons('cd1+3'))</script>
+<span class="frame-data">Dark-motion grab into DMD | i12 (i20 from neutral) | Break 1 or 2 depending on his input | Side switch</span>
 </div>
 <div class="note">DMD follow-ups break on the button he used: DMD.1 → 1, DMD.2 → 2, DMD.1+2 → 1+2; the second hit of DMD.x,1 / x,2 breaks on 1 / 2</div>
 <div class="note">Ultimate Tackle / Mount follow-ups (UT.2,1,2,1 and BM.2,1,2,1): break the 1st or 4th hit with the opposite of his button. UT.1+2 breaks on 1+2</div>
 <div class="callout callout-warn"><strong>Ground throws — when you're lying near him.</strong> All of these are i18~20 and have only a <strong>7-frame break window that can't be buffered or held</strong>: you have to press the break as the grab connects, not before. Which one he gets depends on how you're lying (Wavu's codes: FU/FD = face up/down, FT/FA = feet toward/away from him). Getting up or rolling away instead of staying down takes the whole guess away.</div>
 <div class="entry">
-  <script>document.write(icons('FUFT.db1+3'))</script>
-  <span class="frame-data">Seesaw Whip | 30 | <strong>Break 1</strong> | Side swap | Can wall splat | Balcony Break</span>
+<script>document.write(icons('FUFT.db1+3'))</script>
+<span class="frame-data">Seesaw Whip | 30 | <strong>Break 1</strong> | Side swap | Can wall splat | Balcony Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FUFA.db1+3'))</script>
-  <span class="frame-data">Enzui Knee | 35 | <strong>Break 1</strong> | Can wall splat | Balcony Break</span>
+<script>document.write(icons('FUFA.db1+3'))</script>
+<span class="frame-data">Enzui Knee | 35 | <strong>Break 1</strong> | Can wall splat | Balcony Break</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FDFT.db1+3'))</script>
-  <span class="frame-data">Standing Ankle Hold | 35 | <strong>Break 1</strong></span>
+<script>document.write(icons('FDFT.db1+3'))</script>
+<span class="frame-data">Standing Ankle Hold | 35 | <strong>Break 1</strong></span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FDFA.db1+3'))</script>
-  <span class="frame-data">Wake-Up Lariat | 40 | <strong>Break 1</strong></span>
+<script>document.write(icons('FDFA.db1+3'))</script>
+<span class="frame-data">Wake-Up Lariat | 40 | <strong>Break 1</strong></span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FUFL.db1+3'))</script>
-  <span class="frame-data">Turn Over | 0 dmg | Break 1 or 2, depending on his input | Flips you face-down</span>
+<script>document.write(icons('FUFL.db1+3'))</script>
+<span class="frame-data">Turn Over | 0 dmg | Break 1 or 2, depending on his input | Flips you face-down</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FDFL.db1+3'))</script>
-  <span class="frame-data">Back Mount | 0 dmg | Break 1 or 2, depending on his input | Leads into BM (Ultimate Punch follow-ups above)</span>
+<script>document.write(icons('FDFL.db1+3'))</script>
+<span class="frame-data">Back Mount | 0 dmg | Break 1 or 2, depending on his input | Leads into BM (Ultimate Punch follow-ups above)</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('OTG.db2+4'))</script>
-  <span class="frame-data">Stand Up | 0 dmg | <strong>Break 2</strong> | Hauls you to your feet at <strong>-12</strong></span>
+<script>document.write(icons('OTG.db2+4'))</script>
+<span class="frame-data">Stand Up | 0 dmg | <strong>Break 2</strong> | Hauls you to your feet at <strong>-12</strong></span>
 </div>
 <div class="note">Rule of thumb: break 1 for the four damage throws, 2 for Stand Up; the two FL versions are a 1-or-2 guess</div>
 <div class="callout callout-warn"><strong>Unbreakable in specific spots — the answer is position, not a break.</strong></div>
 <div class="entry">
-  <script>document.write(icons('AIR.ff2+4'))</script>
-  <span class="frame-data">Running Cross Driver | i10 | 50 (55 blue spark) | <strong>Cannot break</strong> | Catches you airborne | Floor Break</span>
+<script>document.write(icons('AIR.ff2+4'))</script>
+<span class="frame-data">Running Cross Driver | i10 | 50 (55 blue spark) | <strong>Cannot break</strong> | Catches you airborne | Floor Break</span>
 </div>
 <div class="entry"><span class="stance" style="margin-right:6px;">AIR.f,hcf+1</span><span class="frame-data">Muscle Driver | i10 | 40 (45 blue spark) | <strong>Cannot break</strong> | Catches you airborne | Floor Break | AIR.BAD.1+3 version is i14</span></div>
 <div class="entry">
-  <script>document.write(icons('AIR.BAD.2+4'))</script>
-  <span class="frame-data">D Trigger | i14 | 45 | <strong>Cannot break</strong> | Catches you airborne</span>
+<script>document.write(icons('AIR.BAD.2+4'))</script>
+<span class="frame-data">D Trigger | i14 | 45 | <strong>Cannot break</strong> | Catches you airborne</span>
 </div>
 <div class="note">The AIR throws grab you out of jumps and airborne moves — against Armor King, hop-kicks and jumping lows near him carry throw risk on top of the usual</div>
 <div class="entry">
-  <script>document.write(icons('WALL.1+3'))</script>
-  <span class="frame-data">Black Rain of Hell | i10 | ~65 dmg | <strong>Cannot break</strong> | Homing | Wall only</span>
+<script>document.write(icons('WALL.1+3'))</script>
+<span class="frame-data">Black Rain of Hell | i10 | ~65 dmg | <strong>Cannot break</strong> | Homing | Wall only</span>
 </div>
 <div class="note">With your back to the wall, his 1+3 becomes an unbreakable homing throw — get off the wall instead of trying to break. Wavu marks the damage with a "?"</div>
 <div class="entry"><span class="stance" style="margin-right:6px;">Back to wall</span><span class="frame-data">b,b,UB | Unblockable high, then throw | i40~45 | Low crush | Floor Break</span></div>
 <div class="note">His own back to the wall: a slow unblockable high that turns into a throw — duck it. Listed on TekkenDocs only</div>
-
 <!-- ── POWER CRUSH & RAGE ── -->
-
-<h2>Power Crush &amp; Rage Art</h2>
+<h2 id="power-crush"><span>Power Crush &amp; Rage Art</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
 <div class="entry">
-  <script>document.write(icons('f1+2'))</script>
-  <span class="frame-data">MID power crush | Wrecking Cyclone | i22~23 | -12 | pc7~21</span>
+<script>document.write(icons('f1+2'))</script>
+<span class="frame-data">MID power crush | Wrecking Cyclone | i22~23 | -12 | pc7~21</span>
 </div>
 <div class="note">Only -6 after absorbing a hit. On hit he can dash into BAD (+26g)</div>
 <div class="entry">
-  <script>document.write(icons('BAD.3'))</script>
-  <span class="frame-data">MID power crush | i20~21 | -13 | pc7~19 | Tracks SSR</span>
+<script>document.write(icons('BAD.3'))</script>
+<span class="frame-data">MID power crush | i20~21 | -13 | pc7~19 | Tracks SSR</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('2+3'))</script>
-  <span class="frame-data">Heat Burst | Mid | i16 | +1 | pc7~16</span>
+<script>document.write(icons('2+3'))</script>
+<span class="frame-data">Heat Burst | Mid | i16 | +1 | pc7~16</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('R.df1+2'))</script>
-  <span class="frame-data">Rage Art | Mid, Throw | i20 | -18 | pc8~ | 55–82 dmg</span>
+<script>document.write(icons('R.df1+2'))</script>
+<span class="frame-data">Rage Art | Mid, Throw | i20 | -18 | pc8~ | 55–82 dmg</span>
 </div>
-<div class="callout ">Every power crush he has is a <strong>mid</strong> — ducking doesn't beat any of them. Block and punish; a throw beats them during startup.</div>
-
+<div class="callout">Every power crush he has is a <strong>mid</strong> — ducking doesn't beat any of them. Block and punish; a throw beats them during startup.</div>
 <!-- ── GENERAL COUNTER PLAY ── -->
-
-<h2>General Counter Play</h2>
-<div class="callout callout-key"><strong>Mike's drills (14 Nov 2026)</strong>, checked against Wavu Wiki. ⚠️ = Wavu disagrees or doesn't list it.<br>
-✅ <span class="mono">ws+3,1</span> — −13, character dependent. <em>Wavu: mid, mid · −13 · whiffs vs SSR from 1st block.</em> Victor: Victor: <b>uf+1,1</b> (i13).<br>
-✅ <span class="mono">f,d,d/f+1+2</span> — react and launch. <em>Wavu: Poison Mist · <b>high</b> · i35~38 · <b>+23 if you block it</b> · makes throws unbreakable on hit.</em> Victor: Don't block it: <b>duck</b>, then launch the whiff (ws1).<br>
-✅ <span class="mono">f,d,d/f+2</span> — −10 punish. <em>Wavu: Dark Smash · high · −10.</em> Victor: <b>1,2</b>. It's high, so ducking it on read also works.<br>
-✅ <span class="mono">d/b+3</span> — block and launch. <em>Wavu: low · −26.</em> Victor: <b>ws1</b>.<br>
-✅ <span class="mono">d/b+4</span> — character-specific punish. <em>Wavu: low · −17 · he ends face-down on the floor.</em> Victor: Needs a move that hits a grounded opponent; not in your punish table yet — lab it.<br>
-✅ <span class="mono">f+1+2</span> — −12 punish. <em>Wavu: mid power crush · −12.</em> Victor: <b>2,2,2</b> / 2,1~F.<br>
-✅ <span class="mono">f+1+4</span> — −19 punish. <em>Wavu: mid · −19 · shoulder.</em> Victor: <b>df+2</b> launch.<br>
+<h2 id="counterplay"><span>General Counter Play</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Mike's drills (14 Nov 2026)</strong>, checked against Wavu Wiki. ⚠️ = Wavu disagrees or doesn't list it.<br/>
+✅ <span class="mono">ws+3,1</span> — −13, character dependent. <em>Wavu: mid, mid · −13 · whiffs vs SSR from 1st block.</em> Victor: <b>uf+1,1</b> (i13).<br/>
+✅ <span class="mono">f,d,d/f+1+2</span> — react and launch. <em>Wavu: Poison Mist · <b>high</b> · i35~38 · <b>+23 if you block it</b> · makes throws unbreakable on hit.</em> Victor: Don't block it: <b>duck</b>, then launch the whiff (ws1).<br/>
+✅ <span class="mono">f,d,d/f+2</span> — −10 punish. <em>Wavu: Dark Smash · high · −10.</em> Victor: <b>1,2</b>. It's high, so ducking it on read also works.<br/>
+✅ <span class="mono">d/b+3</span> — block and launch. <em>Wavu: low · −26.</em> Victor: <b>ws1</b>.<br/>
+✅ <span class="mono">d/b+4</span> — character-specific punish. <em>Wavu: low · −17 · he ends face-down on the floor.</em> Victor: Needs a move that hits a grounded opponent; not in your punish table yet — lab it.<br/>
+✅ <span class="mono">f+1+2</span> — −12 punish. <em>Wavu: mid power crush · −12.</em> Victor: <b>2,2,2</b> / 2,1~F.<br/>
+✅ <span class="mono">f+1+4</span> — −19 punish. <em>Wavu: mid · −19 · shoulder.</em> Victor: <b>df+2</b> launch.<br/>
 ✅ <span class="mono">d/f+1,2</span> — crouch and launch. <em>Wavu: mid, high · −6.</em> Victor: Duck the ,2 → <b>ws1</b>.</div>
+<h3 id="practice">Practice priorities (17 Nov 2026)</h3>
+<div class="callout callout-key"><strong>If you only drill three things:</strong><br/>
+1. <strong>Duck his highs on read.</strong> <span class="mono">ub+1</span> Neck Hunter (+5, homing), <span class="mono">BAD.1</span> (i11, his fastest stance move) and the <span class="mono">,1</span> of <span class="mono">f+2,1</span> are all high. Ducking beats the plus-frames move, his fastest stance option and a Heat Engager in one habit, and it's the only answer to Neck Hunter (you can't step it or punish it).<br/>
+2. <strong>Step right, except into his <span class="mono">3</span>.</strong> SSR beats <span class="mono">4,3</span>, <span class="mono">ws3,1</span> and both <span class="mono">d+3+4</span> enders, but his <span class="mono">3</span> high kick tracks right, so duck that one instead.<br/>
+3. <strong>Launch the big three.</strong> <span class="mono">db+3</span> (−26 low), <span class="mono">f+1+4</span> (−19 mid) and <span class="mono">d+4</span> (−15 low). Two of the three are lows, so the habit is block low, then launch.</div>
+<div class="note">Record check (from the battle log): ranked as Victor vs Armor King since this guide was built (Oct 16) is 7–1. The Sunday Nov 15 losses (1–3, 2–3, 2–3) were quick match playing King, so they don't point at a hole in this guide. The replay videos weren't reviewed: they're too large to read from Drive here</div>
 <div class="callout callout-key"><strong>His parries only catch punches.</strong> <span class="mono">b+1+3</span> reverses high and mid punches (parry frames 5~12); <span class="mono">f+3+4</span> parries mid and high punches and goes into BAD — and on a successful parry your throw breaks are disabled for the stun. If he's fishing for either, poke with kicks, knees and lows.</div>
 <h3>Plus-on-block tools — respect the next turn</h3>
 <div class="entry">
-  <script>document.write(icons('uf1'))</script>
-  <span class="frame-data">Mid | i23~24 | <strong>+4</strong> | Spinning Lariat | 6 chip | Also u+1</span>
+<script>document.write(icons('uf1'))</script>
+<span class="frame-data">Mid | i23~24 | <strong>+4</strong> | Spinning Lariat | 6 chip | Also u+1</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('fff3'))</script>
-  <span class="frame-data">Mid | i23~25 | <strong>+6</strong> | Flying Brawler Kick | 9 chip | Low crush 3~23</span>
+<script>document.write(icons('fff3'))</script>
+<span class="frame-data">Mid | i23~25 | <strong>+6</strong> | Flying Brawler Kick | 9 chip | Low crush 3~23</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('fff3+4'))</script>
-  <span class="frame-data">Mid | i28~34 | <strong>+17g</strong> | Running Exploder | Low crush 9~40</span>
+<script>document.write(icons('fff3+4'))</script>
+<span class="frame-data">Mid | i28~34 | <strong>+17g</strong> | Running Exploder | Low crush 9~40</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('f4'))</script>
-  <span class="frame-data">Mid | i23~25 | +3c | Spike</span>
+<script>document.write(icons('f4'))</script>
+<span class="frame-data">Mid | i23~25 | +3c | Spike</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('u1+2'))</script>
-  <span class="frame-data">Mid | i35~36 | +2c | Low crush 8~29</span>
+<script>document.write(icons('u1+2'))</script>
+<span class="frame-data">Mid | i35~36 | +2c | Low crush 8~29</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('FC.df2'))</script>
-  <span class="frame-data">Mid | i24~25 | +1 | 6 chip</span>
+<script>document.write(icons('FC.df2'))</script>
+<span class="frame-data">Mid | i24~25 | +1 | 6 chip</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('4','3'))</script>
-  <span class="frame-data">High, High | +0 | Interrupt with i5, duck, or SSR</span>
+<script>document.write(icons('4','3'))</script>
+<span class="frame-data">High, High | +0 | Interrupt with i5, duck, or SSR</span>
 </div>
 <h3>Interruptible gaps</h3>
 <div class="entry">
-  <script>document.write(icons('2','1'))</script>
-  <span class="frame-data">High, Mid | -3 | Interrupt with i3 from 1st block</span>
+<script>document.write(icons('2','1'))</script>
+<span class="frame-data">High, Mid | -3 | Interrupt with i3 from 1st block</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('1','2','1'))</script>
-  <span class="frame-data">High, High, Mid | -5 | Interrupt with i4 from 2nd block</span>
+<script>document.write(icons('1','2','1'))</script>
+<span class="frame-data">High, High, Mid | -5 | Interrupt with i4 from 2nd block</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('d2','4'))</script>
-  <span class="frame-data">Mid, Mid | Interrupt with i1 — effectively none</span>
+<script>document.write(icons('d2','4'))</script>
+<span class="frame-data">Mid, Mid | Interrupt with i1 — effectively none</span>
 </div>
 <div class="note">Block it out, take the -14</div>
 <h3>Unusual evasion</h3>
 <div class="entry">
-  <script>document.write(icons('df1'))</script>
-  <span class="frame-data">Mid | i13~14 | -3 | Jab evasion?</span>
+<script>document.write(icons('df1'))</script>
+<span class="frame-data">Mid | i13~14 | -3 | Jab evasion?</span>
 </div>
 <div class="note">Wavu marks it with a question mark — a jab check may whiff under it</div>
 <div class="entry">
-  <script>document.write(icons('df2'))</script>
-  <span class="frame-data">Mid | i15~16 | -12 | Jab evasion?</span>
+<script>document.write(icons('df2'))</script>
+<span class="frame-data">Mid | i15~16 | -12 | Jab evasion?</span>
 </div>
 <div class="entry">
-  <script>document.write(icons('bb2+3'))</script>
-  <span class="frame-data">Dark Destroyer | Unblockable | i63~66 | 50 dmg | Can cancel to crouch</span>
+<script>document.write(icons('bb2+3'))</script>
+<span class="frame-data">Dark Destroyer | Unblockable | i63~66 | 50 dmg | Can cancel to crouch</span>
 </div>
 <div class="note">Step it or hit him during the wind-up</div>
 <div class="entry">
-  <script>document.write(icons('u1+2*'))</script>
-  <span class="frame-data">Charged | Unblockable | i67 | 45 dmg | Low crush 15~63</span>
+<script>document.write(icons('u1+2*'))</script>
+<span class="frame-data">Charged | Unblockable | i67 | 45 dmg | Low crush 15~63</span>
 </div>
 <div class="note">Same answer — don't stand there</div>
 <div class="entry">
-  <script>document.write(icons('cd3'))</script>
-  <span class="frame-data">Unblockable high | i35~37 | 30 dmg | Can cancel with B</span>
+<script>document.write(icons('cd3'))</script>
+<span class="frame-data">Unblockable high | i35~37 | 30 dmg | Can cancel with B</span>
 </div>
 <div class="note">Duck it</div>
-<div class="sources">
-  <strong>Sources</strong><br>
-  Frame data from <a href="https://wavu.wiki/t/Armor_King_movelist">Wavu Wiki — Armor King movelist</a> and <a href="https://wavu.wiki/t/Armor_King_counterplay">Wavu Wiki — Armor King counterplay</a> (punishment tables; last edited 10 October 2025). Throws, BAD and BT moves, crush/parry notes, the crouch-dash (f,n,d,df) family and the Rage Art were cross-checked or filled from <a href="https://tekkendocs.com/t8/armor-king">TekkenDocs — Armor King</a>, because the Wavu movelist reads came back truncated in the BT section.<br>
-  <strong>Revision, 16 October 2026:</strong> the complete Wavu movelist (182 moves) and TekkenDocs table (173 moves) were downloaded and parsed in full with the repo's <span class="mono">scripts/fetch_sources.py</span>. Every one of the guide's existing entries was re-checked against it and matched; the two sites agree on block frames for all 165 moves they share. Added from the full data: the ground throws and their 7F break window, the OTG ground stomps, the FUFT.b+3+4 wake-up kick, and the AIR / WALL / back-to-wall throws (the back-to-wall b,b,UB is on TekkenDocs only). TekkenDocs has no anti-strat page for Armor King yet.<br>
-  <strong>Movement section:</strong> Tier 1 — every row is quoted from Wavu's per-move "Whiffs vs …" and tracking notes. Tier 2 — the <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie) calls SSR, matching Tier 1. Nothing in this guide is lab-tested.<br>
-  <strong>Known gaps:</strong> BAD = Bad Jaguar and "cannot block in stance" are both confirmed on Wavu's f+3+4 entry (corrected 16 October 2026 — an earlier version said Wavu didn't state them); left, right and back throw breaks (1, 2, unbreakable) and the ground-throw breaks are now confirmed on Wavu; Wavu's counterplay page has no prose strategy section for him.<br>
-  <strong>Revision, 14 November 2026:</strong> added Mike's 8 drill notes, each checked against Wavu Wiki and paired with a Victor answer from his punish table; ⚠️ marks where Wavu disagrees or doesn't list the move.
+<section id="nuances"><h2 id="nuances-h"><span>Defensive Nuances</span><a class="to-top" href="#top">↑ Return to Top</a></h2><p class="nuance-intro">Every Lab (Mike) and Theory (Ledger) note in this guide, in page order. Each link jumps to the note in place.</p><ul class="nuance-list"><li><span class="theory-badge">Theory</span><span class="nuance-sec">Stance Counterplay</span>Theory (Ledger): the frame race above holds because he can't block in BAD and BAD.1 is a standing high, so your jab can connect | From −8 or worse, BAD.3's armor… <a href="#nu-1">Go to note →</a></li></ul></section><div class="sources" id="sources">
+<div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  Frame data from <a href="https://wavu.wiki/t/Armor_King_movelist">Wavu Wiki — Armor King movelist</a> and <a href="https://wavu.wiki/t/Armor_King_counterplay">Wavu Wiki — Armor King counterplay</a> (punishment tables; last edited 10 October 2025). Throws, BAD and BT moves, crush/parry notes, the crouch-dash (f,n,d,df) family and the Rage Art were cross-checked or filled from <a href="https://tekkendocs.com/t8/armor-king">TekkenDocs — Armor King</a>, because the Wavu movelist reads came back truncated in the BT section.<br/>
+<strong>Revision, 16 October 2026:</strong> the complete Wavu movelist (182 moves) and TekkenDocs table (173 moves) were downloaded and parsed in full with the repo's <span class="mono">scripts/fetch_sources.py</span>. Every one of the guide's existing entries was re-checked against it and matched; the two sites agree on block frames for all 165 moves they share. Added from the full data: the ground throws and their 7F break window, the OTG ground stomps, the FUFT.b+3+4 wake-up kick, and the AIR / WALL / back-to-wall throws (the back-to-wall b,b,UB is on TekkenDocs only). TekkenDocs has no anti-strat page for Armor King yet.<br/>
+<strong>Movement section:</strong> Tier 1 — every row is quoted from Wavu's per-move "Whiffs vs …" and tracking notes. Tier 2 — the <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie) calls SSR, matching Tier 1. Nothing in this guide is lab-tested.<br/>
+<strong>Known gaps:</strong> BAD = Bad Jaguar and "cannot block in stance" are both confirmed on Wavu's f+3+4 entry (corrected 16 October 2026 — an earlier version said Wavu didn't state them); left, right and back throw breaks (1, 2, unbreakable) and the ground-throw breaks are now confirmed on Wavu; Wavu's counterplay page has no prose strategy section for him.<br/>
+<strong>Revision, 14 November 2026:</strong> added Mike's 8 drill notes, each checked against Wavu Wiki and paired with a Victor answer from his punish table; ⚠️ marks where Wavu disagrees or doesn't list the move.<br/>
+<strong>Revision, 17 November 2026:</strong> re-checked 21 key moves (Neck Hunter, the f+2,1 / df+1,2 / ws3,1 / 1+2,2 / 4,3 strings, the Taurus Cutter family, f+1+4, db+3, f+1+2, uf+1, f,F+3, the Heat Smash and BAD.3,H.2) against the live Wavu movelist: all unchanged. The repo download script couldn't reach either site from this session, so this was a spot check, not a full re-download. The TekkenDocs anti-strat page still couldn't be read. Added the Practice priorities, the BAD frame-race Theory and the two lines below; fixed a doubled "Victor:" in two drill notes.<br/>
+<strong>Lab drill — training wheels:</strong> have the dummy throw the standalone opener, then step. Stage 1 (direction only, timing untested): standalone <span class="mono">4</span> → SSR (stands in for 4,3), standalone <span class="mono">d+3+4</span> → SSR (for both enders), 20-rep sets, graduate at 18/20 on 3 straight sets. Stage 2: the real strings, randomized timing, one branch, 16/20. Stage 3: dummy mixes 4,3, d+3+4,1, d+3+4,3, a stop after d+3+4 (take the −16 instead of stepping), and his <span class="mono">3</span> (tracks SSR, duck it), 25-rep sets, 75% correct on 2 straight sets. Stage 4: log what holds in real matches as Lab (Mike). Why Stage 3 matters for him: his 3 punishes the exact SSR reflex Stages 1–2 build, so the read has to come back in. Weaknesses: a standalone opener has no follow-up on a clock and recovers differently than the same hit inside the string. Cap a session around 100–150 reps; stop if accuracy drops 15 points from where you started; go back a stage if you're under 60% for two sets. Rep counts are a rule of thumb, not research.<br/>
+<strong>To test — Theory (Ledger):</strong><br/>
+  1. After 3+4,1~F (−8 into BAD), your jab beats BAD.3. Set the dummy to 3+4,1~F → BAD.3, block, jab.<br/>
+  2. Boundary: after df+2,1~F (+0 into BAD), BAD.3 armors your jab. Same setup with df+2,1~F.<br/>
+  3. Wavu's "Jab evasion?" on df+1 and df+2: have the dummy throw each, jab-check on its startup, see whether the jab whiffs.
 </div>
-</body>
-</html>
+</body></html></body></html>
