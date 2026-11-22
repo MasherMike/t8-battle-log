@@ -262,5 +262,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 8, l: 7 },
     added: '2026-11-21'
+  },
+  {
+    character: 'Claudio',
+    file: 'guides/Anti-Claudio.html',
+    artifact: 'https://claude.ai/artifact/Udsf3honE3hNurDp92y4wA',
+    tags: ['SSL Default', 'Watch Starburst', 'Heat Smash -14 Low'],
+    step: 'SSL',
+    record: { w: 4, l: 6 },
+    added: '2026-11-22'
   }
 ];
