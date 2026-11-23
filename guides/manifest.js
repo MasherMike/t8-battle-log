@@ -280,5 +280,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 4, l: 5 },
     added: '2026-11-23'
+  },
+  {
+    character: 'Asuka',
+    file: 'guides/Anti-Asuka.html',
+    artifact: 'https://claude.ai/artifact/2or5EBLTJpSHZRfxmhWMSm',
+    tags: ['SSR Default', 'Duck f+1+2 Power Crush', 'Heat Smash +10'],
+    step: 'SSR',
+    record: { w: 7, l: 7 },
+    added: '2026-11-23'
   }
 ];
