@@ -271,5 +271,14 @@ window.GUIDES = [
     step: 'SSL',
     record: { w: 4, l: 6 },
     added: '2026-11-22'
+  },
+  {
+    character: 'Lars',
+    file: 'guides/Anti-Lars.html',
+    artifact: 'https://claude.ai/artifact/RJmTguGLMsnwy6YxD2DsGx',
+    tags: ['SSR Default', 'Duck f,f,F+1 (+4)', 'Check His Stance Entries'],
+    step: 'SSR',
+    record: { w: 4, l: 5 },
+    added: '2026-11-23'
   }
 ];
