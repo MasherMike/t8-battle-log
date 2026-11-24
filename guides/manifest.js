@@ -307,5 +307,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 9, l: 7 },
     added: '2026-11-24'
+  },
+  {
+    character: 'Xiaoyu',
+    file: 'guides/Anti-Xiaoyu.html',
+    artifact: 'https://claude.ai/artifact/NT1KJ7PLZuZNqWbHxKdNYb',
+    tags: ['SSL Default', 'Check With Mids', 'Duck f,F+4 (+9)'],
+    step: 'SSL',
+    record: { w: 12, l: 9 },
+    added: '2026-11-24'
   }
 ];
