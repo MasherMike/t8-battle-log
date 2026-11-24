@@ -298,5 +298,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 5, l: 4 },
     added: '2026-11-23'
+    },
+  {
+    character: 'Lidia',
+    file: 'guides/Anti-Lidia.html',
+    artifact: 'https://claude.ai/artifact/GKG91L8mB9pKwWX9hWWhVa',
+    tags: ['SSR Default', "Don't Jab +5 HRS", 'Duck f+3,4 (+5)'],
+    step: 'SSR',
+    record: { w: 9, l: 7 },
+    added: '2026-11-24'
   }
 ];
