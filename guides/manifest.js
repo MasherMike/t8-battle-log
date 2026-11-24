@@ -289,5 +289,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 7, l: 7 },
     added: '2026-11-23'
+  },
+  {
+    character: 'Raven',
+    file: 'guides/Anti-Raven.html',
+    artifact: 'https://claude.ai/artifact/LzRv5GJyfFtEjMPBhvFx2e',
+    tags: ['SSR Default', 'Punish Clones -13', 'Duck b+1 (+8)'],
+    step: 'SSR',
+    record: { w: 5, l: 4 },
+    added: '2026-11-23'
   }
 ];

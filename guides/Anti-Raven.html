@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anti-Raven | SSR Default | Punish Clones -13 | Duck b+1 (+8)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    color-scheme: dark;
+    --bg: #0a0306;            /* near-black page */
+    --glow-a: #5c0a1d;        /* crimson glow, top-left */
+    --glow-b: #2a0b44;        /* violet glow, bottom-right */
+    --solid: #1f070e;         /* table headers, inputs */
+    --panel: linear-gradient(180deg, #420c199e, #1a060cc2);
+    --line: #ff5c7026;        /* subtle border */
+    --line2: #ff5c705c;       /* stronger border */
+    --active: #ff3b5cb3;      /* active border, launch rows */
+    --active-fill: #ff3b5c33;
+    --red: #ff2a4f;           /* titles, edges, launch */
+    --violet: #c77dff; --violet-deep: #9d4edd; --violet-light: #b46cff;
+    --link: #cf9bff;          /* links, move chips */
+    --violet-border: #ba70ff99;
+    --pink: #ff8094; --amber: #ffb84d;
+    --text: #ffffff; --text2: #f0dfe3; --muted: #c8a3ab; --dim: #a07f87; --faint: #7a5a62;
+    /* legacy names, so older rules still resolve */
+    --bg2: #1f070e; --bg3: #2a0a14; --border: #ff5c7026; --text-muted: #c8a3ab;
+    --green: #ffffff; --green-soft: #ffffff; --yellow: #cf9bff; --accent: #cf9bff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--accent); margin-bottom: 2rem;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 2rem 0 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin: 1rem 0 0.5rem;
+  }
+
+  .entry {
+    display: flex; align-items: center; gap: 10px; padding: 5px 8px;
+    border-radius: 4px; margin-bottom: 3px; flex-wrap: wrap;
+  }
+  .entry:hover { background: var(--bg3); }
+  .move-icons { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; flex-wrap: wrap; }
+  .frame-data { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text-muted); flex: 1; min-width: 12rem; }
+  .note { font-size: 12px; color: var(--text-muted); font-style: italic; padding-left: 20px; margin-bottom: 3px; }
+  .mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; }
+  .callout {
+    font-size: 13px; color: var(--text); background: var(--bg2);
+    border-left: 2px solid var(--accent); padding: 6px 10px; margin: 0.5rem 0 0.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-key { border-left-color: var(--green); }
+  .callout-warn { border-left-color: var(--yellow); }
+
+  .tier-green { color: #00cc44; font-size: 13px; }
+  .tier-yellow { color: var(--yellow); font-size: 13px; }
+  .tier-red { color: var(--red); font-size: 13px; }
+  .tier-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; margin: 0.75rem 0 0.25rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .stance { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: white; margin-right: 2px; }
+  svg.arrow, svg.btn { display: inline-block; vertical-align: middle; }
+
+  .toggle-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .toggle-btn {
+    font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--bg3); color: var(--text-muted);
+    border: 0.5px solid var(--border); border-radius: 4px; padding: 5px 14px; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toggle-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .side-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+
+  .table-wrap { overflow-x: auto; }
+  .step-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.5rem 0 1rem; }
+  .step-table th {
+    text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; padding: 4px 10px 4px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .step-table td { padding: 4px 10px 4px 0; border-bottom: 0.5px solid var(--bg3); vertical-align: top; }
+  .step-table td.mono { font-family: 'Share Tech Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .swr { color: #00cc44; font-weight: 600; }
+  .swl { color: var(--yellow); font-weight: 600; }
+  .both { color: var(--accent); font-weight: 600; }
+  .tracks { color: var(--red); font-weight: 600; }
+
+  .react { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 1px 7px; border-radius: 3px; border: 1px solid; white-space: nowrap; }
+  .r-yes { color: #00cc44; border-color: #00cc44; }
+  .r-mostly { color: var(--yellow); border-color: var(--yellow); }
+  .r-no { color: var(--red); border-color: var(--red); }
+
+  .sources {
+    margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border);
+    font-size: 11px; color: var(--text-muted); line-height: 1.7;
+  }
+  .sources a { color: var(--accent); text-decoration: none; }
+
+
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -0.5rem 0 1.5rem; }
+  .toc-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
+  .toc a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 9px;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); outline: none; }
+  .toc a.toc-key { color: var(--green); }
+  h2[id], h3[id], .sources[id] { scroll-margin-top: 12px; }
+  html { scroll-behavior: smooth; }
+
+
+  h2[id], .sources-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .to-top {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; white-space: nowrap;
+    color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1px 8px; background: var(--bg2);
+  }
+  .to-top:hover, .to-top:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+  h1[id] { scroll-margin-top: 12px; }
+
+  @media print {
+    body { background: white; color: black; padding: 1rem; }
+    .entry:hover { background: none; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
+<style id="f-theme">
+  /* "F" red/black theme layer. Tokens live in :root above; this block restyles components. */
+  body {
+    background: radial-gradient(900px 600px at 0% 0%, var(--glow-a), transparent 70%),
+                radial-gradient(900px 700px at 100% 100%, var(--glow-b), transparent 70%),
+                var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+  }
+  a { color: var(--link); }
+  a:hover { color: #fff; }
+
+  /* header band */
+  .guide-head {
+    position: relative; margin: 0 0 1.75rem; padding: 22px 22px 18px 40px;
+    background: linear-gradient(120deg, #5c0a1d 0%, #3a0717 45%, #2a0b44 100%);
+    border-bottom: 1px solid var(--line2); border-radius: 12px;
+    box-shadow: inset 0 1px 0 #ffffff0f, 0 10px 30px #00000080;
+  }
+  .guide-head::before {
+    content: ""; position: absolute; left: 18px; top: 22px; bottom: 18px; width: 6px; border-radius: 3px;
+    background: linear-gradient(180deg, #ff2a4f 0%, #ff2a4f 55%, #b46cff 100%);
+  }
+  .guide-head h1 { margin: 0; padding: 0; border: 0; }
+  .guide-head > :not(h1) { margin-top: 0.85rem; margin-bottom: 0; }
+  h1 {
+    background: linear-gradient(90deg, #ff8094, #ff2a4f 65%, #c77dff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    border-bottom-color: var(--line2);
+  }
+  .sub { color: var(--text2); }
+
+  /* section headings */
+  h2 { color: var(--red); text-transform: uppercase; border-bottom: 0.5px solid var(--line); }
+  h2::before {
+    content: ""; display: inline-block; flex: none; width: 28px; height: 3px; border-radius: 2px;
+    margin-right: 10px; vertical-align: middle; align-self: center;
+    background: linear-gradient(90deg, #ff2a4f, #9d4edd);
+  }
+  h2[id] { justify-content: flex-start; }
+  h2[id] .to-top { margin-left: auto; }
+  h3 { color: var(--muted); }
+
+  /* panels */
+  .callout, .top3 > div, .test, .verify-slot, .progress {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .callout { border-left: 3px solid var(--violet-border); }
+  .callout-key { border-left-color: var(--red); }
+  .callout-warn { border-left-color: var(--amber); }
+  .entry { border: 1px solid transparent; border-radius: 8px; }
+  .entry:hover { background: var(--active-fill); border-color: var(--line); }
+  .frame-data, .note { color: var(--muted); }
+  table th, .step-table th, .pun-table th { background: var(--solid); color: var(--muted); border-bottom-color: var(--line2); }
+  table td, .step-table td, .pun-table td { border-bottom-color: var(--line); }
+
+  /* move-icon chips: violet pill behind the white SVGs */
+  .move-icons:not(:empty) {
+    background: #ba70ff1f; border: 1px solid var(--violet-border); border-radius: 999px;
+    padding: 2px 9px; color: var(--link);
+  }
+
+  /* P1/P2 toggle */
+  .toggle-btn { background: transparent; color: var(--muted); border: 1px solid var(--line2); border-radius: 999px; }
+  .toggle-btn:hover { border-color: var(--link); color: var(--link); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--link); }
+  .toggle-btn.active { background: var(--active-fill); color: #fff; border-color: var(--active); }
+  .side-label { color: var(--text2); }
+
+  /* punish tiers: red = launch-size only */
+  .tier-label { font-size: 12px; letter-spacing: 0.1em; margin: 1rem 0 0.35rem; color: var(--muted); }
+  .tier-label.t-low::before, .tier-label.t-mid::before {
+    content: ""; width: 4px; height: 14px; border-radius: 2px; background: currentColor;
+  }
+  .tier-label.t-low { color: var(--muted); }
+  .tier-label.t-mid { color: #ffffff; }
+  .tier-pill {
+    background: var(--red); color: #0a0306; border-radius: 999px; font-weight: 700;
+    text-transform: uppercase; padding: 1px 11px;
+  }
+  .entry.t-low, .entry.t-mid { border-color: var(--line); }
+  .entry.t-high { border-color: var(--active); }
+  .t-low .blk { color: var(--muted); }
+  .t-mid .blk { color: #ffffff; }
+  .t-high .blk { color: var(--red); }
+  .g { color: var(--muted); } .y { color: #ffffff; } .r { color: var(--red); }   /* punish-sheet tiers */
+  .good { color: #ffffff; }
+
+  /* step-direction table */
+  .swr    { color: #ffffff;      font-weight: 600; }
+  .swl    { color: var(--link);  font-weight: 600; }
+  .both   { color: var(--amber); font-weight: 600; }
+  .tracks { color: var(--red);   font-weight: 600; }
+
+  /* reaction badges */
+  .r-yes { color: #ffffff; border-color: #ffffff; }
+  .r-mostly { color: var(--link); border-color: var(--violet-border); }
+  .r-no { color: var(--pink); border-color: var(--pink); }
+  .tag-re { color: var(--pink); }
+
+  /* jump-to row and return to top */
+  .toc a { color: var(--link); background: #ba70ff1f; border: 0.5px solid var(--violet-border);
+    border-radius: 999px; padding: 3px 10px; text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--link); color: #fff; outline: none; }
+  .toc a.toc-key { color: #fff; background: var(--active-fill); border-color: var(--active); }
+  .to-top { color: var(--muted); background: var(--solid); border: 0.5px solid var(--line2); border-radius: 999px; }
+  .to-top:hover, .to-top:focus-visible { color: var(--link); border-color: var(--link); outline: none; }
+  .sources { border-top-color: var(--line); }
+  .sources a { color: var(--link); }
+  .btn-primary { background: linear-gradient(90deg, #ff2a4f, #9d4edd); color: #fff; border-color: transparent; }
+
+  @media print {
+    body { background: white; color: black; }
+    .guide-head { background: none; box-shadow: none; padding: 0 0 0.5rem; border-radius: 0; }
+    .guide-head::before, h2::before { display: none; }
+    h1 { color: #c8102e; background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+    .callout, .entry, .top3 > div, .test, table th { background: none; }
+    .move-icons:not(:empty) { background: #333; }
+    .tier-pill { background: none; color: #c8102e; border: 1.5px solid #c8102e; }
+    .toggle-bar, .toc, .to-top { display: none; }
+  }
+</style>
+
+<style>
+/* Lab / Theory badges (F palette) */
+.lab-badge, .theory-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 1px 8px; border-radius: 999px; margin-right: 4px; white-space: nowrap; vertical-align: 1px; }
+.lab-badge { color: #cf9bff; background: #ba70ff24; border: 1px solid #ba70ff99; }
+.theory-badge { color: #c8a3ab; background: transparent; border: 1px dashed #ff5c705c; }
+.nuance-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; display: flex; flex-direction: column; gap: 6px; }
+.nuance-list li { background: linear-gradient(180deg, #420c199e, #1a060cc2); border: 1px solid #ff5c7026; border-radius: 10px;
+  padding: 8px 12px; font-size: 13px; line-height: 1.45; color: #f0dfe3; }
+.nuance-list .nuance-sec { color: #c8a3ab; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+.nuance-list a { color: #cf9bff; text-decoration: none; white-space: nowrap; }
+.nuance-list a:hover { color: #ffffff; }
+.nuance-intro { color: #c8a3ab; font-size: 13px; margin: 0 0 0.5rem; }
+[id^="nu-"] { scroll-margin-top: 12px; }
+@media print { .lab-badge, .theory-badge { color: #000; background: none; border: 1px solid #555; } .nuance-list a { display: none; } }
+</style>
+</head>
+<body>
+<header class="guide-head">
+<h1 id="top">Anti-Raven &nbsp;|&nbsp; SSR Default &nbsp;|&nbsp; Punish Clones -13 &nbsp;|&nbsp; Duck b+1 (+8)</h1>
+<div class="toggle-bar">
+  <button class="toggle-btn active" id="p1btn" onclick="setSide(1)">P1 Side</button>
+  <button class="toggle-btn" id="p2btn" onclick="setSide(2)">P2 Side</button>
+  <span class="side-label" id="side-label">Raven on P1 side — inputs face right</span>
+</div>
+</header>
+<nav class="toc" aria-label="Jump to section">
+  <span class="toc-label">Jump to</span>
+  <a href="#practice" class="toc-key">Practice first</a>
+  <a href="#movement">Movement</a>
+  <a href="#standing-block">Standing Block</a>
+  <a href="#low-block">Low Block</a>
+  <a href="#duck-launch">Duck &amp; Launch</a>
+  <a href="#stances">Stances</a>
+  <a href="#heat">Heat</a>
+  <a href="#throws">Throws</a>
+  <a href="#power-crush">Power Crush &amp; Rage</a>
+  <a href="#counterplay">Counter Play</a>
+  <a href="#stance-check">Stance Check</a>
+  <a href="#nuances">Nuances</a>
+  <a href="#sources">Sources</a>
+</nav>
+<script>
+  let flipped = true;
+
+  function setSide(side) {
+    flipped = (side === 1);
+    document.getElementById('p1btn').classList.toggle('active', side === 1);
+    document.getElementById('p2btn').classList.toggle('active', side === 2);
+    document.getElementById('side-label').textContent = side === 1
+      ? 'Raven on P1 side — inputs face right'
+      : 'Raven on P2 side — inputs face left';
+    rebuildIcons();
+  }
+
+  function rebuildIcons() {
+    document.querySelectorAll('.move-icons').forEach(el => {
+      const notation = el.dataset.notation;
+      if (notation) el.innerHTML = JSON.parse(notation).map(n => move(n)).join('');
+    });
+  }
+
+function arrow(dir, held=false) {
+  const baseAngles = {f:90,b:270,u:180,d:0,df:45,db:315,uf:135,ub:225};
+  let rot = baseAngles[dir] || 0;
+  const diagonalFlips = {df:'db', db:'df', uf:'ub', ub:'uf'};
+  if (flipped && ['f','b'].includes(dir)) rot = (rot + 180) % 360;
+  if (flipped && dir in diagonalFlips) rot = baseAngles[diagonalFlips[dir]];
+  const fill = held ? 'white' : 'none';
+  const stroke = held ? '#111' : 'white';
+  return `<svg class="arrow" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <g transform="rotate(${rot}, 30, 30)">
+      <path d="M17,8 L17,34 L8,34 L30,54 L52,34 L43,34 L43,8 Z" fill="${fill}" stroke="${stroke}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+  </svg>`;
+}
+
+function btn(buttons) {
+  const active = Array.isArray(buttons) ? buttons : [buttons];
+  const pos = {1:'left',2:'top',3:'bottom',4:'right'};
+  const coords = {left:[12,30], top:[30,12], right:[48,30], bottom:[30,48]};
+  let circles = '';
+  ['1','2','3','4'].forEach(b => {
+    const [cx,cy] = coords[pos[b]];
+    circles += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active.includes(b)?'white':'#4a4a4a'}" stroke="#222" stroke-width="2"/>`;
+  });
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">${circles}</svg>`;
+}
+
+function neutral() {
+  return `<svg class="btn" width="28" height="28" viewBox="0 0 60 60" aria-hidden="true">
+    <polygon points="30,8 33.5,18 44,18 35.5,24.5 39,34.5 30,28 21,34.5 24.5,24.5 16,18 26.5,18" fill="white" stroke="#888" stroke-width="1"/>
+  </svg>`;
+}
+
+function stance(name) { return `<span class="stance">${name}</span>`; }
+function tilde(name) { return `<span class="stance">~${name}</span>`; }
+
+function buttons(str) {
+  let html = '';
+  if (str.includes('+')) {
+    html += btn(str.split('+').filter(c => '1234'.includes(c)));
+  } else {
+    for (const ch of str) { if ('1234'.includes(ch)) html += btn(ch); }
+  }
+  return html;
+}
+
+function move(notation) {
+  if (notation.toLowerCase().startsWith('ws')) {
+    return '<span class="stance">WS</span>' + buttons(notation.slice(2));
+  }
+  let html = '';
+  const parts = notation.split('.');
+  if (parts.length > 1) {
+    html += stance(parts.slice(0, -1).join('.'));
+    notation = parts[parts.length - 1];
+  }
+  if (notation.startsWith('~')) return html + tilde(notation.slice(1));
+  if (notation.toLowerCase().startsWith('cd')) {
+    return html + arrow('f',false) + neutral() + arrow('d',false) + arrow('df',true) + buttons(notation.slice(2));
+  }
+  if (notation.toLowerCase().startsWith('qcf')) {
+    return html + arrow('d',false) + arrow('df',false) + arrow('f',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('qcb')) {
+    return html + arrow('d',false) + arrow('db',false) + arrow('b',false) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ffn')) {   // f,f,n — dash then neutral
+    return html + arrow('f',false) + arrow('f',false) + neutral() + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('fnb')) {   // f,n,b — forward, neutral, back
+    return html + arrow('f',false) + neutral() + arrow('b',true) + buttons(notation.slice(3));
+  }
+  if (notation.toLowerCase().startsWith('ufn')) {   // uf,n — tap up-forward, return to neutral
+    return html + arrow('uf',false) + neutral() + buttons(notation.slice(3));
+  }
+  for (const tt of ['fff','bbb']) {
+    if (notation.toLowerCase().startsWith(tt)) {
+      const d = tt[0];
+      return html + arrow(d,false) + arrow(d,false) + arrow(d,true) + buttons(notation.slice(tt.length));
+    }
+  }
+  for (const dt of ['ff','bb','uu','dd']) {
+    if (notation.toLowerCase().startsWith(dt)) {
+      const d = dt[0];
+      return html + arrow(d,false) + arrow(d,true) + buttons(notation.slice(dt.length));
+    }
+  }
+  let dir = null;
+  for (const d of ['df','db','uf','ub','f','b','u','d']) {
+    if (notation.toLowerCase().startsWith(d)) { dir = d; notation = notation.slice(d.length); break; }
+  }
+  if (dir) html += arrow(dir, true);
+  return html + buttons(notation);
+}
+
+function icons(...notations) {
+  const html = notations.map(n => move(n)).join('');
+  const data = JSON.stringify(notations).replace(/"/g, '&quot;');
+  return `<span class="move-icons" data-notation="${data}" role="img" aria-label="${notations.join(', ')}">${html}</span>`;
+}
+</script>
+
+
+<!-- ── MOVEMENT — WHICH WAY TO STEP ── -->
+
+<h2 id="movement"><span>Movement — Which Way to Step</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Default: Sidestep RIGHT (SSR) in neutral.</strong> The TekkenDocs anti-strat Quick overview (community-written) says <em>"Ninja / SSR"</em>. Wavu's per-move notes don't name a neutral side.<br><br>
+<strong>Exceptions:</strong><br>
+• <span class="mono">df+1</span> (Body Blow, i14~15 mid): Wavu — <em>"Pseudo-homing. Can only be sidewalked left at range."</em> SSR doesn't beat it. It's −2~−1 on block, so block it up close, and only <strong>sidewalk left</strong> when it's thrown from range. <strong>Here the sources disagree:</strong> the per-move note (Tier 1) beats the anti-strat's SSR, so follow the note for this move.<br>
+• <strong>Around 0f with him back-turned:</strong> step <strong>LEFT (SWL)</strong>. The anti-strat: <em>"SWL beats literally everything except BT b3 / BT3."</em> Both exceptions are highs (<span class="mono">BT.b+3</span> is homing, i18~19; <span class="mono">BT.3</span> is i10), so a duck covers what SWL misses.<br>
+• <span class="mono">b+2,4</span>: Wavu — <em>"Whiffs vs SS, SWL from 1st block."</em> Either sidestep works, or a sidewalk left.<br>
+• <strong>The @Mezerdie sidestep chart says SSL</strong> (via <span class="mono">sidestep.md</span>), the opposite of the anti-strat. This guide follows the anti-strat (it's the higher tier) but the chart's call lines up with the two Tier 1 notes above, which both point left.<br>
+• Homing (list below): <span class="mono">f+3</span>, <span class="mono">ws3+4</span>, <span class="mono">SZN.1+2</span>, <span class="mono">BT.b+3</span> and both generic throws. <span class="mono">df+1</span> is pseudo-homing.<br><br>
+<strong>So the habit is:</strong> SSR his neutral pokes, block <span class="mono">df+1</span> up close and SWL it at range, SWL when he's back-turned at even frames, and duck <span class="mono">BT.b+3</span> / <span class="mono">BT.3</span>. Don't step the homing moves.</div>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>Move</th><th>Step that beats it</th><th>From where</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">neutral (general)</td><td class="swr">SSR</td><td>TekkenDocs anti-strat Quick overview "SSR" (Tier 2)</td></tr>
+    <tr><td class="mono">BT at about 0f</td><td class="swl">SWL</td><td>TekkenDocs anti-strat "SWL beats literally everything except BT b3 / BT3" (Tier 2)</td></tr>
+    <tr><td class="mono">df+1</td><td class="swl">SWL only, at range</td><td>Wavu "Pseudo-homing. Can only be sidewalked left at range" (Tier 1) — up close, block it (−2~−1)</td></tr>
+    <tr><td class="mono">b+2,4</td><td class="both">Either sidestep, or SWL</td><td>from 1st block — Wavu "Whiffs vs SS, SWL from 1st block" (Tier 1)</td></tr>
+    <tr><td class="mono">BT.b+3</td><td class="tracks">Catches your SWL</td><td>Wavu "Homing"; anti-strat names it as the exception to SWL — a high, duck it</td></tr>
+    <tr><td class="mono">BT.3</td><td class="tracks">Catches your SWL</td><td>anti-strat names it as the exception to SWL — a high (i10, −11), duck it</td></tr>
+  </tbody>
+</table></div>
+<div class="note"><span class="theory-badge" id="nu-1">Theory (Ledger):</span> both Tier 1 notes (<span class="mono">df+1</span>, <span class="mono">b+2,4</span>) and the @Mezerdie chart point left, and only the anti-strat says SSR. If SSR keeps getting clipped by his pokes in the lab, SWL is the first alternative to test as the neutral default. The data is too thin to call it either way.</div>
+<h3>Homing — don't step these at all</h3>
+<div class="entry">
+  <script>document.write(icons('f3'))</script>
+  <span class="frame-data">Mid | i17 | −9 | Homing | Can go to BT with B (−6 on block)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('ws3+4'))</script>
+  <span class="frame-data">Spinning Middle Kick | Mid | i16~18 | <b>−12</b> | Homing | Heat Engager</span>
+</div>
+<div class="note">Punish it (see Standing Block). The anti-strat flags pushback</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1+2'))</script>
+  <span class="frame-data">Oceanus Fissure | High | i15~16 | +0~+1 | Homing | Tornado on CH</span>
+</div>
+<div class="note">A high: duck it</div>
+<div class="entry">
+  <script>document.write(icons('BT.b3'))</script>
+  <span class="frame-data">Cannon Tail | High | i18~19 | <b>+4~+5</b> | Homing | Balcony Break</span>
+</div>
+<div class="note">A high: duck it. It's the move that beats your SWL when he's back-turned</div>
+<div class="entry">
+  <script>document.write(icons('1+3'))</script>
+  <span class="frame-data">Generic throws (1+3, 2+4) | i12~14 | Homing | Break 1 or 2 (Wavu)</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('df1'))</script>
+  <span class="frame-data">Body Blow | Mid | i14~15 | −2~−1 | <strong>Pseudo-homing</strong> | Only SWL beats it, at range</span>
+</div>
+<div class="callout "><strong>Evidence tier:</strong> the SSR default is set by <strong>Tier 2</strong>, the TekkenDocs anti-strat Quick overview ("SSR"). <strong>Tier 1</strong> (Wavu per-move notes, mirrored in TekkenDocs) is thin for Raven: one step note (<span class="mono">b+2,4</span>, either side or SWL), one pseudo-homing note (<span class="mono">df+1</span>, SWL at range only) and five homing tags. <strong>Tier disagreement:</strong> Tier 1 says SSR does not beat <span class="mono">df+1</span>, so for that move this guide follows Tier 1 (SWL at range, block up close). The @Mezerdie chart says SSL and disagrees with the anti-strat; the anti-strat is used as the higher tier. Nothing in this section is lab-tested.</div>
+
+<!-- ── STANDING BLOCK PUNISHMENT ── -->
+
+<h2 id="standing-block"><span>Standing Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn">Block values are from Wavu's Raven movelist and counterplay tables. 176 moves are on both sites and <strong>TekkenDocs agrees on every block value</strong>. Where Wavu gives a range (e.g. −14~−12), the move goes in the tier of the <em>less</em> minus number, the one that's always true.<br><br>
+<strong>The clone rule (Wavu counterplay):</strong> <em>"Every clone outside of heat is −13 on block, special mid. Every clone during heat is −3 on block."</em> His Phantom/clone extensions (the weapon projectile hits) are the most common punish in the matchup. See the −13 to −14 tier.<br><br>
+<strong>Three traps.</strong> (1) <strong>Naked vs extension, both ways:</strong> <span class="mono">f+2</span> is −12~−11 but <span class="mono">f+2,3</span> is only −9~−8. <span class="mono">b+2</span> is −14~−12 but <span class="mono">b+2,2</span> is −3 and <span class="mono">b+2,4</span> −7~−6. <span class="mono">df+2</span> is −13~−11, <span class="mono">df+2,3</span> −8~−7, <span class="mono">df+2,4</span> −15~−14. <span class="mono">df+4,4</span> is −14~−13 but <span class="mono">df+4,4,3</span> is −6~−3. Confirm where he stopped. (2) <strong>Cancels to BT:</strong> <span class="mono">uf+4,4</span> and <span class="mono">3,3,4</span> can cancel to BT with B (Wavu: −16~−15 for the cancel). <span class="mono">ws3+4</span> also cancels to BT with B. (3) <strong>Pushback:</strong> the anti-strat flags <span class="mono">f,F+2</span> ("massive pushback"), <span class="mono">ws3+4</span>, <span class="mono">b,B+2</span> and <span class="mono">b+2,2,3</span>.</div>
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
+  <script>document.write(icons('BT.3'))</script>
+  <span class="frame-data">High | i10 | <span class="blk">-11</span> | From BT</span>
+</div>
+<div class="note">A high: you can also duck it. BT.3,4 is +0~+2</div>
+<div class="entry t-low">
+  <script>document.write(icons('ff2'))</script>
+  <span class="frame-data">Shadow Spear | Mid | i15~16 | <span class="blk">-12~-11</span> | Heat Engager | Balcony Break</span>
+</div>
+<div class="note">Anti-strat: "massive pushback". Punishing it also stops a Heat activation</div>
+<div class="entry t-low">
+  <script>document.write(icons('ws3+4'))</script>
+  <span class="frame-data">Spinning Middle Kick | Mid | i16~18 | <span class="blk">-12</span> | Heat Engager | Homing</span>
+</div>
+<div class="note"><strong>Cancel trap:</strong> Wavu "Cancel to r19 BT with B". Anti-strat: pushback</div>
+<div class="entry t-low">
+  <script>document.write(icons('f2'))</script>
+  <span class="frame-data">Mid | i15~16 | <span class="blk">-12~-11</span></span>
+</div>
+<div class="note">f+2,3 is only −9~−8 and can go to SZN; the 2nd hit can be delayed 10f. Confirm he stopped before you punish</div>
+<div class="entry t-low">
+  <script>document.write(icons('f4'))</script>
+  <span class="frame-data">Lance Kick | High | i15~16 | <span class="blk">-12</span> | Tornado | Instant Tornado on hit</span>
+</div>
+<div class="note">A high: duck it and you don't risk the hit</div>
+<div class="entry t-low">
+  <script>document.write(icons('b2'))</script>
+  <span class="frame-data">High | i15~17 | <span class="blk">-14~-12</span></span>
+</div>
+<div class="note">The opener of four strings. b+2,2 is −3, b+2,4 −7~−6. Wait a beat. A high: see Duck and Launch</div>
+<div class="entry t-low">
+  <script>document.write(icons('1','2','4'))</script>
+  <span class="frame-data">Left Right Combo &gt; Black Hole | High, High, Mid | ,i23~25 | <span class="blk">-14~-12</span> | Tornado | Recovers BT</span>
+</div>
+<div class="note">Wavu "Interrupt with i4". 1,2 alone is −3</div>
+<div class="entry t-low">
+  <script>document.write(icons('ub1','2'))</script>
+  <span class="frame-data">Gate Keeper | Mid, Mid | ,i18~19 | <span class="blk">-13~-12</span> | Spike</span>
+</div>
+<div class="note">Wavu "Interrupt with i5". ub+1 alone is −6</div>
+<div class="entry t-low">
+  <script>document.write(icons('qcf4'))</script>
+  <span class="frame-data">Black Hole | Mid | i18~20 | <span class="blk">-14~-12</span> | Tornado | Recovers BT</span>
+</div>
+<div class="entry t-low">
+  <script>document.write(icons('df2'))</script>
+  <span class="frame-data">Uppercut | Mid | i16~18 | <span class="blk">-13~-11</span> | Launches crouching opponents | Recovers BT</span>
+</div>
+<div class="note">df+2,3 (high ender) is −8~−7; df+2,4 (mid ender) is −15~−14. See Duck and Launch</div>
+<div class="entry t-low">
+  <script>document.write(icons('ufn4'))</script>
+  <span class="frame-data">Delayed Rising Toe Kick | Mid | i23~25 | <span class="blk">-13~-11</span> | Airborne 9~30</span>
+</div>
+<div class="entry t-low">
+  <script>document.write(icons('ff3'))</script>
+  <span class="frame-data">Sudden Strike | Mid | i15~18 | <span class="blk">-14~-11</span> | Knee | Airborne 7~23</span>
+</div>
+<div class="note">Near the edge: <span class="mono">f,F+4</span> (−10~−8, the anti-strat says "almost always −10") and <span class="mono">b,B+2</span> (−10~−9, pushback) aren't always −10, so they aren't listed as guaranteed</div>
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
+  <script>document.write(icons('df1','4'))</script>
+  <span class="frame-data">Clone enders | Special mid (weapon projectile) | <span class="blk">-13</span> outside Heat · -3 in Heat</span>
+</div>
+<div class="note">All nine (Wavu −13): <span class="mono">df+1,4</span> · <span class="mono">db+2,1,1</span> · <span class="mono">b+2,4,2</span> · <span class="mono">ws3,2</span> · <span class="mono">qcf+1,2</span> · <span class="mono">SZN.1,4</span> · <span class="mono">SZN.3,2</span> · <span class="mono">BT.2,2,1</span> · <span class="mono">BT.f+2,4,2</span>. Each is "available only on hit or block". The anti-strat lists them at −14; Wavu −13 used</div>
+<div class="note"><span class="theory-badge" id="nu-2">Theory (Ledger):</span> a special mid can be crouch-blocked, so a clone shouldn't beat you for crouching. If you crouch-block one, you recover crouching, so the punish would be a WS move rather than a standing one. Wavu's −13 is the standing-block value; whether it's the same crouching is untested.</div>
+<div class="entry t-mid">
+  <script>document.write(icons('f1+2'))</script>
+  <span class="frame-data">Minos Typhoon | High, Mid | i18~19 | <span class="blk">-13</span> | Power crush 7~17</span>
+</div>
+<div class="note">Wavu: −9 after it absorbs a hit. See Power Crush &amp; Rage Art</div>
+<div class="entry t-mid">
+  <script>document.write(icons('BT.1+2'))</script>
+  <span class="frame-data">Crusader | Mid | i15~16 | <span class="blk">-13</span> | Power crush 6~14 | From BT</span>
+</div>
+<div class="note">Wavu: −7 after it absorbs a hit</div>
+<div class="entry t-mid">
+  <script>document.write(icons('uf3+4'))</script>
+  <span class="frame-data">Mid | i23~25 | <span class="blk">-13</span> | Spike | Airborne 8~26</span>
+</div>
+<div class="note">The anti-strat lists it at −16; Wavu −13 used. uf+3+4,4,2 also ends at −13 (mid); uf+3+4,3+4 is −25~−21 (see −15+)</div>
+<div class="entry t-mid">
+  <script>document.write(icons('uf3+4','4','2'))</script>
+  <span class="frame-data">Chakram | Mid, Low, Mid | ,i21 | <span class="blk">-13</span></span>
+</div>
+<div class="note">Wavu "Interrupt with i12". The 2nd hit is a low (see Low Block)</div>
+<div class="entry t-mid">
+  <script>document.write(icons('4~3','4'))</script>
+  <span class="frame-data">Hydra Bite Mid | Mid, Mid, Mid | ,i33~34 | <span class="blk">-14~-13</span> | Can be delayed</span>
+</div>
+<div class="note">Wavu "Interrupt with i14". 4~3 alone is −16~−15 (see −15+)</div>
+<div class="entry t-mid">
+  <script>document.write(icons('df4','4'))</script>
+  <span class="frame-data">Pendulum Kick | Mid, Mid | ,i22~25 | <span class="blk">-14~-13</span></span>
+</div>
+<div class="note">df+4,4,3 is only −6~−3. The anti-strat: "OS'able. Find a move that punishes second hit and floats teleport"</div>
+<div class="entry t-mid">
+  <script>document.write(icons('df2','4'))</script>
+  <span class="frame-data">Bolt Stunner | Mid, Mid | ,i12~13 | <span class="blk">-15~-14</span></span>
+</div>
+<div class="entry t-mid">
+  <script>document.write(icons('ws1'))</script>
+  <span class="frame-data">Rising Uppercut | Mid | i14~15 | <span class="blk">-14~-13</span></span>
+</div>
+<div class="entry t-mid">
+  <script>document.write(icons('f3','2'))</script>
+  <span class="frame-data">Circling Winds | Mid, Mid | ,i30 | <span class="blk">-14</span> | Combo from 1st hit</span>
+</div>
+<div class="note">Wavu "Interrupt with i5". f+3 alone is −9</div>
+<div class="entry t-mid">
+  <script>document.write(icons('BT.3+4'))</script>
+  <span class="frame-data">Spiral Cannon | Mid, Mid | i15 | <span class="blk">-14</span> | Airborne 13~31</span>
+</div>
+<div class="note">The anti-strat lists it at −20; Wavu −14 used</div>
+<div class="entry t-mid">
+  <script>document.write(icons('BT.b2','3'))</script>
+  <span class="frame-data">Abyss Cannon | Mid, Mid, Mid | ,i20 | <span class="blk">-14</span> | Airborne 18~36</span>
+</div>
+<div class="note">The anti-strat lists it at −20; Wavu −14 used. BT.b+2 alone is −2~−1</div>
+<div class="entry t-mid">
+  <script>document.write(icons('b1+2'))</script>
+  <span class="frame-data">Alternating Smash | Mid | i28~30 | <span class="blk">-15~-13</span> | Balcony Break | Evades on 6f</span>
+</div>
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
+  <script>document.write(icons('4~3'))</script>
+  <span class="frame-data">Hydra Bite | Mid, Mid | i16 | <span class="blk">-16~-15</span> | Airborne 14~27</span>
+</div>
+<div class="note">The extensions are delayable: ,1 (low, −13~−2), ,3 (high, −3~+0), ,4 (mid, −14~−13). Anti-strat: "dick jab OS… also mid &gt; SSR &gt; h/l"</div>
+<div class="entry t-high">
+  <script>document.write(icons('uf4','4'))</script>
+  <span class="frame-data">Stormbringer | Mid, Mid | ,i16~19 | <span class="blk">-15</span> | Balcony Break</span>
+</div>
+<div class="note"><strong>Cancel trap:</strong> Wavu "Can cancel to r19 BT at −16~−15 with B". Anti-strat: "−16 on cancel read". Wavu "Interrupt with i6"</div>
+<div class="entry t-high">
+  <script>document.write(icons('b2','2','3'))</script>
+  <span class="frame-data">Unicorn's Tail | High, Mid, Mid | i21~22 | <span class="blk">-19~-18</span> | Balcony Break</span>
+</div>
+<div class="note">Wavu "Interrupt with i1 from 2nd block". Anti-strat: pushback</div>
+<div class="entry t-high">
+  <script>document.write(icons('b4','b4','~3','3+4'))</script>
+  <span class="frame-data">Skull Spin | Mid, Low, Mid | ,i26~30 | <span class="blk">-25~-21</span></span>
+</div>
+<div class="note">Wavu "Interrupt with i6". b+4,B+4~3 stops at the low (−11)</div>
+<div class="entry t-high">
+  <script>document.write(icons('uf3+4','3+4'))</script>
+  <span class="frame-data">Spinning Chakram | Mid, Mid | ,i20~24 | <span class="blk">-25~-21</span></span>
+</div>
+<div class="note">Wavu "Interrupt with i3". Anti-strat: "hold back, reaction LP if double twirl on ground"</div>
+<div class="entry t-high">
+  <script>document.write(icons('3~4','~F'))</script>
+  <span class="frame-data">Chariot to Blind Roll | Mid, Mid | <span class="blk">-39~-36</span> | "Will phase through opponent up-close"</span>
+</div>
+<div class="note">3~4 without the roll is −9~−4 into BT. The anti-strat: a mixup between phasing or not. "Backdash into a move that realigns." BT.3,4,4,F and BT.f+3+4,F (both −36) are the same idea, and "while vanished, Raven has no hurtbox"</div>
+<div class="entry t-high">
+  <script>document.write(icons('R.df1+2'))</script>
+  <span class="frame-data">Wild Hunt X-ecutor (Rage Art) | Mid, Throw | i20 | <span class="blk">-18</span> | Power crush 8~20</span>
+</div>
+
+<!-- ── LOW BLOCK PUNISHMENT ── -->
+
+<h2 id="low-block"><span>Low Block Punishment</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout "><strong>Reactability tag</strong> (Mike's reaction rule, using the low's fastest startup frame): <span class="react r-yes">Reactable</span> 25f or slower · <span class="react r-mostly">Mostly reactable</span> 21–24f · <span class="react r-no">Not reactable — guess or condition</span> 20f or faster. Startups are from the Wavu movelist (for a string whose low is a later hit, Wavu's startup for that hit); a low with no stated startup gets no tag.</div>
+<div class="callout "><strong>His big lows mostly come from BT, FC and late in strings.</strong> From neutral, <span class="mono">db+3</span> (i28) is reactable but only −12~−11, and <span class="mono">d+4</span> / <span class="mono">db+4</span> (−13 / −14~−13) are mostly reactable. The launch-size ones are <span class="mono">b+2,2,1+2</span> (−30, not reactable — the anti-strat's <span class="mono">b+2</span> mix), <span class="mono">BT.d+3</span> (−26, reactable), <span class="mono">FC.df+3+4</span> (−23) and <span class="mono">u+3,3</span> (−16, reactable). Many of his lows crouch early, so a high jab whiffs: <span class="mono">d+4</span>, <span class="mono">db+4</span> and <span class="mono">2,3</span> from 6, <span class="mono">qcf+2</span> from 10, <span class="mono">BT.d+2</span>/<span class="mono">BT.d+3</span> from 4, and every FC move from 1. <span class="mono">db+3</span> is airborne 8~24.</div>
+<div class="tier-label t-low"><span class="tier-text">-10 to -12</span></div>
+<div class="entry t-low">
+  <script>document.write(icons('d3'))</script>
+  <span class="frame-data">Stinging Low | Low | i15 | <span class="blk">-11</span> | +0 on hit</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry t-low">
+  <script>document.write(icons('db3'))</script>
+  <span class="frame-data">Killer Bee | Low | i28~29 | <span class="blk">-12~-11</span> | Airborne 8~24, crouching 28~ | +39d on CH</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Wavu: "Cannot be low parried (bug?)". Block it, don't try to parry it</div>
+<div class="entry t-low">
+  <script>document.write(icons('qcf2'))</script>
+  <span class="frame-data">Buzzsaw | Low | i22~23 | <span class="blk">-12~-11</span> | Crouching 10~45</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Can cancel to BT with qcf+2~B. qcf+2~1 (mid, −9~−8) is the follow-up</div>
+<div class="entry t-low">
+  <script>document.write(icons('b4','b4','~3'))</script>
+  <span class="frame-data">Skull Smasher Feint Low | Mid, Low | ,i20 | <span class="blk">-11</span> | Crouching 12~37</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Wavu "Interrupt with i29". The ,3+4 mid ender is −25~−21 (see Standing Block). The anti-strat: "Fuzzy LP, or just hopkick (b4,4 jails)"</div>
+<div class="entry t-low">
+  <script>document.write(icons('uf3+4','4'))</script>
+  <span class="frame-data">Mid, Low | ,i21~22 | <span class="blk">-11~-10</span> | Crouching 1~41</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Wavu "Interrupt with i2". ,2 ends mid at −13</div>
+<div class="entry t-low">
+  <script>document.write(icons('BT.d2'))</script>
+  <span class="frame-data">Revenant Stab | Low | i20~21 | <span class="blk">-12</span> | Crouching 4~ | From BT</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry t-low">
+  <script>document.write(icons('BT.ff3+4'))</script>
+  <span class="frame-data">Vermillion | Low | i23~30 | <span class="blk">-18~-11</span> | Crouching 18~49 | From BT</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Up to −18, but only −11 is guaranteed</div>
+<div class="tier-label t-mid"><span class="tier-text">-13 to -14</span></div>
+<div class="entry t-mid">
+  <script>document.write(icons('2','3'))</script>
+  <span class="frame-data">PDK Combo | High, Low | ,i22 | <span class="blk">-13</span> | Combo from 1st hit | Crouching 6~</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="note">Wavu "Interrupt with i4". A true combo on hit, so this is only a block read</div>
+<div class="entry t-mid">
+  <script>document.write(icons('d4'))</script>
+  <span class="frame-data">Basilisk Fang | Low | i21 | <span class="blk">-13</span> | Crouching 6~ | +13g on CH</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="entry t-mid">
+  <script>document.write(icons('db4'))</script>
+  <span class="frame-data">Shinobi Cyclone | Low | i24~25 | <span class="blk">-14~-13</span> | Crouching 6~49 | +37a on CH</span>
+  <span class="react r-mostly">Mostly reactable</span>
+</div>
+<div class="tier-label t-high"><span class="tier-pill">-15+</span></div>
+<div class="entry t-high">
+  <script>document.write(icons('b2','2','1+2'))</script>
+  <span class="frame-data">Deadly Talon | High, Mid, Low | ,i20~21 | <span class="blk">-30~-29</span> | Crouching 18~29</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Wavu "Interrupt with i6 from 1st block", "Move cannot be delayed". After a blocked b+2,2 it's a mid/low guess against b+2,2,3 (−19~−18)</div>
+<div class="entry t-high">
+  <script>document.write(icons('BT.d3'))</script>
+  <span class="frame-data">Shinobi Cyclone | Low | i25~27 | <span class="blk">-26~-24</span> | Crouching 4~48 | From BT</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="entry t-high">
+  <script>document.write(icons('FC.df3+4'))</script>
+  <span class="frame-data">Tornado Destruction | Low | i18~20 | <span class="blk">-23~-21</span> | Crouching 1~17 | 2nd hit on hit only</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Wavu counterplay "Quicksand OS": you can forward roll FC.df+3+4 to dodge all of the SZN options</div>
+<div class="entry t-high">
+  <script>document.write(icons('FC.3'))</script>
+  <span class="frame-data">Crouch Spin Kick | Low | i16 | <span class="blk">-17</span> | From crouch</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry t-high">
+  <script>document.write(icons('u3','3'))</script>
+  <span class="frame-data">Deathbringer Low | High, Low | i31~32 | <span class="blk">-16~-15</span> | Crouching 14~39</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">On hit it goes to Ki Charge. u+3,3,3 (mid ender) is only −6~−4. The anti-strat: "5f fuzzy LP (mid first, then 5f until low, then another 7f until high)". Wavu lists u+3 as a high, not a mid</div>
+<div class="entry t-high">
+  <script>document.write(icons('FC.4'))</script>
+  <span class="frame-data">Crouch Chin Kick | Low | i12 | <span class="blk">-15</span> | From crouch</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry t-high">
+  <script>document.write(icons('BT.d4'))</script>
+  <span class="frame-data">Crouch Spin Kick | Low | i12 | <span class="blk">-15</span> | From BT</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<h3>Lows that aren't punishable — still worth knowing the tag</h3>
+<div class="entry">
+  <script>document.write(icons('SZN.4'))</script>
+  <span class="frame-data">Cocytus Glide | Low | i17~24 | −14~−7 | Crouching 6~ | From SZN</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">Only −14 at the fast end; the slower versions are as little as −7, so it isn't a guaranteed punish</div>
+<div class="entry">
+  <script>document.write(icons('4~3','1'))</script>
+  <span class="frame-data">Hydra Bite Low | Mid, Mid, Low | ,i34~35 | −13~−2 | Can be delayed</span>
+  <span class="react r-yes">Reactable</span>
+</div>
+<div class="note">Wavu "Interrupt with i15"</div>
+<div class="entry">
+  <script>document.write(icons('FC.df3'))</script>
+  <span class="frame-data">Aqua Spider | Low | i20~22 | −9~−7 | +30d on CH | Recovers BT</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('BT.f4'))</script>
+  <span class="frame-data">Kama Kick | Low | i16 | −9 | From BT</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">BT.f+4,1 adds a high (−9~−8). See Duck and Launch</div>
+<div class="entry">
+  <script>document.write(icons('d1'))</script>
+  <span class="frame-data">Crouch Jab | Special low | i10 | −5</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('d2'))</script>
+  <span class="frame-data">Crouch Straight | Special low | i11 | −4</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.1'))</script>
+  <span class="frame-data">Crouch Jab | Special low | i10 | −5 | From crouch</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('FC.2'))</script>
+  <span class="frame-data">Crouch Straight | Special low | i11 | −4 | From crouch</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('BT.d1'))</script>
+  <span class="frame-data">Crouch Spin Knuckle | Special low | i10 | −5 | From BT</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+
+<!-- ── DUCK AND LAUNCH ── -->
+
+<h2 id="duck-launch"><span>Duck and Launch</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-warn"><strong>The clone enders aren't duckable.</strong> Every Phantom/clone hit is a weapon projectile and a special mid (Wavu), so ducking the hit before it doesn't help with the clone. Block it and punish (−13). The anti-strat's duckable-high list: <span class="mono">2,4</span> · <span class="mono">3,3,4</span> · <span class="mono">4~3,3</span> · <span class="mono">df+2,3</span> (mix) · <span class="mono">b+2,4</span> (mix) · <span class="mono">BT.1,4</span>.</div>
+<h3>String enders — high after a mid</h3>
+<div class="entry">
+  <script>document.write(icons('df2','3'))</script>
+  <span class="frame-data">Meat Hook | Mid, High | −8~−7 | Balcony Break</span>
+</div>
+<div class="note">The mix with df+2,4 (mid, −15~−14). Duck the 3 and you're safe from the high; block the 4 and punish. Anti-strat calls it a mix</div>
+<div class="entry">
+  <script>document.write(icons('3','3','4'))</script>
+  <span class="frame-data">Valkyrie Lance Combo | Mid, High, High | ,i26~27 | −9 | Combo from 2nd CH</span>
+</div>
+<div class="note">3,3 jails from 1st block, so you can't duck the 2nd hit. Duck the 3rd (Wavu "Interrupt with i8"). Cancel to BT with B at −16~−15. Anti-strat: "dickjab / fast highcrush low OS. −16 on hard cancel read"</div>
+<div class="entry">
+  <script>document.write(icons('4~3','3'))</script>
+  <span class="frame-data">Hydra Bite High | Mid, Mid, High | ,i24~27 | −3~+0 | Can be delayed</span>
+</div>
+<div class="note">Wavu "Interrupt with i7". Anti-strat lists it as duckable (see String handling)</div>
+<div class="entry">
+  <script>document.write(icons('db2','1'))</script>
+  <span class="frame-data">Assassin's Sting Combo | Mid, High | −1~+0 | Combo from 1st hit | Can go to SZN</span>
+</div>
+<div class="note">A true combo on hit, so duck it only when you block db+2. db+2,1,1 adds the clone (−13). Ducking the 1 also skips the clone</div>
+<div class="entry">
+  <script>document.write(icons('BT.f2','4'))</script>
+  <span class="frame-data">Cold Worm | Mid, High | −7~−6 | Combo from 1st hit with 1f delay</span>
+</div>
+<div class="note">Wavu "Interrupt with i1", so the gap is tiny. Ducking it is a read, not a reaction. BT.f+2,4,2 adds the clone (−13)</div>
+<div class="entry">
+  <script>document.write(icons('BT.f4','1'))</script>
+  <span class="frame-data">Trick Bang | Low, High | ,i22~23 | −9~−8 | Tornado | Combo from 1st hit</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="note">The tag is for the low 1st hit (i16). After blocking the low, the 2nd hit is a high</div>
+<h3>Full-high strings</h3>
+<div class="entry">
+  <script>document.write(icons('b2'))</script>
+  <span class="frame-data">High | i15~17 | −14~−12 | Opens b+2,2 · b+2,4 · b+2,2,3 · b+2,2,1+2</span>
+</div>
+<div class="note">Ducking the b+2 opener beats the whole tree. Wavu: b+2,2 is "−16 on whiff after 1st hit" and b+2,4 "−22 on whiff after 1st hit"</div>
+<div class="note"><span class="theory-badge" id="nu-3">Theory (Ledger):</span> <span class="mono">b+2,4</span> whiffs if you sidestep after blocking <span class="mono">b+2</span> (Wavu), and Wavu lists it at −22 on whiff, so that step should be worth a launcher. The size of the punish is untested.</div>
+<div class="entry">
+  <script>document.write(icons('2','4'))</script>
+  <span class="frame-data">PK Combo | High, High | −8~−7 | On hit: +8 BT / FC or +10 CD</span>
+</div>
+<div class="note">Anti-strat: duckable</div>
+<div class="entry">
+  <script>document.write(icons('1','2'))</script>
+  <span class="frame-data">Left Right Combo | High, High | −3 | Jails from 1st hit with 2f delay | Can go to SZN</span>
+</div>
+<div class="note">Jails, so ducking the 2nd hit only works on a read. 1,2,4 ends in a mid (−14~−12)</div>
+<div class="entry">
+  <script>document.write(icons('4','1'))</script>
+  <span class="frame-data">Brocken Connect | High, High | −3~−2 | Jails from 1st block | Recovers BT</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('BT.1','4'))</script>
+  <span class="frame-data">Blind Lance | High, High | −8~−7 | Combo from 1st hit | From BT</span>
+</div>
+<div class="note">Anti-strat: duckable. Wavu "Interrupt with i1"</div>
+<h3>Naked highs and the high power crush</h3>
+<div class="entry">
+  <script>document.write(icons('b1'))</script>
+  <span class="frame-data">Elbow Strike | High | i16~17 | <b>+7c~+8c</b> | Spike | Goes to SZN on hit or block</span>
+</div>
+<div class="note"><strong>His best plus-on-block move is a high: duck it.</strong> On block he's +7~+8 in SZN, where SZN.1, SZN.1+2, SZN.3 and SZN.4 all beat your jab (see Stance Check). At i16 you can't duck it on reaction, only on a read</div>
+<div class="note"><span class="theory-badge" id="nu-4">Theory (Ledger):</span> a ducked <span class="mono">b+1</span> should whiff into its forced SZN transition, which Wavu only lists "on hit or block". If the SZN transition doesn't happen on whiff, his recovery (r31) is the punish window. Untested.</div>
+<div class="entry">
+  <script>document.write(icons('BT.b3'))</script>
+  <span class="frame-data">Cannon Tail | High | i18~19 | <b>+4~+5</b> | Homing</span>
+</div>
+<div class="note">Duck it. It's the anti-strat's exception to SWL in BT</div>
+<div class="entry">
+  <script>document.write(icons('u3'))</script>
+  <span class="frame-data">Deathbringer | High | i27~28 | <b>+2</b> | Airborne 9~30 | Recovers BT</span>
+</div>
+<div class="note">Airborne early, so it beats lows. Leads to u+3,3 (low, −16~−15) and u+3,3,3 (mid)</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1+2'))</script>
+  <span class="frame-data">Oceanus Fissure | High | i15~16 | +0~+1 | Homing | Tornado on CH</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('qcf3'))</script>
+  <span class="frame-data">Poison Needle &gt; Nightmare | High, Throw | i16~17 | −7~−6 | Hit-throw on front hit</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('df3'))</script>
+  <span class="frame-data">Shadow Snap Kick | High | i16~17 | −9~−8 | Crouching 6~17</span>
+</div>
+<div class="note">A high that crouches early, so a high jab whiffs under it. Duck it</div>
+<div class="entry">
+  <script>document.write(icons('f1+2'))</script>
+  <span class="frame-data">Minos Typhoon | High, Mid | i18~19 | −13 | <strong>Power crush 7~17</strong></span>
+</div>
+<div class="note"><span class="theory-badge" id="nu-5">Theory (Ledger):</span> Wavu lists the power crush as high, then mid. Ducking may skip the high, but the mid still comes, so blocking it (−13) is the reliable answer. Whether a duck makes the whole move whiff is untested.</div>
+
+<!-- ── STANCE COUNTERPLAY ── -->
+
+<h2 id="stances"><span>Stance Counterplay</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<h3>SZN — Soulzone</h3>
+<div class="callout callout-key">• <strong>Entry:</strong> <span class="mono">3+4</span> (also <span class="mono">d+3+4</span>, <span class="mono">hFC.3+4</span>), or ~D / 3+4 from strings. <strong>Plus entries</strong> (Wavu): on block <span class="mono">b+1</span> +7c~+8c (forced) and the Heat Smash +14g; on hit <span class="mono">db+2,1</span> +5, <span class="mono">1,2</span> +6, <span class="mono">f+2,3</span> +6c~+7c, <span class="mono">BT.2,2</span> and <span class="mono">BT.f+4,1</span> +8~+9, <span class="mono">b+1</span> +10c~+11c, <span class="mono">qcf+1</span> +13g. <strong>Minus entries</strong> on block: <span class="mono">qcf+1</span> −2, <span class="mono">1,2</span> and <span class="mono">db+2,1</span> −4, <span class="mono">BT.f+4,1</span> −6~−5, <span class="mono">BT.2,2</span> −7~−6, <span class="mono">f+2,3</span> −9~−8.<br>
+• <strong>Can he block in it?</strong> No source says he can. By the guide's rule he can't block in a unique stance.<br>
+• <strong>Lows:</strong> only <span class="mono">SZN.4</span>: i17~24, −14~−7 on block <span class="react r-no">Not reactable</span>.<br>
+• <strong>Fastest move:</strong> <span class="mono">SZN.1</span>, a high at i14~15 (+1 on block, can dash to CD at +5~+6). It's a high, so a crouch beats it.<br>
+• <strong>No parry and no power crush</strong> from SZN. <span class="mono">SZN.U</span> / <span class="mono">SZN.D</span> / <span class="mono">SZN.B</span> (Blind Fall) are airborne 1~17.<br>
+• <strong>Quicksand OS</strong> (Wavu counterplay): forward roll his <span class="mono">FC.df+3+4</span> to dodge all of the SZN options.</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1'))</script>
+  <span class="frame-data">Swift Blade | High | i14~15 | +1 | ~F to CD at +5~+6</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1','4'))</script>
+  <span class="frame-data">Swift Blade &gt; Phantom Mace | High, Special mid | <b>−13</b> | Clone</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.2'))</script>
+  <span class="frame-data">Dual Thanatos | Mid, Special mid | i18 | −9 | Heat Engager</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.3'))</script>
+  <span class="frame-data">Radius Flail | Mid | i16~17 | −1 | Airborne 9~17 | Can go to BT or FC</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.3','2'))</script>
+  <span class="frame-data">Radius Flail &gt; Phantom Halberd | Mid, Special mid | <b>−13</b> | Clone</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.4'))</script>
+  <span class="frame-data">Cocytus Glide | Low | i17~24 | −14~−7 | Crouching 6~</span>
+  <span class="react r-no">Not reactable</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1+2'))</script>
+  <span class="frame-data">Oceanus Fissure | High | i15~16 | +0~+1 | Homing</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('SZN.3+4'))</script>
+  <span class="frame-data">Blind Strike | Mid | i27~30 | −6 | Floor Break</span>
+</div>
+<div class="note"><span class="theory-badge" id="nu-6">Theory (Ledger):</span> <span class="mono">SZN.1</span> and <span class="mono">SZN.1+2</span> are highs and <span class="mono">SZN.4</span> is a low, so a crouch beats or blocks all three. So after a blocked <span class="mono">b+1</span>, crouching should cover everything fast except <span class="mono">SZN.2</span> (mid, −9) and <span class="mono">SZN.3</span> (mid, −1). Neither of those mids is plus, so a wrong crouch costs damage but not the turn. Untested.</div>
+<h3>BT — back turned</h3>
+<div class="callout callout-key">• <strong>Entry:</strong> <span class="mono">b+3+4</span>, and many moves recover BT. <strong>Plus entries</strong> (Wavu): on block <span class="mono">u+3</span> +2, <span class="mono">BT.b+3</span> +4~+5, <span class="mono">f,f,F+3</span> +4~+6, <span class="mono">b+4,B+4</span> +1c~+6c; on hit <span class="mono">2,4~B</span> +8, <span class="mono">4,1</span> +7~+8, <span class="mono">b+4,4</span> +6c~+8c, <span class="mono">db+2</span>, <span class="mono">b+2,2</span>, <span class="mono">f+3~B</span> +5~+6, and others (see Stance Check).<br>
+• <strong>Can he block in it?</strong> Wavu: <span class="mono">BT.b+3+4</span> (turning to face you) "Can block mid or high attacks after 5f". The anti-strat: "Manual BT transition (b3+4) vulnerable for 5f before blocking." No source says he can block lows in BT.<br>
+• <strong>Lows:</strong> <span class="mono">BT.d+1</span> (special low, −5), <span class="mono">BT.d+4</span> (i12, −15), <span class="mono">BT.f+4</span> (i16, −9), <span class="mono">BT.d+2</span> (i20, −12), <span class="mono">BT.f,F+3+4</span> (i23, −18~−11), <span class="mono">BT.d+3</span> (i25, −26~−24, reactable).<br>
+• <strong>Parry:</strong> <span class="mono">BT.f+1+2</span> (Sixth Sense) parries mid or high punches or kicks 1~8, then a throw follow-up.<br>
+• <strong>Fastest move:</strong> <span class="mono">BT.1</span>, a high at i8. <span class="mono">BT.2</span> and <span class="mono">BT.3</span> are i10 highs. All three are highs: a crouch beats them.<br>
+• <strong>Power crush:</strong> <span class="mono">BT.1+2</span> (mid, 6~14, −13). Jab-checking him in BT can get absorbed.<br>
+• <strong>The answer (anti-strat):</strong> around 0f, <strong>SWL</strong> beats everything except <span class="mono">BT.b+3</span> and <span class="mono">BT.3</span>, which are both highs.</div>
+<div class="note"><span class="theory-badge" id="nu-7">Theory (Ledger):</span> since both of the anti-strat's SWL exceptions are highs, mixing SWL with a crouch at even frames covers everything the anti-strat names. The crouch would still lose to his BT mids (<span class="mono">BT.f+3</span>, <span class="mono">BT.b+2</span>, <span class="mono">BT.4</span>), which are −1 to −9, so the cost is damage, not a big punish. Untested.</div>
+<h3>CD — Shadow Sprint</h3>
+<div class="callout ">Entered with <span class="mono">qcf</span>, from <span class="mono">SZN.F</span>, and with ~F after <span class="mono">SZN.1</span> (+5~+6 on block), <span class="mono">BT.2,1</span> (+3 on block, +7 on hit) and <span class="mono">2,4</span> (+10 on hit). Wavu lists <span class="mono">ub+1</span>, <span class="mono">ub+1,2</span>, <span class="mono">u+3</span> and its strings, <span class="mono">uf+3</span>, <span class="mono">uf+4</span> / <span class="mono">uf+4,4</span> and <span class="mono">uf+3+4</span> strings as available during CD. He can cancel CD to FC with d,DF.</div>
+<h3>Blind Roll — the phase-through</h3>
+<div class="callout "><span class="mono">3~4,F</span>, <span class="mono">BT.3,4,4,F</span>, <span class="mono">BT.f+3+4,F</span> and <span class="mono">BT.f,f,f</span>: Wavu "Will phase through opponent up-close" and "While vanished, Raven has no hurtbox". The roll versions are −36 to −39 on block. The anti-strat for <span class="mono">3~4</span>: "Mixup if phase or not. Backdash into a move that realigns, or hold slightly forward → BT hopkick to punish the phase."</div>
+<h3>FC — full crouch</h3>
+<div class="callout ">His crouch moves are crouching from frame 1 (Wavu), so a high jab whiffs over them. Plus entries on hit: <span class="mono">2,4~D</span> +8, <span class="mono">SZN.3~D</span> and <span class="mono">BT.b+2,4~D</span> +5, <span class="mono">BT.d+2~D</span> +4. Lows: <span class="mono">FC.1</span> / <span class="mono">FC.2</span> (special lows), <span class="mono">FC.3</span> (−17), <span class="mono">FC.4</span> (−15), <span class="mono">FC.df+3</span> (−9~−7), <span class="mono">FC.df+3+4</span> (−23~−21).</div>
+
+<!-- ── HEAT ── -->
+
+<h2 id="heat"><span>Heat</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout callout-key"><strong>Heat Smash <span class="mono">H.2+3</span>: mid → attack throw, i18~20, <b>+14g</b> on block into SZN. No punish. Don't press.</strong> The anti-strat: "i18 mid, mid, mid. Ends +14 in SLZ." 9 chip damage on block. From +14, every SZN move except the slow SZN.3+4 beats your jab (see Stance Check).<br><strong>Heat Burst <span class="mono">2+3</span>:</strong> mid, i16, power crush 7~16, +1 on block.<br><strong>Heat power</strong> (anti-strat): hitting the Doppelganger (clone) moves restores Heat. <strong>In Heat his clones are −3</strong>, not −13 (Wavu counterplay). Don't punish clone enders during Heat.</div>
+<div class="note"><span class="theory-badge" id="nu-8">Theory (Ledger):</span> the clone extensions are "available only on hit or block", and in Heat they're −3 and restore Heat when they hit. So blocking the first hit and then the clone shouldn't cost you anything in Heat, but it's no longer your turn. Expect to defend, not punish, until his Heat runs out. Untested.</div>
+<h3>Heat Engagers — and how to deny each</h3>
+<div class="entry">
+  <script>document.write(icons('1+2'))</script>
+  <span class="frame-data">Crusader | Mid | i14 | −9</span>
+</div>
+<div class="note">Block it</div>
+<div class="entry">
+  <script>document.write(icons('ff2'))</script>
+  <span class="frame-data">Shadow Spear | Mid | i15~16 | −12~−11</span>
+</div>
+<div class="note">Block and punish (pushback)</div>
+<div class="entry">
+  <script>document.write(icons('ws3+4'))</script>
+  <span class="frame-data">Spinning Middle Kick | Mid | i16~18 | −12 | Homing</span>
+</div>
+<div class="note">Block and punish. Don't step it</div>
+<div class="entry">
+  <script>document.write(icons('SZN.2'))</script>
+  <span class="frame-data">Dual Thanatos | Mid, Special mid | i18 | −9</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('BT.4'))</script>
+  <span class="frame-data">Chronos Lathe | Mid | i19~20 | −5~−4 | Airborne 6~19</span>
+</div>
+<div class="note">Airborne early, so a low check loses to it</div>
+<div class="callout ">All five of his engagers are mids, so <strong>ducking doesn't deny his Heat</strong>. Block them. The anti-strat lists "f1+2" as an engager; Wavu has no Heat Engager note on <span class="mono">f+1+2</span> and marks <span class="mono">f,F+2</span> instead (used here).</div>
+<h3>Heat-only moves and their Heat-time cost</h3>
+<div class="entry">
+  <script>document.write(icons('df1','H.4'))</script>
+  <span class="frame-data">Heat clone enders | −3~−2 (db+2,1,H.1: −3~+5) | 240F of Heat time on block</span>
+</div>
+<div class="note">Same for db+2,1,H.1, b+2,4,H.2, qcf+1,H.2, SZN.1,H.4, SZN.3,H.2, BT.2,2,H.1, BT.f+2,4,H.2. <span class="mono">ws3,H.2</span> costs 600F. All "available only on hit or block"</div>
+<div class="entry">
+  <script>document.write(icons('fff3','H.4'))</script>
+  <span class="frame-data">Typhon Fang Phantom | Mid, Special mid | i19~20 | <b>+7~+8</b> | Recovers BT | 600F of Heat time</span>
+</div>
+<div class="note">The anti-strat: "wr3 +4 BT, wr3,4 +7 BT". Instant Tornado on hit</div>
+
+<!-- ── THROWS ── -->
+
+<h2 id="throws"><span>Throws</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('1+3'))</script>
+  <span class="frame-data">Grave Digger | i12~14 | Homing | Break 1 or 2</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('2+4'))</script>
+  <span class="frame-data">Salamander | i12~14 | Homing | Break 1 or 2 | Side switch</span>
+</div>
+<div class="note">Left throw (Neck Ringer): break 1 · Right throw (Swift Assassin): break 2 · <strong>Back throw (Dark Matter): unbreakable</strong></div>
+<div class="entry">
+  <script>document.write(icons('df1+4'))</script>
+  <span class="frame-data">Orbiting Moon | Command throw | i11 | Break 1 | Floor Break</span>
+</div>
+<div class="note">Alternate input qcf,df+1+4</div>
+<div class="entry">
+  <script>document.write(icons('uf1+2'))</script>
+  <span class="frame-data">Undertaker | Command throw | i12 | Break 1+2 | Can side switch</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('BT.f1'))</script>
+  <span class="frame-data">Soul Steal | Mid → throw | i16 | −8 | Turns into a throw on hit only</span>
+</div>
+<h3>Hit-throws</h3>
+<div class="callout "><span class="mono">qcf+3</span> (high → throw on front hit), <span class="mono">BT.f+1</span> (mid), <span class="mono">b,B+2,P</span> (after the parry), <span class="mono">BT.f+1+2,P</span> (after the BT parry), <span class="mono">H.2+3</span> (Heat Smash) and <span class="mono">R.df+1+2</span> (Rage Art) all turn into throws. <span class="mono">qcf+3</span> is a high and can be ducked.</div>
+
+<!-- ── POWER CRUSH & RAGE ART ── -->
+
+<h2 id="power-crush"><span>Power Crush &amp; Rage Art</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="entry">
+  <script>document.write(icons('f1+2'))</script>
+  <span class="frame-data">Minos Typhoon | <strong>High, Mid</strong> | i18~19 | −13 | Power crush 7~17</span>
+</div>
+<div class="note">Block and punish. −9 and 12 chip after it absorbs a hit (Wavu). See the Theory under Duck and Launch about ducking it</div>
+<div class="entry">
+  <script>document.write(icons('BT.1+2'))</script>
+  <span class="frame-data">Crusader | <strong>Mid</strong> | i15~16 | −13 | Power crush 6~14 | From BT</span>
+</div>
+<div class="note">A mid: you can't duck it. −7 after absorbing a hit</div>
+<div class="entry">
+  <script>document.write(icons('2+3'))</script>
+  <span class="frame-data">Heat Burst | Mid | i16 | +1 | Power crush 7~16</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('R.df1+2'))</script>
+  <span class="frame-data">Wild Hunt X-ecutor | Mid, Throw | i20 | −18 | Power crush 8~20</span>
+</div>
+<div class="note">A mid: block and launch</div>
+<h3>Parries, reversals and Ki Charge</h3>
+<div class="entry">
+  <script>document.write(icons('b1+3'))</script>
+  <span class="frame-data">Utsusemi Escape | Parries all attacks except Rage Arts 1~10 | Teleports back</span>
+</div>
+<div class="note">Wavu: on a successful parry he takes recoverable self-damage, teleports a safe distance back and recovers in FC. The anti-strat: "i1-9 teleport parry"</div>
+<div class="note"><span class="theory-badge" id="nu-9">Theory (Ledger):</span> Utsusemi parries attacks, and a throw isn't an attack in the parry sense, so a throw should beat it. Untested.</div>
+<div class="entry">
+  <script>document.write(icons('BT.f1+2'))</script>
+  <span class="frame-data">Sixth Sense | Parries mid or high punches or kicks 1~8 | From BT</span>
+</div>
+<div class="note">A low beats it. Follow-up throw on parry</div>
+<div class="entry">
+  <script>document.write(icons('bb2'))</script>
+  <span class="frame-data">War Hound | Mid, High | i17~18 | −10~−9 | Parries high or mid punches or kicks</span>
+</div>
+<div class="note">A low beats the parry. The anti-strat: "bb2 i1~8 parry, i17 hit"</div>
+<div class="entry">
+  <script>document.write(icons('1+2+3+4'))</script>
+  <span class="frame-data">Ki Charge | Can't block for 5 seconds | Counter-hit state</span>
+</div>
+<div class="note">Hit him. u+3,3 goes into Ki Charge on hit. Dead End (1+2+3+4,b,f,1+2) is unblockable, i59~61</div>
+
+<!-- ── GENERAL COUNTER PLAY ── -->
+
+<h2 id="counterplay"><span>General Counter Play</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<h3 id="practice">Practice priorities</h3>
+<div class="callout callout-key">1. <strong>Punish every clone:</strong> the Phantom/clone enders are −13 outside Heat (<span class="mono">df+1,4</span>, <span class="mono">db+2,1,1</span>, <span class="mono">b+2,4,2</span>, <span class="mono">ws3,2</span>, <span class="mono">qcf+1,2</span>, <span class="mono">SZN.1,4</span>, <span class="mono">SZN.3,2</span>, <span class="mono">BT.2,2,1</span>, <span class="mono">BT.f+2,4,2</span>). In Heat they're −3: don't punish.<br>
+2. <strong>Duck his plus highs:</strong> <span class="mono">b+1</span> (+7~+8 into SZN), <span class="mono">BT.b+3</span> (+4~+5, homing), <span class="mono">SZN.1+2</span> (homing), and the <span class="mono">b+2</span> opener.<br>
+3. <strong>Don't jab after his plus stance entries.</strong> After a blocked <span class="mono">b+1</span> (+8), his fast SZN moves beat an i10 jab and SZN.2 trades. After a blocked <span class="mono">f,f,F+3</span> (+6), BT.1 / BT.2 / BT.3, BT.f+3, BT.1+2 and BT.3+4 all beat it. Block or crouch.<br>
+4. <strong>SSR in neutral</strong>, but block <span class="mono">df+1</span> (SWL only at range), and <strong>SWL around 0f in BT</strong> (duck BT.b+3 / BT.3).<br>
+5. <strong>Launch the big lows:</strong> <span class="mono">BT.d+3</span> (−26, reactable), <span class="mono">u+3,3</span> (−16, reactable), <span class="mono">b+2,2,1+2</span> (−30, a guess), <span class="mono">FC.df+3+4</span> (−23).</div>
+<div class="callout "><strong>Mike's notes:</strong> no <span class="mono">notes/Raven.md</span> exists yet, so this guide has no drill notes. Ranked record vs Raven at queue time: <strong>5–4</strong>.</div>
+<h3>Plus-on-block tools — respect the next turn</h3>
+<div class="entry">
+  <script>document.write(icons('H.2+3'))</script>
+  <span class="frame-data">Heat Smash | <b>+14g</b> into SZN</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b1'))</script>
+  <span class="frame-data">Elbow Strike | High | <b>+7c~+8c</b> into SZN</span>
+</div>
+<div class="note">Duck it on a read</div>
+<div class="entry">
+  <script>document.write(icons('fff3'))</script>
+  <span class="frame-data">Typhon Fang | Mid | i22~24 | <b>+4~+6</b> | Recovers BT | Airborne 14~34</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b3'))</script>
+  <span class="frame-data">Hades Heel | Mid | i27~29 | <b>+4~+6</b> | Spike</span>
+</div>
+<div class="note">A mid, not duckable. i27 is slow enough to see; step or interrupt it</div>
+<div class="entry">
+  <script>document.write(icons('BT.b3'))</script>
+  <span class="frame-data">Cannon Tail | High | <b>+4~+5</b> | Homing</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('u3'))</script>
+  <span class="frame-data">Deathbringer | High | <b>+2</b> | Recovers BT</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('b4','b4'))</script>
+  <span class="frame-data">Skull Smasher Feint | Mid, Mid | ,i37~42 | <b>+1c~+6c</b> | Recovers BT</span>
+</div>
+<div class="note">Wavu "Interrupt with i15". The anti-strat: "Fuzzy LP, or just hopkick"</div>
+<div class="entry">
+  <script>document.write(icons('BT.2','1'))</script>
+  <span class="frame-data">Backfist &gt; Straight | High, High | −1 | ~F into CD at <b>+3</b></span>
+</div>
+<div class="note">The anti-strat lists BT2,1~f at +1; Wavu +3 used</div>
+<div class="entry">
+  <script>document.write(icons('BT.3','4'))</script>
+  <span class="frame-data">High, Mid | ,i28~30 | +0~+2</span>
+</div>
+<div class="note">Wavu "Interrupt with i9"</div>
+<div class="entry">
+  <script>document.write(icons('SZN.1+2'))</script>
+  <span class="frame-data">Oceanus Fissure | High | +0~+1 | Homing</span>
+</div>
+<div class="entry">
+  <script>document.write(icons('qcf1+2'))</script>
+  <span class="frame-data">Hellhound | Mid, Mid | i24 | ±0 | Recovers FC</span>
+</div>
+<h3>Interruptible gaps</h3>
+<div class="callout ">From Wavu's "interrupt with iN" notes: <span class="mono">u+3,3,3</span> <strong>i36</strong> · <span class="mono">b+4,B+4~3</span> <strong>i29</strong> · <span class="mono">BT.3,4,3</span> i24 · <span class="mono">4~3,1</span> and <span class="mono">b+4,B+4</span> i15 · <span class="mono">4~3,4</span> i14 · <span class="mono">uf+3+4,4,2</span> i12 · <span class="mono">BT.3,4</span> i9 · <span class="mono">3,3,4</span> i8 · <span class="mono">4~3,3</span> i7 · <span class="mono">f+2,3</span>, <span class="mono">uf+4,4</span>, <span class="mono">b+2,4</span> (from 1st block), <span class="mono">b+2,2,1+2</span> (from 1st block), <span class="mono">b+4,B+4~3,3+4</span> i6 · <span class="mono">f+3,2</span>, <span class="mono">ub+1,2</span>, <span class="mono">b+2,4,2</span>, <span class="mono">BT.3,4,4</span>, <span class="mono">BT.f+2,3</span>, <span class="mono">BT.f+2,4,2</span> i5 · <span class="mono">1,2,4</span>, <span class="mono">2,3</span>, <span class="mono">b+2,2</span>, <span class="mono">u+3,3</span> i4 · <span class="mono">db+2,1,1</span>, <span class="mono">BT.2,2,1</span>, <span class="mono">uf+3+4,3+4</span> i3 · <span class="mono">uf+3+4,4</span>, <span class="mono">BT.2,2</span>, <span class="mono">BT.f+4,1</span> i2 · <span class="mono">df+1,4</span>, <span class="mono">ws3,2</span>, <span class="mono">qcf+1,2</span>, <span class="mono">b+2,2,3</span> (from 2nd block), <span class="mono">BT.1,4</span>, <span class="mono">BT.f+2,4</span>, <span class="mono">BT.b+2,3</span> i1. Gaps of i10 or more (<span class="mono">u+3,3,3</span>, the <span class="mono">b+4,B+4</span> feints, <span class="mono">BT.3,4,3</span>, the slow <span class="mono">4~3</span> extensions, <span class="mono">uf+3+4,4,2</span>) leave room for a jab.</div>
+<h3>Unusual evasion</h3>
+<div class="callout ">Airborne (beats lows): <span class="mono">f,F+3</span> 7~23, <span class="mono">db+3</span> 8~24, <span class="mono">uf+4</span> 8~27, <span class="mono">uf+3+4</span> 8~26, <span class="mono">u+3</span> / <span class="mono">uf+3</span> / <span class="mono">uf,n,4</span> 9~30, <span class="mono">4~3</span> 14~27, <span class="mono">f,f,F+3</span> 14~34, <span class="mono">1,2,4</span> from 23, <span class="mono">BT.4</span> 6~19, <span class="mono">BT.f+3+4</span> 5~24, <span class="mono">BT.3+4</span> 13~31, <span class="mono">SZN.3</span> 9~17, Blind Fall (<span class="mono">SZN.U/D/B</span>) 1~17.<br>Crouching (a high jab whiffs): all FC moves from 1, <span class="mono">d+1</span>/<span class="mono">d+2</span> from 4, <span class="mono">BT.d+2</span>/<span class="mono">BT.d+3</span>/<span class="mono">BT.f,F+3</span> from 4, <span class="mono">df+3</span> 6~17, <span class="mono">d+4</span>, <span class="mono">db+4</span>, <span class="mono">2,3</span> and <span class="mono">SZN.4</span> from 6, <span class="mono">qcf+2</span> 10~45, <span class="mono">b+4,B+4~3</span> 12~37, <span class="mono">u+3,3</span> 14~39. <span class="mono">df+3+4</span> Crouch Step: high crush 4~25 (TekkenDocs).<br>Phase / no hurtbox: the Blind Roll moves (see Stances). <span class="mono">b+1+2</span>: "Evades on 6f".</div>
+<h3>Anti-strat notes (TekkenDocs, community-written)</h3>
+<div class="callout ">• <strong>Quick overview:</strong> "Ninja. SSR. Around 0f BT: SWL beats literally everything except BT b3 / BT3. Manual BT transition (b3+4) vulnerable for 5f before blocking."<br>• <strong>String handling:</strong> "df4,4: OS'able." · "4~3: dick jab OS. Can also fuzzy, but hard." · "3~4: Mixup if phase or not." · "u3: 5f fuzzy LP" · "3,3,4/cancel: −16 on hard cancel read."<br>• <strong>Low minus</strong> (his low-risk pokes): BT b+2 (−2 BT), 1,2 (−3), 4,1 (−3 BT), b+2,2 (−3 BT), BT2,1 (−3), BT f+3 (−5), BT4 (−5 BT), ws4 (−6).<br>• <strong>Low hit advantage:</strong> d+3 is +0 on hit, d+4 −2 (Wavu: −2c on crouching opponents).<br>• <strong>Punish-list disagreements with Wavu</strong> (Wavu used): uf+3+4 (anti-strat −16, Wavu −13), BT.3+4 and BT.b+2,3 (−20 vs −14), the clones (−14 vs −13), f+1+2 (−14 vs −13).</div>
+
+<!-- ── STANCE CHECK — CAN A JAB INTERRUPT HIS PLUS STANCE ENTRIES? ── -->
+
+<h2 id="stance-check"><span>Stance Check — can a jab interrupt his plus stance entries?</span><a class="to-top" href="#top">↑ Return to Top</a></h2>
+<div class="callout ">Arithmetic only, all from Wavu. <strong>Effective startup = his raw startup − his frame advantage.</strong> Your jab is 10f, so effective i9 or faster → <em>jab can't interrupt</em>; exactly i10 → <em>trades</em>; i11 or slower → <em>a 10f jab interrupts</em>. Where Wavu gives a startup range, the fastest frame is used; where it gives an advantage range (e.g. +7c~+8c), the larger number is used, the worst case for you. Only entries with a <strong>stated plus</strong> advantage are covered; airborne (a) and knockdown (d) advantages and forced tech rolls are left out.<br>Mike's rule: a character can't block in a unique stance unless a source says otherwise. No source says Raven can block in SZN or CD. For BT, Wavu says turning to face you (<span class="mono">BT.b+3+4</span>) "can block mid or high attacks after 5f"; FC is his ordinary full crouch, not a unique stance.<br><strong>State changes the read</strong> (Wavu/TekkenDocs): a standing jab is a high, so it whiffs against crouching moves (<span class="mono">SZN.4</span> from 6, <span class="mono">BT.d+1</span>/<span class="mono">BT.d+4</span> from 1, <span class="mono">BT.d+2</span>/<span class="mono">BT.d+3</span>/<span class="mono">BT.f,F+3</span> from 4, every FC move from 1). <span class="mono">BT.1+2</span> is a <strong>power crush</strong> (6~14) and absorbs a jab that lands on his frame 6 or later. <span class="mono">BT.4</span> (6~19), <span class="mono">BT.f+3+4</span> (5~24), <span class="mono">BT.3+4</span> (13~31), <span class="mono">SZN.3</span> (9~17) and the CD moves are airborne early; that beats lows, not a high jab. Homing: <span class="mono">SZN.1+2</span>, <span class="mono">BT.b+3</span>.</div>
+<h3>SZN — Soulzone · on block: b+1 (+8c), Heat Smash H.2+3 (+14g) · on hit: db+2,1~D (+5), 1,2~D (+6), f+2,3~D (+7c), BT.2,2~D and BT.f+4,1~D (+9), b+1 (+11c), qcf+1~D (+13g; +18 on CH)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>SZN attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +5</th><th>Eff. at +8</th><th>Eff. at +9</th><th>Eff. at +11</th><th>Eff. at +13</th><th>Eff. at +14</th><th>Eff. at +18</th><th>Read at +8</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">SZN.1</td><td>High</td><td class="mono">i14~15</td><td class="mono">i9 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i3 — can't</td><td class="mono">i1 — can't</td><td class="mono">i0 — can't</td><td class="mono">i-4 — can't</td><td class="tracks">Jab can't interrupt</td><td>Swift Blade; +1, can go to CD (+6 on block)</td></tr>
+    <tr><td class="mono">SZN.1+2</td><td>High</td><td class="mono">i15~16</td><td class="mono">i10 — trades</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i4 — can't</td><td class="mono">i2 — can't</td><td class="mono">i1 — can't</td><td class="mono">i-3 — can't</td><td class="tracks">Jab can't interrupt</td><td>Homing, Tornado on CH; +0~+1</td></tr>
+    <tr><td class="mono">SZN.3</td><td>Mid</td><td class="mono">i16~17</td><td class="mono">i11 — interrupts</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i5 — can't</td><td class="mono">i3 — can't</td><td class="mono">i2 — can't</td><td class="mono">i-2 — can't</td><td class="tracks">Jab can't interrupt</td><td>Airborne 9~17; −1</td></tr>
+    <tr><td class="mono">SZN.4</td><td>Low</td><td class="mono">i17~24</td><td class="mono">i12 — interrupts</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i6 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="mono">i-1 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 6~ — a standing jab whiffs; −14~−7 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">SZN.2</td><td>Mid, Special mid</td><td class="mono">i18, i23~24</td><td class="mono">i13 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i7 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i0 — can't</td><td class="both">Trades</td><td>Heat Engager; −9</td></tr>
+    <tr><td class="mono">SZN.3+4</td><td>Mid</td><td class="mono">i27~30</td><td class="mono">i22 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i9 — can't</td><td class="swr">A 10f jab interrupts</td><td>Floor Break; −6</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Read column is at +8 (a blocked b+1), the plus-on-block entry you'll see most. Even at the smallest plus here (+5), SZN.1 (i14) beats a jab and SZN.1+2 (i15) trades. Not tabled: SZN.U / SZN.D / SZN.B (Blind Fall) are movement, airborne 1~17 (Wavu), not attacks; qcf+1 on block (−2) and SZN.3~B/D (−1) are minus</div>
+<h3>BT — back turned · on block: u+3 (+2), BT.b+3 (+5), f,f,F+3 and b+4,B+4 (+6, +6c) · on hit: BT.f+3~B (+3), BT.d+2~B (+4), SZN.3~B and BT.b+2,4~B (+5), db+2, b+2,2, f+3~B (+6), BT.b+2, u+3 (+7), 4,1, 2,4~B, b+4,4 (+8)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>BT attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +2</th><th>Eff. at +3</th><th>Eff. at +4</th><th>Eff. at +5</th><th>Eff. at +6</th><th>Eff. at +7</th><th>Eff. at +8</th><th>Read at +6</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">BT.1</td><td>High</td><td class="mono">i8</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="mono">i2 — can't</td><td class="mono">i1 — can't</td><td class="mono">i0 — can't</td><td class="tracks">Jab can't interrupt</td><td>Blind Axe; −1~+0</td></tr>
+    <tr><td class="mono">BT.2</td><td>High</td><td class="mono">i10</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="mono">i2 — can't</td><td class="tracks">Jab can't interrupt</td><td>Backfist; +0</td></tr>
+    <tr><td class="mono">BT.3</td><td>High</td><td class="mono">i10</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="mono">i2 — can't</td><td class="tracks">Jab can't interrupt</td><td>−11</td></tr>
+    <tr><td class="mono">BT.d+1</td><td>Special low</td><td class="mono">i10</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="mono">i3 — can't</td><td class="mono">i2 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −5 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">BT.d+4</td><td>Low</td><td class="mono">i12</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i4 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −15 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">BT.f+3</td><td>Mid</td><td class="mono">i13~14</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="tracks">Jab can't interrupt</td><td>Knee; −5~−4</td></tr>
+    <tr><td class="mono">BT.1+2</td><td>Mid</td><td class="mono">i15~16</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="tracks">Jab can't interrupt</td><td><strong>Power crush</strong> 6~14 — absorbs a jab landing on his frame 6+; −13</td></tr>
+    <tr><td class="mono">BT.3+4</td><td>Mid, Mid</td><td class="mono">i15 i34~35</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="tracks">Jab can't interrupt</td><td>Airborne 13~31; −14</td></tr>
+    <tr><td class="mono">BT.f+1</td><td>Mid</td><td class="mono">i16</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="both">Trades</td><td>Turns into a throw on hit; −8</td></tr>
+    <tr><td class="mono">BT.f+4</td><td>Low</td><td class="mono">i16</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="both">Trades</td><td>−9 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">BT.b+2</td><td>Mid</td><td class="mono">i16~17</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i8 — can't</td><td class="both">Trades</td><td>Elbow; −2~−1</td></tr>
+    <tr><td class="mono">BT.f+2</td><td>Mid</td><td class="mono">i17~18</td><td class="mono">i15 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="swr">A 10f jab interrupts</td><td>−5~−4</td></tr>
+    <tr><td class="mono">BT.b+3</td><td>High</td><td class="mono">i18~19</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i10 — trades</td><td class="swr">A 10f jab interrupts</td><td>Homing high; +4~+5</td></tr>
+    <tr><td class="mono">BT.4</td><td>Mid</td><td class="mono">i19~20</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Airborne 6~19; Heat Engager; −5~−4</td></tr>
+    <tr><td class="mono">BT.d+2</td><td>Low</td><td class="mono">i20~21</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i12 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Crouching 4~; −12 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">BT.f,F+3</td><td>Mid</td><td class="mono">i21~22</td><td class="mono">i19 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Crouching 4~22; −9~−8</td></tr>
+    <tr><td class="mono">BT.f,F+3+4</td><td>Low</td><td class="mono">i23~30</td><td class="mono">i21 — interrupts</td><td class="mono">i20 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Crouching 18~49; −18~−11 <span class="react r-mostly">Mostly reactable</span></td></tr>
+    <tr><td class="mono">BT.d+3</td><td>Low</td><td class="mono">i25~27</td><td class="mono">i23 — interrupts</td><td class="mono">i22 — interrupts</td><td class="mono">i21 — interrupts</td><td class="mono">i20 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Crouching 4~48; −26~−24 <span class="react r-yes">Reactable</span></td></tr>
+    <tr><td class="mono">BT.f+3+4</td><td>Mid</td><td class="mono">i25~27</td><td class="mono">i23 — interrupts</td><td class="mono">i22 — interrupts</td><td class="mono">i21 — interrupts</td><td class="mono">i20 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i18 — interrupts</td><td class="mono">i17 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Airborne 5~24; −9~−7</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Read column is at +6 (a blocked f,f,F+3 or b+4,B+4). Even at +2 (a blocked u+3), BT.1, BT.2, BT.3 and BT.d+1 are effectively i6–i8, so all four beat a jab. Wavu says <span class="mono">BT.b+3+4</span> (turning to face you) "can block mid or high attacks after 5f", and the anti-strat says the manual b+3+4 BT transition is "vulnerable for 5f before blocking". Not tabled: <span class="mono">BT.f+1+2</span> is a parry (1~8), not an attack</div>
+<h3>CD — Shadow Sprint · on block: BT.2,1~F (+3), SZN.1~F (+6) · on hit: BT.2,1~F (+7), 2,4~F (+10), SZN.1~F (+13g; +17 on CH)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>CD attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +3</th><th>Eff. at +6</th><th>Eff. at +7</th><th>Eff. at +10</th><th>Eff. at +13</th><th>Eff. at +17</th><th>Read at +6</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">ub+1</td><td>Mid</td><td class="mono">i16</td><td class="mono">i13 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i9 — can't</td><td class="mono">i6 — can't</td><td class="mono">i3 — can't</td><td class="mono">i-1 — can't</td><td class="both">Trades</td><td>−6; leads to ub+1,2</td></tr>
+    <tr><td class="mono">uf+4</td><td>Mid</td><td class="mono">i20~21</td><td class="mono">i17 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i7 — can't</td><td class="mono">i3 — can't</td><td class="swr">A 10f jab interrupts</td><td>Airborne 8~27; −9~−8</td></tr>
+    <tr><td class="mono">uf+3+4</td><td>Mid</td><td class="mono">i23~25</td><td class="mono">i20 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i10 — trades</td><td class="mono">i6 — can't</td><td class="swr">A 10f jab interrupts</td><td>Airborne 8~26; −13</td></tr>
+    <tr><td class="mono">u+3</td><td>High</td><td class="mono">i27~28</td><td class="mono">i24 — interrupts</td><td class="mono">i21 — interrupts</td><td class="mono">i20 — interrupts</td><td class="mono">i17 — interrupts</td><td class="mono">i14 — interrupts</td><td class="mono">i10 — trades</td><td class="swr">A 10f jab interrupts</td><td>High; airborne 9~30; +2 into BT</td></tr>
+    <tr><td class="mono">uf+3</td><td>Mid</td><td class="mono">i29~30</td><td class="mono">i26 — interrupts</td><td class="mono">i23 — interrupts</td><td class="mono">i22 — interrupts</td><td class="mono">i19 — interrupts</td><td class="mono">i16 — interrupts</td><td class="mono">i12 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Airborne 9~30; −9</td></tr>
+  </tbody>
+</table></div>
+<div class="note">Raw startups are the standing versions; Wavu lists these as "can be performed during CD" but gives no separate CD startup, so treat the effective numbers as an estimate of the timing, not a measured value. Wavu lists no other CD-only attacks</div>
+<h3>FC — full crouch · on hit: BT.d+2~D (+4), SZN.3~D and BT.b+2,4~D (+5), 2,4~D (+8)</h3>
+<div class="table-wrap"><table class="step-table">
+  <thead>
+    <tr><th>FC attack</th><th>Hit level</th><th>Raw (Wavu)</th><th>Eff. at +4</th><th>Eff. at +5</th><th>Eff. at +8</th><th>Read at +8</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mono">FC.1</td><td>Special low</td><td class="mono">i10</td><td class="mono">i6 — can't</td><td class="mono">i5 — can't</td><td class="mono">i2 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −5 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">FC.2</td><td>Special low</td><td class="mono">i11</td><td class="mono">i7 — can't</td><td class="mono">i6 — can't</td><td class="mono">i3 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −4 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">FC.4</td><td>Low</td><td class="mono">i12</td><td class="mono">i8 — can't</td><td class="mono">i7 — can't</td><td class="mono">i4 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −15 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">FC.3</td><td>Low</td><td class="mono">i16</td><td class="mono">i12 — interrupts</td><td class="mono">i11 — interrupts</td><td class="mono">i8 — can't</td><td class="tracks">Jab can't interrupt</td><td>Crouching 1~; −17 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">FC.df+3+4</td><td>Low, Special mid</td><td class="mono">i18~20 i34~36</td><td class="mono">i14 — interrupts</td><td class="mono">i13 — interrupts</td><td class="mono">i10 — trades</td><td class="both">Trades</td><td>Crouching 1~17; −23~−21 <span class="react r-no">Not reactable</span></td></tr>
+    <tr><td class="mono">FC.df+3</td><td>Low</td><td class="mono">i20~22</td><td class="mono">i16 — interrupts</td><td class="mono">i15 — interrupts</td><td class="mono">i12 — interrupts</td><td class="swr">A 10f jab interrupts</td><td>Crouching 1~35; −9~−7 <span class="react r-no">Not reactable</span></td></tr>
+  </tbody>
+</table></div>
+<div class="note">Every FC move is crouching from frame 1 (Wavu), so a <strong>standing high jab whiffs</strong> whatever the frame count says. Check him with a fast mid instead</div>
+<div class="note">Summary: after a blocked <span class="mono">b+1</span> (+8 into SZN) a jab loses to SZN.1, SZN.1+2, SZN.3 and SZN.4 and trades with SZN.2. After the Heat Smash (+14) only the slow SZN.3+4 is jab-able. In BT, BT.1 (i8) beats a jab from any plus entry, so even +2 (a blocked u+3) is his turn. In FC, FC.1 / FC.2 / FC.4 beat the jab's timing even at +4, and every FC move crouches under a standing jab anyway — use a mid</div>
+
+<!-- ── DEFENSIVE NUANCES ── -->
+<section id="nuances"><h2 id="nuances-h"><span>Defensive Nuances</span><a class="to-top" href="#top">↑ Return to Top</a></h2><p class="nuance-intro">Every Lab (Mike) and Theory (Ledger) note in this guide, in page order. Each link jumps to the note in place.</p><ul class="nuance-list"><li><span class="theory-badge">Theory</span><span class="nuance-sec">Movement — Which Way to Step</span>Theory (Ledger): both Tier 1 notes (df+1, b+2,4) and the @Mezerdie chart point left, and only the anti-strat says SSR. If SSR keeps getting clipped by his po… <a href="#nu-1">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Standing Block Punishment</span>Theory (Ledger): a special mid can be crouch-blocked, so a clone shouldn&#x27;t beat you for crouching. If you crouch-block one, you recover crouching, so the pun… <a href="#nu-2">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Duck and Launch</span>Theory (Ledger): b+2,4 whiffs if you sidestep after blocking b+2 (Wavu), and Wavu lists it at −22 on whiff, so that step should be worth a launcher. The size… <a href="#nu-3">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Duck and Launch</span>Theory (Ledger): a ducked b+1 should whiff into its forced SZN transition, which Wavu only lists &quot;on hit or block&quot;. If the SZN transition doesn&#x27;t happen on w… <a href="#nu-4">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Duck and Launch</span>Theory (Ledger): Wavu lists the power crush as high, then mid. Ducking may skip the high, but the mid still comes, so blocking it (−13) is the reliable answe… <a href="#nu-5">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Stance Counterplay</span>Theory (Ledger): SZN.1 and SZN.1+2 are highs and SZN.4 is a low, so a crouch beats or blocks all three. So after a blocked b+1, crouching should cover everyt… <a href="#nu-6">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Stance Counterplay</span>Theory (Ledger): since both of the anti-strat&#x27;s SWL exceptions are highs, mixing SWL with a crouch at even frames covers everything the anti-strat names. The… <a href="#nu-7">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Heat</span>Theory (Ledger): the clone extensions are &quot;available only on hit or block&quot;, and in Heat they&#x27;re −3 and restore Heat when they hit. So blocking the first hit… <a href="#nu-8">Go to note →</a></li><li><span class="theory-badge">Theory</span><span class="nuance-sec">Power Crush &amp; Rage Art</span>Theory (Ledger): Utsusemi parries attacks, and a throw isn&#x27;t an attack in the parry sense, so a throw should beat it. Untested. <a href="#nu-9">Go to note →</a></li></ul></section>
+
+<div class="sources" id="sources">
+  <div class="sources-head"><strong>Sources</strong><a class="to-top" href="#top">↑ Return to Top</a></div>
+  Frame data from <a href="https://wavu.wiki/t/Raven_movelist">Wavu Wiki — Raven movelist</a> (185 entries) and <a href="https://wavu.wiki/t/Raven_counterplay">Wavu Wiki — Raven counterplay</a> (3 buckets, 21 moves; 2 prose sections: "Clones" and "Quicksand OS"), downloaded and parsed with the repo's <span class="mono">scripts/fetch_sources.py</span> on 23 November 2026. Every frame value, hit level, state, interrupt window, tracking note and stance transition in this guide is from Wavu unless marked.<br>
+  <strong>Cross-check:</strong> <a href="https://tekkendocs.com/t8/raven">TekkenDocs — Raven</a> frame data (177 rows), parsed by the same script. 176 moves are on both sites with <strong>no block-frame disagreements</strong>. The rows the script couldn't match are naming differences (the throws and the wall-jump move are spelled differently on the two sites), not missing data. TekkenDocs notes supplied the Crouch Step high-crush frames (df+3+4 4~25, FC.df,d,DF 1~30).<br>
+  <strong>Strategy notes:</strong> <a href="https://tekkendocs.com/t8/raven/antistrat">TekkenDocs — Raven anti-strat</a> (community-written): Quick overview, HEAT, Stances, standing and while-standing block punishment, String handling, Other notes, Duckable highs, Plus on block, Low minus, Low hit advantage. Its frame numbers were treated as claims and checked against Wavu. <strong>Where it differs from Wavu</strong> (Wavu used): uf+3+4 at −16 (Wavu −13); BT.3+4 and BT.b+2,3 at −20 (Wavu −14); the clones (df1,4, db2,1,1, b2,4,2, ws3,2, BT2,2,1, BT f2,4,2, qcf1,2, SZN1,4, SZN3,2) at −14 (Wavu −13 on every one, and the Wavu counterplay page says "every clone outside of heat is −13"); f1+2 at −14 (Wavu −13); BT2,1~f at +1 (Wavu +3 into CD); "f1+2" as a Heat Engager (Wavu marks f,F+2, not f+1+2); u3 described as "mid first" (Wavu lists u+3 as a high). Its "Other notes" line is marked by its own author as "UNCONFIRMED FROM T7" for the BT power crush activation and was not used.<br>
+  <strong>Movement section:</strong> Tier 2, the anti-strat Quick overview ("SSR"), sets the SSR default. Tier 1 is two Wavu notes (df+1 "can only be sidewalked left at range"; b+2,4 "whiffs vs SS, SWL from 1st block") plus five homing tags. <strong>Tier disagreement:</strong> Tier 1 says SSR doesn't beat df+1, so the guide follows Tier 1 for that move. The <a href="https://tekkendocs.com/t8/sidestep-chart.webp">TekkenDocs sidestep chart</a> (community chart by @Mezerdie, via sidestep.md) says <strong>SSL</strong>, which disagrees with the anti-strat; the anti-strat is the higher tier and is used.<br>
+  <strong>Low reactability tags:</strong> Mike's reaction rule (25f+ reactable, 21–24f mostly, ≤20f not), applied to Wavu's fastest startup frame of the low (for strings, Wavu's startup for the low hit). Every low in the guide had a stated startup.<br>
+  <strong>Stance Check:</strong> arithmetic on Wavu startup and stated advantage (SZN: b+1 +8c on block, Heat Smash +14g, and on-hit entries +5 to +18; BT: on-block +2 to +6, on-hit +3 to +8; CD: +3 to +17; FC: +4 to +8 on hit). No source states that Raven can block in SZN or CD. The CD rows use the standing startups, since Wavu gives no separate CD startup.<br>
+  <strong>Mike's notes:</strong> no <span class="mono">notes/Raven.md</span> exists yet.<br>
+  <strong>Lab tests (Mike):</strong> nothing in this guide is lab-tested yet. Ranked record at queue time: 5–4.<br>
+  <strong>Lab drill — training wheels:</strong> have the dummy throw the standalone opener, then step. Stage 1 (direction only, timing untested): the dummy plays <span class="mono">b+2</span> on fixed timing from neutral, and you sidestep right after blocking it (Wavu: b+2,4 whiffs vs SS from 1st block). 20-rep sets, graduate at 18/20 on 3 straight sets (about 60 reps minimum). Stage 2: the dummy plays the real <span class="mono">b+2,4</span> with randomized delay (Wavu: the input can be delayed 13f), 16/20 on 3 straight sets. Stage 3: random playback of <span class="mono">b+2,4</span>, <span class="mono">b+2,2</span>, <span class="mono">b+2,2,3</span> and <span class="mono">b+2,2,1+2</span>, plus a <span class="mono">df+1</span> from range (block it, or SWL), 25-rep sets, 75% correct decisions on 2 straight sets. Stage 4: log what holds in real matches as Lab (Mike). Why Stage 3 matters for him: b+2's branches end high, mid or low and can be delayed, and his df+1 can't be stepped right, so the step has to become a read, not a reflex. Weaknesses: a standalone opener has no follow-up on a clock, recovers differently from the same hit inside a string, and knowing it's coming removes the read. Rep counts are a heuristic. Cap a session at around 100–150 reps, stop if accuracy falls 15 points, and go back a stage if a stage drops under 60% for two sets.<br>
+  <strong>To test (Theory):</strong><br>
+  1. Neutral step: does SSR or SWL beat more of his pokes (df+1, b+2, df+4, f+2)?<br>
+  2. Crouch-block a clone (e.g. df+1,4): does it work, and what punishes from crouch?<br>
+  3. Sidestep after blocking b+2: does b+2,4 whiff, and what launches the −22 whiff?<br>
+  4. Duck b+1: does it still go to SZN on whiff, and what punishes it?<br>
+  5. Duck f+1+2 (Minos Typhoon): does the mid 2nd hit still connect?<br>
+  6. After a blocked b+1 (+8 SZN): crouch vs SZN.1 / SZN.1+2 / SZN.4. What does SZN.2 cost you?<br>
+  7. BT at 0f: SWL vs a crouch against BT.b+3 and BT.3, and what his BT mids do to the crouch.<br>
+  8. In Heat: does blocking a −3 clone ever give you a turn back?<br>
+  9. Utsusemi (b+1+3): does a throw beat it?
+</div>
+</body>
+</html>
