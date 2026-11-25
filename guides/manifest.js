@@ -334,5 +334,14 @@ window.GUIDES = [
     step: 'SSL',
     record: { w: 7, l: 4 },
     added: '2026-11-25'
+  },
+  {
+    character: 'Paul',
+    file: 'guides/Anti-Paul.html',
+    artifact: 'https://claude.ai/artifact/5gG6HCqyva47ft4UDLweuY',
+    tags: ['SSR Default', 'Duck uf+2 (+5)', 'Launch Deathfist (−17)'],
+    step: 'SSR',
+    record: { w: 15, l: 10 },
+    added: '2026-11-25'
   }
 ];
