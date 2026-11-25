@@ -316,5 +316,14 @@ window.GUIDES = [
     step: 'SSL',
     record: { w: 12, l: 9 },
     added: '2026-11-24'
+  },
+  {
+    character: 'Clive',
+    file: 'guides/Anti-Clive.html',
+    artifact: 'https://claude.ai/artifact/1ANMKyz8VFV4m8hPsafyMQ',
+    tags: ['SSR Default', 'Block +6 PHX', 'Duck f+2,1 (+1)'],
+    step: 'SSR',
+    record: { w: 5, l: 3 },
+    added: '2026-11-24'
   }
 ];
