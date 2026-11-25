@@ -325,5 +325,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 5, l: 3 },
     added: '2026-11-24'
+  },
+  {
+    character: 'Feng',
+    file: 'guides/Anti-Feng.html',
+    artifact: 'https://claude.ai/artifact/8pdajjtvnuZg6F14ujHUWq',
+    tags: ['SSL Default', 'Respect b+3 (+4)', 'Duck 1,2,2 (−13)'],
+    step: 'SSL',
+    record: { w: 7, l: 4 },
+    added: '2026-11-25'
   }
 ];
