@@ -343,5 +343,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 15, l: 10 },
     added: '2026-11-25'
+  },
+  {
+    character: 'Azucena',
+    file: 'guides/Anti-Azucena.html',
+    artifact: 'https://claude.ai/artifact/WqSMPV5rgk96K9VaFg7kE1',
+    tags: ['SSR Default', 'Mids Beat LIB', 'Duck f+1+2 (High PC)'],
+    step: 'SSR',
+    record: { w: 13, l: 8 },
+    added: '2026-11-25'
   }
 ];
