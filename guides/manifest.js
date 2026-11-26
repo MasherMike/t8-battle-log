@@ -361,5 +361,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 15, l: 9 },
     added: '2026-11-26'
+    },
+  {
+    character: 'Leroy',
+    file: 'guides/Anti-Leroy.html',
+    artifact: 'https://claude.ai/artifact/MBYVPEJEeSeS2GbpWeM5NL',
+    tags: ['SSR Default', 'Duck b+3 (+9 HRM)', 'No Lows into Hermit'],
+    step: 'SSR',
+    record: { w: 5, l: 1 },
+    added: '2026-11-26'
   }
 ];
