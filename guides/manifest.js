@@ -352,5 +352,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 13, l: 8 },
     added: '2026-11-25'
+  },
+  {
+    character: 'Jun',
+    file: 'guides/Anti-Jun.html',
+    artifact: 'https://claude.ai/artifact/Y3cg2ePUbbTTkhJ5bZEBXi',
+    tags: ['SSR Default', 'Duck 1,2,2 (+4 IZU)', 'Launch b+3 (−19)'],
+    step: 'SSR',
+    record: { w: 15, l: 9 },
+    added: '2026-11-26'
   }
 ];
