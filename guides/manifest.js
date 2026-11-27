@@ -379,5 +379,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 17, l: 7 },
     added: '2026-11-26'
+    },
+  {
+    character: 'Yoshimitsu',
+    file: 'guides/Anti-Yoshimitsu.html',
+    artifact: 'https://claude.ai/artifact/UprXPMRvVLdwVs6KNYeFFs',
+    tags: ['SSR Default', 'Duck 3,1 (+7 DGF)', 'Launch Flash 1+4 (−20)'],
+    step: 'SSR',
+    record: { w: 14, l: 5 },
+    added: '2026-11-27'
   }
 ];
