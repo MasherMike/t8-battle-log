@@ -5,7 +5,8 @@ One file per session review, named like the review it answers:
 
 Written by Claude: in chat right after a session, by the push-triggered
 GitHub Action (`.github/workflows/coach-take.yml`, minutes after a review
-lands), or by the nightly scheduled check (a backup until about Dec 11, 2026).
+lands), or by the nightly backstop (a scheduled check at 11:13 PM Eastern; its
+takes say so in the data note).
 Every writer skips a review that already has a file here, so a take is never
 written twice. One gap: a review made with the "End session" Actions button is
 pushed by a workflow, so it can't trigger the Action; the nightly check or a
