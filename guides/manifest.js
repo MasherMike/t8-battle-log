@@ -388,5 +388,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 14, l: 5 },
     added: '2026-11-27'
+  },
+  {
+    character: 'Roger Jr.',
+    file: 'guides/Anti-Roger-Jr..html',
+    artifact: 'https://claude.ai/artifact/KaCWM3phJhjpB6ZcDbF1hT',
+    tags: ['Lean SSR', 'Launch 3+4 (−20)', 'Heat Smash +13 AST'],
+    step: 'SSR (lean)',
+    record: { w: 0, l: 0 },
+    added: '2026-11-27'
   }
 ];
