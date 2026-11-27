@@ -370,5 +370,14 @@ window.GUIDES = [
     step: 'SSR',
     record: { w: 5, l: 1 },
     added: '2026-11-26'
+  },
+  {
+    character: 'Law',
+    file: 'guides/Anti-Law.html',
+    artifact: 'https://claude.ai/artifact/UzMQ6AYAjGUKmupPP7MiTF',
+    tags: ['SSR Default', 'Duck 4,3 (+7 DSS)', 'Launch db+4 (−37)'],
+    step: 'SSR',
+    record: { w: 17, l: 7 },
+    added: '2026-11-26'
   }
 ];
